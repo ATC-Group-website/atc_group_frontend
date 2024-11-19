@@ -1,0 +1,7 @@
+/* Optional custom styles */
+.carousel-button {
+  transition: all 0.3s ease;
+}
+.carousel-button:hover {
+  background-color: #3498db;
+}

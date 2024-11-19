@@ -1,0 +1,64 @@
+nav {
+  transition: top 0.3s ease-in-out;
+}
+a {
+  color: black;
+  text-decoration: none;
+}
+
+.underline-effect {
+  position: relative;
+}
+
+.underline-effect::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 4px;
+  width: 0; /* Start with width 0 for the animation */
+  background-color: transparent;
+  transition:
+    width 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+.underline-effect.router-link-active::after {
+  width: 100%;
+  background-color: #eb1f2f;
+}
+
+/* Optional: Add a hover effect for non-active links */
+.underline-effect:not(.router-link-active):hover::after {
+  width: 100%;
+  background-color: #eb1f2f;
+}
+/* Dropdown Menu Styling */
+@media (max-width: 1279px) {
+  .dropdown-menu {
+    background-color: white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 1rem;
+  }
+}
+/* Styling for the dropdown menu */
+.submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+}
+
+/* Show the submenu when hovering over the parent item */
+.relative:hover .submenu {
+  display: block;
+}
+
+/* ################################################## */

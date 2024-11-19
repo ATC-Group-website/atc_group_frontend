@@ -1,0 +1,436 @@
+<!-- <nav >
+<div class="max-w-screen-2xl mx-auto p-2">
+
+</div>
+</nav> -->
+<nav
+  class="fixed left-0 right-0 z-50 bg-white shadow-2xl"
+  [ngClass]="{ 'top-0': isScrolled, 'top-12': !isScrolled }"
+>
+  <div class="flex flex-wrap items-center justify-between p-2">
+    <a
+      routerLink="/"
+      class="mr-auto h-28 w-48 xl:mr-0 ltr:mr-auto ltr:xl:mr-0 rtl:ml-auto rtl:mr-0 rtl:xl:ml-0"
+    >
+      <img
+        ngSrc="atc_group_logo.png"
+        priority
+        alt="ATC Logo"
+        width="160"
+        height="112"
+      />
+    </a>
+
+    <!-- Menu Toggle Button (Visible on Small Screens) -->
+    <button
+      class="m-0 h-fit w-fit cursor-pointer border-0 bg-transparent px-1 text-lg xl:hidden"
+      type="button"
+      (click)="toggleMenu($event)"
+      aria-label="Toggle menu"
+    >
+      <i class="fa-solid fa-bars text-4xl text-primary"></i>
+    </button>
+    <div
+      class="xl-block hidden w-full items-center justify-between xl:flex xl:w-auto"
+    >
+      <ul
+        class="m-0 flex list-none flex-col items-center justify-center gap-2 px-2 py-4 xl:static xl:mt-0 xl:flex-row xl:gap-8"
+      >
+        <li>
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/"
+            routerLinkActive="router-link-active font-bold"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/about-us"
+            routerLinkActive="router-link-active font-bold"
+            >About</a
+          >
+        </li>
+        <!-- <li>
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/services"
+            routerLinkActive="router-link-active font-bold"
+            >Services</a
+          >
+        </li> -->
+        <li class="relative">
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/services"
+            routerLinkActive="router-link-active font-bold"
+            >Services
+            <i class="fa-solid fa-chevron-down text-base text-primary"></i
+          ></a>
+          <ul
+            class="submenu absolute left-0 m-0 hidden w-[340px] !bg-gray-100 p-0 text-base text-black shadow-md"
+          >
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                Audit and Assurance
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                Tax Services
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                Investment and Company Incorporation
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                Social Insurance
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                E-Invoice
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                System Inspection
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                International Taxation Department
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                Transfer Pricing
+              </a>
+            </li>
+            <li
+              class="!m-0 border-0 border-b-[1px] border-solid border-black !p-0 hover:bg-primary hover:text-white"
+            >
+              <a
+                class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+              >
+                Accounting & Tax Training Courses
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/insights"
+            routerLinkActive="router-link-active font-bold"
+            >Insights</a
+          >
+          <!-- routerLinkActive="font-bold text-black border-b-4 border-primary hover:text-black" -->
+        </li>
+        <li>
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/contact-us"
+            routerLinkActive="router-link-active font-bold"
+            >Pro training</a
+          >
+        </li>
+        <li>
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/careers"
+            routerLinkActive="router-link-active font-bold"
+            >Careers</a
+          >
+        </li>
+        <li>
+          <a
+            class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+            routerLink="/careers"
+            routerLinkActive="router-link-active font-bold"
+            >Locations</a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <!-- <a
+      routerLink="/contact-us"
+      class="hidden rounded-2xl bg-primary px-9 py-4 font-bold text-white shadow-md xl:block"
+    >
+      Contact Us
+    </a> -->
+
+    <div class="flex">
+      <a
+        routerLink="/contact-us"
+        class="hidden rounded-2xl bg-primary px-9 py-4 font-bold !text-white shadow-[0px_0px_10px_0px_rgba(0,0,0,0.5)] xl:block"
+      >
+        Contact Us
+      </a>
+    </div>
+  </div>
+
+  <!-- <li>
+    <a
+      class="underline-effect block cursor-pointer px-3 py-2 text-xl text-black xl:bg-transparent xl:p-1 xl:pb-2.5 xl:hover:text-primary"
+      routerLink="/"
+      routerLinkActive="router-link-active font-bold"
+      [routerLinkActiveOptions]="{ exact: true }"
+    >
+      Home
+    </a>
+  </li> -->
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    class="mt-2 bg-white shadow-lg xl:hidden"
+    [ngClass]="{
+      block: isMenuOpen,
+      hidden: !isMenuOpen,
+    }"
+    (click)="$event.stopPropagation()"
+  >
+    <ul
+      class="mb-0 flex list-none flex-col items-start justify-center gap-4 p-4 pb-5"
+    >
+      <li>
+        <a
+          routerLink="/"
+          routerLinkActive="router-link-active font-bold"
+          class="underline-effect inline cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          [routerLinkActiveOptions]="{ exact: true }"
+          >Home</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/about-us"
+          routerLinkActive="router-link-active font-bold"
+          class="underline-effect inline cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          >About</a
+        >
+      </li>
+      <!-- <li>
+        <a
+          routerLink="/services"
+          routerLinkActive="router-link-active font-bold"
+          class="underline-effect inline cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          >Services
+          <i class="fa-solid fa-chevron-down text-base text-primary"></i>
+        </a>
+
+        <ul
+          class="submenu absolute left-0 hidden bg-white p-4 text-lg text-black shadow-md"
+        >
+          <li>
+            <a
+              routerLink="/services/service1"
+              routerLinkActive="router-link-active font-bold"
+              class="block cursor-pointer px-4 py-2 hover:bg-gray-200"
+              >Service 1</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/services/service2"
+              routerLinkActive="router-link-active font-bold"
+              class="block cursor-pointer px-4 py-2 hover:bg-gray-200"
+              >Service 2</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/services/service3"
+              routerLinkActive="router-link-active font-bold"
+              class="block cursor-pointer px-4 py-2 hover:bg-gray-200"
+              >Service 3</a
+            >
+          </li>
+        </ul>
+      </li> -->
+      <!-- <li class="relative">
+        <a
+          routerLink="/services"
+          routerLinkActive="router-link-active font-bold"
+          class="custom-link cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          (click)="toggleSubmenu($event)"
+        >
+          Services
+          <i class="fa-solid fa-chevron-down text-lg text-primary"></i>
+        </a>
+
+        @if (isSubMenuOpen) {
+          <ul
+            class="custom-submenu absolute left-0 mt-2 hidden w-56 bg-white p-4 text-lg text-black shadow-md"
+          >
+            <li>
+              <a
+                routerLink="/services/service1"
+                routerLinkActive="router-link-active font-bold"
+                class="submenu-link block cursor-pointer px-4 py-2 hover:bg-gray-200"
+                >Service 1</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/services/service2"
+                routerLinkActive="router-link-active font-bold"
+                class="submenu-link block cursor-pointer px-4 py-2 hover:bg-gray-200"
+                >Service 2</a
+              >
+            </li>
+            <li>
+              <a
+                routerLink="/services/service3"
+                routerLinkActive="router-link-active font-bold"
+                class="submenu-link block cursor-pointer px-4 py-2 hover:bg-gray-200"
+                >Service 3</a
+              >
+            </li>
+          </ul>
+        }
+      </li> -->
+
+      <!-- <li class="relative"> -->
+      <!-- <a
+          routerLink="/services"
+          routerLinkActive="router-link-active font-bold"
+          class="custom-link cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          (click)="toggleSubmenu($event)"
+        >
+          Services
+          <i class="fa-solid fa-chevron-down text-lg text-primary"></i>
+        </a> -->
+
+      <!-- Nested dropdown for individual services -->
+      <!-- <ul
+          class="custom-submenu absolute left-0 mt-2 w-56 bg-white p-4 text-lg text-black shadow-md"
+          [class.open]="isSubMenuOpen"
+        >
+          <li>
+            <a
+              routerLink="/services/service1"
+              routerLinkActive="router-link-active font-bold"
+              class="submenu-link block cursor-pointer px-4 py-2 hover:bg-gray-200"
+              >Service 1</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/services/service2"
+              routerLinkActive="router-link-active font-bold"
+              class="submenu-link block cursor-pointer px-4 py-2 hover:bg-gray-200"
+              >Service 2</a
+            >
+          </li>
+          <li>
+            <a
+              routerLink="/services/service3"
+              routerLinkActive="router-link-active font-bold"
+              class="submenu-link block cursor-pointer px-4 py-2 hover:bg-gray-200"
+              >Service 3</a
+            >
+          </li>
+        </ul> -->
+      <!-- </li> -->
+
+      <li>
+        <a
+          routerLink="/insights"
+          routerLinkActive="router-link-active font-bold"
+          class="underline-effect inline cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          >Insights</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/contact-us"
+          routerLinkActive="router-link-active font-bold"
+          class="underline-effect inline cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          >Pro Training</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/careers"
+          routerLinkActive="router-link-active font-bold"
+          class="underline-effect inline cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          >Careers</a
+        >
+      </li>
+      <li>
+        <a
+          routerLink="/locations"
+          routerLinkActive="router-link-active font-bold"
+          class="underline-effect inline cursor-pointer px-3 py-2 text-xl text-black hover:text-primary"
+          >Locations</a
+        >
+      </li>
+      <div class="flex justify-center">
+        <a
+          routerLink="/contact-us"
+          class="rounded-2xl bg-primary px-7 py-4 font-bold !text-white shadow-[0px_0px_10px_0px_rgba(0,0,0,0.5)] xl:hidden"
+        >
+          Contact Us
+        </a>
+      </div>
+    </ul>
+  </div>
+</nav>

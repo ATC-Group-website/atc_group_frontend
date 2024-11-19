@@ -1,1 +1,153 @@
 <app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main class="mt-[130px]">
+  <section id="landing_section " class="h-[82vh]">
+    @if (isBrowser) {
+      <swiper-container
+        class="h-full"
+        centered-slides="true"
+        speed="1000"
+        autoplay='{"delay": 3000, "disableOnInteraction": false}'
+        navigation="false"
+        loop="true"
+        pagination="true"
+      >
+        @for (slide of slides; track slide.id) {
+          <swiper-slide>
+            <div
+              class="relative h-full w-full bg-cover bg-center bg-no-repeat"
+              [style.background-image]="'url(' + slide.imageUrl + ')'"
+            >
+              <div class="absolute inset-0 bg-black/50">
+                <div
+                  class="container mx-auto flex h-full items-center justify-center px-4"
+                >
+                  <div
+                    class="flex max-w-2xl flex-col items-center justify-center text-[#ffffff]"
+                  >
+                    <h1 class="mb-2 text-7xl font-bold">ATC</h1>
+                    <span class="mb-1 text-4xl">Ashraf Abdel Ghani</span>
+                    <div class="mb-3 flex items-center gap-4">
+                      <span
+                        class="w-24 border-4 border-solid border-gray-200"
+                      ></span>
+                      <span class="text-4xl">Group</span>
+                      <span
+                        class="w-24 border-4 border-solid border-gray-200"
+                      ></span>
+                    </div>
+                    <a
+                      (click)="scrollToSection()"
+                      class="cursor-pointer rounded-2xl border border-solid border-black bg-[#ffffff] px-3 py-2 opacity-65"
+                    >
+                      <span class="text-2xl text-black">Learn More </span>
+                      <i
+                        class="fa-solid fa-arrow-right-long text-2xl text-black"
+                      ></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </swiper-slide>
+        }
+      </swiper-container>
+    }
+  </section>
+  <section class="my-10 p-4" id="about_the_company">
+    <div class="mx-auto max-w-screen-2xl">
+      <div class="flex flex-col gap-7 lg:flex-row">
+        <div class="w-full lg:w-1/2">
+          <h2
+            class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold md:text-4xl"
+          >
+            About Our Company
+          </h2>
+          <p class="my-6 pl-7 text-4xl font-bold text-primary">
+            WHAT WE PROVIDE ..
+          </p>
+          <p class="pl-7 text-2xl md:text-3xl">
+            ATC Group provides Taxation, Audit & Assurance, Accounting as well
+            as Investment & Company Incorporation advisory services.
+          </p>
+          <div class="border border-solid border-gray-300 shadow-lg">
+            <div class="flex flex-row gap-2 md:gap-5">
+              <div class="flex items-center px-5 py-3 pr-0">
+                <img
+                  ngSrc="home/lightbulb.png"
+                  width="100"
+                  height="100"
+                  alt="About the Company"
+                  class="h-20 w-20 md:h-[100px] md:w-[100px]"
+                />
+              </div>
+              <span
+                class="m-0 border-[1px] border-solid border-gray-300 p-0"
+              ></span>
+              <div class="flex items-center p-3 text-grayTitle md:text-2xl">
+                <div>
+                  <p class="m-0 p-0">
+                    A one-stop for all your financial services.
+                  </p>
+                  <p class="m-0 p-0">
+                    We place your financial success at the forefront of
+                    everything we do.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="relative left-0 top-0 h-[500px] w-full border-4 border-solid border-black bg-cover bg-center bg-no-repeat lg:h-auto lg:w-1/2"
+          style="background-image: url(&quot;home/about_the_company.jpg&quot;)"
+        >
+          <div
+            class="absolute bottom-[10%] flex gap-5 bg-primary p-5 font-bold text-white sm:left-6 sm:right-20 md:p-3"
+          >
+            <div
+              class="flex items-center justify-center text-center text-[22px] leading-7 md:leading-[50px] lg:text-4xl xl:text-[40px]"
+            >
+              ATC Group
+            </div>
+
+            <span
+              class="m-0 border-0 border-l-[1px] border-solid border-white p-0"
+            ></span>
+            <span
+              class="flex items-center text-[20px] leading-7 md:leading-[50px] lg:text-[28px] 2xl:text-[40px]"
+            >
+              Premier Financial Services
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F9F7F7]" id="our_services">
+    <div class="mx-auto my-10 max-w-screen-2xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+      >
+        Our Services
+      </h2>
+      <div class="pl-7">
+        <p class="my-6 text-4xl font-bold text-primary">
+          Delivering Unrivaled Results
+        </p>
+
+        <div class="text-xl text-grayPar md:text-3xl md:leading-[40px]">
+          We combine our technical proficiency with extensive market insights
+          and experience to deliver innovative solutions that empower our
+          clients to thrive in the global marketplace.
+        </div>
+      </div>
+      <div class="m-7">
+        <app-services-slider></app-services-slider>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-screen-2xl py-20"></section>
+</main>

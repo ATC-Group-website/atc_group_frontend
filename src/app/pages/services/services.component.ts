@@ -3,12 +3,12 @@ import { TopBarComponent } from "../../shared/components/top-bar/top-bar.compone
 import { NavBarComponent } from "../../shared/components/nav-bar/nav-bar.component";
 
 @Component({
-  selector: 'app-about-us',
+  selector: 'app-services',
   standalone: true,
   imports: [TopBarComponent, NavBarComponent],
-  templateUrl: './about-us.component.html',
-  styleUrl: './about-us.component.css'
+  templateUrl: './services.component.html',
+  styleUrl: './services.component.css'
 })
-export class AboutUsComponent {
+export class ServicesComponent {
 
 }
