@@ -20,9 +20,9 @@ interface ResponsiveOptions {
   imports: [
     CommonModule,
     RouterModule,
-    NgOptimizedImage,
     ButtonModule,
     CarouselModule,
+    NgOptimizedImage,
   ],
   templateUrl: './services-slider.component.html',
   styleUrl: './services-slider.component.css',

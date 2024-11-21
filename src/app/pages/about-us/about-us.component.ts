@@ -6,7 +6,7 @@ import { TestComponent } from '../../shared/components/test/test.component';
 @Component({
   selector: 'app-about-us',
   standalone: true,
-  imports: [TopBarComponent, NavBarComponent, TestComponent],
+  imports: [TopBarComponent, NavBarComponent],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css',
 })
