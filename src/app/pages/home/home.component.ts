@@ -16,10 +16,9 @@ import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { ServicesSliderComponent } from './services-slider/services-slider.component';
 import { RouterModule } from '@angular/router';
-import { TestComponent } from '../../shared/components/test/test.component';
 import { CountUpModule } from 'ngx-countup';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { ScrollTopModule } from 'primeng/scrolltop';
+import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 
 interface slide {
   id: number;
@@ -41,7 +40,7 @@ interface slide {
     RouterModule,
     CountUpModule,
     FooterComponent,
-    ScrollTopModule,
+    ScrollToTopComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.component.html',
