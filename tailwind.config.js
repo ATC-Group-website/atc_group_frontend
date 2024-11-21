@@ -12,6 +12,9 @@ module.exports = {
         grayTitle: "#848484",
         grayPar: "#888888",
       },
+      scale: {
+        60: '0.6', // Custom scale value
+      },
     },
   },
   plugins: [],

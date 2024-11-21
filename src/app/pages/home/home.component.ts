@@ -15,6 +15,11 @@ import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { TagModule } from 'primeng/tag';
 import { ServicesSliderComponent } from './services-slider/services-slider.component';
+import { RouterModule } from '@angular/router';
+import { TestComponent } from '../../shared/components/test/test.component';
+import { CountUpModule } from 'ngx-countup';
+import { FooterComponent } from '../../shared/components/footer/footer.component';
+import { ScrollTopModule } from 'primeng/scrolltop';
 
 interface slide {
   id: number;
@@ -33,6 +38,11 @@ interface slide {
     TagModule,
     ServicesSliderComponent,
     NgOptimizedImage,
+    RouterModule,
+    CountUpModule,
+    FooterComponent,
+    TestComponent,
+    ScrollTopModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.component.html',
@@ -41,6 +51,12 @@ interface slide {
 export class HomeComponent {
   isBrowser: boolean;
   slides: slide[] = [];
+  clients = 1650;
+  yearsOfExperience: number = 0;
+  industries: number = 22;
+  branches: number = 10;
+
+  articles = [1, 2, 3, 4];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -61,6 +77,10 @@ export class HomeComponent {
         imageUrl: 'home/uae.webp',
       },
     ];
+
+    const startYear = 1998;
+    const currentYear = new Date().getFullYear();
+    this.yearsOfExperience = currentYear - startYear;
   }
 
   scrollToSection() {

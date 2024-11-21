@@ -63,7 +63,7 @@
           >
             About Our Company
           </h2>
-          <p class="my-6 pl-7 text-4xl font-bold text-primary">
+          <p class="my-6 pl-7 text-3xl font-bold text-primary md:text-4xl">
             WHAT WE PROVIDE ..
           </p>
           <p class="pl-7 text-2xl md:text-3xl">
@@ -133,7 +133,7 @@
         Our Services
       </h2>
       <div class="pl-7">
-        <p class="my-6 text-4xl font-bold text-primary">
+        <p class="my-6 text-3xl font-bold text-primary">
           Delivering Unrivaled Results
         </p>
 
@@ -145,9 +145,294 @@
       </div>
       <div class="m-7">
         <app-services-slider></app-services-slider>
+        <app-test></app-test>
+      </div>
+    </div>
+  </section>
+  <section class="my-10" id="why_choose_atc">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <div class="flex items-center justify-between">
+        <h2
+          class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+        >
+          Why Choose Us
+        </h2>
+        <a
+          class="rounded-xl bg-black px-5 py-2 text-center text-xl text-white no-underline hover:bg-primary"
+          routerLink="about-us"
+          >Learn More</a
+        >
+      </div>
+      <div class="pl-7">
+        <p class="mb-8 mt-6 text-3xl font-bold text-primary md:text-4xl">
+          Your Business Thrives With ATC
+        </p>
+        <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black px-6 py-3 hover:border-primary"
+          >
+            <div class="flex min-h-[132px] items-center gap-4">
+              <img
+                ngSrc="home/personalized_solutions.png"
+                width="100"
+                height="100"
+                alt="personalized_solutions"
+                class="h-20 w-20 md:h-[100px] md:w-[100px]"
+              />
+              <h3 class="flex-1 text-center text-2xl font-bold md:text-3xl">
+                Personalized Solutions
+              </h3>
+            </div>
+            <div>
+              <p class="text-base md:text-xl">
+                We craft customized financial strategies that maximize savings
+                and minimise liabilities addressing your specific financial
+                situation.
+              </p>
+            </div>
+          </div>
+          <div
+            class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black px-6 py-3 hover:border-primary"
+          >
+            <div class="flex min-h-[132px] items-center gap-4">
+              <img
+                ngSrc="home/expertize.png"
+                width="100"
+                height="100"
+                alt="expertize"
+                class="h-20 w-20 md:h-[100px] md:w-[100px]"
+              />
+              <h3 class="flex-1 text-center text-2xl font-bold md:text-3xl">
+                Expertise
+              </h3>
+            </div>
+            <div>
+              <p class="text-base md:text-xl">
+                Our seasoned financial professionals offer in depth industry
+                knowledge and understanding of tax laws, providing accurate and
+                reliable guidance.
+              </p>
+            </div>
+          </div>
+          <div
+            class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black px-6 py-3 hover:border-primary"
+          >
+            <div class="flex min-h-[132px] items-center gap-4">
+              <img
+                ngSrc="home/reliable_support.png"
+                width="100"
+                height="100"
+                alt="reliable_support"
+                class="h-20 w-20 md:h-[100px] md:w-[100px]"
+              />
+              <h3 class="flex-1 text-center text-2xl font-bold md:text-3xl">
+                Reliable Support
+              </h3>
+            </div>
+            <div>
+              <p class="text-base md:text-xl">
+                We providing ongoing support which is crucial in ensuring your
+                success. That is why we offer periodic support to address your
+                evolving needs and provide continuous assistance throughout our
+                partnership.
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="mx-auto max-w-screen-2xl py-20"></section>
+  <section
+    class="mt-10 bg-[#3C3D418C] bg-cover bg-center bg-no-repeat opacity-90"
+    id="atc_stats"
+    style="background-image: url(&quot;home/egypt.jpg&quot;)"
+  >
+    <div class="mx-auto max-w-screen-2xl p-4 text-white">
+      <div
+        class="grid grid-cols-1 place-items-center gap-5 sm:grid-cols-2 md:gap-10 lg:gap-16 xl:grid-cols-4"
+      >
+        <div class="w-[300px] rounded-lg bg-black/70 p-4">
+          <div class="flex items-center gap-5">
+            <img ngSrc="home/people.png" alt="" width="80" height="80" />
+
+            <span
+              class="text-5xl text-primary"
+              [countUp]="clients"
+              [options]="{
+                enableScrollSpy: true,
+                suffix: '+',
+                startVal: 0,
+                scrollSpyOnce: true,
+              }"
+            ></span>
+          </div>
+          <p class="my-2 text-3xl text-white">Clients</p>
+        </div>
+        <div class="w-[300px] rounded-lg bg-black/70 p-4">
+          <div class="flex items-center gap-5">
+            <img ngSrc="home/experience.png" alt="" width="80" height="80" />
+
+            <span
+              class="text-6xl text-primary"
+              [countUp]="yearsOfExperience"
+              [options]="{
+                enableScrollSpy: true,
+                suffix: '+',
+                startVal: 0,
+                scrollSpyOnce: true,
+              }"
+            ></span>
+          </div>
+          <p class="my-2 text-3xl">Years of Experience</p>
+        </div>
+        <div class="w-[300px] rounded-lg bg-black/70 p-4">
+          <div class="flex items-center gap-5">
+            <img ngSrc="home/industries.png" alt="" width="80" height="80" />
+
+            <span
+              class="text-6xl text-primary"
+              [countUp]="industries"
+              [options]="{
+                enableScrollSpy: true,
+                suffix: '+',
+                startVal: 0,
+                scrollSpyOnce: true,
+              }"
+            ></span>
+          </div>
+          <p class="my-2 text-3xl">Industries Covered</p>
+        </div>
+        <div class="w-[300px] rounded-lg bg-black/70 p-4">
+          <div class="flex items-center gap-5">
+            <img ngSrc="home/branches.png" alt="" width="80" height="80" />
+
+            <span
+              class="text-6xl text-primary"
+              [countUp]="branches"
+              [options]="{
+                enableScrollSpy: true,
+                suffix: '+',
+                startVal: 0,
+                scrollSpyOnce: true,
+              }"
+            ></span>
+          </div>
+          <p class="my-2 text-3xl">Branches</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="bg-[#F9F7F7] py-10" id="articles">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+      >
+        Articles
+      </h2>
+      <div
+        class="mx-auto mb-5 max-w-screen-lg text-center text-xl text-grayPar md:text-3xl md:leading-[40px]"
+      >
+        Stay informed with the most recent articles covering Accounting and
+        Taxation, featuring both National and MENA Region updates.
+      </div>
+      @for (article of articles; track $index) {
+        <div
+          class="mb-5 flex flex-col justify-between gap-6 bg-white px-6 py-4 md:flex-row"
+        >
+          <div class="flex flex-grow flex-col justify-between">
+            <div>
+              <h3
+                class="border-0 border-r-[12px] border-solid border-primary p-3 text-right text-3xl"
+              >
+                جمعية الخبراء: 6 تعهدات من كجوك لبدء مرحلة جديدة مع الممولين
+              </h3>
+              <p class="text-right text-2xl text-grayTitle">
+                جمعية الخبراء نؤيد وزير الاستثمار في إلغاء ضريبة الأرباح
+                الرأسمالية في البورصة أعلنت جمعية خبراء الضرائب المصرية تأييدها
+                لما طرحه حسن الخطيب وزير الاستثمار و
+              </p>
+            </div>
+            <!-- Ensures that the "Learn More" button is at the bottom -->
+            <div class="mt-auto flex justify-start">
+              <a
+                class="w-fit rounded-xl bg-primary px-10 py-2 text-center text-xl text-white no-underline hover:bg-black"
+                routerLink="insights"
+              >
+                Read More
+              </a>
+            </div>
+          </div>
+          <div class="h-[280px] w-[300px]">
+            <img
+              ngSrc="home/ashraf.png"
+              alt="ashraf"
+              width="300"
+              height="280"
+              class="h-[280px] w-[300px] border-2 border-solid border-primary object-cover"
+            />
+          </div>
+        </div>
+      }
+      <div class="mt-10 flex items-center justify-center">
+        <a
+          routerLink="insights"
+          class="w-fit rounded-lg bg-black px-6 py-2 text-center text-xl text-white no-underline hover:bg-primary"
+        >
+          Discover More
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="my-10" id="our_founder">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+      >
+        Our Founder
+      </h2>
+      <p class="max-w-screen-lg pl-7 text-2xl text-black">
+        <span class="text-3xl font-bold text-primary">
+          Ashraf Abdel Ghani
+        </span>
+        , with over 30 years of expertise in the Tax services and Auditing
+        field, serves as the visionary leader steering our organization to
+        unparalleled success.
+      </p>
+      <div class="flex flex-col gap-16 md:flex-row">
+        <div class="border-4 border-solid border-primary md:w-2/5">
+          <img
+            src="home/ashraf2.jpeg"
+            alt="Mr. Ashraf Abdel Ghani"
+            class="m-0 h-full w-full object-cover p-0"
+          />
+        </div>
+        <div class="flex-1">
+          <h3
+            class="my-2 border-0 border-l-[12px] border-solid border-primary px-6 py-3 text-4xl font-bold"
+          >
+            Ashraf Abdel Ghani
+          </h3>
+          <p class="m-0 text-grayTitle">
+            Chairman and Managing Director, Member of the Board of Directors &
+            the founder of the Egyptian Association of Tax Experts.
+          </p>
+          <p class="text-3xl">
+            Ashraf Abdel Ghani's commitment to excellence and innovation has
+            elevated the company to the forefront of the industry, making ATC
+            the top tax firm in Egypt, with an expanding presence in the Middle
+            East. His leadership inspires the team, driving our shared vision
+            and ensuring continued prosperity.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <p-scrollTop />
+
+  <app-footer></app-footer>
+
+  <!-- <section class="mx-auto max-w-screen-2xl py-20">
+  </section> -->
 </main>
