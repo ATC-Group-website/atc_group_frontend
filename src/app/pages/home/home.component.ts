@@ -41,7 +41,6 @@ interface slide {
     RouterModule,
     CountUpModule,
     FooterComponent,
-    TestComponent,
     ScrollTopModule,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
