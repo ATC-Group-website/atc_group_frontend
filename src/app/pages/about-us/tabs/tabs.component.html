@@ -1,0 +1,89 @@
+<div class="p-4">
+  <div
+    class="tab flex flex-col overflow-hidden rounded-t-lg border border-gray-200 md:flex-row"
+  >
+    <button
+      (click)="setActiveTab('Driving Positive Change')"
+      [class]="getTabClass('Driving Positive Change')"
+      class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
+      [ngClass]="{
+        'border-b-2 border-b-black text-primary':
+          activeTab === 'Driving Positive Change',
+        'border-none text-black': activeTab !== 'Driving Positive Change',
+      }"
+    >
+      <i class="fa-solid fa-bolt text-black"></i>
+
+      Driving Positive Change
+    </button>
+
+    <button
+      (click)="setActiveTab('Empowering Your Business')"
+      [class]="getTabClass('Empowering Your Business')"
+      class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
+      [ngClass]="{
+        'border-b-2 border-b-black text-primary':
+          activeTab === 'Empowering Your Business',
+        'border-none text-black': activeTab !== 'Empowering Your Business',
+      }"
+    >
+      <img
+        src="about_us/empowering_business.png"
+        alt="Empowering business"
+        class="h-6 w-6"
+      />
+      Empowering Your Business
+    </button>
+
+    <button
+      (click)="setActiveTab('International Services')"
+      [class]="getTabClass('International Services')"
+      class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
+      [ngClass]="{
+        'border-b-2 border-b-black text-primary':
+          activeTab === 'International Services',
+        'border-none text-black': activeTab !== 'International Services',
+      }"
+    >
+      <i class="fa-solid fa-earth-africa text-black"></i>
+
+      International Services
+    </button>
+  </div>
+
+  <div class="rounded-b-lg border border-t-0 border-gray-200 bg-white">
+    @if (activeTab === "Driving Positive Change") {
+      <div class="animate-fade-in p-6">
+        <p
+          class="hvr-sweep-to-right w-full p-0 text-center text-xl text-grayTitle md:px-16 md:py-14"
+        >
+          With extensive knowledge acquired through years of experience in
+          national and international markets, ATC holds a significant advantage,
+          particularly in taxation.
+        </p>
+      </div>
+    }
+
+    @if (activeTab === "Empowering Your Business") {
+      <div class="animate-fade-in p-6">
+        <p
+          class="hvr-sweep-to-right w-full p-0 text-center text-xl text-grayTitle md:px-16 md:py-14"
+        >
+          Our core responsibility is to provide trusted, reliable consultations
+          that add value and deliver effective solutions for our clients.
+        </p>
+      </div>
+    }
+
+    @if (activeTab === "International Services") {
+      <div class="animate-fade-in p-6">
+        <p
+          class="hvr-sweep-to-right w-full p-0 text-center text-xl text-grayTitle md:px-16 md:py-14"
+        >
+          We aspire to create a lasting, positive impact through our business
+          activities, benefiting all stakeholders involved.
+        </p>
+      </div>
+    }
+  </div>
+</div>
