@@ -15,3 +15,27 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Scrollbar customization for WebKit browsers */
+::-webkit-scrollbar {
+  width: 10px; /* Narrow scrollbar */
+  height: 10px; /* Narrow horizontal scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #dddddd; /* Light gray track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: #eb1f2f; /* Red thumb */
+  /* border-radius: 10px;  */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(152, 11, 11); /* Darker gray when hovered */
+}

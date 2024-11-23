@@ -1,5 +1,361 @@
 <app-top-bar></app-top-bar>
 <app-nav-bar></app-nav-bar>
-<section class="mx-auto !mt-40 h-screen max-w-screen-2xl py-20">
-</section>
+
+<main>
+  <section id="landing_section" class="h-[40vh]">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
+      style="background-image: url(&quot;about_us/landing_image.jpg&quot;)"
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative flex h-full w-full items-center justify-center">
+        <h1 class="text-center text-4xl text-white md:text-5xl lg:text-6xl">
+          About Us
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="" id="why_atc">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+      >
+        Why ATC
+      </h2>
+      <div class="mx-auto max-w-screen-lg">
+        <p class="pl-4 text-xl text-grayTitle md:pl-0 md:text-center">
+          <span>
+            Our unwavering commitment to professionalism and the expertise of
+            our staff ensure the highest level of service.
+          </span>
+          <br />
+          <span>
+            Diligence and determination underpin our work ethic, enabling us to
+            consistently uphold the highest standards and meet specialized
+            business requirements.
+          </span>
+        </p>
+      </div>
+
+      <app-tabs></app-tabs>
+    </div>
+  </section>
+
+  <section class="bg-[#F9F7F7] py-10" id="our_mission">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <div class="space-y-4">
+        <!-- Vision Section -->
+        <div>
+          <button
+            (click)="toggleAccordion(0)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-3xl font-bold"
+            >
+              Our Vision
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="my-5 flex flex-col gap-4 lg:flex-row lg:gap-10">
+              <img
+                src="about_us/our_vision.jpeg"
+                alt="our vision"
+                class="max-h-[500px] w-full object-cover lg:hidden"
+              />
+              <p
+                class="m-0 py-2 text-base text-grayTitle md:text-2xl lg:leading-10"
+              >
+                <span class="text-primary"> ATC </span>
+                <span>
+                  - Ashraf Abdel Ghani Accountants and Tax Consultants Group
+                  aims to become a leading organization in Auditing, Taxation,
+                  Accounting, Managerial, and Legal Consultancies within the
+                  MENA Region.
+                </span>
+                <br />
+                <span>
+                  We are dedicated to supporting both National and International
+                  businesses, fostering their growth and success.
+                </span>
+                <br />
+                <span>
+                  Our commitment to professionalism and expertise of our staff
+                  ensures the delivery of top tier services and exceptional
+                  client relationships.
+                </span>
+              </p>
+              <img
+                src="about_us/our_vision.jpeg"
+                alt="our mission"
+                class="hidden max-h-[370px] object-cover lg:block lg:w-auto"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Mission Section -->
+        <div>
+          <button
+            (click)="toggleAccordion(1)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-3xl font-bold"
+            >
+              Our Mission
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[1],
+                'fa-chevron-down': !openStates[1],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="my-5 flex flex-col gap-4 lg:flex-row lg:gap-10">
+              <img
+                src="about_us/our_mission.jpg"
+                alt=""
+                class="max-h-[400px] w-full object-cover lg:hidden"
+              />
+              <p
+                class="m-0 py-2 text-base text-grayTitle md:text-2xl lg:leading-10"
+              >
+                <span>
+                  Our mission is represented in rendering high quality services
+                  that enable us to be outstanding in tax and finance
+                  consultations services following the best international
+                  practices taking into consideration both the local and
+                  international laws and regulations.
+                </span>
+                <br />
+                We offer integrated and comprehensive solutions covering all
+                financial and tax aspects exceeding clients' expectations to
+                achieve growth and prosperity in their businesses.
+              </p>
+              <img
+                src="about_us/our_mission.jpg"
+                alt="our mission"
+                class="hidden max-h-[400px] object-cover lg:block lg:w-auto"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+      >
+        Our Global Allies
+      </h2>
+
+      <div
+        class="relative left-0 top-0 h-[50vh] w-full bg-cover bg-center bg-no-repeat"
+        style="background-image: url(&quot;about_us/global_allies.jpg&quot;)"
+      >
+        <div class="absolute inset-0 bg-black/50"></div>
+        <div class="absolute bottom-5 left-3">
+          <img
+            src="about_us/geneva_group.png"
+            alt="Geneva Group"
+            class="h-auto w-full"
+          />
+        </div>
+      </div>
+
+      <div
+        class="flex flex-col justify-between gap-10 p-10 lg:flex-row lg:gap-20"
+      >
+        <div
+          class="relative left-0 top-0 border-2 border-solid border-primary lg:w-1/2"
+        >
+          <img
+            src="about_us/geneva.jpg"
+            alt=""
+            class="m-0 h-full w-full object-cover p-0"
+          />
+          <div class="absolute inset-0 bg-black/30"></div>
+        </div>
+        <div class="border-2 border-solid border-primary lg:w-1/2">
+          <img src="about_us/geneva_group2.jpeg" alt="" class="w-3/4" />
+          <div class="p-4">
+            <h3 class="underline-effect pb-1 font-bold lg:text-3xl">
+              Geneva Group
+            </h3>
+            <p class="lg:text-2xl">
+              We are a proud member of the Geneva Group International (GGI).
+              This is a worldwide network connecting independent accountancy
+              firms, business consultants, and specialized legal advisors.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex items-center justify-center">
+        <a
+          routerLink="/contact-us"
+          class="w-fit cursor-pointer rounded-lg bg-primary px-16 py-3 text-xl font-bold text-white no-underline hover:bg-black md:px-40"
+          >Get a Quote</a
+        >
+      </div>
+    </div>
+  </section>
+
+  <hr />
+  <section class="py-5">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+      >
+        Our Way
+      </h2>
+
+      <div class="max-w-screen-lg pl-7">
+        <p class="text-lg text-grayTitle md:text-xl">
+          We combine our technical expertise with market knowledge and
+          experience to provide innovative solutions to help our clients succeed
+          in the global marketplace
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F9F7F7] py-5">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <div class="flex items-center justify-center">
+        <h2
+          class="border-0 border-l-[8px] border-solid border-black p-3 text-center text-3xl font-bold text-primary"
+        >
+          ATC Group Consists of six Specialized Entities
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 gap-10 py-10 md:grid-cols-2 lg:grid-cols-3">
+        <div
+          class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
+        >
+          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <p class="text-center text-lg md:text-2xl">
+            Accountats & Tax Consultants
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
+        >
+          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <p class="text-center text-lg md:text-2xl">Management Consultants</p>
+        </div>
+        <div
+          class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
+        >
+          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <p class="text-center text-lg md:text-2xl">
+            Ahl El-Daraeb for Accountants & Tax Consultants
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
+        >
+          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <p class="text-center text-lg md:text-2xl">
+            Sobol El-Khebra for zakat & income tax consultants (KSA)
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
+        >
+          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <p class="text-center text-lg md:text-2xl">
+            Tax Consultants ( United Arab Emirates)
+          </p>
+        </div>
+        <div
+          class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
+        >
+          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <p class="text-center text-lg md:text-2xl">
+            Management Consulting (Bahrain)
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-5">
+    <div class="mx-auto max-w-screen-2xl p-4">
+      <h2
+        class="border-0 border-l-[8px] border-solid border-l-primary p-3 text-3xl font-bold"
+      >
+        Meet Our Team
+      </h2>
+      <div class="mx-auto max-w-screen-md">
+        <p class="text-center text-xl text-grayTitle">
+          Our team comprises numerous partners, most with extensive expertise
+          spanning more than 26 years, highly skilled and professionally
+          qualified, excelling in providing accounting and taxation services.
+        </p>
+      </div>
+
+      <div class="card my-5">
+        <p-carousel
+          [value]="team"
+          [numVisible]="3"
+          [numScroll]="1"
+          circular="true"
+          [responsiveOptions]="responsiveOptions"
+          autoplayInterval="3000"
+          ngSkipHydration
+        >
+          <ng-template let-team pTemplate="team">
+            <div
+              class="relative left-0 top-0 rounded-lg border-solid border-primary shadow-lg md:m-5 lg:m-14"
+            >
+              <img
+                [src]="team.imageUrl"
+                [alt]="team.name"
+                class="h-full w-full object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-lg bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ team.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ team.title }}
+                </p>
+              </div>
+            </div>
+          </ng-template>
+        </p-carousel>
+      </div>
+      <div class="flex items-center justify-center">
+        <a
+          routerLink="/contact-us"
+          class="w-fit cursor-pointer rounded-lg bg-primary px-16 py-3 text-xl font-bold text-white no-underline hover:bg-black md:px-40"
+          >See all members</a
+        >
+      </div>
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
 <app-footer></app-footer>

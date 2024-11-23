@@ -1,0 +1,60 @@
+/* Sweep To Right */
+.hvr-sweep-to-right {
+  padding: 20px;
+  display: inline-block;
+  transform: perspective(1px) translateZ(0);
+  position: relative;
+  transition: color 0.5s;
+}
+.hvr-sweep-to-right:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+  background: #f9eeee;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.5s ease-out;
+}
+.hvr-sweep-to-right:hover:before {
+  transform: scaleX(1);
+}
+/* Use Tailwind classes where possible */
+button.accordion {
+  transition: background-color 0.3s ease;
+}
+
+/* button.accordion.active {
+  background-color: #ccc;
+} */
+
+div.panel {
+  transition: max-height 0.3s ease-out;
+}
+
+.underline-effect {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.underline-effect::after {
+  content: "";
+  position: absolute;
+  bottom: -4px; /* Adjust distance from the text */
+  left: 0;
+  height: 4px; /* Thickness of the underline */
+  width: 0;
+  background-color: transparent;
+  transition:
+    width 0.3s ease-in-out,
+    background-color 0.3s ease-in-out;
+}
+
+.underline-effect:hover::after {
+  width: 100%;
+  background-color: #eb1f2f; /* Underline color */
+}
