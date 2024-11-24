@@ -1,0 +1,325 @@
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section class="bg-[#F9F7F7] py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <div class="flex flex-col items-center gap-10 md:flex-row">
+        <h2
+          class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+        >
+          ATC members
+        </h2>
+        <div class="flex-1 text-center text-2xl text-grayTitle">
+          At ATC over 500 employees work with motivation and quality to serve
+          clients needs
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl">
+      <div>
+        <h3 class="text-center text-3xl">Top Management Team</h3>
+        <!-- <div
+    class="grid grid-cols-2 place-items-center justify-items-center gap-10 md:grid-cols-3 lg:grid-cols-4"
+  >
+    @for (member of teamMembers; track $index) {
+      <div
+        class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+      >
+        <img
+          [src]="member.imageUrl"
+          [alt]="member.name"
+          class="h-full w-full object-cover"
+        />
+        <div
+          class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+        >
+          <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+          <p class="m-0 text-lg text-white">
+            {{ member.title }}
+          </p>
+        </div>
+      </div>
+    }
+  </div> -->
+
+        <div
+          class="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          @for (member of teamMembers; track $index) {
+            <div
+              class="group relative rounded-lg border-2 border-solid border-primary shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-primary/80 hover:shadow-xl md:h-[400px]"
+              [class.opacity-0]="!imageLoaded[$index]"
+              [class.opacity-100]="imageLoaded[$index]"
+            >
+              <!-- Loading Skeleton -->
+              @if (!imageLoaded[$index]) {
+                <div
+                  class="absolute inset-0 animate-pulse rounded-lg bg-gray-200"
+                ></div>
+              }
+
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
+                (load)="onImageLoad($index)"
+              />
+
+              <!-- Overlay Content -->
+              <div
+                class="absolute bottom-0 left-0 flex w-full flex-col justify-end rounded-b-lg bg-gradient-to-t from-gray-900 to-transparent p-6 transition-all duration-300 group-hover:h-full group-hover:scale-105"
+              >
+                <div class="transform transition-all duration-300">
+                  <h4 class="mb-2 text-2xl font-semibold text-white">
+                    {{ member.name }}
+                  </h4>
+                  <p class="mb-4 text-lg text-white/90">{{ member.title }}</p>
+
+                  <!-- Additional content that appears on hover -->
+                  <div class="overflow-hidden">
+                    <p
+                      class="mb-4 translate-y-4 transform text-sm text-white/80 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      {{ member.jobDescription }}
+                    </p>
+
+                    <a
+                      [href]="'mailto:' + member.email"
+                      class="inline-flex translate-y-4 transform items-center text-sm text-white/90 opacity-0 transition-all duration-300 hover:text-white group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      <svg
+                        class="mr-2 h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      {{ member.email }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div>
+        <h3 class="text-center text-3xl">Audit Department</h3>
+        <div
+          class="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          @for (member of teamMembers; track $index) {
+            <div
+              class="group relative rounded-lg border-2 border-solid border-primary shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-primary/80 hover:shadow-xl md:h-[400px]"
+              [class.opacity-0]="!imageLoaded[$index]"
+              [class.opacity-100]="imageLoaded[$index]"
+            >
+              <!-- Loading Skeleton -->
+              @if (!imageLoaded[$index]) {
+                <div
+                  class="absolute inset-0 animate-pulse rounded-lg bg-gray-200"
+                ></div>
+              }
+
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
+                (load)="onImageLoad($index)"
+              />
+
+              <!-- Overlay Content -->
+              <div
+                class="absolute bottom-0 left-0 flex w-full flex-col justify-end rounded-b-lg bg-gradient-to-t from-gray-900 to-transparent p-6 transition-all duration-300 group-hover:h-full group-hover:scale-105"
+              >
+                <div class="transform transition-all duration-300">
+                  <h4 class="mb-2 text-2xl font-semibold text-white">
+                    {{ member.name }}
+                  </h4>
+                  <p class="mb-4 text-lg text-white/90">{{ member.title }}</p>
+
+                  <!-- Additional content that appears on hover -->
+                  <div class="overflow-hidden">
+                    <p
+                      class="mb-4 translate-y-4 transform text-sm text-white/80 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      {{ member.jobDescription }}
+                    </p>
+
+                    <a
+                      [href]="'mailto:' + member.email"
+                      class="inline-flex translate-y-4 transform items-center text-sm text-white/90 opacity-0 transition-all duration-300 hover:text-white group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      <svg
+                        class="mr-2 h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      {{ member.email }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div>
+        <h3 class="text-center text-3xl">Development Department</h3>
+        <div
+          class="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          @for (member of teamMembers; track $index) {
+            <div
+              class="group relative rounded-lg border-2 border-solid border-primary shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-primary/80 hover:shadow-xl md:h-[400px]"
+              [class.opacity-0]="!imageLoaded[$index]"
+              [class.opacity-100]="imageLoaded[$index]"
+            >
+              <!-- Loading Skeleton -->
+              @if (!imageLoaded[$index]) {
+                <div
+                  class="absolute inset-0 animate-pulse rounded-lg bg-gray-200"
+                ></div>
+              }
+
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
+                (load)="onImageLoad($index)"
+              />
+
+              <!-- Overlay Content -->
+              <div
+                class="absolute bottom-0 left-0 flex w-full flex-col justify-end rounded-b-lg bg-gradient-to-t from-gray-900 to-transparent p-6 transition-all duration-300 group-hover:h-full group-hover:scale-105"
+              >
+                <div class="transform transition-all duration-300">
+                  <h4 class="mb-2 text-2xl font-semibold text-white">
+                    {{ member.name }}
+                  </h4>
+                  <p class="mb-4 text-lg text-white/90">{{ member.title }}</p>
+
+                  <!-- Additional content that appears on hover -->
+                  <div class="overflow-hidden">
+                    <p
+                      class="mb-4 translate-y-4 transform text-sm text-white/80 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      {{ member.jobDescription }}
+                    </p>
+
+                    <a
+                      [href]="'mailto:' + member.email"
+                      class="inline-flex translate-y-4 transform items-center text-sm text-white/90 opacity-0 transition-all duration-300 hover:text-white group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      <svg
+                        class="mr-2 h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      {{ member.email }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div>
+        <h3 class="text-center text-3xl">Tax Department</h3>
+        <div
+          class="grid grid-cols-1 gap-6 p-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+        >
+          @for (member of teamMembers; track $index) {
+            <div
+              class="group relative rounded-lg border-2 border-solid border-primary shadow-lg transition-all duration-300 hover:scale-[1.02] hover:border-primary/80 hover:shadow-xl md:h-[400px]"
+              [class.opacity-0]="!imageLoaded[$index]"
+              [class.opacity-100]="imageLoaded[$index]"
+            >
+              <!-- Loading Skeleton -->
+              @if (!imageLoaded[$index]) {
+                <div
+                  class="absolute inset-0 animate-pulse rounded-lg bg-gray-200"
+                ></div>
+              }
+
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105"
+                (load)="onImageLoad($index)"
+              />
+
+              <!-- Overlay Content -->
+              <div
+                class="absolute bottom-0 left-0 flex w-full flex-col justify-end rounded-b-lg bg-gradient-to-t from-gray-900 to-transparent p-6 transition-all duration-300 group-hover:h-full group-hover:scale-105"
+              >
+                <div class="transform transition-all duration-300">
+                  <h4 class="mb-2 text-2xl font-semibold text-white">
+                    {{ member.name }}
+                  </h4>
+                  <p class="mb-4 text-lg text-white/90">{{ member.title }}</p>
+
+                  <!-- Additional content that appears on hover -->
+                  <div class="overflow-hidden">
+                    <p
+                      class="mb-4 translate-y-4 transform text-sm text-white/80 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      {{ member.jobDescription }}
+                    </p>
+
+                    <a
+                      [href]="'mailto:' + member.email"
+                      class="inline-flex translate-y-4 transform items-center text-sm text-white/90 opacity-0 transition-all duration-300 hover:text-white group-hover:translate-y-0 group-hover:opacity-100"
+                    >
+                      <svg
+                        class="mr-2 h-4 w-4"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                        />
+                      </svg>
+                      {{ member.email }}
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<app-footer></app-footer>

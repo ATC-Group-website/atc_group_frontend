@@ -14,4 +14,114 @@
       </div>
     </div>
   </section>
+
+  <section class="">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
+      >
+        We Do It
+      </h2>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-screen-xl p-4">
+    <div class="grid grid-cols-1 gap-8 pl-7 md:grid-cols-2 lg:grid-cols-3">
+      @for (service of services; track $index) {
+        <div
+          class="flex flex-col justify-between border-0 border-l-2 border-solid border-black px-6 py-3"
+        >
+          <div>
+            <div class="flex items-center gap-10">
+              <div class="flex min-h-[132px] items-center gap-4">
+                <img
+                  src="{{ service.imageUrl }}"
+                  width="100"
+                  height="100"
+                  alt="{{ service.title }}"
+                  class="h-20 w-20 md:h-[100px] md:w-[100px]"
+                />
+                <h3 class="flex-1 text-center text-2xl font-bold md:text-2xl">
+                  {{ service.title }}
+                </h3>
+              </div>
+            </div>
+            <div>
+              <p class="text-xl text-grayTitle">
+                {{ service.description }}
+              </p>
+            </div>
+          </div>
+          <!-- Ensure the link stays at the bottom -->
+          <div class="mt-auto flex items-center justify-center">
+            <a
+              routerLink="/services"
+              class="cursor-pointer rounded-lg bg-black px-10 py-3 text-white no-underline hover:bg-primary"
+              >Know more</a
+            >
+          </div>
+        </div>
+      }
+
+      <!-- @for (service of services; track $index) {
+        <div
+          class="group relative border-0 border-l-2 border-solid border-black px-6 py-3"
+        >
+     <div
+            class="relative z-10 transition-opacity duration-300 group-hover:opacity-70"
+          >
+            <div class="flex items-center gap-10">
+              <div class="flex min-h-[132px] items-center gap-4">
+                <img
+                  src="{{ service.imageUrl }}"
+                  width="100"
+                  height="100"
+                  alt="{{ service.title }}"
+                  class="h-20 w-20 md:h-[100px] md:w-[100px]"
+                />
+                <h3 class="flex-1 text-center text-2xl font-bold md:text-2xl">
+                  {{ service.title }}
+                </h3>
+              </div>
+            </div>
+            <div>
+              <p class="text-xl text-grayTitle">
+                {{ service.description }}
+              </p>
+            </div>
+            <div class="flex items-center justify-center">
+              <a routerLink="">
+
+              </a>
+            </div>
+          </div>
+
+      <div
+            class="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          >
+            <a
+              routerLink="{{ service.link }}"
+              class="inline-flex items-center gap-2 rounded-full bg-black px-6 py-2 text-white hover:bg-black/80"
+            >
+              <span>Show More</span>
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+      } -->
+    </div>
+  </section>
 </main>
+<app-footer></app-footer>
