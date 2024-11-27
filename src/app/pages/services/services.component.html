@@ -15,18 +15,33 @@
     </div>
   </section>
 
-  <section class="">
+  <section class="mb-10">
     <div class="mx-auto max-w-screen-xl p-4">
       <h2
         class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
       >
         We Do It
       </h2>
+      <div class="flex flex-col gap-10 md:flex-row md:pl-7">
+        <div class="w-full md:max-w-sm">
+          <p class="m-0 text-3xl font-bold text-primary">
+            Fast, Calucated and Sufficient
+          </p>
+        </div>
+        <div class="text-xl text-grayTitle">
+          ATC Group provides taxation, audit and assurance, accounting, and
+          investment, and company incorporation advisory services We specialize
+          in Tax consultation and services. <br />
+          ATC is a member of the Geneva Group International (GGI) global
+          network, linking independent accountancy firms, business consultants,
+          and specialized legal advisors across the world.
+        </div>
+      </div>
     </div>
   </section>
 
   <section class="mx-auto max-w-screen-xl p-4">
-    <div class="grid grid-cols-1 gap-8 pl-7 md:grid-cols-2 lg:grid-cols-3">
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-2 md:pl-7 lg:grid-cols-3">
       @for (service of services; track $index) {
         <div
           class="flex flex-col justify-between border-0 border-l-2 border-solid border-black px-6 py-3"
@@ -47,7 +62,7 @@
               </div>
             </div>
             <div>
-              <p class="text-xl text-grayTitle">
+              <p class="mb-8 text-xl text-grayTitle">
                 {{ service.description }}
               </p>
             </div>
@@ -62,66 +77,127 @@
           </div>
         </div>
       }
-
-      <!-- @for (service of services; track $index) {
-        <div
-          class="group relative border-0 border-l-2 border-solid border-black px-6 py-3"
-        >
-     <div
-            class="relative z-10 transition-opacity duration-300 group-hover:opacity-70"
-          >
-            <div class="flex items-center gap-10">
-              <div class="flex min-h-[132px] items-center gap-4">
-                <img
-                  src="{{ service.imageUrl }}"
-                  width="100"
-                  height="100"
-                  alt="{{ service.title }}"
-                  class="h-20 w-20 md:h-[100px] md:w-[100px]"
-                />
-                <h3 class="flex-1 text-center text-2xl font-bold md:text-2xl">
-                  {{ service.title }}
-                </h3>
-              </div>
-            </div>
-            <div>
-              <p class="text-xl text-grayTitle">
-                {{ service.description }}
-              </p>
-            </div>
-            <div class="flex items-center justify-center">
-              <a routerLink="">
-
-              </a>
-            </div>
-          </div>
-
-      <div
-            class="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
-          >
-            <a
-              routerLink="{{ service.link }}"
-              class="inline-flex items-center gap-2 rounded-full bg-black px-6 py-2 text-white hover:bg-black/80"
-            >
-              <span>Show More</span>
-              <svg
-                class="h-4 w-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5l7 7-7 7"
-                />
-              </svg>
-            </a>
-          </div>
-        </div>
-      } -->
     </div>
   </section>
+  <section class="py-10" id="hire_the_professionals">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat py-14"
+      style="
+        background-image: url(&quot;services/hiring_professionals.jpeg&quot;);
+      "
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative mx-auto h-full w-full max-w-screen-xl p-4">
+        <div class="">
+          <h3
+            class="border-0 border-l-[12px] border-solid border-primary p-4 text-2xl font-bold text-white lg:text-4xl"
+          >
+            Hire the Professionals
+          </h3>
+        </div>
+        <div class="">
+          <p
+            class="max-w-screen-md pb-8 text-xl text-white lg:pb-4 lg:text-left lg:text-2xl"
+          >
+            ATC provides integrated and innovative tax solutions. <br />
+            Our tax services department is divided into specialized teams of tax
+            experts, with each team specializing in a specific kind of tax.
+          </p>
+          <a
+            routerLink="/contact-us"
+            class="flex w-full items-center justify-center rounded-lg bg-primary px-6 py-3 text-lg text-white no-underline hover:bg-black lg:text-2xl"
+            >Schedule a meeting</a
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h3
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-3xl font-bold lg:text-4xl"
+      >
+        ATC Group Is Your Ideal Partner
+      </h3>
+
+      <div class="flex flex-col justify-evenly gap-20 md:flex-row">
+        <div class="md:w-1/2">
+          <img
+            src="services/ideal_partner.jpeg"
+            alt=""
+            class="h-full w-full bg-cover"
+          />
+        </div>
+        <div class="flex flex-col justify-around gap-10 md:w-1/2">
+          <div class="flex justify-between gap-5">
+            <div
+              class="flex h-fit items-center justify-center bg-primary p-5 md:p-7"
+            >
+              <i
+                class="fa-regular fa-circle-check mdtext-6xl text-4xl text-white"
+              ></i>
+            </div>
+            <div>
+              <h4 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
+                Fits Business Requirments
+              </h4>
+              <p class="m-0 text-grayTitle md:text-lg">
+                Our work ethic is founded on diligence and determination,
+                ensuring that we deliver services to the highest standards,
+                meeting the unique business requirements of our clients in our
+                specialized areas.
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-between gap-5">
+            <div
+              class="flex h-fit items-center justify-center bg-primary p-5 md:p-7"
+            >
+              <i
+                class="fa-regular fa-circle-check mdtext-6xl text-4xl text-white"
+              ></i>
+            </div>
+            <div>
+              <h4 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
+                Market Expertise
+              </h4>
+              <p class="m-0 text-grayTitle md:text-lg">
+                With extensive market knowledge gained over years of operation
+                in national and foreign markets, ATC Group holds a significant
+                advantage, particularly in the field of taxation. We provide
+                trusted and reliable consultations to add value and offer
+                solutions for our clients.
+              </p>
+            </div>
+          </div>
+          <div class="flex justify-between gap-5">
+            <div
+              class="flex h-fit items-center justify-center bg-primary p-5 md:p-7"
+            >
+              <i
+                class="fa-regular fa-circle-check mdtext-6xl text-4xl text-white"
+              ></i>
+            </div>
+            <div>
+              <h4 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
+                Business Support
+              </h4>
+              <p class="m-0 text-grayTitle md:text-lg">
+                We help your business overcome the diverse array of challenges
+                you may face, by ATC Group is committed to helping your business
+                navigate diverse challenges by providing expert consultations in
+                taxation, accounting, auditing, and investment and company
+                incorporation. We are your partner in success. you with
+                consultations in the areas of tax, accounting, auditing and
+                investment and company incorporation.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
 </main>
 <app-footer></app-footer>

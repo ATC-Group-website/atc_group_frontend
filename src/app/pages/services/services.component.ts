@@ -3,6 +3,7 @@ import { TopBarComponent } from '../../shared/components/top-bar/top-bar.compone
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
+import { ScrollToTopComponent } from "../../shared/components/scroll-to-top/scroll-to-top.component";
 interface Service {
   title: string;
   link: string;
@@ -12,7 +13,7 @@ interface Service {
 @Component({
   selector: 'app-services',
   standalone: true,
-  imports: [TopBarComponent, NavBarComponent, FooterComponent, RouterModule],
+  imports: [TopBarComponent, NavBarComponent, FooterComponent, RouterModule, ScrollToTopComponent],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
 })

@@ -1,5 +1,11 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  HostListener,
+  inject,
+  OnInit,
+  Renderer2,
+} from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
@@ -10,11 +16,12 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './nav-bar.component.css',
 })
 export class NavBarComponent implements OnInit {
-  router = inject(Router);
   isMenuOpen = false;
-  // isSubMenuOpen = false;
   isScrolled = false;
-  showServices = false;
+  servicesDropdownOpen = false;
+
+  router = inject(Router);
+  renderer = inject(Renderer2);
 
   ngOnInit(): void {}
 
@@ -26,24 +33,30 @@ export class NavBarComponent implements OnInit {
   toggleMenu(event: Event) {
     this.isMenuOpen = !this.isMenuOpen;
     event.stopPropagation(); // Prevent event bubbling
+    // Add or remove 'no-scroll' class on body
+    this.servicesDropdownOpen = false;
+    if (this.isMenuOpen) {
+      this.renderer.addClass(document.body, 'no-scroll');
+    } else {
+      this.renderer.removeClass(document.body, 'no-scroll');
+    }
+  }
+  closeMenu() {
+    if (this.isMenuOpen) {
+      this.isMenuOpen = false;
+      // Remove the 'no-scroll' class when closing the menu
+      this.renderer.removeClass(document.body, 'no-scroll');
+    }
   }
 
-  // Close the navbar when clicking outside
+  // Close menu when clicking outside
   @HostListener('document:click', ['$event'])
   onDocumentClick(event: Event) {
-    this.isMenuOpen = false;
+    this.closeMenu();
   }
 
-  navigateToService(service: string) {
-    this.router.navigate([`/services/${service}`]); // Adjust route as per your application
-  }
-
-  isSubMenuOpen = false;
-
-  toggleSubmenu(event: Event) {
-    event.preventDefault();
-    this.isSubMenuOpen = !this.isSubMenuOpen;
-    const linkElement = event.target as HTMLElement;
-    linkElement.classList.toggle('open');
+  // Toggle services dropdown
+  toggleServicesDropdown() {
+    this.servicesDropdownOpen = !this.servicesDropdownOpen;
   }
 }
