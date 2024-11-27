@@ -2,7 +2,8 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ServicesComponent } from './pages/services/services.component';
-import { OurTeamComponent } from './pages/about-us/our-team/our-team.component';
+import { InsightsComponent } from './pages/insights/insights.component';
+import { NotFoundComponent } from './pages/not-found/not-found.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,5 +20,6 @@ export const routes: Routes = [
       ),
   },
   { path: 'services', component: ServicesComponent },
-  { path: '**', redirectTo: '' }, // Optional: Redirects unknown paths to the home route
+  { path: 'insights', component: InsightsComponent },
+  { path: '**', component: NotFoundComponent },
 ];
