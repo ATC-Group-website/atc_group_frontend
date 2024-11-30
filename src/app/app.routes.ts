@@ -4,6 +4,7 @@ import { AboutUsComponent } from './pages/about-us/about-us.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { InsightsComponent } from './pages/insights/insights.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { CareersComponent } from './pages/careers/careers.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -21,5 +22,6 @@ export const routes: Routes = [
   },
   { path: 'services', component: ServicesComponent },
   { path: 'insights', component: InsightsComponent },
+  { path: 'careers', component: CareersComponent },
   { path: '**', component: NotFoundComponent },
 ];

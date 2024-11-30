@@ -1,4 +1,4 @@
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -37,7 +37,7 @@ interface ResponsiveOptions {
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css',
 })
-export class AboutUsComponent {
+export class AboutUsComponent implements OnInit {
   openStates: boolean[] = [true, false, false];
   team: Team[] = [];
   responsiveOptions: ResponsiveOptions[] = [];
