@@ -29,7 +29,7 @@
               <img
                 [src]="member.imageUrl"
                 [alt]="member.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
               />
               <div
                 class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
@@ -53,7 +53,31 @@
               <img
                 [src]="member.imageUrl"
                 [alt]="member.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div>
+        <h3 class="text-center text-3xl">Finance & Bookkeeping Department</h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (member of financeAndBookeepingMembers; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-md object-cover"
               />
               <div
                 class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
@@ -77,7 +101,7 @@
               <img
                 [src]="member.imageUrl"
                 [alt]="member.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
               />
               <div
                 class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
@@ -101,7 +125,7 @@
               <img
                 [src]="member.imageUrl"
                 [alt]="member.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
               />
               <div
                 class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
@@ -125,7 +149,7 @@
               <img
                 [src]="member.imageUrl"
                 [alt]="member.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
               />
               <div
                 class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
@@ -149,7 +173,7 @@
               <img
                 [src]="member.imageUrl"
                 [alt]="member.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
               />
               <div
                 class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
@@ -173,7 +197,132 @@
               <img
                 [src]="member.imageUrl"
                 [alt]="member.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="">
+        <h3 class="text-center text-3xl">Salary & Wages Tax Department</h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (member of salaryAndWagesTaxMembers; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="">
+        <h3 class="text-center text-3xl">
+          Investment & Company Incorporation Department
+        </h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (
+            member of investmentAndCompanyIncorporationMembers;
+            track $index
+          ) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="">
+        <h3 class="text-center text-3xl">Development Department</h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (member of developmentMembers; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="">
+        <h3 class="text-center text-3xl">Pro Training Department</h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (member of proTrainingMembers; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="">
+        <h3 class="text-center text-3xl">Translation Department</h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (member of translationMembers; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                class="h-full w-full rounded-md object-cover"
               />
               <div
                 class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
@@ -189,5 +338,6 @@
       </div>
     </div>
   </section>
+  <app-scroll-to-top></app-scroll-to-top>
 </main>
 <app-footer></app-footer>

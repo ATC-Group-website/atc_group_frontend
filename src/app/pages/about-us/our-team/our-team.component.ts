@@ -3,6 +3,7 @@ import { TopBarComponent } from '../../../shared/components/top-bar/top-bar.comp
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
+import { ScrollToTopComponent } from '../../../shared/components/scroll-to-top/scroll-to-top.component';
 interface Member {
   name: string;
   title: string;
@@ -12,7 +13,13 @@ interface Member {
 @Component({
   selector: 'app-our-team',
   standalone: true,
-  imports: [TopBarComponent, NavBarComponent, FooterComponent, CommonModule],
+  imports: [
+    TopBarComponent,
+    NavBarComponent,
+    FooterComponent,
+    CommonModule,
+    ScrollToTopComponent,
+  ],
   templateUrl: './our-team.component.html',
   styleUrl: './our-team.component.css',
 })
@@ -52,6 +59,11 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/hazem.jpg',
     },
     {
+      name: 'Marwan Ayman',
+      title: 'Regional Branch Director - UAE',
+      imageUrl: 'about_us/marwan_ayman.jpg',
+    },
+    {
       name: 'Ramy Shokayar',
       title: 'Partner & Riyadh Branch Manager',
       imageUrl: 'about_us/our_team/Ramy.png',
@@ -70,11 +82,6 @@ export class OurTeamComponent {
       name: 'Khaled El-Sayed',
       title: 'Partner & Al Khobar Branch Manager',
       imageUrl: 'about_us/our_team/Khaled.jpg',
-    },
-    {
-      name: 'Marwan Ayman',
-      title: 'Regional Branch Director - UAE',
-      imageUrl: 'about_us/marwan_ayman.jpg',
     },
   ];
 
@@ -147,14 +154,9 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/ahmed_abdelfattah.JPG',
     },
     {
-      name: 'Ahmed Youssef',
+      name: 'Mamdouh Farouk',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/ahmed_youssef.JPG',
-    },
-    {
-      name: 'Eslam Abdel-Wahed',
-      title: 'Partner',
-      imageUrl: 'about_us/our_team/eslam_abdelwahed.JPG',
+      imageUrl: 'about_us/our_team/mamdouh_farouk.JPG',
     },
     {
       name: 'Hassan Ali',
@@ -162,9 +164,9 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/hassan_ali.JPG',
     },
     {
-      name: 'Hamada Bakry',
+      name: 'Osama Hassan',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/hamada_bakry.JPG',
+      imageUrl: 'about_us/our_team/osama_hassan.JPG',
     },
     {
       name: 'Mostafa Abdullah',
@@ -172,14 +174,24 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/mostafa_abdalla.JPG',
     },
     {
-      name: 'Mamdouh Farouk',
+      name: 'Hamada Bakry',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/mamdouh_farouk.JPG',
+      imageUrl: 'about_us/our_team/hamada_bakry.JPG',
     },
     {
       name: 'Hisham Ahmed',
       title: 'Partner',
       imageUrl: 'about_us/our_team/hisham_ahmed.JPG',
+    },
+    {
+      name: 'Eslam Abdel-Wahed',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/eslam_abdelwahed.JPG',
+    },
+    {
+      name: 'Ahmed Youssef',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/ahmed_youssef.JPG',
     },
   ];
 
@@ -233,6 +245,76 @@ export class OurTeamComponent {
       name: 'Mohamed Abdel-Fattah',
       title: 'Partner',
       imageUrl: 'about_us/our_team/mohamed_abdelfattah.JPG',
+    },
+  ];
+
+  financeAndBookeepingMembers: Member[] = [
+    {
+      name: 'Mohamed Zaki',
+      title: 'Head of Finance & Bookeeping Sectors',
+      imageUrl: 'about_us/our_team/mohamed_zaki.jpg',
+    },
+  ];
+
+  salaryAndWagesTaxMembers: Member[] = [
+    {
+      name: 'Ahmed Abdel-Azeem',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/ahmed_abdel-azeem.JPG',
+    },
+    {
+      name: 'Hafez Seif',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/hafez_seif.JPG',
+    },
+    {
+      name: 'Khaled Elwan',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/khaled_elwan.JPG',
+    },
+    {
+      name: 'Mohamed Abdel Raouf',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/mohamed_abdelraouf.JPG',
+    },
+  ];
+  translationMembers: Member[] = [
+    {
+      name: 'Mohamed Samy',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/mohamed_samy.JPG',
+    },
+  ];
+  investmentAndCompanyIncorporationMembers: Member[] = [
+    {
+      name: 'Hisham Hassanien',
+      title: 'Head of Investment & Company Incorporation Sector',
+      imageUrl: 'about_us/our_team/hisham_hassanien.JPG',
+    },
+    {
+      name: 'Ashraf Hassanien',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/ashraf_hassanien.JPG',
+    },
+  ];
+
+  developmentMembers: Member[] = [
+    {
+      name: 'Mayar Ahmed',
+      title: 'Business Development Executive',
+      imageUrl: 'about_us/mayar_ahmed.jpg',
+    },
+  ];
+  proTrainingMembers: Member[] = [
+    // {
+    //   name: 'Mohamed Awdallah',
+    //   title: 'Partner',
+    //   imageUrl: 'about_us/mayar_ahmed.jpg',
+    // },
+    {
+      name: 'Hisham Sakr',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/hisham_sakr.JPG',
     },
   ];
 }

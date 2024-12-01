@@ -1,1 +1,361 @@
-<p>locations works!</p>
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section id="landing_section" class="h-[60vh]">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
+      style="background-image: url(&quot;pro-training/landing_image.jpeg&quot;)"
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative flex h-full w-full items-center justify-center">
+        <h1 class="text-center text-4xl text-white md:text-5xl lg:text-6xl">
+          Locations
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="mx-auto my-10 max-w-screen-xl" id="locations-tabs">
+    <div class="p-4">
+      <div
+        class="tab flex flex-col overflow-hidden rounded-t-lg border border-gray-200 md:flex-row"
+      >
+        <button
+          (click)="setActiveTab('Egypt')"
+          [class]="getTabClass('Egypt')"
+          class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
+          [ngClass]="{
+            'border-b-2 border-b-black text-primary': activeTab === 'Egypt',
+            'border-none text-black': activeTab !== 'Egypt',
+          }"
+        >
+          <i class="fa-solid fa-earth-africa text-black"></i>
+
+          Egypt
+        </button>
+
+        <button
+          (click)="setActiveTab('Kingdom of Saudi Arabia')"
+          [class]="getTabClass('Kingdom of Saudi Arabia')"
+          class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
+          [ngClass]="{
+            'border-b-2 border-b-black text-primary':
+              activeTab === 'Kingdom of Saudi Arabia',
+            'border-none text-black': activeTab !== 'Kingdom of Saudi Arabia',
+          }"
+        >
+          <i class="fa-solid fa-earth-asia text-black"></i>
+          Kingdom of Saudi Arabia
+        </button>
+
+        <button
+          (click)="setActiveTab('United Arab Emirates')"
+          [class]="getTabClass('United Arab Emirates')"
+          class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
+          [ngClass]="{
+            'border-b-2 border-b-black text-primary':
+              activeTab === 'United Arab Emirates',
+            'border-none text-black': activeTab !== 'United Arab Emirates',
+          }"
+        >
+          <i class="fa-solid fa-earth-asia text-black"></i>
+
+          United Arab Emirates
+        </button>
+      </div>
+
+      <div class="rounded-b-lg border border-t-0 border-gray-200 bg-white">
+        @if (activeTab === "Egypt") {
+          <div class="animate-fade-in p-6">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Giza Office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=30.021678993093232, 31.21659912763903"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="min-h-14 text-base md:text-xl">
+                      21,23 Giza St , Nile Tower.
+                    </p>
+                  </a>
+                  <p class="mb-3 text-lg font-normal">
+                    E-mail:
+                    <a
+                      href="mailto:info@atc.com.eg"
+                      class="text-black hover:text-blue-500 hover:underline"
+                    >
+                      info&#64;atc.com.eg
+                    </a>
+                  </p>
+                  <p class="mb-3 text-lg font-normal">Tel: 0138338300</p>
+                </div>
+              </div>
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Helioplis Office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q= 30.09623177334454, 31.340150774929196"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="min-h-14 text-base md:text-xl">
+                      20, Roshdy St , Safir Heliopolis.
+                    </p>
+                  </a>
+                  <p class="mb-3 text-lg font-normal">
+                    E-mail:
+                    <a
+                      href="mailto:info@atc.com.eg"
+                      class="text-black hover:text-blue-500 hover:underline"
+                    >
+                      info&#64;atc.com.eg
+                    </a>
+                  </p>
+                  <p class="mb-3 text-lg font-normal">Tel: 0138338300</p>
+                </div>
+              </div>
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Alexandria office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=31.222205929523337, 29.949250682208287"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="min-h-14 text-base md:text-xl">
+                      17 Ibrahim Sherif St , Mostafa Kamel.
+                    </p>
+                  </a>
+                  <p class="mb-3 text-lg font-normal">
+                    E-mail:
+                    <a
+                      href="mailto:alexbranch@atc.com.eg"
+                      class="text-black hover:text-blue-500 hover:underline"
+                    >
+                      alexbranch&#64;atc.com.eg
+                    </a>
+                  </p>
+                  <p class="mb-3 text-lg font-normal">Tel: 0138338300</p>
+                </div>
+              </div>
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Orman Office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=30.034833149487078, 31.217715870262158"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="min-h-14 text-base md:text-xl">
+                      48, Giza St , Orman tower - 5th floor.
+                    </p>
+                  </a>
+                  <p class="mb-3 text-lg font-normal">
+                    E-mail:
+                    <a
+                      href="mailto:info@atc.com.eg"
+                      class="text-black hover:text-blue-500 hover:underline"
+                    >
+                      info&#64;atc.com.eg
+                    </a>
+                  </p>
+                  <p class="mb-3 text-lg font-normal">Tel: 0138338300</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === "Kingdom of Saudi Arabia") {
+          <div class="animate-fade-in p-6">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Riyadh Office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=24.67473903834323,46.69131345618128"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="text-base md:text-xl">
+                      Balsharaf Building - No.8667 - King Fahd Road - Al Olaya
+                      Dist - 3rd Floor.
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Jeddah Office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=21.52168102841136, 39.18073648220928"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="text-base md:text-xl">
+                      Al-Noor Commercial Centre Building No.7969, Office no. 304
+                      Al-Madina Al-Munawara Descending Road Al-Rowais.
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Makkah office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=21.376704, 39.875017"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="text-base md:text-xl">
+                      Al Naseem District Fatima Al Zahraa st - telal village
+                      Building No 8810, 4th floor - office 414
+                    </p>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Al Khobar Office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=26.299960454044644, 50.22017512513515"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="text-base md:text-xl">
+                      Northern Khobar Prince Musaid bin Abdul Aziz St, Crossing
+                      27 Office No. 42
+                    </p>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+
+        @if (activeTab === "United Arab Emirates") {
+          <div class="animate-fade-in p-6">
+            <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+              <div
+                class="hvr-sweep-to-right border-0 border-l-2 border-solid border-black bg-white px-6 py-3 hover:border-primary"
+              >
+                <div class="flex items-center gap-4">
+                  <h3
+                    class="mt-0 flex-1 text-2xl font-bold text-primary md:text-3xl"
+                  >
+                    Dubai Office
+                  </h3>
+                </div>
+                <div>
+                  <a
+                    href="https://www.google.com/maps?q=25.24379003039466,55.33984020937973"
+                    target="_blank"
+                    class="block w-fit text-black no-underline"
+                  >
+                    <p class="text-base md:text-xl">
+                      Dist - 3rd Floor. ITHRAA BUILDING OFFICE 302, AL GARHOUD,
+                      DUBAI
+                    </p>
+                  </a>
+                  <p class="mb-3 text-lg font-normal">
+                    E-mail:
+                    <a
+                      href="mailto:info@atc.com.eg"
+                      class="text-black hover:text-blue-500 hover:underline"
+                    >
+                      info&#64;atc.com.eg
+                    </a>
+                  </p>
+                  <p class="mb-3 text-lg font-normal">Tel: 0138338300</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <p class="text-center text-3xl font-bold">
+        If you need more information you can contact us for more details.
+      </p>
+      <div class="mb-4 flex items-center justify-center">
+        <a
+          routerLink="/contact-us"
+          class="rounded-lg bg-primary px-20 py-3 text-xl font-bold text-white no-underline hover:bg-black"
+          >Contact Us</a
+        >
+      </div>
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
+<app-footer></app-footer>

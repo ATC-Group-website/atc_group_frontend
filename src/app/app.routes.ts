@@ -6,6 +6,7 @@ import { InsightsComponent } from './pages/insights/insights.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CareersComponent } from './pages/careers/careers.component';
 import { ProTrainingComponent } from './pages/pro-training/pro-training.component';
+import { LocationsComponent } from './pages/locations/locations.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,5 +26,6 @@ export const routes: Routes = [
   { path: 'insights', component: InsightsComponent },
   { path: 'pro-training', component: ProTrainingComponent },
   { path: 'careers', component: CareersComponent },
+  { path: 'locations', component: LocationsComponent },
   { path: '**', component: NotFoundComponent },
 ];
