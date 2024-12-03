@@ -33,19 +33,12 @@ export class NavBarComponent implements OnInit {
   toggleMenu(event: Event) {
     this.isMenuOpen = !this.isMenuOpen;
     this.servicesDropdownOpen = false;
-    // if (this.isMenuOpen) {
-    //   this.renderer.addClass(document.body, 'no-scroll');
-    // } else {
-    //   this.renderer.removeClass(document.body, 'no-scroll');
-    // }
-    event.stopPropagation(); // Prevent event bubbling
-    // Add or remove 'no-scroll' class on body
+
+    event.stopPropagation();
   }
   closeMenu() {
     if (this.isMenuOpen) {
       this.isMenuOpen = false;
-      // Remove the 'no-scroll' class when closing the menu
-      // this.renderer.removeClass(document.body, 'no-scroll');
     }
   }
 

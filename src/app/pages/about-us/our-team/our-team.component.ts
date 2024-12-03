@@ -51,6 +51,23 @@ export class OurTeamComponent {
       imageUrl: 'about_us/marwan_ayman.jpg',
     },
   ];
+  highBoardMembers: Member[] = [
+    {
+      name: 'Adel Bakry',
+      title: 'Head of Corporate Tax Sector',
+      imageUrl: 'about_us/our_team/adel_bakry.JPG',
+    },
+    {
+      name: 'Mohamed Zaki',
+      title: 'Head of Finance & Bookeeping Sectors',
+      imageUrl: 'about_us/our_team/mohamed_zaki.jpg',
+    },
+    {
+      name: 'Mohsen Abdalla',
+      title: 'Head of Stamp & Real Estate Tax Sectors',
+      imageUrl: 'about_us/our_team/mohsen_abdalla.JPG',
+    },
+  ];
   branchManagers: Member[] = [
     {
       name: 'Hazem Mokhtar',
@@ -59,29 +76,34 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/hazem.jpg',
     },
     {
-      name: 'Marwan Ayman',
-      title: 'Regional Branch Director - UAE',
-      imageUrl: 'about_us/marwan_ayman.jpg',
+      name: 'Mohamed Awees',
+      title: 'Head of Corporate Tax Sector & 6th of October Branch Manager',
+      imageUrl: 'about_us/our_team/mohamed_awees.JPG',
     },
     {
       name: 'Ramy Shokayar',
-      title: 'Partner & Riyadh Branch Manager',
-      imageUrl: 'about_us/our_team/Ramy.png',
+      title: 'Riyadh Branch Manager',
+      imageUrl: 'about_us/our_team/Ramy.jpg',
     },
     {
       name: 'Ahmed Ghalib',
-      title: 'Partner & Jeddah Branch Manager',
+      title: 'Jeddah Branch Manager',
       imageUrl: 'about_us/our_team/ahmed.jpg',
     },
     {
       name: 'Abdellatif Mohamed',
-      title: 'Partner & Makkah Branch Manager, MBA',
-      imageUrl: 'about_us/our_team/abdellatif.png',
+      title: 'Makkah Branch Manager, MBA',
+      imageUrl: 'about_us/our_team/abdellatif.jpg',
     },
     {
       name: 'Khaled El-Sayed',
-      title: 'Partner & Al Khobar Branch Manager',
+      title: 'Al Khobar Branch Manager',
       imageUrl: 'about_us/our_team/Khaled.jpg',
+    },
+    {
+      name: 'Marwan Ayman',
+      title: 'Regional Branch Director - UAE',
+      imageUrl: 'about_us/marwan_ayman.jpg',
     },
   ];
 
@@ -124,7 +146,7 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/ahmed_shehata.JPG',
     },
     {
-      name: 'Taric Sokar',
+      name: 'Tarek Sokar',
       title: 'Head of Corporate Tax Sector',
       imageUrl: 'about_us/our_team/taric_sokar.JPG',
     },
@@ -225,7 +247,7 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/ashraf_mostafa.JPG',
     },
     {
-      name: 'Taric Samir',
+      name: 'Tarek Samir',
       title: 'Partner',
       imageUrl: 'about_us/our_team/taric_samir.JPG',
     },
@@ -306,11 +328,11 @@ export class OurTeamComponent {
     },
   ];
   proTrainingMembers: Member[] = [
-    // {
-    //   name: 'Mohamed Awdallah',
-    //   title: 'Partner',
-    //   imageUrl: 'about_us/mayar_ahmed.jpg',
-    // },
+    {
+      name: 'Mohamed Awdallah',
+      title: 'Partner & Head of Pro Training Division',
+      imageUrl: 'about_us/our_team/mohamed_awadallah.jpg',
+    },
     {
       name: 'Hisham Sakr',
       title: 'Partner',
