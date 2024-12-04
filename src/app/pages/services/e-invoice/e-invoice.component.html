@@ -1,0 +1,177 @@
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section id="landing_section" class="h-[40vh]">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
+      style="
+        background-image: url(&quot;services/audit/landing_image.jpeg&quot;);
+      "
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative flex h-full w-full items-center justify-center">
+        <h1 class="text-center text-4xl text-white md:text-5xl lg:text-6xl">
+          Social Insurance
+        </h1>
+      </div>
+    </div>
+  </section>
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="my-0 mb-5 border-0 border-l-[10px] border-solid border-primary p-3 text-3xl font-bold"
+      >
+        Overview
+      </h2>
+      <div class="max-w-screen-lg">
+        <p class="text-base md:pl-7 md:text-xl">
+          Our department has a wealth of expertise in E-Invoice application and
+          can be your trusted source for comprehensive E-invoicing services in
+          compliance with the Local Tax Authority's requirements.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F9F7F7] py-10" id="our_mission">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="my-0 mb-5 border-0 border-l-[10px] border-solid border-primary p-3 text-3xl font-bold"
+      >
+        Our E-Invoice Services:
+      </h2>
+      <div class="space-y-4">
+        <div>
+          <button
+            (click)="toggleAccordion(0)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Registration with the Egyptian Tax Authority
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Excel at assisting clients in obtaining the necessary
+                authorizations and permits for projects and companies. We are
+                also adept at resolving disputes or issues that may arise with
+                both government and non-government entities.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button
+            (click)="toggleAccordion(1)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Procurement of E-Signature Tokens
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[1],
+                'fa-chevron-down': !openStates[1],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Our team assists in obtaining essential E-signature tokens, a
+                key component in E-invoicing. Through evaluating internal
+                controls and authorized transactions, we determine the scope and
+                approach for our year-end financial statement audit.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(2)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Product and Service Coding
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                We meticulously handle the coding of products and services,
+                guaranteeing precision and strict adherence to regulatory
+                standards of the Local Tax Authority.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(3)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Seamless Integration between Your Accounting System and the
+              Egyptian Tax Authority Portal
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Our seasoned experts seamlessly integrate your accounting system
+                with the Local Tax Authority portal, streamlining E-invoicing
+                procedures and enhancing overall compliance.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
+<app-footer></app-footer>

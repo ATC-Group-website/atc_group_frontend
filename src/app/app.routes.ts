@@ -23,6 +23,70 @@ export const routes: Routes = [
       ),
   },
   { path: 'services', component: ServicesComponent },
+  {
+    path: 'services/audit',
+
+    loadComponent: () =>
+      import('./pages/services/audit/audit.component').then(
+        (mod) => mod.AuditComponent,
+      ),
+  },
+  {
+    path: 'services/tax',
+
+    loadComponent: () =>
+      import('./pages/services/tax/tax.component').then(
+        (mod) => mod.TaxComponent,
+      ),
+  },
+  {
+    path: 'services/investments-and-company-incorporation',
+
+    loadComponent: () =>
+      import('./pages/services/investment/investment.component').then(
+        (mod) => mod.InvestmentComponent,
+      ),
+  },
+  {
+    path: 'services/social-insurance',
+
+    loadComponent: () =>
+      import(
+        './pages/services/social-insurance/social-insurance.component'
+      ).then((mod) => mod.SocialInsuranceComponent),
+  },
+  {
+    path: 'services/e-invoice',
+
+    loadComponent: () =>
+      import('./pages/services/e-invoice/e-invoice.component').then(
+        (mod) => mod.EInvoiceComponent,
+      ),
+  },
+  {
+    path: 'services/system-inspection',
+
+    loadComponent: () =>
+      import(
+        './pages/services/system-inspection/system-inspection.component'
+      ).then((mod) => mod.SystemInspectionComponent),
+  },
+  {
+    path: 'services/international-taxation',
+
+    loadComponent: () =>
+      import(
+        './pages/services/international-taxation/international-taxation.component'
+      ).then((mod) => mod.InternationalTaxationComponent),
+  },
+  {
+    path: 'services/transfer-pricing',
+
+    loadComponent: () =>
+      import(
+        './pages/services/transfer-pricing/transfer-pricing.component'
+      ).then((mod) => mod.TransferPricingComponent),
+  },
   { path: 'insights', component: InsightsComponent },
   { path: 'pro-training', component: ProTrainingComponent },
   { path: 'careers', component: CareersComponent },

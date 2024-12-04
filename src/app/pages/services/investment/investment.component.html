@@ -1,0 +1,364 @@
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section id="landing_section" class="h-[40vh]">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
+      style="
+        background-image: url(&quot;services/audit/landing_image.jpeg&quot;);
+      "
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative flex h-full w-full items-center justify-center">
+        <h1 class="text-center text-4xl text-white md:text-5xl">
+          Investment and Company Incorporation
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="my-0 mb-5 border-0 border-l-[10px] border-solid border-primary p-3 text-3xl font-bold"
+      >
+        Overview
+      </h2>
+      <div class="max-w-screen-lg">
+        <p class="text-base md:pl-7 md:text-xl">
+          Our Investment & Company Incorporation Department offers a
+          comprehensive suite of services designed to meet your business needs.
+          Our extensive range of services includes:
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F9F7F7] py-10" id="our_mission">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <div class="space-y-4">
+        <div>
+          <button
+            (click)="toggleAccordion(0)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Incorporation Services
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Specialists in establishing various types of entities, including
+                stock companies, partnerships, individual firms, branches of
+                foreign companies and representatives.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button
+            (click)="toggleAccordion(1)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Legal Consultations
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[1],
+                'fa-chevron-down': !openStates[1],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Specialists in establishing various types of entities, including
+                stock companies, partnerships, individual firms, branches of
+                foreign companies and representatives.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(2)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Economic Feasibility Studies
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Experienced in conducting meticulous economic feasibility
+                studies for projects, assessing their viability and potential
+                for success.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(3)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Investment and Financial Studies
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Ability in conducting in-depth investment and financial
+                analyses, our team offers insights to support well-informed
+                decision-making.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(4)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Financial Evaluation and Performance Analysis
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Qualified in the ability to evaluate the financial health and
+                positioning of existing companies, we provide a clear
+                perspective for strategic planning. Our expertise extends to
+                analyzing financial indicators and conducting thorough
+                performance appraisals.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(5)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Corporate Restructuring
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Offering advice and guidance on legal changes, including
+                alterations to a company's legal form, mergers, divisions,
+                acquisitions, and liquidations.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(6)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Regulatory Compliance
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Providing services which encompass the facilitation of company
+                registration with various regulatory bodies, including the
+                commercial and industrial registry, the capital market
+                authority, the stock exchange, commercial agents, exporters &
+                importers registry, financing lease authorities, private sector
+                contractors and the Egyptian contractors' union for
+                construction.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(7)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Documentation and Legal Services
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Assisting in amending articles of association, reconciling
+                companies' statuses, managing shareholders' general assemblies,
+                overseeing boards of directors, maintaining shareholders'
+                registries, ownership and transfer books, and drafting contracts
+                and sub-agreements.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(8)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Immigration and Licensing Support
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Equipped to streamline the process of acquiring work and
+                residence permits for foreign nationals.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(9)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Government Liaison
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p>
+                Excel at assisting clients in obtaining the necessary
+                authorizations and permits for projects and companies. We are
+                also adept at resolving disputes or issues that may arise with
+                both government and non-government entities.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
+<app-footer></app-footer>

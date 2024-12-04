@@ -1,0 +1,175 @@
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section id="landing_section" class="h-[40vh]">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
+      style="
+        background-image: url(&quot;services/audit/landing_image.jpeg&quot;);
+      "
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative flex h-full w-full items-center justify-center">
+        <h1 class="text-center text-4xl text-white md:text-5xl lg:text-6xl">
+          Audit Services
+        </h1>
+      </div>
+    </div>
+  </section>
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="my-0 mb-5 border-0 border-l-[10px] border-solid border-primary p-3 text-3xl font-bold"
+      >
+        Overview
+      </h2>
+      <div class="flex flex-col gap-5 lg:flex-row">
+        <div class="lg:w-3/4">
+          <p class="text-base md:pl-7 md:text-xl">
+            We conduct thorough examinations of financial statements to ensure
+            their integrity, instilling confidence in investors and capital
+            markets. Within ATC's dynamic work environment, we also facilitate
+            effective bookkeeping processes that align with regulatory
+            frameworks. Our commitment is to provide comprehensive audit
+            insights and robust evidence to support firms in their growth
+            strategies and aspirations.
+          </p>
+        </div>
+        <div
+          class="max-w-sm rounded-lg border border-solid border-gray-300 p-6 lg:w-1/4"
+        >
+          <h3
+            class="my-0 mb-5 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold"
+          >
+            Further Details
+          </h3>
+          <p-button
+            label="Download brochure"
+            (onClick)="consoleLog()"
+            class="h-[50px] outline-none focus:border-none focus:outline-none"
+            [style]="{
+              width: '100%',
+              backgroundColor: '#EB1F2F',
+              outline: 'none',
+              boxShadow: 'none',
+              border: 'none',
+            }"
+            type="button"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F9F7F7] py-10" id="our_mission">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <div class="space-y-4">
+        <div>
+          <button
+            (click)="toggleAccordion(0)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Our Team
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="my-5">
+              <p class="m-0 py-2 text-base md:text-xl lg:leading-10">
+                All of our senior staff members are accredited accountants and
+                auditors, possessing international qualifications or their local
+                equivalent. Our professional teams bring extensive and diverse
+                experience, having worked for prominent international accounting
+                and auditing firms, as well as international and local entities
+                across various sectors, including: Industrial, Commercial,
+                Contracting, Construction, Real Estate, Tourism & Hotels,
+                Telecommunication, Finance, Oil, Social Societies, and Service
+                Industries.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button
+            (click)="toggleAccordion(1)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Our Audit Approach
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[1],
+                'fa-chevron-down': !openStates[1],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <p class="">
+                We conduct audits in strict accordance with the auditing
+                standards of the specific country and within the framework of
+                applicable national laws and regulations. Our audit process
+                comprises of three stages:
+              </p>
+              <ul class="list-disc pl-5">
+                <li>
+                  <strong class="font-normal">Audit Planning:</strong>
+                  <span class="text-grayTitle">
+                    Our team focuses on Key Audit Areas, Timely Issue
+                    Resolution, and Efficient Audit Execution. The conclusion of
+                    this phase involves having clearly identified significant
+                    audit areas, their characteristics, audit timing, tailored
+                    audit procedures, and team selection.
+                  </span>
+                </li>
+                <li>
+                  <strong class="font-normal">Interim Audit:</strong>
+                  <span class="text-grayTitle">
+                    In this phase, we assess the company's accounting system,
+                    regulatory compliance, and internal controls through
+                    document examination and testing. This evaluation guides the
+                    scope and approach of our year-end financial statement
+                    audit.
+                  </span>
+                </li>
+                <li>
+                  <strong class="font-normal">Final Audit:</strong>
+
+                  <span class="text-grayTitle">
+                    In the final stage, we rigorously review the client's
+                    financial statements, conduct tests to check for changes in
+                    accounting and internal controls, and perform selected audit
+                    procedures to provide a professional opinion on the
+                    financial statements' accuracy and validity.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
+<app-footer></app-footer>

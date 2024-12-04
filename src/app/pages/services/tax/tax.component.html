@@ -1,0 +1,398 @@
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section id="landing_section" class="h-[40vh]">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
+      style="
+        background-image: url(&quot;services/audit/landing_image.jpeg&quot;);
+      "
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative flex h-full w-full items-center justify-center">
+        <h1 class="text-center text-4xl text-white md:text-5xl lg:text-6xl">
+          Tax Services
+        </h1>
+      </div>
+    </div>
+  </section>
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="my-0 mb-5 border-0 border-l-[10px] border-solid border-primary p-3 text-3xl font-bold"
+      >
+        Overview
+      </h2>
+      <div class="max-w-screen-lg">
+        <p class="text-base md:pl-7 md:text-xl">
+          ATC is proudly recognized as one of the premier providers of tax
+          services in the MENA region, committed to enhancing the financial
+          prosperity of your business. Our dedication to specialization is
+          evident in our operational approach, with each department offering
+          specialized expertise in distinct tax service areas.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#F9F7F7] py-10" id="our_mission">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <div class="space-y-4">
+        <div>
+          <button
+            (click)="toggleAccordion(0)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Corporate Profit Tax
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <ul class="list-disc pl-5">
+                <li>
+                  <strong>Precision in Tax Planning:</strong>
+                  <span class="text-grayTitle">
+                    Rooted in an understanding of the client's business
+                    activity.
+                  </span>
+                </li>
+                <li>
+                  <strong>Bi-Annual Tax Audits:</strong>
+                  <span class="text-grayTitle">
+                    Conducted to ensure compliance with applicable laws and
+                    regulations.
+                  </span>
+                </li>
+                <li>
+                  <strong>Recommendations for Improvement:</strong>
+                  <span class="text-grayTitle">
+                    Providing changes and corrective actions to prevent tax
+                    disputes.
+                  </span>
+                </li>
+                <li>
+                  <strong>Tax Return Preparation:</strong>
+                  <span class="text-grayTitle">
+                    Preparation, authorization, and electronic submission to the
+                    tax authority.
+                  </span>
+                </li>
+                <li>
+                  <strong>Tax Audit Coordination:</strong>
+                  <span class="text-grayTitle">
+                    Compilation of the tax audit file and seamless coordination
+                    with tax authorities.
+                  </span>
+                </li>
+                <li>
+                  <strong>Representation and Support:</strong>
+                  <span class="text-grayTitle">
+                    Assistance with inspections, internal/appeal committees, and
+                    legal proceedings.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <button
+            (click)="toggleAccordion(1)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Value Added Tax (VAT)
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[1],
+                'fa-chevron-down': !openStates[1],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <ul class="list-disc pl-5">
+                <li>
+                  <strong>Rigorous Tax Audits:</strong>
+                  <span class="text-grayTitle">
+                    Validating client compliance with VAT law provisions and
+                    regulations.
+                  </span>
+                </li>
+                <li>
+                  <strong>Contract Review:</strong>
+                  <span class="text-grayTitle">
+                    Carefully examining all client contracts to ensure adherence
+                    to legal requirements.
+                  </span>
+                </li>
+                <li>
+                  <strong>Expert Guidance:</strong>
+                  <span class="text-grayTitle">
+                    Providing consultations during the preparation of monthly
+                    VAT returns.
+                  </span>
+                </li>
+                <li>
+                  <strong>Client Representation:</strong>
+                  <span class="text-grayTitle">
+                    Offering strong representation and resolute defense in the
+                    event of tax disputes.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(2)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Salaries and Wages Tax
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <ul class="list-disc pl-5">
+                <li>
+                  <strong>Contract Reviews:</strong>
+                  <span class="text-grayTitle">
+                    Ensuring compliance with tax law requirements.
+                  </span>
+                </li>
+                <li>
+                  <strong>Professional Consultations:</strong>
+                  <span class="text-grayTitle">
+                    Providing expert advice during the preparation of tax
+                    returns.
+                  </span>
+                </li>
+                <li>
+                  <strong>Formal Guidance:</strong>
+                  <span class="text-grayTitle">
+                    Assisting with the submission of monthly tax returns.
+                  </span>
+                </li>
+                <li>
+                  <strong>Client Representation:</strong>
+                  <span class="text-grayTitle">
+                    Offering vigilant representation and robust defense in case
+                    of tax disputes.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(3)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Stamp Tax
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <ul class="list-disc pl-5">
+                <li>
+                  <strong>Compliance Assurance:</strong>
+                  <span class="text-grayTitle">
+                    Ensuring client adherence to tax laws and regulations.
+                  </span>
+                </li>
+                <li>
+                  <strong>Contract Review:</strong>
+                  <span class="text-grayTitle">
+                    Assessing tax liabilities in alignment with stamp tax law.
+                  </span>
+                </li>
+                <li>
+                  <strong>Document Preparation:</strong>
+                  <span class="text-grayTitle">
+                    Preparing all required documents for tax inspections.
+                  </span>
+                </li>
+                <li>
+                  <strong>Client Representation:</strong>
+                  <span class="text-grayTitle">
+                    Providing dedicated support and representation during tax
+                    inspections and hearings.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(4)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Withholding Tax
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <ul class="list-disc pl-5">
+                <li>
+                  <strong>Registration Assistance:</strong>
+                  <span class="text-grayTitle">
+                    Efficiently managing the registration of withheld amounts
+                    deducted from taxpayers.
+                  </span>
+                </li>
+                <li>
+                  <strong>Inspection Support:</strong>
+                  <span class="text-grayTitle">
+                    Actively participating during tax authority inspections to
+                    ensure compliance with tax laws.
+                  </span>
+                </li>
+                <li>
+                  <strong>Tax Preparation:</strong>
+                  <span class="text-grayTitle">
+                    Assisting in the preparation or thorough review of
+                    withholding tax documents.
+                  </span>
+                </li>
+                <li>
+                  <strong>Client Queries:</strong>
+                  <span class="text-grayTitle">
+                    Addressing client questions related to the withholding tax
+                    system with clarity and precision.
+                  </span>
+                </li>
+                <li>
+                  <strong>Collection Resolution:</strong>
+                  <span class="text-grayTitle">
+                    Effectively resolving collection issues, including
+                    attachments, set-offs, and refunds.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            (click)="toggleAccordion(5)"
+            class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
+          >
+            <h3
+              class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-2xl font-bold md:text-3xl"
+            >
+              Real Estate Tax
+            </h3>
+            <i
+              [ngClass]="{
+                'fa-chevron-up': openStates[0],
+                'fa-chevron-down': !openStates[0],
+              }"
+              class="fa-solid text-2xl text-primary transition-transform duration-300"
+            ></i>
+          </button>
+          <hr class="m-0 text-primary" />
+          <div
+            class="panel overflow-hidden bg-transparent px-4 transition-[max-height] duration-300 ease-out"
+          >
+            <div class="m-0 py-2 text-base md:text-xl lg:leading-10">
+              <ul class="list-disc pl-5">
+                <li>
+                  <strong>Compliance Assurance:</strong>
+                  <span class="text-grayTitle">
+                    Ensuring clients adhere to real estate tax law and
+                    accompanying regulations.
+                  </span>
+                </li>
+                <li>
+                  <strong>Contract Review:</strong>
+                  <span class="text-grayTitle">
+                    Conducting comprehensive reviews of client contracts to
+                    confirm alignment with local tax laws.
+                  </span>
+                </li>
+                <li>
+                  <strong>Document Preparation:</strong>
+                  <span class="text-grayTitle">
+                    Preparing detailed documents required for tax inspections.
+                  </span>
+                </li>
+                <li>
+                  <strong>Representation:</strong>
+                  <span class="text-grayTitle">
+                    Providing client representation before internal committees,
+                    appeal committees, and tax courts.
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
+<app-footer></app-footer>

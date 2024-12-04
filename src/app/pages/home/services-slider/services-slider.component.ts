@@ -36,47 +36,47 @@ export class ServicesSliderComponent implements OnInit {
     this.services = [
       {
         title: 'Audit and Assurance',
-        link: '/services',
+        link: '/services/audit',
         imageUrl: 'services_icons/audit.png',
       },
       {
         title: 'Tax services',
-        link: '/services',
+        link: '/services/tax',
         imageUrl: 'services_icons/tax.png',
       },
       {
         title: 'Investment and companies incorporation',
-        link: '/services',
+        link: '/services/investments-and-company-incorporation',
         imageUrl: 'services_icons/investment.png',
       },
       {
         title: 'Social Insurance',
-        link: '/services',
+        link: '/services/social-insurance',
         imageUrl: 'services_icons/social_insurance.png',
       },
       {
         title: 'E-invoice',
-        link: '/services',
+        link: '/services/e-invoice',
         imageUrl: 'services_icons/e_invoice.png',
       },
       {
         title: 'System Inspection',
-        link: '/services',
+        link: '/services/system-inspection',
         imageUrl: 'services_icons/system_inspection.png',
       },
       {
-        title: 'International Taxation Department',
-        link: '/services',
+        title: 'International Taxation',
+        link: '/services/international-taxation',
         imageUrl: 'services_icons/international_taxation.png',
       },
       {
         title: 'Transfer Pricing',
-        link: '/services',
+        link: '/services/transfer-pricing',
         imageUrl: 'services_icons/transfer_pricing.png',
       },
       {
         title: 'Accounting & Tax Training Courses',
-        link: '/services',
+        link: '/pro-training',
         imageUrl: 'services_icons/training_cources.png',
       },
     ];
