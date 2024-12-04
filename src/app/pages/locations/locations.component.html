@@ -4,7 +4,7 @@
   <section id="landing_section" class="h-[60vh]">
     <div
       class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
-      style="background-image: url(&quot;pro-training/landing_image.jpeg&quot;)"
+      style="background-image: url(&quot;locations/landing_image.jpeg&quot;)"
     >
       <div class="absolute inset-0 bg-black/50"></div>
       <div class="relative flex h-full w-full items-center justify-center">
@@ -15,6 +15,29 @@
     </div>
   </section>
 
+  <section class="mx-auto my-10 max-w-screen-xl p-4">
+    @if (activeTab === "Egypt") {
+      <app-leaflet-map
+        [center]="countries.egypt.center"
+        [zoom]="countries.egypt.zoom"
+        [locations]="countries.egypt.locations"
+      ></app-leaflet-map>
+    }
+    @if (activeTab === "Kingdom of Saudi Arabia") {
+      <app-leaflet-map
+        [center]="countries.ksa.center"
+        [zoom]="countries.ksa.zoom"
+        [locations]="countries.ksa.locations"
+      ></app-leaflet-map>
+    }
+    @if (activeTab === "United Arab Emirates") {
+      <app-leaflet-map
+        [center]="countries.uae.center"
+        [zoom]="countries.uae.zoom"
+        [locations]="countries.uae.locations"
+      ></app-leaflet-map>
+    }
+  </section>
   <section class="mx-auto my-10 max-w-screen-xl" id="locations-tabs">
     <div class="p-4">
       <div
@@ -33,7 +56,6 @@
 
           Egypt
         </button>
-
         <button
           (click)="setActiveTab('Kingdom of Saudi Arabia')"
           [class]="getTabClass('Kingdom of Saudi Arabia')"
@@ -63,7 +85,6 @@
           United Arab Emirates
         </button>
       </div>
-
       <div class="rounded-b-lg border border-t-0 border-gray-200 bg-white">
         @if (activeTab === "Egypt") {
           <div class="animate-fade-in p-6">
@@ -208,7 +229,6 @@
             </div>
           </div>
         }
-
         @if (activeTab === "Kingdom of Saudi Arabia") {
           <div class="animate-fade-in p-6">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -307,7 +327,6 @@
             </div>
           </div>
         }
-
         @if (activeTab === "United Arab Emirates") {
           <div class="animate-fade-in p-6">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
@@ -352,7 +371,6 @@
       </div>
     </div>
   </section>
-
   <section class="py-10">
     <div class="mx-auto max-w-screen-xl p-4">
       <p class="text-center text-3xl font-bold">
