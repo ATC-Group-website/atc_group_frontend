@@ -6,7 +6,7 @@
       [numScroll]="1"
       circular="true"
       [responsiveOptions]="responsiveOptions"
-      autoplayInterval="1500"
+      autoplayInterval="2000"
       ngSkipHydration
     >
       <ng-template let-service pTemplate="item">
@@ -24,7 +24,7 @@
           <h4 class="mb-4 h-24 text-2xl">{{ service.title }}</h4>
           <a
             [routerLink]="service.link"
-            class="w-fit rounded-xl border border-solid border-black px-6 py-2 text-black no-underline"
+            class="w-fit rounded-xl border border-solid border-grayTitle px-6 py-2 text-black no-underline"
             >Learn More</a
           >
         </div>

@@ -1,0 +1,201 @@
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section id="landing_section" class="h-[60vh]">
+    <div
+      class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
+      style="background-image: url(&quot;contact-us/landing_image.jpeg&quot;)"
+    >
+      <div class="absolute inset-0 bg-black/50"></div>
+      <div class="relative flex h-full w-full items-center justify-center">
+        <h1 class="text-center text-4xl text-white md:text-5xl lg:text-6xl">
+          Contact us
+        </h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="my-0 mb-5 border-0 border-l-[10px] border-solid border-primary p-3 text-2xl font-bold lg:text-3xl"
+      >
+        CONNECT WITH OUR EXPERTS
+      </h2>
+      <p class="text-base text-grayTitle md:pl-7 md:text-xl">
+        Send Us your Inquiry now, and we will reply to you within 48 hours,
+        <br />
+        <span>
+          or email us at
+          <a
+            href="mailto:info@atc.com.eg"
+            class="text-grayTitle hover:text-primary"
+          >
+            info&#64;atc.com.eg
+          </a></span
+        >
+      </p>
+    </div>
+  </section>
+
+  <section class="mb-10">
+    <div class="mx-auto flex max-w-screen-xl flex-col gap-6 p-4 md:flex-row">
+      <div class="flex md:w-1/2">
+        <img
+          src="contact-us/request_proposal.jpg"
+          alt=""
+          class="h-full w-full object-cover"
+        />
+      </div>
+      <form
+        class="p-6 md:w-1/2"
+        #proposalForm="ngForm"
+        (ngSubmit)="onSubmit(proposalForm)"
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+          <div class="mb-5">
+            <label for="name" class="mb-2 block font-medium text-gray-900"
+              >Name</label
+            >
+            <input
+              type="text"
+              id="name"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              name="name"
+              autocomplete="name"
+              ngModel
+              required
+              #name="ngModel"
+            />
+            @if (name.touched && name.invalid) {
+              <small class="m-0 p-0 text-primary"> Field is required </small>
+            }
+          </div>
+          <div class="mb-5">
+            <label for="title" class="mb-2 block font-medium text-gray-900"
+              >Position</label
+            >
+            <input
+              type="text"
+              id="title"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              name="title"
+              ngModel
+              required
+              #title="ngModel"
+            />
+            @if (title.touched && title.invalid) {
+              <small class="m-0 p-0 text-primary"> Field is required </small>
+            }
+          </div>
+        </div>
+        <div class="mb-5">
+          <label for="email" class="mb-2 block font-medium">Email</label>
+          <input
+            type="email"
+            id="email"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+            autocomplete="email"
+            name="email"
+            ngModel
+            required
+            email
+            #email="ngModel"
+          />
+          @if (email.touched && email.errors?.["required"]) {
+            <small class="m-0 p-0 text-primary"> Field is required </small>
+          }
+          @if (email.touched && email.errors?.["email"]) {
+            <small class="m-0 p-0 text-primary">
+              Field must be valid email
+            </small>
+          }
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+          <div class="mb-5">
+            <label
+              for="phone_number"
+              class="mb-2 block font-medium text-gray-900"
+              >Phone Number</label
+            >
+            <input
+              type="tel"
+              id="phone_number"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              name="phone_number"
+              ngModel
+              required
+              pattern="^[0-9]*$"
+              #phone_number="ngModel"
+            />
+            @if (phone_number.touched && phone_number.errors?.["required"]) {
+              <small class="m-0 p-0 text-primary"> Field is required </small>
+            }
+            @if (phone_number.touched && phone_number.errors?.["pattern"]) {
+              <small class="m-0 p-0 text-primary"
+                >Field must be a number
+              </small>
+            }
+          </div>
+          <div class="mb-5">
+            <label
+              for="company_name"
+              class="mb-2 block font-medium text-gray-900"
+              >Company name</label
+            >
+            <input
+              type="tel"
+              id="company_name"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              name="company_name"
+              ngModel
+              required
+              #company_name="ngModel"
+            />
+            @if (company_name.touched && company_name.invalid) {
+              <small class="m-0 p-0 text-primary"> Field is required </small>
+            }
+          </div>
+        </div>
+        <div class="mb-5">
+          <label for="details" class="mb-2 block font-medium text-gray-900"
+            >Details
+          </label>
+          <textarea
+            id="details"
+            rows="4"
+            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+            name="details"
+            ngModel
+            required
+            #details="ngModel"
+          ></textarea>
+          @if (details.touched && details.invalid) {
+            <small class="m-0 p-0 text-primary"> Field is required </small>
+          }
+        </div>
+        @if (!loading) {
+          <p-button
+            label="Submit"
+            class="outline-none focus:border-none focus:outline-none"
+            [disabled]="loading"
+            [style]="{
+              width: '100%',
+              backgroundColor: '#EB1F2F',
+              outline: 'none',
+              boxShadow: 'none',
+              border: 'none',
+            }"
+            type="submit"
+          />
+        }
+        @if (loading) {
+          <i class="fa-solid fa-spinner fa-spin"></i>
+        }
+      </form>
+    </div>
+  </section>
+
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
+<app-footer></app-footer>

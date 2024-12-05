@@ -70,11 +70,11 @@ export class HomeComponent {
     this.slides = [
       {
         id: 1,
-        imageUrl: 'home/egypt.jpg',
+        imageUrl: 'home/egypt.webp',
       },
       {
         id: 2,
-        imageUrl: 'home/ksa.jpg',
+        imageUrl: 'home/ksa.webp',
       },
       {
         id: 3,
@@ -101,18 +101,15 @@ export class HomeComponent {
     }
   }
 
+  // consider changing the image path to absolute path   content: 'https://atc.com.eg/assets/images/atc_group_white2.jpg' later on after testing social media sharing
+
   setMetaTags() {
-    this.title.setTitle('Home | ATC Group');
+    this.title.setTitle('Home | ATC Group - Accounting and Tax Consultants');
     this.meta.addTags([
       {
         name: 'description',
         content:
-          'ATC stands as a leading firm in the MENA Region, offering an extensive array of Accounting, Tax, and Financial Consulting Services tailored to meet the diverse needs of both businesses and individuals.',
-      },
-      {
-        name: 'keywords',
-        content:
-          'ATC Group, ATC, consulting, training, business solutions, professional development,ATC taxes, ATC services',
+          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -120,16 +117,37 @@ export class HomeComponent {
         content: 'ATC Group',
       },
       {
+        property: 'og:site_name',
+        content: 'ATC Group',
+      },
+      {
         property: 'og:description',
         content:
-          'ATC stands as a leading firm in the MENA Region, offering an extensive array of Accounting, Tax, and Financial Consulting Services tailored to meet the diverse needs of both businesses and individuals.',
+          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
       },
-      { property: 'og:url', content: 'https://atc.com.eg' },
+      { property: 'og:url', content: 'https://www.atc.com.eg' },
       {
         property: 'og:image',
         content: 'atc_group_white2.jpg',
       },
       { property: 'og:type', content: 'website' },
+      {
+        name: 'twitter:card',
+        content: 'atc_group_white2.jpg',
+      },
+      {
+        name: 'twitter:title',
+        content: 'ATC Group',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+      },
+      {
+        name: 'twitter:image',
+        content: 'atc_group_white2.jpg',
+      },
     ]);
   }
 }

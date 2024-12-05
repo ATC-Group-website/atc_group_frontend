@@ -7,6 +7,8 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CareersComponent } from './pages/careers/careers.component';
 import { ProTrainingComponent } from './pages/pro-training/pro-training.component';
 import { LocationsComponent } from './pages/locations/locations.component';
+import { ContactUsComponent } from './pages/contact-us/contact-us.component';
+import { adminGuard } from './dashboard/admin.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -91,5 +93,35 @@ export const routes: Routes = [
   { path: 'pro-training', component: ProTrainingComponent },
   { path: 'careers', component: CareersComponent },
   { path: 'locations', component: LocationsComponent },
+  // {
+  //   path: 'locations',
+
+  //   loadComponent: () =>
+  //     import('./pages/locations/locations.component').then(
+  //       (mod) => mod.LocationsComponent,
+  //     ),
+  // },
+  { path: 'contact-us', component: ContactUsComponent },
+
+  {
+    path: 'admin',
+    children: [
+      {
+        path: 'login',
+        loadComponent: () =>
+          import('./dashboard/login/login.component').then(
+            (mod) => mod.LoginComponent,
+          ),
+      },
+      {
+        path: 'dashboard',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./dashboard/dashboard-home/dashboard-home.component').then(
+            (mod) => mod.DashboardHomeComponent,
+          ),
+      },
+    ],
+  },
   { path: '**', component: NotFoundComponent },
 ];

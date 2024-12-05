@@ -1,14 +1,23 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { TabViewModule } from 'primeng/tabview';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { AccordionModule } from 'primeng/accordion';
+import {
+  CommonModule,
+  isPlatformBrowser,
+  NgOptimizedImage,
+} from '@angular/common';
 import { TabsComponent } from './tabs/tabs.component';
 import { RouterModule } from '@angular/router';
+import { DialogModule } from 'primeng/dialog';
 import { CarouselModule } from 'primeng/carousel';
 import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
+import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { Meta, Title } from '@angular/platform-browser';
+
 interface Team {
   name: string;
   title: string;
@@ -26,29 +35,44 @@ interface ResponsiveOptions {
     TopBarComponent,
     NavBarComponent,
     FooterComponent,
-    TabViewModule,
-    AccordionModule,
     CommonModule,
     RouterModule,
     TabsComponent,
     CarouselModule,
     ScrollToTopComponent,
+    DialogModule,
+    ButtonModule,
+    FormsModule,
+    InputTextareaModule,
+    InputTextModule,
+    ReactiveFormsModule,
+    NgOptimizedImage,
   ],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css',
 })
 export class AboutUsComponent implements OnInit {
-  openStates: boolean[] = [true, false, false];
+  yearsOfExperience: number = 0;
+  isBrowser: boolean;
+  visible: boolean = false;
+  loading: boolean = false;
+  openStates: boolean[] = [true, false];
   team: Team[] = [];
   responsiveOptions: ResponsiveOptions[] = [];
-
-  isBrowser: boolean;
+  title = inject(Title);
+  meta = inject(Meta);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
   ngOnInit(): void {
+    this.setMetaTags();
+
+    const startYear = 1998;
+    const currentYear = new Date().getFullYear();
+    this.yearsOfExperience = currentYear - startYear;
+
     if (this.isBrowser) {
       const panels = document.querySelectorAll('.panel');
       panels.forEach((panel, index) => {
@@ -62,11 +86,6 @@ export class AboutUsComponent implements OnInit {
 
       this.team = [
         {
-          name: 'Yara Ahmed',
-          title: 'Partner & Head of International Taxation',
-          imageUrl: 'about_us/yara_ahmed.jpg',
-        },
-        {
           name: 'Ashraf Abdel Ghani',
           title:
             'Founder, Managing Director and Member of The Board of Directors',
@@ -76,6 +95,11 @@ export class AboutUsComponent implements OnInit {
           name: 'Ahmed Abdel Ghani',
           title: 'Executive Partner',
           imageUrl: 'about_us/ahmed_abdel_ghani.png',
+        },
+        {
+          name: 'Yara Ahmed',
+          title: 'Partner & Head of International Taxation',
+          imageUrl: 'about_us/yara_ahmed.jpg',
         },
         {
           name: 'Mayar Ahmed',
@@ -122,5 +146,94 @@ export class AboutUsComponent implements OnInit {
 
     // Toggle the state
     this.openStates[index] = !this.openStates[index];
+  }
+
+  showDialog() {
+    this.visible = true;
+  }
+
+  submitQuoteForm(formData: NgForm) {
+    if (formData.form.invalid) {
+      Object.keys(formData.form.controls).forEach((field) => {
+        const control = formData.form.controls[field];
+        control.markAsTouched({ onlySelf: true });
+      });
+    } else {
+      this.loading = true;
+      const Data = {
+        sender: formData.form.controls['email'].value,
+        // receiver: 'info@atc.com.eg',
+        receiver: 'mostafa-ashraf@atc.com.eg',
+        type: 'proposal',
+        body: formData.form.controls['details'].value,
+        company_name: formData.form.controls['company_name'].value,
+        name: formData.form.controls['name'].value,
+        job_title: formData.form.controls['title'].value,
+        phone_number: formData.form.controls['phone_number'].value,
+        // attachments: [],
+      };
+
+      // this.contactusService.contact_us(Data).subscribe({
+      //   next: (response) => {
+      //     console.log('Form submitted successfully:', response);
+      //     formData.reset();
+      //     this.loading = false;
+      //   },
+      //   error: (err) => {
+      //     console.error('Error submitting form:', err);
+      //     this.loading = false;
+      //   },
+      // });
+    }
+  }
+
+  // consider changing the image path to absolute path   content: 'https://atc.com.eg/assets/images/atc_group_white2.jpg' later on after testing social media sharing
+
+  setMetaTags() {
+    this.title.setTitle('About Us | ATC Group');
+    this.meta.addTags([
+      {
+        name: 'description',
+        content:
+          'ATC Ashraf Abdel Ghani Accountants and Tax Consultants Group aims to become a leading organization in Auditing, Taxation, Accounting, Managerial, and Legal Consultancies within the MENA Region.',
+      },
+      { name: 'robots', content: 'index, follow' },
+      {
+        property: 'og:title',
+        content: 'About Us | ATC Group',
+      },
+      {
+        property: 'og:site_name',
+        content: 'ATC Group',
+      },
+      {
+        property: 'og:description',
+        content:
+          'ATC Ashraf Abdel Ghani Accountants and Tax Consultants Group aims to become a leading organization in Auditing, Taxation, Accounting, Managerial, and Legal Consultancies within the MENA Region.',
+      },
+      { property: 'og:url', content: 'https://www.atc.com.eg/about-us' },
+      {
+        property: 'og:image',
+        content: 'atc_group_white2.jpg',
+      },
+      { property: 'og:type', content: 'website' },
+      {
+        name: 'twitter:card',
+        content: 'summary_large_image',
+      },
+      {
+        name: 'twitter:title',
+        content: 'About Us | ATC Group',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          'ATC Ashraf Abdel Ghani Accountants and Tax Consultants Group aims to become a leading organization in Auditing, Taxation, Accounting, Managerial, and Legal Consultancies within the MENA Region.',
+      },
+      {
+        name: 'twitter:image',
+        content: 'atc_group_white2.jpg',
+      },
+    ]);
   }
 }

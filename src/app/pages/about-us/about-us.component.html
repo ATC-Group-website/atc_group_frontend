@@ -17,7 +17,7 @@
   </section>
 
   <section class="" id="why_atc">
-    <div class="mx-auto max-w-screen-2xl p-4">
+    <div class="mx-auto max-w-screen-xl p-4">
       <h2
         class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
       >
@@ -43,19 +43,18 @@
   </section>
 
   <section class="bg-[#F9F7F7] py-10" id="our_mission">
-    <div class="mx-auto max-w-screen-2xl p-4">
+    <div class="mx-auto max-w-screen-xl p-4">
       <div class="space-y-4">
-        <!-- Vision Section -->
         <div>
           <button
             (click)="toggleAccordion(0)"
             class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
           >
-            <h3
+            <h2
               class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-3xl font-bold"
             >
               Our Vision
-            </h3>
+            </h2>
             <i
               [ngClass]="{
                 'fa-chevron-up': openStates[0],
@@ -70,12 +69,13 @@
           >
             <div class="my-5 flex flex-col gap-4 lg:flex-row lg:gap-10">
               <img
-                src="about_us/our_vision.jpeg"
-                alt="our vision"
+                src="about_us/vision.webp"
+                alt="ATC vision"
+                loading="lazy"
                 class="max-h-[500px] w-full object-cover lg:hidden"
               />
               <p
-                class="m-0 py-2 text-base text-grayTitle md:text-2xl lg:leading-10"
+                class="m-0 py-2 text-base text-grayTitle md:text-xl lg:w-1/2 lg:leading-10"
               >
                 <span class="text-primary"> ATC </span>
                 <span>
@@ -96,26 +96,28 @@
                   client relationships.
                 </span>
               </p>
-              <img
-                src="about_us/our_vision.jpeg"
-                alt="our mission"
-                class="hidden max-h-[370px] object-cover lg:block lg:w-auto"
-              />
+              <div class="lg:w-1/2">
+                <img
+                  src="about_us/vision.webp"
+                  alt="ATC vision"
+                  class="hidden h-full object-cover lg:block lg:w-full"
+                  loading="lazy"
+                />
+              </div>
             </div>
           </div>
         </div>
 
-        <!-- Mission Section -->
         <div>
           <button
             (click)="toggleAccordion(1)"
             class="accordion flex w-full cursor-pointer items-center justify-between border-0 border-none bg-transparent px-4 py-2 text-left text-lg font-medium outline-none"
           >
-            <h3
+            <h2
               class="my-2 border-0 border-l-[8px] border-solid border-primary p-2 text-3xl font-bold"
             >
               Our Mission
-            </h3>
+            </h2>
             <i
               [ngClass]="{
                 'fa-chevron-up': openStates[1],
@@ -131,11 +133,11 @@
             <div class="my-5 flex flex-col gap-4 lg:flex-row lg:gap-10">
               <img
                 src="about_us/our_mission.jpg"
-                alt=""
+                alt="ATC mission"
                 class="max-h-[400px] w-full object-cover lg:hidden"
               />
               <p
-                class="m-0 py-2 text-base text-grayTitle md:text-2xl lg:leading-10"
+                class="m-0 py-2 text-base text-grayTitle md:text-xl lg:leading-10"
               >
                 <span>
                   Our mission is represented in rendering high quality services
@@ -151,7 +153,7 @@
               </p>
               <img
                 src="about_us/our_mission.jpg"
-                alt="our mission"
+                alt="ATC mission"
                 class="hidden max-h-[400px] object-cover lg:block lg:w-auto"
               />
             </div>
@@ -162,7 +164,7 @@
   </section>
 
   <section class="py-5">
-    <div class="mx-auto max-w-screen-2xl p-4">
+    <div class="mx-auto max-w-screen-xl p-4">
       <h2
         class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
       >
@@ -171,37 +173,32 @@
 
       <div
         class="relative left-0 top-0 h-[50vh] w-full bg-cover bg-center bg-no-repeat"
-        style="background-image: url(&quot;about_us/global_allies.jpg&quot;)"
+        style="background-image: url(&quot;about_us/global_allies.webp&quot;)"
       >
         <div class="absolute inset-0 bg-black/50"></div>
-        <div class="absolute bottom-5 left-3">
+        <div class="absolute bottom-5 left-3 right-3">
           <img
             src="about_us/geneva_group.png"
             alt="Geneva Group"
-            class="h-auto w-3/5"
+            class="h-auto w-full md:w-3/5"
           />
         </div>
       </div>
 
       <div
-        class="my-5 flex flex-col justify-between gap-10 p-4 lg:flex-row lg:gap-20"
+        class="my-5 flex flex-col justify-between gap-10 lg:flex-row lg:gap-20"
       >
-        <div
-          class="relative left-0 top-0 border-2 border-solid border-primary lg:w-1/2"
-        >
+        <div class="relative left-0 top-0 lg:w-1/2">
           <img
-            src="about_us/geneva.jpg"
-            alt=""
+            src="about_us/geneva.webp"
+            alt="Geneva Group"
             class="m-0 h-full w-full object-cover p-0"
           />
-          <div class="absolute inset-0 bg-black/30"></div>
         </div>
         <div class="border-2 border-solid border-primary lg:w-1/2">
-          <img src="about_us/geneva_group2.jpeg" alt="" class="w-3/4" />
+          <img src="about_us/geneva_group2.jpeg" alt="Geneva Group" />
           <div class="p-4">
-            <h3 class="underline-effect pb-1 font-bold lg:text-3xl">
-              Geneva Group
-            </h3>
+            <h3 class="pb-1 font-bold lg:text-3xl">Geneva Group</h3>
             <p class="lg:text-2xl">
               We are a proud member of the Geneva Group International (GGI).
               This is a worldwide network connecting independent accountancy
@@ -213,17 +210,203 @@
 
       <div class="flex items-center justify-center">
         <a
-          routerLink="/contact-us"
           class="w-fit cursor-pointer rounded-lg bg-primary px-16 py-3 text-xl font-bold text-white no-underline hover:bg-black md:px-40"
+          (click)="showDialog()"
           >Get a Quote</a
         >
       </div>
+      <p-dialog
+        header="Get a Quote"
+        [(visible)]="visible"
+        [modal]="true"
+        [closable]="true"
+        [responsive]="true"
+        [draggable]="false"
+        [baseZIndex]="1000"
+        [style]="{ width: '700px' }"
+      >
+        <form (ngSubmit)="submitQuoteForm(quoteForm)" #quoteForm="ngForm">
+          <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+            <div class="mb-5">
+              <label for="name" class="mb-2 block font-medium text-gray-900"
+                >Name</label
+              >
+              <input
+                type="text"
+                id="name"
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+                name="name"
+                autocomplete="name"
+                ngModel
+                required
+                #name="ngModel"
+                pInputText
+                [style]="{
+                  outline: 'none',
+                  boxShadow: 'none',
+                }"
+              />
+              @if (name.touched && name.invalid) {
+                <small class="m-0 p-0 text-primary"> Field is required </small>
+              }
+            </div>
+            <div class="mb-5">
+              <label for="title" class="mb-2 block font-medium text-gray-900"
+                >Position</label
+              >
+              <input
+                type="text"
+                id="title"
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+                name="title"
+                ngModel
+                required
+                #title="ngModel"
+                pInputText
+                [style]="{
+                  outline: 'none',
+                  boxShadow: 'none',
+                }"
+              />
+              @if (title.touched && title.invalid) {
+                <small class="m-0 p-0 text-primary"> Field is required </small>
+              }
+            </div>
+          </div>
+          <div class="mb-5">
+            <label for="email" class="mb-2 block font-medium">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              autocomplete="email"
+              name="email"
+              ngModel
+              required
+              email
+              #email="ngModel"
+              pInputText
+              [style]="{
+                outline: 'none',
+                boxShadow: 'none',
+              }"
+            />
+            @if (email.touched && email.errors?.["required"]) {
+              <small class="m-0 p-0 text-primary"> Field is required </small>
+            }
+            @if (email.touched && email.errors?.["email"]) {
+              <small class="m-0 p-0 text-primary">
+                Field must be valid email
+              </small>
+            }
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+            <div class="mb-5">
+              <label
+                for="phone_number"
+                class="mb-2 block font-medium text-gray-900"
+                >Phone Number</label
+              >
+              <input
+                type="tel"
+                id="phone_number"
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+                name="phone_number"
+                ngModel
+                required
+                pattern="^[0-9]*$"
+                #phone_number="ngModel"
+                pInputText
+                [style]="{
+                  outline: 'none',
+                  boxShadow: 'none',
+                }"
+              />
+              @if (phone_number.touched && phone_number.errors?.["required"]) {
+                <small class="m-0 p-0 text-primary"> Field is required </small>
+              }
+              @if (phone_number.touched && phone_number.errors?.["pattern"]) {
+                <small class="m-0 p-0 text-primary"
+                  >Field must be a number
+                </small>
+              }
+            </div>
+            <div class="mb-5">
+              <label
+                for="company_name"
+                class="mb-2 block font-medium text-gray-900"
+                >Company name</label
+              >
+              <input
+                type="text"
+                id="company_name"
+                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+                name="company_name"
+                ngModel
+                required
+                #company_name="ngModel"
+                pInputText
+                [style]="{
+                  outline: 'none',
+                  boxShadow: 'none',
+                }"
+              />
+              @if (company_name.touched && company_name.invalid) {
+                <small class="m-0 p-0 text-primary"> Field is required </small>
+              }
+            </div>
+          </div>
+          <div class="mb-5">
+            <label for="details" class="mb-2 block font-medium text-gray-900"
+              >Details
+            </label>
+            <textarea
+              id="details"
+              rows="4"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              name="details"
+              ngModel
+              required
+              #details="ngModel"
+              pInputText
+              [style]="{
+                outline: 'none',
+                boxShadow: 'none',
+                resize: 'none',
+              }"
+              pInputTextarea
+            ></textarea>
+            @if (details.touched && details.invalid) {
+              <small class="m-0 p-0 text-primary"> Field is required </small>
+            }
+          </div>
+          @if (!loading) {
+            <p-button
+              label="Submit"
+              class="outline-none focus:border-none focus:outline-none"
+              [disabled]="loading"
+              [style]="{
+                width: '100%',
+                backgroundColor: '#EB1F2F',
+                outline: 'none',
+                boxShadow: 'none',
+                border: 'none',
+              }"
+              [disabled]="quoteForm.invalid"
+              type="submit"
+            />
+          }
+          @if (loading) {
+            <i class="fa-solid fa-spinner fa-spin"></i>
+          }
+        </form>
+      </p-dialog>
     </div>
   </section>
 
   <hr />
   <section class="py-5">
-    <div class="mx-auto max-w-screen-2xl p-4">
+    <div class="mx-auto max-w-screen-xl p-4">
       <h2
         class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
       >
@@ -240,20 +423,20 @@
       <div class="flex flex-col gap-10 pt-10 md:flex-row md:gap-20 md:pl-7">
         <div class="md:w-2/5">
           <img
-            src="about_us/our_way.jpg"
+            src="about_us/ourway.webp"
             alt="our way"
-            class="h-full w-full rounded-lg object-cover"
+            class="h-full w-full object-cover"
           />
         </div>
         <div class="space-y-8 md:w-3/5">
           <div class="flex gap-5">
             <div
-              class="flex max-h-full flex-1 items-center justify-center bg-primary p-4"
+              class="flex h-fit items-center justify-center bg-primary p-5 md:p-7"
             >
-              <i class="fa-solid fa-fingerprint mx-6 text-4xl text-white"></i>
+              <i class="fa-solid fa-fingerprint text-4xl text-white"></i>
             </div>
             <div>
-              <h4 class="mb-3 mt-0 text-2xl">Professionalism</h4>
+              <h3 class="mb-3 mt-0 text-2xl">Professionalism</h3>
               <p class="m-0 text-lg text-grayTitle">
                 Diligence and determination govern our work ethic, allowing us
                 to perform our services at the highest standards to meet
@@ -263,14 +446,12 @@
           </div>
           <div class="flex gap-5">
             <div
-              class="flex max-h-full flex-1 items-center justify-center bg-primary p-4"
+              class="flex h-fit items-center justify-center bg-primary p-5 md:p-7"
             >
-              <i
-                class="fa-solid fa-clock-rotate-left mx-6 text-4xl text-white"
-              ></i>
+              <i class="fa-solid fa-clock-rotate-left text-4xl text-white"></i>
             </div>
             <div>
-              <h4 class="mb-3 mt-0 text-2xl">Experience</h4>
+              <h3 class="mb-3 mt-0 text-2xl">Experience</h3>
               <p class="m-0 text-lg text-grayTitle">
                 With the substantial market knowledge attained during our span
                 of operation in national and foreign markets, ATC has gained a
@@ -280,14 +461,12 @@
           </div>
           <div class="flex gap-5">
             <div
-              class="flex max-h-full flex-1 items-center justify-center bg-primary p-4"
+              class="flex h-fit items-center justify-center bg-primary px-[22.3px] py-5 md:px-[30.2px] md:py-7"
             >
-              <i
-                class="fa-solid fa-calendar-days mx-[26px] text-4xl text-white"
-              ></i>
+              <i class="fa-solid fa-calendar-days text-4xl text-white"></i>
             </div>
             <div>
-              <h4 class="mb-3 mt-0 text-2xl">Commitment</h4>
+              <h3 class="mb-3 mt-0 text-2xl">Commitment</h3>
               <p class="m-0 text-lg text-grayTitle">
                 It is our responsibility to deliver trusted and reliable
                 consultations to add value and provide solutions for our clients
@@ -296,14 +475,12 @@
           </div>
           <div class="flex gap-5">
             <div
-              class="flex max-h-full flex-1 items-center justify-center bg-primary p-4"
+              class="flex h-fit items-center justify-center bg-primary px-[26.7px] py-5 md:px-[34.7px] md:py-7"
             >
-              <i
-                class="fa-solid fa-dollar-sign mx-[27px] text-5xl text-white"
-              ></i>
+              <i class="fa-solid fa-dollar-sign text-4xl text-white"></i>
             </div>
             <div>
-              <h4 class="mb-3 mt-0 text-2xl">Value</h4>
+              <h3 class="mb-3 mt-0 text-2xl">Value</h3>
               <p class="m-0 text-lg text-grayTitle">
                 Making a difference: We aim to make a progressive difference
                 through our business activity, ensuring our impact is positive
@@ -317,7 +494,7 @@
   </section>
 
   <section class="bg-[#F9F7F7] py-5">
-    <div class="mx-auto max-w-screen-2xl p-4">
+    <div class="mx-auto max-w-screen-xl p-4">
       <div class="flex items-center justify-center">
         <h2
           class="border-0 border-l-[8px] border-solid border-black p-3 text-center text-3xl font-bold text-primary"
@@ -330,7 +507,13 @@
         <div
           class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
         >
-          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <img
+            ngSrc="about_us/atc_group.png"
+            alt="ATC Group"
+            width="320"
+            height="190"
+            class="w-80 max-w-full"
+          />
           <p class="text-center text-lg md:text-2xl">
             Accountats & Tax Consultants
           </p>
@@ -338,13 +521,25 @@
         <div
           class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
         >
-          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <img
+            ngSrc="about_us/atc_group.png"
+            alt="ATC Group"
+            width="320"
+            height="190"
+            class="w-80 max-w-full"
+          />
           <p class="text-center text-lg md:text-2xl">Management Consultants</p>
         </div>
         <div
           class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
         >
-          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <img
+            ngSrc="about_us/atc_group.png"
+            alt="ATC Group"
+            width="320"
+            height="190"
+            class="w-80 max-w-full"
+          />
           <p class="text-center text-lg md:text-2xl">
             Ahl El-Daraeb for Accountants & Tax Consultants
           </p>
@@ -352,7 +547,13 @@
         <div
           class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
         >
-          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <img
+            ngSrc="about_us/atc_group.png"
+            alt="ATC Group"
+            width="320"
+            height="190"
+            class="w-80 max-w-full"
+          />
           <p class="text-center text-lg md:text-2xl">
             Sobol El-Khebra for zakat & income tax consultants (KSA)
           </p>
@@ -360,7 +561,13 @@
         <div
           class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
         >
-          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <img
+            ngSrc="about_us/atc_group_uae.png"
+            alt="ATC Group"
+            width="320"
+            height="190"
+            class="w-80 max-w-full"
+          />
           <p class="text-center text-lg md:text-2xl">
             Tax Consultants ( United Arab Emirates)
           </p>
@@ -368,7 +575,13 @@
         <div
           class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
         >
-          <img src="about_us/atc_group.png" alt="" class="w-80 max-w-full" />
+          <img
+            ngSrc="about_us/atc_group.png"
+            alt="ATC Group"
+            width="320"
+            height="190"
+            class="w-80 max-w-full"
+          />
           <p class="text-center text-lg md:text-2xl">
             Management Consulting (Bahrain)
           </p>
@@ -378,7 +591,7 @@
   </section>
 
   <section class="py-5">
-    <div class="mx-auto max-w-screen-2xl p-4">
+    <div class="mx-auto max-w-screen-xl p-4">
       <h2
         class="border-0 border-l-[8px] border-solid border-l-primary p-3 text-3xl font-bold"
       >
@@ -387,8 +600,9 @@
       <div class="mx-auto max-w-screen-md">
         <p class="text-center text-xl text-grayTitle">
           Our team comprises numerous partners, most with extensive expertise
-          spanning more than 26 years, highly skilled and professionally
-          qualified, excelling in providing accounting and taxation services.
+          spanning more than <span>{{ yearsOfExperience }}</span> years, highly
+          skilled and professionally qualified, excelling in providing
+          accounting and taxation services.
         </p>
       </div>
 
@@ -403,15 +617,16 @@
         >
           <ng-template let-team pTemplate="team">
             <div
-              class="relative left-0 top-0 rounded-lg border-solid border-primary shadow-lg md:m-5 lg:m-14"
+              class="relative left-0 top-0 m-2 h-[400px] rounded-lg border-solid border-primary shadow-lg lg:m-4"
             >
               <img
                 [src]="team.imageUrl"
                 [alt]="team.name"
-                class="h-full w-full object-cover"
+                class="h-full w-full rounded-md object-cover"
+                loading="lazy"
               />
               <div
-                class="absolute bottom-0 left-0 w-full rounded-b-lg bg-gray-900 bg-opacity-70 p-4"
+                class="absolute bottom-0 left-0 w-full rounded-b-md bg-gray-900 bg-opacity-70 p-4"
               >
                 <h4 class="my-2 text-2xl text-white">{{ team.name }}</h4>
                 <p class="m-0 text-lg text-white">
