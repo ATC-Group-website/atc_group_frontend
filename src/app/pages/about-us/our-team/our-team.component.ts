@@ -81,6 +81,11 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/mohamed_awees.JPG',
     },
     {
+      name: 'Waleed Nabil',
+      title: 'Nasr City Branch Manager',
+      imageUrl: 'about_us/our_team/waleed_nabil.JPG',
+    },
+    {
       name: 'Ramy Shokayar',
       title: 'Riyadh Branch Manager',
       imageUrl: 'about_us/our_team/Ramy.jpg',
@@ -114,6 +119,11 @@ export class OurTeamComponent {
       imageUrl: 'about_us/our_team/khaled_abdelalem.JPG',
     },
     {
+      name: 'Moheb Khozam',
+      title: 'Head of the Audit Sector',
+      imageUrl: 'about_us/our_team/moheb.JPG',
+    },
+    {
       name: 'Mohamed Hassan',
       title: 'Head of the Audit Sector',
       imageUrl: 'about_us/our_team/mohamed_hassan.JPG',
@@ -132,6 +142,16 @@ export class OurTeamComponent {
       name: 'Mostafa Abdel-Azeem',
       title: 'Partner',
       imageUrl: 'about_us/our_team/mostafa_abdelazem.JPG',
+    },
+    {
+      name: 'Sameh El-Masry',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/sameh_elmasry.JPG',
+    },
+    {
+      name: 'Osama Abdel Moneim',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/osama_abdel_moneim.JPG',
     },
   ];
   cooprateTaxMembers: Member[] = [
@@ -215,6 +235,11 @@ export class OurTeamComponent {
       title: 'Partner',
       imageUrl: 'about_us/our_team/ahmed_youssef.JPG',
     },
+    {
+      name: 'Hassan El-Helw',
+      title: 'Partner',
+      imageUrl: 'about_us/our_team/hassan_elhelw.JPG',
+    },
   ];
 
   stampTaxMembers: Member[] = [
@@ -226,6 +251,11 @@ export class OurTeamComponent {
   ];
 
   vatMembers: Member[] = [
+    {
+      name: 'Alaa El-Sayed',
+      title: 'VAT Consultant',
+      imageUrl: 'about_us/our_team/alaa_elsayed.JPG',
+    },
     {
       name: 'Ehab Helmy',
       title: 'Head of VAT Sector',
@@ -270,11 +300,16 @@ export class OurTeamComponent {
     },
   ];
 
-  financeAndBookeepingMembers: Member[] = [
+  financeAndBookkeepingMembers: Member[] = [
     {
       name: 'Mohamed Zaki',
-      title: 'Head of Finance & Bookeeping Sectors',
+      title: 'Head of Finance & Bookkeeping Sectors',
       imageUrl: 'about_us/our_team/mohamed_zaki.jpg',
+    },
+    {
+      name: 'Gamal Hegazy',
+      title: 'Partner of Bookeeping',
+      imageUrl: 'about_us/our_team/gamal_hegazy.JPG',
     },
   ];
 
@@ -337,6 +372,22 @@ export class OurTeamComponent {
       name: 'Hisham Sakr',
       title: 'Partner',
       imageUrl: 'about_us/our_team/hisham_sakr.JPG',
+    },
+  ];
+
+  egyptianAssociationOfTaxExpertsMembers: Member[] = [
+    {
+      name: 'Amry Ali',
+      title: 'Association Director',
+      imageUrl: 'about_us/our_team/amry.JPG',
+    },
+  ];
+
+  moreMembers: Member[] = [
+    {
+      name: 'Farag Abdel Samee',
+      title: 'Discount and Collection Consultant',
+      imageUrl: 'about_us/our_team/farag.JPG',
     },
   ];
 }

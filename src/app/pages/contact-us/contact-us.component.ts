@@ -5,6 +5,8 @@ import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.compone
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
 
 @Component({
   selector: 'app-contact-us',
@@ -16,6 +18,8 @@ import { ButtonModule } from 'primeng/button';
     FooterComponent,
     FormsModule,
     ButtonModule,
+    InputTextModule,
+    InputTextareaModule,
   ],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',

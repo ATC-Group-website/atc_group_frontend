@@ -248,7 +248,7 @@
       <div>
         <h3 class="text-center text-3xl">Finance & Bookkeeping Department</h3>
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
-          @for (member of financeAndBookeepingMembers; track $index) {
+          @for (member of financeAndBookkeepingMembers; track $index) {
             <div
               class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
             >
@@ -354,6 +354,61 @@
         <h3 class="text-center text-3xl">Pro Training Department</h3>
         <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
           @for (member of proTrainingMembers; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                loading="lazy"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="">
+        <h3 class="text-center text-3xl">
+          Egyptian Association of Tax Experts
+        </h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (
+            member of egyptianAssociationOfTaxExpertsMembers;
+            track $index
+          ) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                loading="lazy"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+      <div class="">
+        <h3 class="text-center text-3xl">More Members</h3>
+        <div class="grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-4">
+          @for (member of moreMembers; track $index) {
             <div
               class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
             >

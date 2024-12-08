@@ -4,6 +4,7 @@ import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.compone
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
+import { NgOptimizedImage } from '@angular/common';
 interface Service {
   title: string;
   link: string;
@@ -19,6 +20,7 @@ interface Service {
     FooterComponent,
     RouterModule,
     ScrollToTopComponent,
+    NgOptimizedImage
   ],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',

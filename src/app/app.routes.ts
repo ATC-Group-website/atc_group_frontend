@@ -17,7 +17,7 @@ export const routes: Routes = [
     component: AboutUsComponent,
   },
   {
-    path: 'about-us/our-team',
+    path: 'our-team',
 
     loadComponent: () =>
       import('./pages/about-us/our-team/our-team.component').then(

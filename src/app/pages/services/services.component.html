@@ -4,7 +4,7 @@
   <section id="landing_section" class="h-[60vh]">
     <div
       class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat"
-      style="background-image: url(&quot;services/landing_image.jpeg&quot;)"
+      style="background-image: url(&quot;services/landing_image.webp&quot;)"
     >
       <div class="absolute inset-0 bg-black/50"></div>
       <div class="relative flex h-full w-full items-center justify-center">
@@ -29,12 +29,14 @@
           </p>
         </div>
         <div class="text-xl text-grayTitle">
-          ATC Group provides taxation, audit and assurance, accounting, and
-          investment, and company incorporation advisory services We specialize
-          in Tax consultation and services. <br />
-          ATC is a member of the Geneva Group International (GGI) global
-          network, linking independent accountancy firms, business consultants,
-          and specialized legal advisors across the world.
+          <p class="m-0">
+            ATC Group provides taxation, audit and assurance, accounting, and
+            investment, and company incorporation advisory services We
+            specialize in Tax consultation and services. <br />
+            ATC is a member of the Geneva Group International (GGI) global
+            network, linking independent accountancy firms, business
+            consultants, and specialized legal advisors across the world.
+          </p>
         </div>
       </div>
     </div>
@@ -50,7 +52,7 @@
             <div class="flex items-center gap-10">
               <div class="flex min-h-[132px] items-center gap-4">
                 <img
-                  src="{{ service.imageUrl }}"
+                  ngSrc="{{ service.imageUrl }}"
                   width="100"
                   height="100"
                   alt="{{ service.title }}"
@@ -67,7 +69,6 @@
               </p>
             </div>
           </div>
-          <!-- Ensure the link stays at the bottom -->
           <div class="mt-auto flex items-center justify-center">
             <a
               [routerLink]="service.link"
@@ -83,17 +84,17 @@
     <div
       class="relative left-0 top-0 h-full w-full bg-cover bg-center bg-no-repeat py-14"
       style="
-        background-image: url(&quot;services/hiring_professionals.jpeg&quot;);
+        background-image: url(&quot;services/hiring_professionals.jpg&quot;);
       "
     >
       <div class="absolute inset-0 bg-black/50"></div>
       <div class="relative mx-auto h-full w-full max-w-screen-xl p-4">
-        <div class="">
-          <h3
+        <div>
+          <h2
             class="border-0 border-l-[12px] border-solid border-primary p-4 text-2xl font-bold text-white lg:text-4xl"
           >
             Hire the Professionals
-          </h3>
+          </h2>
         </div>
         <div class="">
           <p
@@ -115,17 +116,19 @@
 
   <section class="py-10">
     <div class="mx-auto max-w-screen-xl p-4">
-      <h3
+      <h2
         class="border-0 border-l-[12px] border-solid border-primary p-4 text-3xl font-bold lg:text-4xl"
       >
         ATC Group Is Your Ideal Partner
-      </h3>
+      </h2>
 
-      <div class="flex flex-col justify-evenly gap-20 md:flex-row">
+      <div class="flex flex-col justify-evenly gap-5 md:flex-row md:gap-20">
         <div class="md:w-1/2">
           <img
-            src="services/ideal_partner.jpeg"
-            alt=""
+            ngSrc="services/ideal_partner.jpeg"
+            alt="ideal partner"
+            height="1043"
+            width="700"
             class="h-full w-full bg-cover"
           />
         </div>
@@ -139,9 +142,9 @@
               ></i>
             </div>
             <div>
-              <h4 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
+              <h3 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
                 Fits Business Requirments
-              </h4>
+              </h3>
               <p class="m-0 text-grayTitle md:text-lg">
                 Our work ethic is founded on diligence and determination,
                 ensuring that we deliver services to the highest standards,
@@ -159,9 +162,9 @@
               ></i>
             </div>
             <div>
-              <h4 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
+              <h3 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
                 Market Expertise
-              </h4>
+              </h3>
               <p class="m-0 text-grayTitle md:text-lg">
                 With extensive market knowledge gained over years of operation
                 in national and foreign markets, ATC Group holds a significant
@@ -180,9 +183,9 @@
               ></i>
             </div>
             <div>
-              <h4 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
+              <h3 class="mb-4 mt-0 text-2xl font-bold md:text-3xl">
                 Business Support
-              </h4>
+              </h3>
               <p class="m-0 text-grayTitle md:text-lg">
                 We help your business overcome the diverse array of challenges
                 you may face, by ATC Group is committed to helping your business
