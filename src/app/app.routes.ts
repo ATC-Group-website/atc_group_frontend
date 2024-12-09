@@ -121,6 +121,86 @@ export const routes: Routes = [
             (mod) => mod.DashboardHomeComponent,
           ),
       },
+      {
+        path: 'add-new-post',
+        loadComponent: () =>
+          import('./dashboard/add-new-post/add-new-post.component').then(
+            (mod) => mod.AddNewPostComponent,
+          ),
+        title: 'Dashboard | New Post',
+      },
+      {
+        path: 'edit-post',
+        loadComponent: () =>
+          import('./dashboard/edit-post/edit-post.component').then(
+            (mod) => mod.EditPostComponent,
+          ),
+        title: 'Dashboard | Edit Post',
+      },
+      {
+        path: 'articles',
+        loadComponent: () =>
+          import('./dashboard/articles/articles.component').then(
+            (mod) => mod.ArticlesComponent,
+          ),
+        title: 'Dashboard | Articles',
+      },
+      {
+        path: 'news-and-events',
+        loadComponent: () =>
+          import('./dashboard/news-and-events/news-and-events.component').then(
+            (mod) => mod.NewsAndEventsComponent,
+          ),
+        title: 'Dashboard | News and Events',
+      },
+      {
+        path: 'blogs',
+        loadComponent: () =>
+          import('./dashboard/blogs/blogs.component').then(
+            (mod) => mod.BlogsComponent,
+          ),
+        title: 'Dashboard | Blogs',
+      },
+      {
+        path: 'atc-members',
+        loadComponent: () =>
+          import('./dashboard/members/members.component').then(
+            (mod) => mod.MembersComponent,
+          ),
+        title: 'Dashboard | ATC Members',
+      },
+      {
+        path: 'add-member',
+        loadComponent: () =>
+          import('./dashboard/add-member/add-member.component').then(
+            (mod) => mod.AddMemberComponent,
+          ),
+        title: 'Dashboard | ATC Members',
+      },
+      {
+        path: 'edit-member',
+        loadComponent: () =>
+          import('./dashboard/edit-member/edit-member.component').then(
+            (mod) => mod.EditMemberComponent,
+          ),
+        title: 'Dashboard | ATC Members',
+      },
+      {
+        path: 'emails',
+        loadComponent: () =>
+          import('./dashboard/emails/emails.component').then(
+            (mod) => mod.EmailsComponent,
+          ),
+        title: 'Dashboard | Emails',
+      },
+      {
+        path: 'emails/send-email',
+        loadComponent: () =>
+          import('./dashboard/send-emails/send-emails.component').then(
+            (mod) => mod.SendEmailsComponent,
+          ),
+        title: 'Dashboard | Emails',
+      },
     ],
   },
   { path: '**', component: NotFoundComponent },

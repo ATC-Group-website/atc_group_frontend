@@ -1,0 +1,186 @@
+<app-nav></app-nav>
+<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
+  <section class="md:p-5 lg:ml-64">
+    <div class="mx-auto max-w-screen-xl rounded-lg bg-white p-8 shadow-lg">
+      <!-- add new post form -->
+      <h1 class="mb-6 text-2xl font-bold">New Post</h1>
+
+      <form (ngSubmit)="onAddNewPost(newpostForm)" #newpostForm="ngForm">
+        <!-- Title Input -->
+        <div class="mb-5">
+          <label
+            class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
+            for="title"
+          >
+            Title
+          </label>
+          <input
+            type="text"
+            id="title"
+            class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
+            placeholder="Enter post title"
+            required
+            name="title"
+            ngModel
+            pInputText
+            [(ngModel)]="titleInput"
+            [ngClass]="{
+              'text-right': isArabic(titleInput),
+              'text-left': !isArabic(titleInput),
+            }"
+            #title="ngModel"
+          />
+        </div>
+
+        <!-- Category Input -->
+        <div class="mb-5">
+          <label
+            class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
+            for="category"
+          >
+            Category
+          </label>
+          <p-dropdown
+            [options]="categories"
+            [(ngModel)]="selectedCategoryValue"
+            optionLabel="label"
+            optionValue="value"
+            placeholder="Choose a category"
+            [style]="{
+              backgroundColor: '#F9FAFB',
+              width: '100%',
+              outline: 'none',
+              boxShadow: 'none',
+            }"
+            inputId="category"
+            required
+            #category="ngModel"
+            name="category"
+          />
+        </div>
+        <div class="mb-4">
+          <label
+            class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
+            for="description"
+          >
+            Description
+          </label>
+          <p-editor
+            [style]="{
+              height: '600px',
+              fontSize: '16px',
+            }"
+            [modules]="editorModules"
+            id="description"
+            required
+            name="description"
+            ngModel
+            #Description="ngModel"
+          >
+          </p-editor>
+        </div>
+        <div class="mb-6">
+          <label
+            class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
+            for="image"
+          >
+            Upload Main Image
+          </label>
+          <div class="relative">
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              required
+              ngModel
+              #image="ngModel"
+              name="image"
+              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              (change)="onFileSelected($event)"
+            />
+
+            <div
+              class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+            >
+              <span class="flex-1 truncate text-gray-700">
+                <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
+                @if (filename) {
+                  {{ filename }}
+                } @else {
+                  No file choosen
+                }
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6">
+          <label
+            class="mb-2 block font-bold text-gray-700"
+            for="youtube_video_link"
+          >
+            YouTube Url
+          </label>
+          <input
+            type="text"
+            id="youtube_video_link"
+            class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
+            placeholder="Enter Youtube Video Url"
+            name="youtube_video_link"
+            ngModel
+            pInputText
+          />
+        </div>
+
+        <div class="mb-6">
+          <label
+            class="mb-2 block font-bold text-gray-700"
+            for="gallery_images"
+          >
+            Upload Gallery Images
+          </label>
+          <div class="relative">
+            <input
+              type="file"
+              id="gallery_images"
+              accept="image/*"
+              multiple
+              ngModel
+              #gallery_image="ngModel"
+              name="gallery_images"
+              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              (change)="onGalleryImagesSelected($event)"
+            />
+            <div
+              class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+            >
+              <span class="flex-1 truncate text-gray-700">
+                <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
+                <!-- @if (filename) {
+                  {{ filename }}
+                } @else { -->
+                No files choosen
+                <!-- } -->
+              </span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button
+            pButton
+            label="Add Post"
+            class="p-button-success"
+            type="submit"
+            [loading]="isLoading"
+            [style]="{
+              width: '100%',
+              outline: 'none',
+              boxShadow: 'none',
+              border: 'none',
+            }"
+            [disabled]="newpostForm.invalid"
+          ></button>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>

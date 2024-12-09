@@ -1,0 +1,96 @@
+<app-nav></app-nav>
+<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
+  <section class="md:p-5 lg:ml-64">
+    <div class="min-h-screen rounded-lg bg-white p-8 shadow-lg">
+      <div class="card">
+        <p-table
+          [value]="articles"
+          [lazy]="true"
+          [paginator]="true"
+          [rows]="jobsPerPage"
+          [loading]="loading"
+          [first]="0"
+          [totalRecords]="totalJobs"
+          [showCurrentPageReport]="true"
+          (onLazyLoad)="onPageChange($event)"
+        >
+          <ng-template pTemplate="caption">
+            <div>
+              <h2 class="text-center">ATC Group Articles</h2>
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 2rem">#</th>
+              <th style="width: 30%">Title</th>
+              <th style="width: 50%">Description</th>
+              <th style="width: 13%">Modified in</th>
+              <th>Edit</th>
+              <th>Delete</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-job>
+            <tr>
+              <td>{{ job.id }}</td>
+              <td>
+                <span
+                  class=""
+                  pTooltip="View job post"
+                  tooltipPosition="bottom"
+                >
+                  <a
+                    [routerLink]="['/jobs', job.id]"
+                    target="_blank"
+                    class="text-black no-underline hover:text-blue-500"
+                  >
+                    {{ job.title }}
+                    <i class="pi pi-arrow-up-right"></i> </a
+                ></span>
+              </td>
+              <td>
+                <span
+                  class=""
+                  pTooltip="View job post"
+                  tooltipPosition="bottom"
+                >
+                  <a
+                    [routerLink]="['/jobs', job.id]"
+                    target="_blank"
+                    class="text-black no-underline hover:text-blue-500"
+                  >
+                    {{ job.title }}
+                    <i class="pi pi-arrow-up-right"></i> </a
+                ></span>
+              </td>
+
+              <td>
+                <p-button
+                  (onClick)="navigateToDetails(job.id)"
+                  icon="pi pi-pen-to-square text-2xl text-blue-500 hover:text-blue-600"
+                  link="true"
+                  class="p-0"
+                  pTooltip="Edit"
+                  tooltipPosition="bottom"
+                />
+              </td>
+              <td>
+                <p-button
+                  (onClick)="confirmArchive($event, job.id)"
+                  severity="danger"
+                  icon="fa-solid fa-folder-minus text-2xl text-yellow-500 hover:text-yellow-700"
+                  link="true"
+                  class="p-0"
+                  pTooltip="Archive"
+                  tooltipPosition="bottom"
+                />
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <p-toast />
+        <p-confirmDialog />
+      </div>
+    </div>
+  </section>
+</main>
