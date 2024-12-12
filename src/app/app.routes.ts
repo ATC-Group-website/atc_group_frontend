@@ -120,6 +120,7 @@ export const routes: Routes = [
           import('./dashboard/dashboard-home/dashboard-home.component').then(
             (mod) => mod.DashboardHomeComponent,
           ),
+        title: 'ATC Group Dashboard',
       },
       {
         path: 'add-new-post',

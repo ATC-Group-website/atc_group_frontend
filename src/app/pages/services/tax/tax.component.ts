@@ -1,9 +1,10 @@
-import { Component, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { TopBarComponent } from '../../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
 import { ScrollToTopComponent } from '../../../shared/components/scroll-to-top/scroll-to-top.component';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-tax',
@@ -18,7 +19,9 @@ import { CommonModule, isPlatformBrowser } from '@angular/common';
   templateUrl: './tax.component.html',
   styleUrl: './tax.component.css',
 })
-export class TaxComponent {
+export class TaxComponent implements OnInit {
+  title = inject(Title);
+  meta = inject(Meta);
   openStates: boolean[] = [false, false, false, false, false, false];
   isBrowser: boolean;
 
@@ -26,6 +29,8 @@ export class TaxComponent {
     this.isBrowser = isPlatformBrowser(platformId);
   }
   ngOnInit(): void {
+    this.setMetaTags();
+
     if (this.isBrowser) {
       const panels = document.querySelectorAll('.panel');
       panels.forEach((panel, index) => {
@@ -52,5 +57,53 @@ export class TaxComponent {
 
     // Toggle the state
     this.openStates[index] = !this.openStates[index];
+  }
+
+  setMetaTags() {
+    this.title.setTitle('Tax Services | ATC Group');
+    this.meta.addTags([
+      {
+        name: 'description',
+        content:
+          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+      },
+      { name: 'robots', content: 'index, follow' },
+      {
+        property: 'og:title',
+        content: 'ATC Group',
+      },
+      {
+        property: 'og:site_name',
+        content: 'ATC Group',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+      },
+      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      {
+        property: 'og:image',
+        content: 'atc_group_white2.jpg',
+      },
+      { property: 'og:type', content: 'website' },
+      {
+        name: 'twitter:card',
+        content: 'atc_group_white2.jpg',
+      },
+      {
+        name: 'twitter:title',
+        content: 'ATC Group',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+      },
+      {
+        name: 'twitter:image',
+        content: 'atc_group_white2.jpg',
+      },
+    ]);
   }
 }

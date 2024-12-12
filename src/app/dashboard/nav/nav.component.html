@@ -6,7 +6,7 @@
           aria-controls="default-sidebar"
           (click)="toggleSidebar($event)"
           type="button"
-          class="ms-3 inline-flex items-center rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 lg:hidden"
+          class="focus:ring-none ms-3 inline-flex items-center rounded-lg border-none p-2 text-sm text-gray-500 hover:bg-gray-100 focus:outline-none lg:hidden"
         >
           <span class="sr-only">Open sidebar</span>
           <svg
@@ -60,19 +60,6 @@
           </div>
         </form>
       </div>
-      <!-- <div class="flex items-center">
-        <p-button
-          label="Logout"
-          class=""
-          [style]="{
-            backgroundColor: '#EB1F2F',
-            outline: 'none',
-            boxShadow: 'none',
-            border: 'none',
-          }"
-          type="button"
-        />
-      </div> -->
       <div class="flex items-center">
         <button
           (click)="logoutAdmin()"
@@ -87,7 +74,7 @@
 
 <aside
   id="default-sidebar"
-  class="fixed left-0 top-0 z-40 h-full w-64 -translate-x-full transition-transform lg:mt-[70px] lg:translate-x-0"
+  class="fixed left-0 top-0 z-40 mt-[70px] h-full w-52 -translate-x-full transition-transform lg:mt-[70px] lg:translate-x-0"
   [ngClass]="{
     '-translate-x-full': !sidebarVisible,
     'translate-x-0': sidebarVisible,
@@ -121,7 +108,6 @@
               d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"
             />
           </svg>
-          <!-- <img src="dashboard.png" alt="" class="h-8 w-8" /> -->
           <span class="ms-3">Dashboard</span>
         </a>
       </li>
@@ -192,7 +178,7 @@
         <a
           routerLink="/admin/add-new-post"
           class="group flex items-center rounded-lg p-2 text-gray-900 no-underline hover:bg-gray-100"
-          routerLinkActive="font-bold  bg-gray-100"
+          routerLinkActive="font-bold text-primary bg-gray-100"
         >
           <svg
             class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
@@ -212,7 +198,7 @@
       <li>
         <a
           routerLink="/admin/emails"
-          routerLinkActive="font-bold bg-gray-100"
+          routerLinkActive="font-bold text-primary bg-gray-100"
           class="group flex items-center rounded-lg p-2 text-gray-900 no-underline hover:bg-gray-100"
         >
           <svg

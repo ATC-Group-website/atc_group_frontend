@@ -3,7 +3,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-footer',
@@ -14,6 +14,7 @@ import { CommonModule } from '@angular/common';
     InputTextModule,
     ButtonModule,
     CommonModule,
+    NgOptimizedImage,
   ],
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.css',

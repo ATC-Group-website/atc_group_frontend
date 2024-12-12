@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { NgOptimizedImage } from '@angular/common';
+import { Meta, Title } from '@angular/platform-browser';
 interface Service {
   title: string;
   link: string;
@@ -20,15 +21,20 @@ interface Service {
     FooterComponent,
     RouterModule,
     ScrollToTopComponent,
-    NgOptimizedImage
+    NgOptimizedImage,
   ],
   templateUrl: './services.component.html',
   styleUrl: './services.component.css',
 })
-export class ServicesComponent {
+export class ServicesComponent implements OnInit {
+  title = inject(Title);
+  meta = inject(Meta);
   services: Service[] = [];
 
   ngOnInit(): void {
+
+    this.setMetaTags();
+
     this.services = [
       {
         title: 'Audit and Assurance',
@@ -94,5 +100,54 @@ export class ServicesComponent {
           'Our Team focuses on delivering high-quality professional education & training services in financial accounting, management accounting, external & internal audit and taxation.',
       },
     ];
+  }
+
+
+  setMetaTags() {
+    this.title.setTitle('Services | ATC Group');
+    this.meta.addTags([
+      {
+        name: 'description',
+        content:
+          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+      },
+      { name: 'robots', content: 'index, follow' },
+      {
+        property: 'og:title',
+        content: 'ATC Group',
+      },
+      {
+        property: 'og:site_name',
+        content: 'ATC Group',
+      },
+      {
+        property: 'og:description',
+        content:
+          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+      },
+      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      {
+        property: 'og:image',
+        content: 'atc_group_white2.jpg',
+      },
+      { property: 'og:type', content: 'website' },
+      {
+        name: 'twitter:card',
+        content: 'atc_group_white2.jpg',
+      },
+      {
+        name: 'twitter:title',
+        content: 'ATC Group',
+      },
+      {
+        name: 'twitter:description',
+        content:
+          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+      },
+      {
+        name: 'twitter:image',
+        content: 'atc_group_white2.jpg',
+      },
+    ]);
   }
 }

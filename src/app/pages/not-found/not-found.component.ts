@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { Location } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-not-found',
@@ -12,10 +13,19 @@ import { RouterModule } from '@angular/router';
   templateUrl: './not-found.component.html',
   styleUrl: './not-found.component.css',
 })
-export class NotFoundComponent {
+export class NotFoundComponent implements OnInit {
+  title = inject(Title);
+  meta = inject(Meta);
   location = inject(Location);
 
+  ngOnInit(): void {
+    this.setMetaTags();
+  }
   goBack(): void {
     this.location.back();
+  }
+
+  setMetaTags() {
+    this.title.setTitle('404 Not Found | ATC Group');
   }
 }
