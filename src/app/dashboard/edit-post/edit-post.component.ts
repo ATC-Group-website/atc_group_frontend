@@ -1,13 +1,17 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { NavComponent } from '../nav/nav.component';
 import { CommonModule } from '@angular/common';
-import { FormsModule, NgForm } from '@angular/forms';
+import { FormGroup, FormsModule, NgForm } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { EditorModule } from 'primeng/editor';
+import { ActivatedRoute } from '@angular/router';
+import { AdminDashboardService } from '../admin-dashboard.service';
+import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { Post } from '../interface';
 
 @Component({
   selector: 'app-edit-post',
@@ -21,14 +25,17 @@ import { EditorModule } from 'primeng/editor';
     ToastModule,
     EditorModule,
     DropdownModule,
+    LoadingComponent,
   ],
   providers: [MessageService],
   templateUrl: './edit-post.component.html',
   styleUrl: './edit-post.component.css',
 })
-export class EditPostComponent {
+export class EditPostComponent implements OnInit {
+  editpostForm!: FormGroup;
+  post!: Post;
   selectedBase64Image: string | null = null;
-  isLoading: boolean = false;
+  isLoading: boolean = true;
   titleInput: string = '';
   descInput: string = '';
   images: any[] = [];
@@ -36,15 +43,43 @@ export class EditPostComponent {
   filename: string | null = null;
 
   private messageService = inject(MessageService);
+  private route = inject(ActivatedRoute);
+  private dashboardService = inject(AdminDashboardService);
+
   selectedCategoryValue: string | null = null;
 
   categories = [
-    { label: 'Articles', value: '1' },
-    { label: 'News & Events', value: '2' },
-    { label: 'Blogs', value: '3' },
+    { label: 'Articles', value: 'article' },
+    { label: 'News & Events', value: 'news' },
+    { label: 'Blogs', value: 'blog' },
   ];
 
   constructor() {}
+
+  ngOnInit(): void {
+    const slug = this.route.snapshot.paramMap.get('slug');
+    if (slug) {
+      this.dashboardService.getSinglePost(slug).subscribe({
+        next: (res) => {
+          this.isLoading = false;
+          console.log(res);
+          this.post = res[2];
+
+          this.editpostForm.patchValue({
+            title: this.post.title,
+            type: this.post.type,
+            youtube_video_link: this.post.video_url,
+            description: this.post.description,
+          });
+        },
+        error: (error) => {
+          console.log(error);
+
+          this.isLoading = false;
+        },
+      });
+    }
+  }
 
   // Function to detect if the input is Arabic
   isArabic(text: string): boolean {
@@ -52,7 +87,7 @@ export class EditPostComponent {
     return arabicPattern.test(text);
   }
 
-  onAddNewPost(postData: NgForm) {
+  onUpdatePost(postData: NgForm) {
     if (postData.form.invalid) {
       Object.keys(postData.form.controls).forEach((field) => {
         const control = postData.form.controls[field];

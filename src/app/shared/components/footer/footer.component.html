@@ -21,6 +21,7 @@
             class="block h-[50px] w-full rounded-md bg-white p-3 text-2xl placeholder:text-center focus:border-none focus:outline-none"
             autocomplete="email"
             required
+            email
             ngModel
             #email="ngModel"
             [style]="{}"
@@ -31,9 +32,11 @@
             placeholder="Enter your email"
           />
         </div>
+        <!-- [disabled]="email.invalid" -->
         <p-button
           label="Sign Up"
-          [disabled]="email.invalid"
+          [disabled]="true"
+          [loading]="loading"
           class="h-[50px]"
           [style]="{
             width: '100%',
@@ -114,7 +117,7 @@
           <ul class="flex list-none flex-row gap-14 pl-0">
             <div class="space-y-4">
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -125,7 +128,7 @@
                 </a>
               </li>
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -136,7 +139,7 @@
                 </a>
               </li>
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -147,7 +150,7 @@
                 </a>
               </li>
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -160,7 +163,7 @@
             </div>
             <div class="space-y-4">
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -171,7 +174,7 @@
                 </a>
               </li>
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -182,7 +185,7 @@
                 </a>
               </li>
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -193,7 +196,7 @@
                 </a>
               </li>
               <li
-                class="flex cursor-pointer items-center gap-3 text-lg transition-colors hover:text-primary"
+                class="flex items-center gap-3 text-lg transition-colors hover:text-primary"
               >
                 <i class="fa-solid fa-circle text-xs text-primary"></i>
                 <a
@@ -231,7 +234,7 @@
             <i class="fa-solid fa-envelope text-primary"></i>
             <a
               href="mailto:info@atc.com.eg"
-              class="cursor-pointer text-lg text-white underline hover:text-primary"
+              class="text-lg text-white underline hover:text-primary"
             >
               info&#64;atc.com.eg
             </a>

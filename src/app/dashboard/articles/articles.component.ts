@@ -8,8 +8,11 @@ import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
-import { Meta, Title } from '@angular/platform-browser';
-import { NavComponent } from "../nav/nav.component";
+import { NavComponent } from '../nav/nav.component';
+import { AdminDashboardService } from '../admin-dashboard.service';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { Post } from '../interface';
+import { CustomDatePipe } from '../../shared/pipes/custom-date.pipe';
 
 @Component({
   selector: 'app-articles',
@@ -23,145 +26,116 @@ import { NavComponent } from "../nav/nav.component";
     RouterModule,
     TooltipModule,
     InputTextModule,
-    NavComponent
-],
+    NavComponent,
+    CustomDatePipe,
+  ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './articles.component.html',
   styleUrl: './articles.component.css',
 })
 export class ArticlesComponent implements OnInit {
-  articles: any = [];
-  jobsPerPage: number = 10; // Number of jobs per page
-  currentPage: number = 1; // Track the current page
-  totalJobs: number = 0; // Total number of jobs from the API
+  articles: Post[] = [];
+  postsPerPage: number = 10;
+  currentPage: number = 1;
+  totalArticles: number = 0;
   loading: boolean = true;
-
+  router = inject(Router);
+  sanitizer = inject(DomSanitizer);
+  dashboardService = inject(AdminDashboardService);
   confirmationService = inject(ConfirmationService);
   messageService = inject(MessageService);
-  router = inject(Router);
 
-  constructor(
-    private title: Title,
-    private meta: Meta,
-  ) {}
+  constructor() {}
 
   ngOnInit(): void {
-    this.title.setTitle('Edit Post');
-
-    // this.fetchJobs(this.currentPage);
-    this.loading = false;
+    this.fetchPosts(this.currentPage);
   }
 
   fetchPosts(pageNum: number) {
-    // this.jobsService.getPaginatedJobs(this.postsPerPage, pageNum).subscribe({
-    //   next: (response) => {
-    //     this.loading = false;
-    //     // console.log(response);
-    //     this.jobs = response.data;
-    //     this.totalJobs = response.total;
-    //   },
-    //   error: (err) => {
-    //     this.loading = false;
-    //     // console.log(err);
-    //   },
-    // });
+    this.dashboardService
+      .getPostsByType('article', this.postsPerPage, pageNum)
+      .subscribe({
+        next: (response) => {
+          this.loading = false;
+          console.log(response.posts);
+          this.articles = response.posts.data;
+
+          this.totalArticles = response.posts.total;
+        },
+        error: (err) => {
+          this.loading = false;
+          console.log(err);
+        },
+      });
   }
 
   onPageChange(event: any): void {
-    // this.currentPage = event.first / this.jobsPerPage + 1;
-    // // Update current page (PrimeNG pages start from 0)
-    // this.fetchJobs(this.currentPage); // Fetch jobs for the new page
+    this.loading = true;
+    this.currentPage = event.first / this.postsPerPage + 1;
+    this.fetchPosts(this.currentPage);
   }
 
-  confirmArchive(event: Event, jobId: number) {
-    // this.confirmationService.confirm({
-    //   target: event.target as EventTarget,
-    //   message: 'Do you want to archive this job?',
-    //   header: 'Confirmation',
-    //   icon: 'pi pi-exclamation-triangle',
-    //   acceptIcon: 'none',
-    //   rejectIcon: 'none',
-    //   rejectButtonStyleClass: 'p-button-text',
-    //   accept: () => {
-    //     this.jobsService.toggleArchiveJob(jobId).subscribe({
-    //       next: (response) => {
-    //         // console.log(response);
-    //         this.fetchJobs(this.currentPage);
-    //         this.messageService.add({
-    //           severity: 'info',
-    //           summary: 'Confirmed',
-    //           detail: `Job archived successfully`,
-    //         });
-    //       },
-    //       error: (err) => {
-    //         // console.log(err);
-    //         this.messageService.add({
-    //           severity: 'error',
-    //           summary: 'Error',
-    //           detail: 'Failed to archived job',
-    //         });
-    //       },
-    //     });
-    //   },
-    //   reject: () => {
-    //     this.messageService.add({
-    //       severity: 'error',
-    //       summary: 'Rejected',
-    //       detail: 'You have rejected',
-    //       life: 3000,
-    //     });
-    //   },
-    // });
+  confirmDelete(event: Event, slug: string) {
+    this.confirmationService.confirm({
+      target: event.target as EventTarget,
+      message: 'Do you want to delete this article?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-info-circle',
+      acceptButtonStyleClass: 'p-button-danger p-button-text',
+      rejectButtonStyleClass: 'p-button-text p-button-text',
+      acceptIcon: 'none',
+      rejectIcon: 'none',
+
+      accept: () => {
+        this.dashboardService.deletePost("awefdawefawe").subscribe({
+          next: (response) => {
+            console.log(response);
+            this.fetchPosts(this.currentPage);
+            this.messageService.add({
+              severity: 'info',
+              summary: 'Success',
+              detail: response.message,
+            });
+          },
+          error: (err) => {
+            console.log(err);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: err.error.message,
+            });
+          },
+        });
+      },
+      reject: () => {
+        this.messageService.add({
+          severity: 'error',
+          summary: 'Cancelled',
+          detail: 'You have rejected',
+        });
+      },
+    });
   }
 
-  formatDepartment(department: string): string {
-    return department.replace(/_/g, ' ');
+  navigateToDetails(slug: number) {
+    this.router.navigateByUrl(`/admin/edit-post/${slug}`);
   }
 
-  // confirmDelete(event: Event, jobId: number) {
-  //   this.confirmationService.confirm({
-  //     target: event.target as EventTarget,
-  //     message: 'Do you want to delete this job?',
-  //     header: 'Delete Confirmation',
-  //     icon: 'pi pi-info-circle',
-  //     acceptButtonStyleClass: 'p-button-danger p-button-text',
-  //     rejectButtonStyleClass: 'p-button-text p-button-text',
-  //     acceptIcon: 'none',
-  //     rejectIcon: 'none',
+  getFirstSevenWords(description: string): SafeHtml {
+    // Remove HTML tags and split into words
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = description;
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
 
-  //     accept: () => {
-  //       // Call the deleteJob method and subscribe to handle the response
-  //       this.jobsService.deleteJob(jobId).subscribe({
-  //         next: (response) => {
-  //           console.log(response);
-  //           this.fetchJobs(this.currentPage);
-  //           this.messageService.add({
-  //             severity: 'info',
-  //             summary: 'Confirmed',
-  //             detail: `Job deleted successfully`,
-  //           });
-  //         },
-  //         error: (err) => {
-  //           console.log(err);
-  //           this.messageService.add({
-  //             severity: 'error',
-  //             summary: 'Error',
-  //             detail: 'Failed to delete job',
-  //           });
-  //         },
-  //       });
-  //     },
-  //     reject: () => {
-  //       this.messageService.add({
-  //         severity: 'error',
-  //         summary: 'Rejected',
-  //         detail: 'You have rejected',
-  //       });
-  //     },
-  //   });
-  // }
+    // Split into words, take first 7, then rejoin
+    const words = textContent.trim().split(/\s+/);
+    const firstSevenWords = words.slice(0, 10).join(' ');
 
-  navigateToDetails(id: number) {
-    this.router.navigateByUrl(`/admin/dashboard/jobs/${id}`);
+    // Add ellipsis if there are more words
+    const finalText =
+      words.length > 7 ? `${firstSevenWords}...` : firstSevenWords;
+
+    // Sanitize and return
+    return this.sanitizer.bypassSecurityTrustHtml(finalText);
   }
 }

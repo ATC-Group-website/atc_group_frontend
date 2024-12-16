@@ -41,8 +41,8 @@
         >
           <p class="m-0">
             Stay ahead in the world of accounting, taxation, and financial
-            consulting with ATC Group Middle East - Ashraf Abdel Ghani
-            Accountants and Tax Consultants. <br />
+            consulting with ATC Group - Ashraf Abdel Ghani Accountants and Tax
+            Consultants. <br />
             Our Insights page is your go-to resource for expert analysis,
             industry trends, and valuable information that will help you
             navigate the complexities of your business environment.
@@ -70,59 +70,82 @@
         </p>
       </div>
 
-      <div
-        class="my-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-20"
-      >
-        <div class="rounded-xl bg-white shadow-md">
-          <!-- <p-skeleton width="100%" height="20rem"></p-skeleton> -->
-          <div class="h-[20rem]">
-            <img
-              src="home/ashraf.png"
-              alt=""
-              class="h-full w-full rounded-t-md object-cover"
-            />
+      <div class="my-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        @if (types["article"].isLoading) {
+          <div class="rounded-xl bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
-          </div>
-        </div>
 
-        <div class="rounded-md bg-white shadow-md">
-          <p-skeleton width="100%" height="20rem"></p-skeleton>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-        </div>
 
-        <div class="rounded-md bg-white shadow-md">
-          <p-skeleton width="100%" height="20rem"></p-skeleton>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-        </div>
+        }
+        @if (!types["article"].isLoading && types["article"].data) {
+          @for (article of types["article"].data; track $index) {
+            <div class="rounded-xl bg-white shadow-md">
+              <div class="h-[20rem]">
+                <img
+                  [src]="article.images[0].path"
+                  [alt]="article.title"
+                  class="h-full w-full rounded-t-md object-cover"
+                />
+              </div>
+              <div class="space-y-4 p-4">
+                <h2 class="block min-h-20 text-right">{{ article.title }}</h2>
+                <div class="flex justify-start">
+                  <a
+                    routerLink="/insights/{{ article.slug }}"
+                    class="w-fit rounded-lg bg-primary px-5 py-3 text-white no-underline hover:underline"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+              <!-- <div
+                class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+              >
+                <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+                <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+                <p-skeleton width="120px"></p-skeleton>
+              </div> -->
+            </div>
+          }
+        }
       </div>
       <div class="card flex items-center justify-center">
         <p-paginator
-          (onPageChange)="onPageChange($event)"
-          [first]="first"
-          [rows]="rows"
-          [totalRecords]="100"
+          (onPageChange)="onPageChange($event, 'article')"
+          [first]="types['article'].first"
+          [rows]="types['article'].rows"
+          [totalRecords]="types['article'].totalPages"
           [showCurrentPageReport]="true"
           [showPageLinks]="false"
           [showJumpToPageDropdown]="false"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} articles"
         />
       </div>
     </div>
@@ -146,59 +169,75 @@
         </p>
       </div>
 
-      <div
-        class="my-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-20"
-      >
-        <div class="rounded-xl bg-white shadow-md">
-          <!-- <p-skeleton width="100%" height="20rem"></p-skeleton> -->
-          <div class="h-[20rem]">
-            <img
-              src="home/ashraf.png"
-              alt=""
-              class="h-full w-full rounded-t-md object-cover"
-            />
+      <div class="my-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        @if (types["news"].isLoading) {
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
-          </div>
-        </div>
 
-        <div class="rounded-md bg-white shadow-md">
-          <p-skeleton width="100%" height="20rem"></p-skeleton>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-        </div>
 
-        <div class="rounded-md bg-white shadow-md">
-          <p-skeleton width="100%" height="20rem"></p-skeleton>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-        </div>
+        }
+        @if (!types["news"].isLoading && types["news"].data) {
+          @for (news of types["news"].data; track $index) {
+            <div class="rounded-xl bg-white shadow-md">
+              <div class="h-[20rem]">
+                <img
+                  [src]="news.images[0].path"
+                  [alt]="news.title"
+                  class="h-full w-full rounded-t-md object-cover"
+                />
+              </div>
+              <div class="space-y-4 p-4">
+                <h2 class="block min-h-36 text-left">{{ news.title }}</h2>
+                <div class="flex justify-end">
+                  <a
+                    routerLink="/insights/{{ news.slug }}"
+                    class="w-fit rounded-lg bg-primary px-5 py-3 text-white no-underline hover:underline"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+            </div>
+          }
+        }
       </div>
       <div class="card flex items-center justify-center">
         <p-paginator
-          (onPageChange)="onPageChange($event)"
-          [first]="first"
-          [rows]="rows"
-          [totalRecords]="100"
+          (onPageChange)="onPageChange($event, 'news')"
+          [first]="types['news'].first"
+          [rows]="types['news'].rows"
+          [totalRecords]="types['news'].totalPages"
           [showCurrentPageReport]="true"
           [showPageLinks]="false"
           [showJumpToPageDropdown]="false"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} news & events"
         />
       </div>
     </div>
@@ -220,58 +259,75 @@
         </p>
       </div>
 
-      <div
-        class="my-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3 lg:gap-20"
-      >
-        <div class="rounded-xl bg-white shadow-md">
-          <div class="h-[20rem]">
-            <img
-              src="home/ashraf.png"
-              alt=""
-              class="h-full w-full rounded-t-md object-cover"
-            />
+      <div class="my-6 grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
+        @if (types["blog"].isLoading) {
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
-          </div>
-        </div>
 
-        <div class="rounded-md bg-white shadow-md">
-          <p-skeleton width="100%" height="20rem"></p-skeleton>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-        </div>
 
-        <div class="rounded-md bg-white shadow-md">
-          <p-skeleton width="100%" height="20rem"></p-skeleton>
-          <div
-            class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
-          >
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton class="mx-auto w-3/4"></p-skeleton>
-            <p-skeleton width="120px"></p-skeleton>
+          <div class="rounded-md bg-white shadow-md">
+            <p-skeleton width="100%" height="20rem"></p-skeleton>
+            <div
+              class="mb-5 mt-4 flex flex-col items-center justify-between gap-5"
+            >
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton class="mx-auto w-3/4"></p-skeleton>
+              <p-skeleton width="120px"></p-skeleton>
+            </div>
           </div>
-        </div>
+        }
+        @if (!types["blog"].isLoading && types["blog"].data) {
+          @for (blog of types["blog"].data; track $index) {
+            <div class="rounded-xl bg-white shadow-md">
+              <div class="h-[20rem]">
+                <img
+                  [src]="blog.images[0].path"
+                  [alt]="blog.title"
+                  class="h-full w-full rounded-t-md object-cover"
+                />
+              </div>
+              <div class="space-y-4 p-4">
+                <h2 class="block min-h-20 text-right">{{ blog.title }}</h2>
+                <div class="flex justify-start">
+                  <a
+                    routerLink="/insights/{{ blog.slug }}"
+                    class="w-fit rounded-lg bg-primary px-5 py-3 text-white no-underline hover:underline"
+                    >Read More</a
+                  >
+                </div>
+              </div>
+            </div>
+          }
+        }
       </div>
       <div class="card flex items-center justify-center">
         <p-paginator
-          (onPageChange)="onPageChange($event)"
-          [first]="first"
-          [rows]="rows"
-          [totalRecords]="100"
+          (onPageChange)="onPageChange($event, 'blog')"
+          [first]="types['blog'].first"
+          [rows]="types['blog'].rows"
+          [totalRecords]="types['blog'].totalPages"
           [showCurrentPageReport]="true"
           [showPageLinks]="false"
           [showJumpToPageDropdown]="false"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords}"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} blogs"
         />
       </div>
     </div>

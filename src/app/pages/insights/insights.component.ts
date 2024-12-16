@@ -7,6 +7,8 @@ import { SkeletonModule } from 'primeng/skeleton';
 import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { NgOptimizedImage } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
+import { PostsService } from '../../shared/services/posts.service';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-insights',
@@ -19,13 +21,46 @@ import { Meta, Title } from '@angular/platform-browser';
     SkeletonModule,
     ScrollToTopComponent,
     NgOptimizedImage,
+    RouterModule,
   ],
   templateUrl: './insights.component.html',
   styleUrl: './insights.component.css',
 })
 export class InsightsComponent implements OnInit {
+  types: { [key: string]: any } = {
+    article: {
+      data: [],
+      currentPage: 1,
+      totalPages: 1,
+      isLoading: true,
+      first: 0,
+      rows: 3,
+    },
+    news: {
+      data: [],
+      currentPage: 1,
+      totalPages: 1,
+      isLoading: true,
+      first: 0,
+      rows: 3,
+    },
+    blog: {
+      data: [],
+      currentPage: 1,
+      totalPages: 1,
+      isLoading: true,
+      first: 0,
+      rows: 3,
+    },
+  };
+
+  pageNumArticles: number = 1;
+  pageNumNews: number = 1;
+  pageNumBlogs: number = 1;
+
   title = inject(Title);
   meta = inject(Meta);
+  postsService = inject(PostsService);
 
   first: number = 0;
 
@@ -33,11 +68,41 @@ export class InsightsComponent implements OnInit {
 
   ngOnInit(): void {
     this.setMetaTags();
+
+    this.fetchPosts('article', this.types['article'].currentPage);
+    this.fetchPosts('news', this.types['news'].currentPage);
+    this.fetchPosts('blog', this.types['blog'].currentPage);
   }
 
-  onPageChange(event: PaginatorState) {
-    this.first = event.first ?? 0;
-    this.rows = event.rows ?? 3;
+  fetchPosts(type: string, pageNum: number) {
+    this.types[type].isLoading = true;
+
+    this.postsService.getPaginatedPostsByType(type, pageNum).subscribe({
+      next: (res) => {
+        console.log(res.posts);
+        this.types[type].data = res.posts.data;
+        this.types[type].currentPage = res.posts.current_page;
+        this.types[type].totalPages = res.posts.total;
+        this.types[type].isLoading = false;
+      },
+      error: (err) => {
+        console.log(err);
+        this.types[type].isLoading = false;
+      },
+    });
+  }
+
+  onPageChange(event: PaginatorState, type: string) {
+    this.types[type].first = event.first ?? 0;
+    this.types[type].rows = event.rows ?? 3;
+
+    const pageNum =
+      Math.floor(this.types[type].first / this.types[type].rows) + 1;
+    this.fetchPosts(type, pageNum);
+
+    // const pageNum = Math.floor(this.first / this.rows) + 1;
+
+    // this.fetchPosts(type, pageNum);
   }
 
   setMetaTags() {

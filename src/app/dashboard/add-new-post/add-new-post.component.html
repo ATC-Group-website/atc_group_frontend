@@ -153,17 +153,29 @@
             <div
               class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
             >
-              <span class="flex-1 truncate text-gray-700">
+              <span class="mb-2 text-gray-700">
                 <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
-                <!-- @if (filename) {
-                  {{ filename }}
-                } @else { -->
-                No files choosen
-                <!-- } -->
+                {{
+                  selectedFileNames.length > 0
+                    ? "Selected files:"
+                    : "No files chosen"
+                }}
               </span>
+              @if (selectedFileNames.length > 0) {
+                <ul class="list-disc pl-5 text-sm text-gray-700">
+                  <li *ngFor="let fileName of selectedFileNames">
+                    {{ fileName }}
+                  </li>
+                </ul>
+              }
             </div>
           </div>
         </div>
+        @if (errorMsg) {
+          <span class="!mb-5 font-bold text-primary">
+            {{ errorMsg }}
+          </span>
+        }
         <div>
           <button
             pButton
@@ -182,5 +194,6 @@
         </div>
       </form>
     </div>
+    <p-toast></p-toast>
   </section>
 </main>

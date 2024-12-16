@@ -9,6 +9,7 @@ import { ProTrainingComponent } from './pages/pro-training/pro-training.componen
 import { LocationsComponent } from './pages/locations/locations.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { adminGuard } from './dashboard/admin.guard';
+import { InsightDetailsComponent } from './pages/insight-details/insight-details.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -90,6 +91,7 @@ export const routes: Routes = [
       ).then((mod) => mod.TransferPricingComponent),
   },
   { path: 'insights', component: InsightsComponent },
+  { path: 'insights/:slug', component: InsightDetailsComponent },
   { path: 'pro-training', component: ProTrainingComponent },
   { path: 'careers', component: CareersComponent },
   { path: 'locations', component: LocationsComponent },
@@ -124,6 +126,7 @@ export const routes: Routes = [
       },
       {
         path: 'add-new-post',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/add-new-post/add-new-post.component').then(
             (mod) => mod.AddNewPostComponent,
@@ -131,7 +134,8 @@ export const routes: Routes = [
         title: 'Dashboard | New Post',
       },
       {
-        path: 'edit-post',
+        path: 'edit-post/:slug',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/edit-post/edit-post.component').then(
             (mod) => mod.EditPostComponent,
@@ -140,6 +144,7 @@ export const routes: Routes = [
       },
       {
         path: 'articles',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/articles/articles.component').then(
             (mod) => mod.ArticlesComponent,
@@ -148,6 +153,7 @@ export const routes: Routes = [
       },
       {
         path: 'news-and-events',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/news-and-events/news-and-events.component').then(
             (mod) => mod.NewsAndEventsComponent,
@@ -156,6 +162,7 @@ export const routes: Routes = [
       },
       {
         path: 'blogs',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/blogs/blogs.component').then(
             (mod) => mod.BlogsComponent,
@@ -164,6 +171,7 @@ export const routes: Routes = [
       },
       {
         path: 'atc-members',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/members/members.component').then(
             (mod) => mod.MembersComponent,
@@ -172,6 +180,7 @@ export const routes: Routes = [
       },
       {
         path: 'add-member',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/add-member/add-member.component').then(
             (mod) => mod.AddMemberComponent,
@@ -180,6 +189,7 @@ export const routes: Routes = [
       },
       {
         path: 'edit-member',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/edit-member/edit-member.component').then(
             (mod) => mod.EditMemberComponent,
@@ -188,6 +198,7 @@ export const routes: Routes = [
       },
       {
         path: 'emails',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/emails/emails.component').then(
             (mod) => mod.EmailsComponent,
@@ -196,6 +207,7 @@ export const routes: Routes = [
       },
       {
         path: 'emails/send-email',
+        canActivate: [adminGuard],
         loadComponent: () =>
           import('./dashboard/send-emails/send-emails.component').then(
             (mod) => mod.SendEmailsComponent,

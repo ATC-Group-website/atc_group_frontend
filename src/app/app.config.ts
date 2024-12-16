@@ -10,8 +10,13 @@ import {
   BrowserModule,
   provideClientHydration,
 } from '@angular/platform-browser';
-import { provideHttpClient, withFetch } from '@angular/common/http';
+import {
+  provideHttpClient,
+  withFetch,
+  withInterceptors,
+} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { adminTokenInterceptor } from './dashboard/admin-token.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,7 +29,7 @@ export const appConfig: ApplicationConfig = {
       }),
     ),
     provideClientHydration(),
-    provideHttpClient(withFetch()),
+    provideHttpClient(withFetch(), withInterceptors([adminTokenInterceptor])),
     importProvidersFrom([BrowserModule, BrowserAnimationsModule]),
   ],
 };

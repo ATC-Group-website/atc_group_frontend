@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { NavComponent } from '../nav/nav.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,6 +9,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { AdminDashboardService } from '../admin-dashboard.service';
 
 @Component({
   selector: 'app-add-new-post',
@@ -34,21 +35,23 @@ export class AddNewPostComponent {
   titleInput: string = '';
   descInput: string = '';
   images: any[] = [];
-  selectedGalleryImages: any[] = [];
   filename: string | null = null;
+  errorMsg: string = '';
 
   private messageService = inject(MessageService);
+  private dashboardService = inject(AdminDashboardService);
+  private router = inject(Router);
   selectedCategoryValue: string | null = null;
+  selectedFileNames: string[] = [];
 
   categories = [
-    { label: 'Articles', value: '1' },
-    { label: 'News & Events', value: '2' },
-    { label: 'Blogs', value: '3' },
+    { label: 'Articles', value: 'article' },
+    { label: 'News & Events', value: 'news' },
+    { label: 'Blogs', value: 'blog' },
   ];
 
   constructor() {}
 
-  // Function to detect if the input is Arabic
   isArabic(text: string): boolean {
     const arabicPattern = /[\u0600-\u06FF]/;
     return arabicPattern.test(text);
@@ -59,60 +62,49 @@ export class AddNewPostComponent {
       Object.keys(postData.form.controls).forEach((field) => {
         const control = postData.form.controls[field];
         control.markAsTouched({ onlySelf: true });
-
-        console.log('invalid');
-
-        console.log(postData);
-
-        const mainImage = {
-          base64Image: this.selectedBase64Image, // Assuming this is your main image
-          type: 'main',
-        };
-
-        const Data = {
-          title: postData.form.controls['title'].value,
-          description: postData.form.controls['description'].value,
-          category_id: this.selectedCategoryValue,
-          images: this.images,
-        };
-
-        console.log(mainImage);
-        console.log(Data);
       });
     } else {
-      // this.isLoading = true;
-      console.log(postData);
-
-      const mainImage = {
-        base64Image: this.selectedBase64Image, // Assuming this is your main image
-        type: 'main',
-      };
+      this.errorMsg = '';
+      this.isLoading = true;
 
       const Data = {
         title: postData.form.controls['title'].value,
         description: postData.form.controls['description'].value,
-        category_id: this.selectedCategoryValue,
+        type: this.selectedCategoryValue,
         images: this.images,
-        youtube_url: postData.controls[''],
+        ...(postData.controls['youtube_video_link'].value && {
+          video_url: postData.controls['youtube_video_link'].value,
+        }),
       };
 
-      console.log(mainImage);
-      console.log(Data);
-
-      // sending the post data request
-      // this.postsService.addPost(Data).subscribe({
-      //   next: (response) => {
-      //     this.toastr.success('Post added successfully');
-      //     postData.form.reset();
-      //     this.isLoading = false;
-      //     // console.log(response);
-      //   },
-      //   error: (err) => {
-      //     console.error('Error submitting form:', err);
-      //     this.toastr.error('Error');
-      //     this.isLoading = false;
-      //   },
-      // });
+      this.dashboardService.createPost(Data).subscribe({
+        next: (response) => {
+          this.isLoading = false;
+          this.messageService.add({
+            severity: 'success',
+            summary: 'success',
+            detail: response.message,
+          });
+          postData.form.reset();
+          this.images = [];
+          this.filename = null;
+          this.selectedFileNames = [];
+        },
+        error: (err) => {
+          this.isLoading = false;
+          if (err.error.message === 'Token has expired') {
+            localStorage.removeItem('token');
+            this.router.navigateByUrl('admin/login');
+          } else if (err.error) {
+            this.errorMsg = err.error.message;
+          }
+          this.messageService.add({
+            severity: 'error',
+            summary: 'Error',
+            detail: err.error.message,
+          });
+        },
+      });
     }
   }
 
@@ -121,12 +113,12 @@ export class AddNewPostComponent {
     if (input.files) {
       const file = input.files[0];
       if (file) {
-        this.filename = file.name; // Store the file name
+        this.filename = file.name;
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.selectedBase64Image = e.target.result;
           this.images.push({
-            base64Image: e.target.result,
+            base64_image: e.target.result,
             type: 'main',
           });
         };
@@ -137,14 +129,13 @@ export class AddNewPostComponent {
 
   onGalleryImagesSelected(event: any): void {
     const files: FileList = event.target.files;
-
-    // Loop through the selected files and convert them to Base64
+    this.selectedFileNames = Array.from(files).map((file: File) => file.name);
     Array.from(files).forEach((file: File) => {
       const reader = new FileReader();
       reader.onload = (e: any) => {
         this.images.push({
-          base64Image: e.target.result,
-          type: 'gallery', // Mark it as a gallery image
+          base64_image: e.target.result,
+          type: 'gallery',
         });
       };
       reader.readAsDataURL(file);

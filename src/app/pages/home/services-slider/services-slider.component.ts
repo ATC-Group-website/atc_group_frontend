@@ -35,7 +35,7 @@ export class ServicesSliderComponent implements OnInit {
   ngOnInit(): void {
     this.services = [
       {
-        title: 'Audit and Assurance',
+        title: 'Audit',
         link: '/services/audit',
         imageUrl: 'services_icons/audit.png',
       },

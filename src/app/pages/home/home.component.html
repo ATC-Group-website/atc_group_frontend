@@ -7,9 +7,8 @@
         class="h-full"
         centered-slides="true"
         speed="1000"
-        autoplay='{"delay": 3000, "disableOnInteraction": false}'
-        navigation="false"
-        loop="true"
+        autoplay='{"delay": 3000}'
+        navigation="true"
         pagination="true"
       >
         @for (slide of slides; track slide.id) {
@@ -27,7 +26,7 @@
                   >
                     <h1 class="mb-2 text-7xl font-bold">ATC</h1>
                     <span class="mb-1 text-4xl">Ashraf Abdel Ghani</span>
-                    <div class="mb-3 flex items-center gap-4">
+                    <div class="mb-2 flex items-center gap-4">
                       <span
                         class="w-24 border-4 border-solid border-gray-200"
                       ></span>
@@ -35,6 +34,15 @@
                       <span
                         class="w-24 border-4 border-solid border-gray-200"
                       ></span>
+                    </div>
+                    <div
+                      class="mb-2 flex w-full items-center justify-around text-2xl"
+                    >
+                      <span>EGY</span>
+                      /
+                      <span>KSA</span>
+                      /
+                      <span>UAE</span>
                     </div>
                     <a
                       (click)="scrollToSection()"
@@ -181,10 +189,16 @@
               </h3>
             </div>
             <div>
-              <p class="text-base md:text-xl">
-                We craft customized financial strategies that maximize savings
+              <p class="text-base md:text-lg">
+                <!-- We craft customized financial strategies that maximize savings
                 and minimise liabilities addressing your specific financial
-                situation.
+                situation. -->
+                We understand that every business and individual has unique
+                financial needs and goals. Our tax consultants specialize in
+                crafting personalized solutions to simplify complex tax
+                processes, ensuring compliance tax laws. Our team combines
+                in-depth expertise with a tailored approach to meet your
+                specific requirements.
               </p>
             </div>
           </div>
@@ -204,10 +218,15 @@
               </h3>
             </div>
             <div>
-              <p class="text-base md:text-xl">
-                Our seasoned financial professionals offer in depth industry
+              <p class="text-base md:text-lg">
+                <!-- Our seasoned financial professionals offer in depth industry
                 knowledge and understanding of tax laws, providing accurate and
-                reliable guidance.
+                reliable guidance. -->
+                With decades of experience across diverse business sectors, ATC
+                Group’s tax consultants bring unparalleled expertise to the
+                table. Our team stays ahead of ever-changing tax laws and
+                regulations, ensuring our clients benefit from the most
+                up-to-date and effective strategies.
               </p>
             </div>
           </div>
@@ -227,11 +246,16 @@
               </h3>
             </div>
             <div>
-              <p class="text-base md:text-xl">
-                We providing ongoing support which is crucial in ensuring your
+              <p class="text-base md:text-lg">
+                <!-- We providing ongoing support which is crucial in ensuring your
                 success. That is why we offer periodic support to address your
                 evolving needs and provide continuous assistance throughout our
-                partnership.
+                partnership. -->
+                Our dedicated tax consultants provide consistent, dependable
+                support, helping you navigate the complexities of tax laws with
+                confidence. Whether it’s meeting tight deadlines, addressing
+                unexpected challenges, or providing ongoing guidance, we’re here
+                to ensure your tax obligations are managed seamlessly.
               </p>
             </div>
           </div>
@@ -257,6 +281,7 @@
               class="text-5xl text-primary"
               [countUp]="clients"
               [options]="{
+                duration: 3,
                 enableScrollSpy: true,
                 suffix: '+',
                 startVal: 0,
@@ -274,6 +299,7 @@
               class="text-6xl text-primary"
               [countUp]="yearsOfExperience"
               [options]="{
+                duration: 3,
                 enableScrollSpy: true,
                 suffix: '+',
                 startVal: 0,
@@ -291,6 +317,7 @@
               class="text-6xl text-primary"
               [countUp]="industries"
               [options]="{
+                duration: 3,
                 enableScrollSpy: true,
                 suffix: '+',
                 startVal: 0,
@@ -333,51 +360,57 @@
         Stay informed with the most recent articles covering Accounting and
         Taxation, featuring both National and MENA Region updates.
       </div>
-      @for (article of articles; track $index) {
-        <div
-          class="mb-5 flex flex-col justify-between gap-6 bg-white px-6 py-4 md:flex-row"
-        >
-          <div class="flex flex-grow flex-col justify-between">
-            <div>
-              <h3
-                class="border-0 border-r-[12px] border-solid border-primary p-3 text-right text-2xl"
-              >
-                جمعية الخبراء: 6 تعهدات من كجوك لبدء مرحلة جديدة مع الممولين
-              </h3>
-              <div class="h-auto w-full md:hidden">
-                <img
-                  ngSrc="home/ashraf.png"
-                  alt="ashraf"
-                  width="300"
-                  height="280"
-                  class="h-auto w-full object-cover"
-                />
+      @if (loading) {
+        <app-loading-card></app-loading-card>
+        <app-loading-card></app-loading-card>
+        <app-loading-card></app-loading-card>
+        <app-loading-card></app-loading-card>
+      }
+      @if (!loading) {
+        @for (post of posts; track $index) {
+          <div
+            class="mb-5 flex flex-col justify-between gap-6 bg-white px-6 py-4 md:flex-row"
+          >
+            <div class="flex flex-grow flex-col justify-between">
+              <div>
+                <h3
+                  class="border-0 border-r-[12px] border-solid border-primary p-3 text-right text-2xl"
+                >
+                  {{ post.title }}
+                </h3>
+                <div class="h-auto w-full md:hidden">
+                  <img
+                    [src]="post.images[0].path"
+                    [alt]="post.title"
+                    class="h-auto w-full object-cover"
+                  />
+                </div>
+                <p class="text-right text-xl text-grayTitle">
+                  {{ post.title }}
+                </p>
+                <!-- <p
+                  class="text-right text-xl text-grayTitle"
+                  [innerHTML]="post.description | truncateHtml: 35"
+                ></p> -->
               </div>
-              <p class="text-right text-xl text-grayTitle">
-                جمعية الخبراء نؤيد وزير الاستثمار في إلغاء ضريبة الأرباح
-                الرأسمالية في البورصة أعلنت جمعية خبراء الضرائب المصرية تأييدها
-                لما طرحه حسن الخطيب وزير الاستثمار و
-              </p>
+              <div class="mt-auto flex justify-start">
+                <a
+                  class="w-fit rounded-xl bg-primary px-10 py-2 text-center text-xl text-white no-underline hover:bg-black"
+                  routerLink="insights/{{ post.slug }}"
+                >
+                  Read More
+                </a>
+              </div>
             </div>
-            <div class="mt-auto flex justify-start">
-              <a
-                class="w-fit rounded-xl bg-primary px-10 py-2 text-center text-xl text-white no-underline hover:bg-black"
-                routerLink="insights"
-              >
-                Read More
-              </a>
+            <div class="hidden h-[280px] w-[300px] md:block">
+              <img
+                [src]="post.images[0].path"
+                [alt]="post.title"
+                class="h-[280px] w-[300px] object-cover"
+              />
             </div>
           </div>
-          <div class="hidden h-[280px] w-[300px] md:block">
-            <img
-              ngSrc="home/ashraf.png"
-              alt="ashraf"
-              width="300"
-              height="280"
-              class="h-[280px] w-[300px] object-cover"
-            />
-          </div>
-        </div>
+        }
       }
       <div class="mt-10 flex items-center justify-center">
         <a

@@ -102,14 +102,14 @@ export class AboutUsComponent implements OnInit {
           imageUrl: 'about_us/yara_ahmed.jpg',
         },
         {
-          name: 'Mayar Ahmed',
-          title: 'Business Development Executive',
-          imageUrl: 'about_us/mayar_ahmed.jpg',
-        },
-        {
           name: 'Marwan Ayman',
           title: 'Regional Branch Director - UAE',
           imageUrl: 'about_us/marwan_ayman.jpg',
+        },
+        {
+          name: 'Mayar Ahmed',
+          title: 'Business Development Executive',
+          imageUrl: 'about_us/mayar_ahmed.jpg',
         },
       ];
 

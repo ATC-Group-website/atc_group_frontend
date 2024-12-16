@@ -20,7 +20,11 @@ import { RouterModule } from '@angular/router';
 import { CountUpModule } from 'ngx-countup';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
-import { Meta, Title } from '@angular/platform-browser';
+import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
+import { PostsService } from '../../shared/services/posts.service';
+import { Post } from '../../dashboard/interface';
+import { LoadingCardComponent } from './loading-card/loading-card.component';
+import { TruncateHtmlPipe } from '../../shared/pipes/truncate-html.pipe';
 
 interface slide {
   id: number;
@@ -43,6 +47,8 @@ interface slide {
     CountUpModule,
     FooterComponent,
     ScrollToTopComponent,
+    LoadingCardComponent,
+    TruncateHtmlPipe,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.component.html',
@@ -55,10 +61,12 @@ export class HomeComponent {
   yearsOfExperience: number = 0;
   industries: number = 22;
   branches: number = 10;
-
-  articles = [1, 2, 3, 4];
+  loading: boolean = true;
+  posts: any[] = [];
   title = inject(Title);
   meta = inject(Meta);
+  postsService = inject(PostsService);
+  sanitizer = inject(DomSanitizer);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -66,6 +74,19 @@ export class HomeComponent {
 
   ngOnInit(): void {
     this.setMetaTags();
+
+    this.postsService.getPaginatedPosts().subscribe({
+      next: (res) => {
+        this.loading = false;
+        console.log(res.posts);
+        this.posts = res.posts.data;
+        console.log(this.posts);
+      },
+      error: (err) => {
+        this.loading = false;
+        console.log(err);
+      },
+    });
 
     this.slides = [
       {
@@ -104,7 +125,8 @@ export class HomeComponent {
   // consider changing the image path to absolute path   content: 'https://atc.com.eg/assets/images/atc_group_white2.jpg' later on after testing social media sharing
 
   setMetaTags() {
-    this.title.setTitle('Home | ATC Group - Accounting and Tax Consultants');
+    // this.title.setTitle('Home | ATC Group - Accounting and Tax Consultants');
+    this.title.setTitle('ATC Group - Accounting and Tax Consultants');
     this.meta.addTags([
       {
         name: 'description',
@@ -149,5 +171,9 @@ export class HomeComponent {
         content: 'atc_group_white2.jpg',
       },
     ]);
+  }
+
+  sanitizeHtml(html: string): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 }

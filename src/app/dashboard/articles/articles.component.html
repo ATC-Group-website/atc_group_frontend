@@ -1,18 +1,26 @@
 <app-nav></app-nav>
 <main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
-  <section class="md:p-5 lg:ml-64">
-    <div class="min-h-screen rounded-lg bg-white p-8 shadow-lg">
+  <section class="md:p-5 lg:ml-52">
+    <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
+      <!-- @if (loading) {
+        <div class="mx-auto">
+          <app-loading></app-loading>
+        </div>
+      }
+      @if (!loading) { -->
       <div class="card">
         <p-table
           [value]="articles"
           [lazy]="true"
           [paginator]="true"
-          [rows]="jobsPerPage"
+          [rows]="postsPerPage"
           [loading]="loading"
           [first]="0"
-          [totalRecords]="totalJobs"
+          [totalRecords]="totalArticles"
           [showCurrentPageReport]="true"
           (onLazyLoad)="onPageChange($event)"
+          [loading]="loading"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} articles"
         >
           <ng-template pTemplate="caption">
             <div>
@@ -24,49 +32,49 @@
             <tr>
               <th style="width: 2rem">#</th>
               <th style="width: 30%">Title</th>
-              <th style="width: 50%">Description</th>
-              <th style="width: 13%">Modified in</th>
-              <th>Edit</th>
-              <th>Delete</th>
+              <th style="width: 40%">Description</th>
+              <th style="width: 13%">video url</th>
+              <th style="width: 10%">Created in</th>
+              <th class="text-center">Edit</th>
+              <th class="text-center">Delete</th>
             </tr>
           </ng-template>
-          <ng-template pTemplate="body" let-job>
+          <ng-template pTemplate="body" let-article>
             <tr>
-              <td>{{ job.id }}</td>
+              <td>{{ article.id }}</td>
               <td>
-                <span
-                  class=""
-                  pTooltip="View job post"
-                  tooltipPosition="bottom"
-                >
+                <span pTooltip="View post" tooltipPosition="bottom">
                   <a
-                    [routerLink]="['/jobs', job.id]"
+                    [routerLink]="['/insights', article.slug]"
                     target="_blank"
                     class="text-black no-underline hover:text-blue-500"
                   >
-                    {{ job.title }}
-                    <i class="pi pi-arrow-up-right"></i> </a
-                ></span>
+                    {{ article.title }}
+                  </a></span
+                >
               </td>
               <td>
-                <span
-                  class=""
-                  pTooltip="View job post"
-                  tooltipPosition="bottom"
-                >
-                  <a
-                    [routerLink]="['/jobs', job.id]"
-                    target="_blank"
-                    class="text-black no-underline hover:text-blue-500"
-                  >
-                    {{ job.title }}
-                    <i class="pi pi-arrow-up-right"></i> </a
-                ></span>
+                <div
+                  [innerHTML]="getFirstSevenWords(article.description)"
+                ></div>
               </td>
-
+              <td>
+                <a
+                  [href]="article.video_url"
+                  target="_blank"
+                  class="text-black no-underline hover:text-blue-500 hover:underline"
+                  >{{ article.video_url }}
+                </a>
+                @if (!article.video_url) {
+                  <span class="text-gray-500"> No video URL </span>
+                }
+              </td>
+              <td class="">
+                {{ article.created_at | customDate }}
+              </td>
               <td>
                 <p-button
-                  (onClick)="navigateToDetails(job.id)"
+                  (onClick)="navigateToDetails(article.slug)"
                   icon="pi pi-pen-to-square text-2xl text-blue-500 hover:text-blue-600"
                   link="true"
                   class="p-0"
@@ -76,12 +84,12 @@
               </td>
               <td>
                 <p-button
-                  (onClick)="confirmArchive($event, job.id)"
+                  (onClick)="confirmDelete($event, article.slug)"
                   severity="danger"
-                  icon="fa-solid fa-folder-minus text-2xl text-yellow-500 hover:text-yellow-700"
+                  icon="fa-solid fa-trash text-2xl text-primary hover:text-red-700"
                   link="true"
                   class="p-0"
-                  pTooltip="Archive"
+                  pTooltip="Delete"
                   tooltipPosition="bottom"
                 />
               </td>
@@ -91,6 +99,7 @@
         <p-toast />
         <p-confirmDialog />
       </div>
+      <!-- } -->
     </div>
   </section>
 </main>

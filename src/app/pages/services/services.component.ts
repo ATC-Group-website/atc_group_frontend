@@ -32,12 +32,11 @@ export class ServicesComponent implements OnInit {
   services: Service[] = [];
 
   ngOnInit(): void {
-
     this.setMetaTags();
 
     this.services = [
       {
-        title: 'Audit and Assurance',
+        title: 'Audit',
         link: '/services/audit',
         imageUrl: 'services_icons/audit.png',
         description:
@@ -101,7 +100,6 @@ export class ServicesComponent implements OnInit {
       },
     ];
   }
-
 
   setMetaTags() {
     this.title.setTitle('Services | ATC Group');

@@ -1,1 +1,54 @@
-<p>insight-details works!</p>
+<app-top-bar></app-top-bar>
+<app-nav-bar></app-nav-bar>
+<main>
+  <section class="mb-10">
+    <div class="mx-auto min-h-[50vh] max-w-screen-xl p-4">
+      @if (isLoading) {
+        <div class="flex h-[50vh] items-center justify-center">
+          <app-loading></app-loading>
+        </div>
+      }
+      @if (!isLoading && post) {
+        <h2
+          class="my-5 p-3 text-center text-2xl font-bold text-primary lg:text-4xl"
+        >
+          {{ post.title }}
+        </h2>
+
+        <img
+          [src]="post.images[0].path"
+          [alt]="post.title"
+          class="h-auto w-full"
+        />
+
+        <!-- <p
+  class="max-w-full overflow-hidden whitespace-pre-wrap break-words p-4 text-sm leading-relaxed text-gray-700 md:text-base"
+  [innerHTML]="sanitizeHtml(post.description)"
+></p> -->
+
+        <p
+          style="direction: rtl"
+          class="max-w-full overflow-hidden whitespace-pre-wrap break-words p-4 text-right text-sm leading-relaxed text-gray-700 md:text-base"
+          [innerHTML]="post.description | truncateHtml"
+        ></p>
+
+        <!-- @if (post.video_url && videoURL) {
+
+          <div class="mx-auto">
+            <iframe
+              [src]="videoURL"
+              width="560"
+              height="315"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        } -->
+      }
+    </div>
+  </section>
+  <app-scroll-to-top></app-scroll-to-top>
+</main>
+<app-footer></app-footer>
