@@ -48,7 +48,6 @@ interface slide {
     FooterComponent,
     ScrollToTopComponent,
     LoadingCardComponent,
-    TruncateHtmlPipe,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.component.html',

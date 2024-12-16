@@ -91,29 +91,45 @@
             }
           </div>
         </div>
-        <div class="mb-5">
-          <label for="email" class="mb-2 block font-medium">Email</label>
-          <input
-            type="email"
-            id="email"
-            class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
-            autocomplete="email"
-            name="email"
-            ngModel
-            required
-            pInputText
-            email
-            #email="ngModel"
-          />
-          @if (email.touched && email.errors?.["required"]) {
-            <small class="m-0 p-0 text-primary"> Field is required </small>
-          }
-          @if (email.touched && email.errors?.["email"]) {
-            <small class="m-0 p-0 text-primary">
-              Field must be valid email
-            </small>
-          }
+
+        <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+          <div class="mb-5">
+            <label for="email" class="mb-2 block font-medium">Email</label>
+            <input
+              type="email"
+              id="email"
+              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              autocomplete="email"
+              name="email"
+              ngModel
+              required
+              pInputText
+              email
+              #email="ngModel"
+            />
+          </div>
+          <div class="mb-5">
+            <label for="reasonForContact" class="mb-2 block font-medium"
+              >Reason for Contact</label
+            >
+            <p-dropdown
+              [options]="reasonOptions"
+              [(ngModel)]="selectedReason"
+              optionLabel="label"
+              optionValue="value"
+              placeholder="Select Reason"
+              name="reasonForContact"
+              [style]="{
+                backgroundColor: '#F9FAFB',
+                width: '100%',
+                outline: 'none',
+                boxShadow: 'none',
+              }"
+              required
+            ></p-dropdown>
+          </div>
         </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
           <div class="mb-5">
             <label

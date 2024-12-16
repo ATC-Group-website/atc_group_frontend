@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Title, Meta } from '@angular/platform-browser';
+import { DropdownModule } from 'primeng/dropdown';
 
 @Component({
   selector: 'app-contact-us',
@@ -21,6 +22,7 @@ import { Title, Meta } from '@angular/platform-browser';
     ButtonModule,
     InputTextModule,
     InputTextareaModule,
+    DropdownModule,
   ],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
@@ -29,6 +31,18 @@ export class ContactUsComponent implements OnInit {
   title = inject(Title);
   meta = inject(Meta);
   loading: boolean = false;
+
+  reasonOptions = [
+    { label: 'Consultation', value: 'consultation' },
+    { label: 'Services', value: 'services' },
+    { label: 'Inquiry', value: 'inquiry' },
+    { label: 'Support', value: 'support' },
+    { label: 'Feedback', value: 'feedback' },
+    { label: 'Complaint', value: 'complaint' },
+    { label: 'Other', value: 'other' },
+  ];
+
+  selectedReason: string = '';
 
   ngOnInit(): void {
     this.setMetaTags();
