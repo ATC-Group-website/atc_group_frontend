@@ -144,7 +144,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Waleed Nabil',
       title: 'Helioplis Branch Manager',
-      imageUrl: 'about_us/our_team/waleed_nabil2.jpg',
+      imageUrl: 'about_us/our_team/waleed_nabil.jpg',
     },
     {
       name: 'Ramy Shokayar',
@@ -182,7 +182,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Moheb Khozam',
       title: 'Head of the Audit Sector',
-      imageUrl: 'about_us/our_team/moheb2.jpg',
+      imageUrl: 'about_us/our_team/moheb.jpg',
     },
     {
       name: 'Mohamed Hassan',
@@ -207,12 +207,12 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Sameh El-Masry',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/sameh_elmasry2.jpg',
+      imageUrl: 'about_us/our_team/sameh_elmasry.jpg',
     },
     {
       name: 'Osama Abdel Moneim',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/osama_abdel_moneim2.jpg',
+      imageUrl: 'about_us/our_team/osama_abdel_moneim.jpg',
     },
   ];
   cooprateTaxMembers: Member[] = [
@@ -229,7 +229,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Tarek Sokar',
       title: 'Head of Corporate Tax Sector',
-      imageUrl: 'about_us/our_team/taric_sokar.JPG',
+      imageUrl: 'about_us/our_team/tarek_sokar.JPG',
     },
     {
       name: 'Yehia Mohamed',
@@ -299,7 +299,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Hassan El-Helw',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/hassan_elhelw2.jpg',
+      imageUrl: 'about_us/our_team/hassan_elhelw.jpg',
     },
   ];
 
@@ -320,7 +320,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Alaa El-Sayed',
       title: 'VAT Consultant',
-      imageUrl: 'about_us/our_team/alaa_elsayed2.jpg',
+      imageUrl: 'about_us/our_team/alaa_elsayed.jpg',
     },
     {
       name: 'Ehab Helmy',
@@ -345,7 +345,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Tarek Samir',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/taric_samir.JPG',
+      imageUrl: 'about_us/our_team/tarek_samir.JPG',
     },
     {
       name: 'Ahmed Sobhy',
@@ -385,7 +385,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Gamal Hegazy',
       title: 'Partner of Bookeeping',
-      imageUrl: 'about_us/our_team/gamal_hegazy2.jpg',
+      imageUrl: 'about_us/our_team/gamal_hegazy.jpg',
     },
   ];
 
@@ -417,11 +417,6 @@ export class OurTeamComponent implements OnInit {
     },
   ];
   translationMembers: Member[] = [
-    // {
-    //   name: 'Dr. Gomaa',
-    //   title: 'Head of translation sector',
-    //   imageUrl: 'about_us/our_team/profile.jpg',
-    // },
     {
       name: 'Mohamed Samy',
       title: 'Partner',
@@ -478,7 +473,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Farag Abdel Samee',
       title: 'Discount and Collection Consultant',
-      imageUrl: 'about_us/our_team/farag2.jpg',
+      imageUrl: 'about_us/our_team/farag.jpg',
     },
   ];
 }

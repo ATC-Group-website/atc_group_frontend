@@ -116,7 +116,9 @@
                 />
               </div>
               <div class="space-y-4 p-4">
-                <h2 class="block min-h-20 text-right">{{ article.title }}</h2>
+                <h2 class="block min-h-20" [dir]="getDirection(article.title)">
+                  {{ article.title }}
+                </h2>
                 <div class="flex justify-start">
                   <a
                     routerLink="/insights/{{ article.slug }}"
@@ -215,7 +217,12 @@
                 />
               </div>
               <div class="space-y-4 p-4">
-                <h2 class="block min-h-36 text-left">{{ news.title }}</h2>
+                <h2
+                  class="block min-h-36 text-xl"
+                  [dir]="getDirection(news.title)"
+                >
+                  {{ news.title }}
+                </h2>
                 <div class="flex justify-end">
                   <a
                     routerLink="/insights/{{ news.slug }}"
@@ -305,7 +312,7 @@
                 />
               </div>
               <div class="space-y-4 p-4">
-                <h2 class="block min-h-20 text-right">{{ blog.title }}</h2>
+                <h2 class="block min-h-20" dir="rtl">{{ blog.title }}</h2>
                 <div class="flex justify-start">
                   <a
                     routerLink="/insights/{{ blog.slug }}"

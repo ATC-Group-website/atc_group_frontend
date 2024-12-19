@@ -20,17 +20,18 @@
           [alt]="post.title"
           class="h-auto w-full"
         />
-
         <!-- <p
-  class="max-w-full overflow-hidden whitespace-pre-wrap break-words p-4 text-sm leading-relaxed text-gray-700 md:text-base"
-  [innerHTML]="sanitizeHtml(post.description)"
-></p> -->
-
-        <p
           style="direction: rtl"
           class="max-w-full overflow-hidden whitespace-pre-wrap break-words p-4 text-right text-sm leading-relaxed text-gray-700 md:text-base"
           [innerHTML]="post.description | truncateHtml"
-        ></p>
+        ></p> -->
+
+        <div
+          [innerHTML]="newDescription.text"
+          [style.direction]="newDescription.direction"
+          class="my-4 max-w-full whitespace-normal break-words text-justify md:text-lg lg:my-0"
+          [style.hyphens]="'auto'"
+        ></div>
 
         <!-- @if (post.video_url && videoURL) {
 

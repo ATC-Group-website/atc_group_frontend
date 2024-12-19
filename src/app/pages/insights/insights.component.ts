@@ -5,7 +5,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { SkeletonModule } from 'primeng/skeleton';
 import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
-import { NgOptimizedImage } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { PostsService } from '../../shared/services/posts.service';
 import { RouterModule } from '@angular/router';
@@ -22,6 +22,7 @@ import { RouterModule } from '@angular/router';
     ScrollToTopComponent,
     NgOptimizedImage,
     RouterModule,
+    CommonModule
   ],
   templateUrl: './insights.component.html',
   styleUrl: './insights.component.css',
@@ -152,5 +153,11 @@ export class InsightsComponent implements OnInit {
         content: 'atc_group_white2.jpg',
       },
     ]);
+  }
+
+  getDirection(text: string): string {
+    // Arabic character range: \u0600-\u06FF
+    const arabicRegex = /[\u0600-\u06FF]/;
+    return arabicRegex.test(text) ? 'rtl' : 'ltr';
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -10,8 +10,8 @@ import {
 } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../shared/services/posts.service';
-import { TruncateHtmlPipe } from '../../shared/pipes/truncate-html.pipe';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-insight-details',
@@ -21,24 +21,25 @@ import { LoadingComponent } from '../../shared/components/loading/loading.compon
     TopBarComponent,
     FooterComponent,
     ScrollToTopComponent,
-    TruncateHtmlPipe,
     LoadingComponent,
   ],
   templateUrl: './insight-details.component.html',
   styleUrl: './insight-details.component.css',
 })
 export class InsightDetailsComponent implements OnInit {
+  isBrowser: boolean;
   isLoading = true;
   post!: any;
   videoURL: SafeResourceUrl = 'r';
-
+  newDescription!: { text: SafeHtml; direction: string };
   sanitizer = inject(DomSanitizer);
   router = inject(Router);
   route = inject(ActivatedRoute);
   postsService = inject(PostsService);
 
-  constructor() {}
-
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
 
@@ -46,7 +47,8 @@ export class InsightDetailsComponent implements OnInit {
       this.postsService.getPostBySlug(slug).subscribe({
         next: (res) => {
           console.log(res);
-          this.post = res[1];
+          this.post = res;
+          this.newDescription = this.detectTextDirection(res.description || '');
           this.isLoading = false;
         },
         error: (error) => {
@@ -79,4 +81,31 @@ export class InsightDetailsComponent implements OnInit {
   //     console.log(this.videoURL);
   //   }
   // }
+
+  detectTextDirection(description: string): {
+    text: SafeHtml;
+    direction: string;
+  } {
+    if (!this.isBrowser) {
+      return {
+        text: this.sanitizer.bypassSecurityTrustHtml(''),
+        direction: 'ltr',
+      };
+    }
+
+    // Create a temporary element to parse and strip HTML tags
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = description;
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+
+    // Detect text direction
+    const arabicRegex = /[\u0600-\u06FF]/;
+    const direction = arabicRegex.test(textContent) ? 'rtl' : 'ltr';
+
+    // Sanitize the result
+    return {
+      text: this.sanitizer.bypassSecurityTrustHtml(textContent),
+      direction,
+    };
+  }
 }

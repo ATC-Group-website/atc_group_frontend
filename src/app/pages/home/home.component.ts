@@ -23,11 +23,7 @@ import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scro
 import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { PostsService } from '../../shared/services/posts.service';
 import { LoadingCardComponent } from './loading-card/loading-card.component';
-
-interface slide {
-  id: number;
-  imageUrl: string;
-}
+import { LandingCarouselComponent } from './landing-carousel/landing-carousel.component';
 
 @Component({
   selector: 'app-home',
@@ -46,6 +42,7 @@ interface slide {
     FooterComponent,
     ScrollToTopComponent,
     LoadingCardComponent,
+    LandingCarouselComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.component.html',
@@ -53,7 +50,6 @@ interface slide {
 })
 export class HomeComponent {
   isBrowser: boolean;
-  slides: slide[] = [];
   clients = 1700;
   yearsOfExperience: number = 0;
   industries: number = 22;
@@ -91,21 +87,6 @@ export class HomeComponent {
       },
     });
 
-    this.slides = [
-      {
-        id: 1,
-        imageUrl: 'home/egypt.webp',
-      },
-      {
-        id: 2,
-        imageUrl: 'home/ksa.webp',
-      },
-      {
-        id: 3,
-        imageUrl: 'home/uae.webp',
-      },
-    ];
-
     const startYear = 1998;
     const currentYear = new Date().getFullYear();
     this.yearsOfExperience = currentYear - startYear;
@@ -123,6 +104,27 @@ export class HomeComponent {
         behavior: 'smooth',
       });
     }
+  }
+
+  images: string[] = ['home/egypt.webp', 'home/ksa.webp', 'home/uae.webp'];
+
+  currentIndex = 0;
+  direction: 'left' | 'right' = 'right';
+
+  nextSlide() {
+    this.direction = 'right';
+    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+  }
+
+  prevSlide() {
+    this.direction = 'left';
+    this.currentIndex =
+      (this.currentIndex - 1 + this.images.length) % this.images.length;
+  }
+
+  goToSlide(index: number) {
+    this.direction = index > this.currentIndex ? 'right' : 'left';
+    this.currentIndex = index;
   }
 
   // consider changing the image path to absolute path   content: 'https://atc.com.eg/assets/images/atc_group_white2.jpg' later on after testing social media sharing
@@ -176,17 +178,20 @@ export class HomeComponent {
     ]);
   }
 
-  sanitizeHtml(html: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
-  }
-
   truncateAndAlign(description: string): { text: SafeHtml; direction: string } {
+    if (!this.isBrowser) {
+      return {
+        text: this.sanitizer.bypassSecurityTrustHtml(''),
+        direction: 'ltr',
+      };
+    }
+
     // Create a temporary element to parse and strip HTML tags
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = description;
     const textContent = tempDiv.textContent || tempDiv.innerText || '';
 
-    // Truncate to the first 20 words
+    // Truncate to the first 30 words
     const words = textContent.trim().split(/\s+/);
     const truncatedText = words.slice(0, 30).join(' ');
     const finalText = words.length > 30 ? `${truncatedText}...` : truncatedText;
@@ -200,5 +205,11 @@ export class HomeComponent {
       text: this.sanitizer.bypassSecurityTrustHtml(finalText),
       direction,
     };
+  }
+
+  getDirection(text: string): string {
+    // Arabic character range: \u0600-\u06FF
+    const arabicRegex = /[\u0600-\u06FF]/;
+    return arabicRegex.test(text) ? 'rtl' : 'ltr';
   }
 }

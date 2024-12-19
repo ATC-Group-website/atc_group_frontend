@@ -41,9 +41,9 @@ export class DashboardHomeComponent implements OnInit {
   getPostCount() {
     this.dashboardService.getPostsCount().subscribe({
       next: (res) => {
-        const articlesCount = res[1]?.count || 0;
+        const articlesCount = res[0]?.count || 0;
         const newsCount = res[2]?.count || 0;
-        const blogsCount = res[0]?.count || 0;
+        const blogsCount = res[1]?.count || 0;
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
 

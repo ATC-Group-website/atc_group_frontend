@@ -1,66 +1,7 @@
 <app-top-bar></app-top-bar>
 <app-nav-bar></app-nav-bar>
 <main>
-  <section id="landing_section " class="h-[82vh]">
-    @if (isBrowser) {
-      <swiper-container
-        class="h-full"
-        centered-slides="true"
-        speed="1500"
-        navigation="true"
-        pagination="true"
-      >
-        @for (slide of slides; track slide.id) {
-          <swiper-slide>
-            <div
-              class="relative h-full w-full bg-cover bg-center bg-no-repeat"
-              [style.background-image]="'url(' + slide.imageUrl + ')'"
-            >
-              <div class="absolute inset-0 bg-black/50">
-                <div
-                  class="container mx-auto flex h-full items-center justify-center px-4"
-                >
-                  <div
-                    class="flex max-w-2xl flex-col items-center justify-center text-[#ffffff]"
-                  >
-                    <h1 class="mb-2 text-7xl font-bold">ATC</h1>
-                    <span class="mb-1 text-4xl">Ashraf Abdel Ghani</span>
-                    <div class="mb-2 flex items-center gap-4">
-                      <span
-                        class="w-24 border-4 border-solid border-gray-200"
-                      ></span>
-                      <span class="text-4xl">Group</span>
-                      <span
-                        class="w-24 border-4 border-solid border-gray-200"
-                      ></span>
-                    </div>
-                    <div
-                      class="mb-2 flex w-full items-center justify-around text-2xl"
-                    >
-                      <span>EGY</span>
-                      /
-                      <span>KSA</span>
-                      /
-                      <span>UAE</span>
-                    </div>
-                    <a
-                      (click)="scrollToSection()"
-                      class="cursor-pointer rounded-2xl border border-solid border-black bg-[#ffffff] px-3 py-2 opacity-65"
-                    >
-                      <span class="text-2xl text-black">Learn More </span>
-                      <i
-                        class="fa-solid fa-arrow-right-long text-2xl text-black"
-                      ></i>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </swiper-slide>
-        }
-      </swiper-container>
-    }
-  </section>
+  <app-landing-carousel></app-landing-carousel>
   <section class="my-10" id="about_the_company">
     <div class="mx-auto max-w-screen-xl p-4">
       <div class="flex flex-col gap-7 lg:flex-row">
@@ -74,8 +15,8 @@
             WHAT WE PROVIDE ..
           </p>
           <p class="pl-7 text-2xl">
-            ATC Group provides Taxation, Audit & Assurance, Accounting as well
-            as Investment & Company Incorporation advisory services.
+            ATC Group provides Taxation, Audit, Accounting as well as Investment
+            & Company Incorporation advisory services.
           </p>
           <div class="border border-solid border-gray-300 shadow-lg">
             <div class="flex flex-row gap-2 md:gap-5">
@@ -351,25 +292,26 @@
       </div>
     </div>
   </section>
-  <section class="bg-[#F9F7F7] py-10" id="articles">
+  <section class="bg-[#F9F7F7] py-10" id="insights">
     <div class="mx-auto max-w-screen-xl p-4">
       <h2
         class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold"
       >
-        Articles
+        Insights
       </h2>
       <div
-        class="mx-auto mb-5 max-w-screen-lg text-center text-xl text-grayPar md:text-2xl md:leading-[40px]"
+        class="mx-auto mb-5 max-w-screen-lg text-center text-xl text-grayPar md:text-xl"
       >
-        Stay informed with the most recent articles covering Accounting and
-        Taxation, featuring both National and MENA Region updates.
+        Stay updated with in-depth articles and expert insights on tax
+        regulations, financial strategies, auditing practices, and the latest
+        industry trends. Explore ATC Group's achievements and milestones as we
+        shape the future of accounting, taxation, and the evolving tax market.
       </div>
       @if (loading) {
         @for (i of [1, 2, 3, 4]; track $index) {
           <app-loading-card></app-loading-card>
         }
-      }
-      @if (!loading) {
+      } @else {
         @for (post of posts; track $index) {
           <div
             class="mb-5 flex flex-col justify-between gap-6 bg-white px-6 py-4 md:flex-row"
@@ -377,7 +319,8 @@
             <div class="flex flex-grow flex-col justify-between">
               <div>
                 <h3
-                  class="md::text-2xl border-0 border-r-[12px] border-solid border-primary p-3 text-right text-xl"
+                  class="md::text-2xl border-0 border-solid border-primary p-3 text-xl ltr:border-l-[8px] rtl:border-r-[8px]"
+                  [dir]="getDirection(post.title)"
                 >
                   {{ post.title }}
                 </h3>
@@ -389,8 +332,8 @@
                   />
                 </div>
                 <div
-                  [innerHTML]="postss[0].text"
-                  [style.direction]="postss[0].direction"
+                  [innerHTML]="postss[$index].text"
+                  [style.direction]="postss[$index].direction"
                   class="my-4 md:text-lg lg:my-0"
                 ></div>
               </div>
