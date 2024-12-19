@@ -182,7 +182,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Moheb Khozam',
       title: 'Head of the Audit Sector',
-      imageUrl: 'about_us/our_team/moheb.jpg',
+      imageUrl: 'about_us/our_team/moheb.JPG',
     },
     {
       name: 'Mohamed Hassan',
