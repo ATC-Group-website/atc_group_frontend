@@ -22,9 +22,7 @@ import { FooterComponent } from '../../shared/components/footer/footer.component
 import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { PostsService } from '../../shared/services/posts.service';
-import { Post } from '../../dashboard/interface';
 import { LoadingCardComponent } from './loading-card/loading-card.component';
-import { TruncateHtmlPipe } from '../../shared/pipes/truncate-html.pipe';
 
 interface slide {
   id: number;
@@ -66,6 +64,7 @@ export class HomeComponent {
   meta = inject(Meta);
   postsService = inject(PostsService);
   sanitizer = inject(DomSanitizer);
+  postss: { text: SafeHtml; direction: string }[] = [];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -76,14 +75,19 @@ export class HomeComponent {
 
     this.postsService.getPaginatedPosts().subscribe({
       next: (res) => {
-        this.loading = false;
         console.log(res.posts);
         this.posts = res.posts.data;
+
+        // Map posts to truncated and aligned versions
+        this.postss = this.posts.map((post: { description: string }) =>
+          this.truncateAndAlign(post.description || ''),
+        );
+        this.loading = false;
         console.log(this.posts);
       },
       error: (err) => {
-        this.loading = false;
         console.log(err);
+        this.loading = false;
       },
     });
 
@@ -174,5 +178,27 @@ export class HomeComponent {
 
   sanitizeHtml(html: string): SafeHtml {
     return this.sanitizer.bypassSecurityTrustHtml(html);
+  }
+
+  truncateAndAlign(description: string): { text: SafeHtml; direction: string } {
+    // Create a temporary element to parse and strip HTML tags
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = description;
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+
+    // Truncate to the first 20 words
+    const words = textContent.trim().split(/\s+/);
+    const truncatedText = words.slice(0, 30).join(' ');
+    const finalText = words.length > 30 ? `${truncatedText}...` : truncatedText;
+
+    // Detect text direction
+    const arabicRegex = /[\u0600-\u06FF]/;
+    const direction = arabicRegex.test(textContent) ? 'rtl' : 'ltr';
+
+    // Sanitize the result
+    return {
+      text: this.sanitizer.bypassSecurityTrustHtml(finalText),
+      direction,
+    };
   }
 }

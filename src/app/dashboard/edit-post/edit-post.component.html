@@ -12,7 +12,7 @@
         </div>
       }
       @if (!isLoading) {
-        <form (ngSubmit)="onUpdatePost(editpostForm)" #editpostForm="ngForm">
+        <form (ngSubmit)="onUpdatePost()" [formGroup]="editpostForm">
           <!-- Title Input -->
           <div class="mb-5">
             <label
@@ -26,16 +26,12 @@
               id="title"
               class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
               placeholder="Enter post title"
-              required
-              name="title"
-              ngModel
+              formControlName="title"
               pInputText
-              [(ngModel)]="titleInput"
               [ngClass]="{
-                'text-right': isArabic(titleInput),
-                'text-left': !isArabic(titleInput),
+                'text-right;': isArabic(post.title),
+                'text-left': !isArabic(post.title),
               }"
-              #title="ngModel"
             />
           </div>
           <!-- Category Input -->
@@ -46,21 +42,12 @@
             >
               Category
             </label>
-            <p-dropdown
-              [options]="categories"
-              [(ngModel)]="selectedCategoryValue"
-              optionLabel="label"
-              optionValue="value"
-              [style]="{
-                backgroundColor: '#F9FAFB',
-                width: '100%',
-                outline: 'none',
-                boxShadow: 'none',
-              }"
-              inputId="category"
-              required
-              #category="ngModel"
-              name="category"
+            <input
+              type="text"
+              id="type"
+              class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg text-black shadow-sm"
+              formControlName="type"
+              pInputText
             />
           </div>
           <div class="mb-4">
@@ -76,15 +63,27 @@
                 fontSize: '16px',
               }"
               [modules]="editorModules"
-              id="description"
-              required
-              name="description"
-              ngModel
-              #Description="ngModel"
+              formControlName="description"
             >
             </p-editor>
           </div>
           <div class="mb-6">
+            <label
+              class="mb-2 block font-bold text-gray-700"
+              for="youtube_video_link"
+            >
+              YouTube Url
+            </label>
+            <input
+              type="text"
+              id="youtube_video_link"
+              class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
+              pInputText
+              formControlName="video_url"
+              placeholder="No video URL	"
+            />
+          </div>
+          <!-- <div class="mb-6">
             <label
               class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
               for="image"
@@ -96,10 +95,6 @@
                 type="file"
                 id="image"
                 accept="image/*"
-                required
-                ngModel
-                #image="ngModel"
-                name="image"
                 class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
                 (change)="onFileSelected($event)"
               />
@@ -117,26 +112,54 @@
                 </span>
               </div>
             </div>
-          </div>
-          <div class="mb-6">
-            <label
-              class="mb-2 block font-bold text-gray-700"
-              for="youtube_video_link"
-            >
-              YouTube Url
-            </label>
-            <input
-              type="text"
-              id="youtube_video_link"
-              class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
-              placeholder="Enter Youtube Video Url"
-              name="youtube_video_link"
-              ngModel
-              pInputText
-            />
-          </div>
+          </div> -->
+          <!-- @if (post.images.length > 0) {
+            <div class="mb-4">
+              <div class="mb-3 flex items-center gap-5">
+                <p class="block text-sm font-bold text-gray-700">Main Image</p>
+                <button
+                  type="button"
+                  (click)="openModal()"
+                  class="rounded-md bg-blue-600 px-3 py-2 text-sm text-white"
+                >
+                  Change Image
+                </button>
+              </div>
+              <img
+                [src]="post.images[0].path"
+                [alt]="[post.title]"
+                class="max-h-[500px] w-full object-cover lg:w-1/2"
+              />
+            </div>
 
-          <div class="mb-6">
+            <div class="mb-6 mt-5">
+              <div class="mb-4">
+                <div class="mb-3 flex items-center gap-5">
+                  <p class="block text-sm font-bold text-gray-700">
+                    Gallery Images
+                  </p>
+                  <button
+                    type="button"
+                    class="rounded-md bg-blue-600 px-3 py-2 text-sm text-white"
+                    (click)="openGalleryModal()"
+                  >
+                    Modify
+                  </button>
+                </div>
+              </div>
+              <div class="grid-cols1 grid gap-6 md:grid-cols-2">
+                @for (gallery_image of gallery_images; track $index) {
+                  <img
+                    [src]="gallery_image.path"
+                    [alt]="gallery_image.title"
+                    class="h-[400px] w-full object-cover"
+                  />
+                }
+              </div>
+            </div>
+          } -->
+
+          <!-- <div class="mb-6">
             <label
               class="mb-2 block font-bold text-gray-700"
               for="gallery_images"
@@ -149,9 +172,6 @@
                 id="gallery_images"
                 accept="image/*"
                 multiple
-                ngModel
-                #gallery_image="ngModel"
-                name="gallery_images"
                 class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
                 (change)="onGalleryImagesSelected($event)"
               />
@@ -160,15 +180,11 @@
               >
                 <span class="flex-1 truncate text-gray-700">
                   <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
-                  <!-- @if (filename) {
-              {{ filename }}
-            } @else { -->
                   No files choosen
-                  <!-- } -->
                 </span>
               </div>
             </div>
-          </div>
+          </div> -->
           <div>
             <button
               pButton

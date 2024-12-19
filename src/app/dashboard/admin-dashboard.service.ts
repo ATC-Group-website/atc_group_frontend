@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { NewPost, PostCreationResponse } from './interface';
+import { NewPost, PostCreationResponse, PostsCount } from './interface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,9 +20,13 @@ export class AdminDashboardService {
     );
   }
 
-  // updatePost(postData:any):Observable<any>{
-  //   return this.http.patch()
-  // }
+  updatePost(slug: string, postData: any): Observable<any> {
+    return this.http.put<any>(`${this.apiUrl}/post/${slug}`, postData);
+  }
+
+  getPostsCount(): Observable<PostsCount[]> {
+    return this.http.get<PostsCount[]>(`${this.apiUrl}/posts-count`);
+  }
 
   getSinglePost(slug: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/post/${slug}`);
@@ -40,5 +44,26 @@ export class AdminDashboardService {
 
   deletePost(slug: string): Observable<{ message: string }> {
     return this.http.delete<{ message: string }>(`${this.apiUrl}/post/${slug}`);
+  }
+
+  getEmailsCount(): Observable<{ count: number }> {
+    return this.http.get<{ count: number }>(`${this.apiUrl}/subscribers/count`);
+  }
+
+  getSubscribedEmails(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/subscribers`);
+  }
+
+  deleteSubscribedEmail(email: string): Observable<{ message: string }> {
+    return this.http.delete<{ message: string }>(
+      `${this.apiUrl}/newsletter/unsubscribe`,
+      {
+        params: { email },
+      },
+    );
+  }
+
+  createMember(data: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/employees`, data);
   }
 }

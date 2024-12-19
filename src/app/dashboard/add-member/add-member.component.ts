@@ -8,6 +8,7 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { AdminDashboardService } from '../admin-dashboard.service';
 
 @Component({
   selector: 'app-add-member',
@@ -32,27 +33,28 @@ export class AddMemberComponent {
   titleInput: string = '';
   filename: string | null = null;
 
-  private messageService = inject(MessageService);
+  messageService = inject(MessageService);
+  dashboardService = inject(AdminDashboardService);
   selectedDepartmentValue: string | null = null;
 
-  // create in file outside or service
   departments = [
-    { label: 'Top Management', value: '1' },
-    { label: 'High Board Members', value: '2' },
-    { label: 'Branch Managers', value: '3' },
-    { label: 'Cooprate Tax', value: '4' },
-    { label: 'Vat', value: '5' },
-    { label: 'Salary & Wages Tax', value: '6' },
-    { label: 'International Taxation', value: '7' },
-    { label: 'Stamp Tax', value: '8' },
-    { label: 'Audit', value: '9' },
-    { label: 'Finance & Bookkeeping', value: '10' },
-    { label: 'Investment & Company Incorporation', value: '11' },
-    { label: 'Translation', value: '12' },
-    { label: 'Development', value: '13' },
-    { label: 'Pro-Training', value: '14' },
-    { label: 'Egyptian Association Of Tax Experts', value: '15' },
-    { label: 'Other Members', value: '16' },
+    { label: 'Top Management', value: 1 },
+    { label: 'High Board Members', value: 2 },
+    { label: 'Branch Managers', value: 3 },
+    { label: 'Cooprate Tax', value: 4 },
+    { label: 'Vat', value: 5 },
+    { label: 'Salary & Wages Tax', value: 6 },
+    { label: 'International Taxation', value: 7 },
+    { label: 'Stamp Tax', value: 8 },
+    { label: 'Audit', value: 9 },
+    { label: 'Finance & Bookkeeping', value: 10 },
+    { label: 'Investment & Company Incorporation', value: 11 },
+    { label: 'Translation', value: 12 },
+    { label: 'Development', value: 13 },
+    { label: 'Pro-Training', value: 14 },
+    { label: 'Egyptian Association Of Tax Experts', value: 15 },
+    { label: 'Discount & Collection', value: 16 },
+    { label: 'Other Members', value: 18 },
   ];
 
   constructor() {}
@@ -71,28 +73,31 @@ export class AddMemberComponent {
 
         console.log('invalid');
         console.log(postData);
-
-        const Data = {
-          name: postData.form.controls['name'].value,
-          title: postData.form.controls['title'].value,
-          department_id: this.selectedDepartmentValue,
-          image: this.selectedBase64Image,
-        };
-
-        console.log(Data);
       });
     } else {
-      // this.isLoading = true;
+      this.isLoading = true;
       console.log(postData);
 
       const Data = {
         name: postData.form.controls['name'].value,
-        title: postData.form.controls['title'].value,
-        department_id: this.selectedDepartmentValue,
-        image: this.selectedBase64Image,
+        job_title: postData.form.controls['title'].value,
+        department_id: 1,
+        order: 1,
+        base64_image: this.selectedBase64Image,
       };
 
       console.log(Data);
+
+      this.dashboardService.createMember(Data).subscribe({
+        next: (res) => {
+          console.log(res);
+          this.isLoading = false;
+        },
+        error: (err) => {
+          console.log(err);
+          this.isLoading = false;
+        },
+      });
 
       // sending the post data request
       // this.postsService.addPost(Data).subscribe({

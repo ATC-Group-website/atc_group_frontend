@@ -1,1 +1,90 @@
 <app-nav></app-nav>
+<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
+  <section class="md:p-5 lg:ml-52">
+    <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
+      <div class="card">
+        <p-table
+          [value]="news"
+          [lazy]="true"
+          [paginator]="true"
+          [rows]="postsPerPage"
+          [loading]="loading"
+          [first]="0"
+          [totalRecords]="totalNews"
+          [showCurrentPageReport]="true"
+          (onLazyLoad)="onPageChange($event)"
+          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} news & events"
+        >
+          <ng-template pTemplate="caption">
+            <div>
+              <h2 class="text-center">ATC Group News & Events</h2>
+            </div>
+          </ng-template>
+
+          <ng-template pTemplate="header">
+            <tr>
+              <th style="width: 2rem" class="text-center">#</th>
+              <th style="width: 30%" class="text-center">Title</th>
+              <th style="width: 40%" class="text-center">Description</th>
+              <th style="width: 13%" class="text-center">video url</th>
+              <th style="width: 10%" class="text-center">Created in</th>
+              <th class="text-center">Edit</th>
+              <th class="text-center">Delete</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-news>
+            <tr>
+              <td class="text-center">{{ news.id }}</td>
+              <td>
+                <span pTooltip="View post" tooltipPosition="bottom">
+                  <a
+                    [routerLink]="['/insights', news.slug]"
+                    target="_blank"
+                    class="text-black no-underline hover:text-blue-500"
+                  >
+                    {{ news.title }}
+                  </a></span
+                >
+              </td>
+              <td>
+                <div [innerHTML]="getFirstTenWords(news.description)"></div>
+              </td>
+              <td class="text-center">
+                <a
+                  [href]="news.video_url"
+                  target="_blank"
+                  class="text-black no-underline hover:text-blue-500 hover:underline"
+                  >{{ news.video_url }}
+                </a>
+                @if (!news.video_url) {
+                  <span class="text-gray-500"> No video URL </span>
+                }
+              </td>
+              <td class="text-center">
+                {{ news.created_at | customDate }}
+              </td>
+              <td class="text-center">
+                <a [routerLink]="['/admin/edit-post/', news.slug]" class="p-0">
+                  <i
+                    class="pi pi-pen-to-square text-xl text-blue-500 no-underline hover:text-blue-800"
+                  ></i
+                ></a>
+              </td>
+              <td>
+                <p-button
+                  (onClick)="confirmDelete($event, news.slug)"
+                  severity="danger"
+                  icon="fa-solid fa-trash text-xl text-primary hover:text-red-800"
+                  link="true"
+                  class="p-0"
+                />
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <p-toast />
+        <p-confirmDialog />
+      </div>
+    </div>
+  </section>
+</main>

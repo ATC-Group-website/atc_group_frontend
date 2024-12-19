@@ -53,3 +53,7 @@ export interface PaginatedPosts {
   to: number;
   total: number;
 }
+export interface PostsCount {
+  type: string;
+  count: number;
+}

@@ -6,7 +6,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
-import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
 import { NavComponent } from '../nav/nav.component';
 import { AdminDashboardService } from '../admin-dashboard.service';
@@ -24,7 +23,6 @@ import { CustomDatePipe } from '../../shared/pipes/custom-date.pipe';
     ButtonModule,
     ToastModule,
     RouterModule,
-    TooltipModule,
     InputTextModule,
     NavComponent,
     CustomDatePipe,
@@ -35,15 +33,16 @@ import { CustomDatePipe } from '../../shared/pipes/custom-date.pipe';
 })
 export class ArticlesComponent implements OnInit {
   articles: Post[] = [];
-  postsPerPage: number = 10;
   currentPage: number = 1;
+  postsPerPage: number = 10;
   totalArticles: number = 0;
   loading: boolean = true;
+
   router = inject(Router);
-  sanitizer = inject(DomSanitizer);
   dashboardService = inject(AdminDashboardService);
-  confirmationService = inject(ConfirmationService);
+  sanitizer = inject(DomSanitizer);
   messageService = inject(MessageService);
+  confirmationService = inject(ConfirmationService);
 
   constructor() {}
 
@@ -56,15 +55,12 @@ export class ArticlesComponent implements OnInit {
       .getPostsByType('article', this.postsPerPage, pageNum)
       .subscribe({
         next: (response) => {
-          this.loading = false;
-          console.log(response.posts);
           this.articles = response.posts.data;
-
           this.totalArticles = response.posts.total;
+          this.loading = false;
         },
         error: (err) => {
           this.loading = false;
-          console.log(err);
         },
       });
   }
@@ -87,9 +83,8 @@ export class ArticlesComponent implements OnInit {
       rejectIcon: 'none',
 
       accept: () => {
-        this.dashboardService.deletePost("awefdawefawe").subscribe({
+        this.dashboardService.deletePost(slug).subscribe({
           next: (response) => {
-            console.log(response);
             this.fetchPosts(this.currentPage);
             this.messageService.add({
               severity: 'info',
@@ -98,7 +93,6 @@ export class ArticlesComponent implements OnInit {
             });
           },
           error: (err) => {
-            console.log(err);
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
@@ -117,11 +111,11 @@ export class ArticlesComponent implements OnInit {
     });
   }
 
-  navigateToDetails(slug: number) {
-    this.router.navigateByUrl(`/admin/edit-post/${slug}`);
-  }
+  // navigateToDetails(slug: number) {
+  //   this.router.navigateByUrl(`/admin/edit-post/${slug}`);
+  // }
 
-  getFirstSevenWords(description: string): SafeHtml {
+  getFirstTenWords(description: string): SafeHtml {
     // Remove HTML tags and split into words
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = description;
@@ -133,7 +127,7 @@ export class ArticlesComponent implements OnInit {
 
     // Add ellipsis if there are more words
     const finalText =
-      words.length > 7 ? `${firstSevenWords}...` : firstSevenWords;
+      words.length > 10 ? `...${firstSevenWords}` : firstSevenWords;
 
     // Sanitize and return
     return this.sanitizer.bypassSecurityTrustHtml(finalText);

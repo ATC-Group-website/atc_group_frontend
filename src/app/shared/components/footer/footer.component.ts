@@ -39,7 +39,6 @@ export class FooterComponent {
       this.loading = true;
       const email = formData.form.value;
 
-      // Get form data
       this.newsletterService.subscribe(email).subscribe({
         next: (response) => {
           this.loading = false;
@@ -49,7 +48,7 @@ export class FooterComponent {
         },
         error: (err) => {
           this.loading = false;
-          console.error('Error submitting form:', err);
+          this.message = err.error.message;
         },
       });
     }

@@ -6,8 +6,7 @@
       <swiper-container
         class="h-full"
         centered-slides="true"
-        speed="1000"
-        autoplay='{"delay": 3000}'
+        speed="1500"
         navigation="true"
         pagination="true"
       >
@@ -190,15 +189,12 @@
             </div>
             <div>
               <p class="text-base md:text-lg">
-                <!-- We craft customized financial strategies that maximize savings
-                and minimise liabilities addressing your specific financial
-                situation. -->
                 We understand that every business and individual has unique
                 financial needs and goals. Our tax consultants specialize in
                 crafting personalized solutions to simplify complex tax
                 processes, ensuring compliance tax laws. Our team combines
                 in-depth expertise with a tailored approach to meet your
-                specific requirements.
+                specific requirements.
               </p>
             </div>
           </div>
@@ -219,14 +215,11 @@
             </div>
             <div>
               <p class="text-base md:text-lg">
-                <!-- Our seasoned financial professionals offer in depth industry
-                knowledge and understanding of tax laws, providing accurate and
-                reliable guidance. -->
                 With decades of experience across diverse business sectors, ATC
-                Group’s tax consultants bring unparalleled expertise to the
+                Group's tax consultants bring unparalleled expertise to the
                 table. Our team stays ahead of ever-changing tax laws and
                 regulations, ensuring our clients benefit from the most
-                up-to-date and effective strategies.
+                up-to-date and effective strategies.
               </p>
             </div>
           </div>
@@ -247,15 +240,11 @@
             </div>
             <div>
               <p class="text-base md:text-lg">
-                <!-- We providing ongoing support which is crucial in ensuring your
-                success. That is why we offer periodic support to address your
-                evolving needs and provide continuous assistance throughout our
-                partnership. -->
                 Our dedicated tax consultants provide consistent, dependable
                 support, helping you navigate the complexities of tax laws with
-                confidence. Whether it’s meeting tight deadlines, addressing
-                unexpected challenges, or providing ongoing guidance, we’re here
-                to ensure your tax obligations are managed seamlessly.
+                confidence. Whether it's meeting tight deadlines, addressing
+                unexpected challenges, or providing ongoing guidance, we're here
+                to ensure your tax obligations are managed seamlessly.
               </p>
             </div>
           </div>
@@ -275,7 +264,7 @@
       >
         <div class="w-[300px] rounded-lg bg-black/70 p-4">
           <div class="flex items-center gap-5">
-            <img ngSrc="home/people.png" alt="" width="80" height="80" />
+            <img ngSrc="home/people.png" alt="clients" width="80" height="80" />
 
             <span
               class="text-5xl text-primary"
@@ -293,7 +282,12 @@
         </div>
         <div class="w-[300px] rounded-lg bg-black/70 p-4">
           <div class="flex items-center gap-5">
-            <img ngSrc="home/experience.png" alt="" width="80" height="80" />
+            <img
+              ngSrc="home/experience.png"
+              alt="Experience"
+              width="80"
+              height="80"
+            />
 
             <span
               class="text-6xl text-primary"
@@ -311,7 +305,12 @@
         </div>
         <div class="w-[300px] rounded-lg bg-black/70 p-4">
           <div class="flex items-center gap-5">
-            <img ngSrc="home/industries.png" alt="" width="80" height="80" />
+            <img
+              ngSrc="home/industries.png"
+              alt="industries"
+              width="80"
+              height="80"
+            />
 
             <span
               class="text-6xl text-primary"
@@ -329,7 +328,12 @@
         </div>
         <div class="w-[300px] rounded-lg bg-black/70 p-4">
           <div class="flex items-center gap-5">
-            <img ngSrc="home/branches.png" alt="" width="80" height="80" />
+            <img
+              ngSrc="home/branches.png"
+              alt="branches"
+              width="80"
+              height="80"
+            />
 
             <span
               class="text-6xl text-primary"
@@ -361,10 +365,9 @@
         Taxation, featuring both National and MENA Region updates.
       </div>
       @if (loading) {
-        <app-loading-card></app-loading-card>
-        <app-loading-card></app-loading-card>
-        <app-loading-card></app-loading-card>
-        <app-loading-card></app-loading-card>
+        @for (i of [1, 2, 3, 4]; track $index) {
+          <app-loading-card></app-loading-card>
+        }
       }
       @if (!loading) {
         @for (post of posts; track $index) {
@@ -374,7 +377,7 @@
             <div class="flex flex-grow flex-col justify-between">
               <div>
                 <h3
-                  class="border-0 border-r-[12px] border-solid border-primary p-3 text-right text-2xl"
+                  class="md::text-2xl border-0 border-r-[12px] border-solid border-primary p-3 text-right text-xl"
                 >
                   {{ post.title }}
                 </h3>
@@ -382,16 +385,14 @@
                   <img
                     [src]="post.images[0].path"
                     [alt]="post.title"
-                    class="h-auto w-full object-cover"
+                    class="h-auto w-full rounded-lg object-cover"
                   />
                 </div>
-                <p class="text-right text-xl text-grayTitle">
-                  {{ post.title }}
-                </p>
-                <!-- <p
-                  class="text-right text-xl text-grayTitle"
-                  [innerHTML]="post.description | truncateHtml: 35"
-                ></p> -->
+                <div
+                  [innerHTML]="postss[0].text"
+                  [style.direction]="postss[0].direction"
+                  class="my-4 md:text-lg lg:my-0"
+                ></div>
               </div>
               <div class="mt-auto flex justify-start">
                 <a
@@ -406,7 +407,7 @@
               <img
                 [src]="post.images[0].path"
                 [alt]="post.title"
-                class="h-[280px] w-[300px] object-cover"
+                class="h-[280px] w-[300px] rounded-[4px] object-cover"
               />
             </div>
           </div>

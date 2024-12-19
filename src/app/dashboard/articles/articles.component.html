@@ -2,12 +2,6 @@
 <main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
   <section class="md:p-5 lg:ml-52">
     <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
-      <!-- @if (loading) {
-        <div class="mx-auto">
-          <app-loading></app-loading>
-        </div>
-      }
-      @if (!loading) { -->
       <div class="card">
         <p-table
           [value]="articles"
@@ -19,7 +13,6 @@
           [totalRecords]="totalArticles"
           [showCurrentPageReport]="true"
           (onLazyLoad)="onPageChange($event)"
-          [loading]="loading"
           currentPageReportTemplate="Showing {first} to {last} of {totalRecords} articles"
         >
           <ng-template pTemplate="caption">
@@ -29,12 +22,12 @@
           </ng-template>
 
           <ng-template pTemplate="header">
-            <tr>
-              <th style="width: 2rem">#</th>
-              <th style="width: 30%">Title</th>
-              <th style="width: 40%">Description</th>
-              <th style="width: 13%">video url</th>
-              <th style="width: 10%">Created in</th>
+            <tr class="text-center">
+              <th style="width: 2rem" class="text-center">#</th>
+              <th style="width: 30%" class="text-center">Title</th>
+              <th style="width: 40%" class="text-center">Description</th>
+              <th style="width: 13%" class="text-center">video url</th>
+              <th style="width: 10%" class="text-center">Created in</th>
               <th class="text-center">Edit</th>
               <th class="text-center">Delete</th>
             </tr>
@@ -42,7 +35,7 @@
           <ng-template pTemplate="body" let-article>
             <tr>
               <td>{{ article.id }}</td>
-              <td>
+              <td class="text-right">
                 <span pTooltip="View post" tooltipPosition="bottom">
                   <a
                     [routerLink]="['/insights', article.slug]"
@@ -53,12 +46,10 @@
                   </a></span
                 >
               </td>
-              <td>
-                <div
-                  [innerHTML]="getFirstSevenWords(article.description)"
-                ></div>
+              <td class="text-right">
+                <div [innerHTML]="getFirstTenWords(article.description)"></div>
               </td>
-              <td>
+              <td class="text-center">
                 <a
                   [href]="article.video_url"
                   target="_blank"
@@ -69,18 +60,18 @@
                   <span class="text-gray-500"> No video URL </span>
                 }
               </td>
-              <td class="">
+              <td class="text-center">
                 {{ article.created_at | customDate }}
               </td>
-              <td>
-                <p-button
-                  (onClick)="navigateToDetails(article.slug)"
-                  icon="pi pi-pen-to-square text-2xl text-blue-500 hover:text-blue-600"
-                  link="true"
+              <td class="text-center">
+                <a
+                  [routerLink]="['/admin/edit-post/', article.slug]"
                   class="p-0"
-                  pTooltip="Edit"
-                  tooltipPosition="bottom"
-                />
+                >
+                  <i
+                    class="pi pi-pen-to-square text-xl text-blue-500 no-underline hover:text-blue-800"
+                  ></i
+                ></a>
               </td>
               <td>
                 <p-button
@@ -89,8 +80,6 @@
                   icon="fa-solid fa-trash text-2xl text-primary hover:text-red-700"
                   link="true"
                   class="p-0"
-                  pTooltip="Delete"
-                  tooltipPosition="bottom"
                 />
               </td>
             </tr>
@@ -99,7 +88,6 @@
         <p-toast />
         <p-confirmDialog />
       </div>
-      <!-- } -->
     </div>
   </section>
 </main>

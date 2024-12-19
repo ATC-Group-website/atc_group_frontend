@@ -143,7 +143,7 @@ export class OurTeamComponent implements OnInit {
     },
     {
       name: 'Waleed Nabil',
-      title: 'Nasr City Branch Manager',
+      title: 'Helioplis Branch Manager',
       imageUrl: 'about_us/our_team/waleed_nabil2.jpg',
     },
     {
@@ -366,7 +366,7 @@ export class OurTeamComponent implements OnInit {
     },
     {
       name: 'Dr. Gomaa',
-      title: 'Head of translation sector',
+      title: 'Translation Consultant',
       imageUrl: 'about_us/our_team/profile.jpg',
     },
   ];
@@ -398,7 +398,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Ahmed Abdel-Azeem',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/ahmed_abdel-azeem.JPG',
+      imageUrl: 'about_us/our_team/ahmed_abdel_azeem.JPG',
     },
     {
       name: 'Hafez Seif',
@@ -417,11 +417,11 @@ export class OurTeamComponent implements OnInit {
     },
   ];
   translationMembers: Member[] = [
-    {
-      name: 'Dr. Gomaa',
-      title: 'Head of translation sector',
-      imageUrl: 'about_us/our_team/profile.jpg',
-    },
+    // {
+    //   name: 'Dr. Gomaa',
+    //   title: 'Head of translation sector',
+    //   imageUrl: 'about_us/our_team/profile.jpg',
+    // },
     {
       name: 'Mohamed Samy',
       title: 'Partner',
@@ -474,7 +474,7 @@ export class OurTeamComponent implements OnInit {
     },
   ];
 
-  moreMembers: Member[] = [
+  discountAndCollection: Member[] = [
     {
       name: 'Farag Abdel Samee',
       title: 'Discount and Collection Consultant',

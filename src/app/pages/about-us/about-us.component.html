@@ -224,7 +224,7 @@
         [baseZIndex]="1000"
         [style]="{ width: '700px' }"
       >
-        <form (ngSubmit)="submitQuoteForm(quoteForm)" #quoteForm="ngForm">
+        <form #quoteForm="ngForm" (ngSubmit)="onSubmit(quoteForm)">
           <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
             <div class="mb-5">
               <label for="name" class="mb-2 block font-medium text-gray-900"
@@ -238,67 +238,80 @@
                 autocomplete="name"
                 ngModel
                 required
-                #name="ngModel"
                 pInputText
-                [style]="{
-                  outline: 'none',
-                  boxShadow: 'none',
+                #name="ngModel"
+                [ngClass]="{
+                  'border-gray-300': !name.invalid || !name.touched,
+                  'border-red-500': name.invalid && name.touched,
                 }"
               />
-              @if (name.touched && name.invalid) {
-                <small class="m-0 p-0 text-primary"> Field is required </small>
-              }
             </div>
             <div class="mb-5">
-              <label for="title" class="mb-2 block font-medium text-gray-900"
+              <label for="position" class="mb-2 block font-medium text-gray-900"
                 >Position</label
               >
               <input
                 type="text"
-                id="title"
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
-                name="title"
+                id="position"
+                class="block w-full rounded-lg border bg-gray-50 p-2.5 text-gray-900"
+                name="position"
                 ngModel
                 required
-                #title="ngModel"
                 pInputText
-                [style]="{
-                  outline: 'none',
-                  boxShadow: 'none',
+                #position="ngModel"
+                [ngClass]="{
+                  'border-gray-300': !position.invalid || !position.touched,
+                  'border-red-500': position.invalid && position.touched,
                 }"
               />
-              @if (title.touched && title.invalid) {
-                <small class="m-0 p-0 text-primary"> Field is required </small>
-              }
             </div>
           </div>
-          <div class="mb-5">
-            <label for="email" class="mb-2 block font-medium">Email</label>
-            <input
-              type="email"
-              id="email"
-              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
-              autocomplete="email"
-              name="email"
-              ngModel
-              required
-              email
-              #email="ngModel"
-              pInputText
-              [style]="{
-                outline: 'none',
-                boxShadow: 'none',
-              }"
-            />
-            @if (email.touched && email.errors?.["required"]) {
-              <small class="m-0 p-0 text-primary"> Field is required </small>
-            }
-            @if (email.touched && email.errors?.["email"]) {
-              <small class="m-0 p-0 text-primary">
-                Field must be valid email
-              </small>
-            }
+
+          <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
+            <div class="mb-5">
+              <label
+                for="company_name"
+                class="mb-2 block font-medium text-gray-900"
+                >Company name</label
+              >
+              <input
+                type="text"
+                id="company_name"
+                class="block w-full rounded-lg border bg-gray-50 p-2.5 text-gray-900"
+                name="company_name"
+                ngModel
+                pInputText
+                required
+                #company_name="ngModel"
+                [ngClass]="{
+                  'border-gray-300':
+                    !company_name.invalid || !company_name.touched,
+                  'border-red-500':
+                    company_name.invalid && company_name.touched,
+                }"
+              />
+            </div>
+            <div class="mb-5">
+              <label for="email" class="mb-2 block font-medium">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="block w-full rounded-lg border bg-gray-50 p-2.5 text-gray-900"
+                autocomplete="email"
+                name="email"
+                ngModel
+                required
+                pInputText
+                email
+                #email="ngModel"
+                [ngClass]="{
+                  'border-gray-300': !email.invalid || !email.touched,
+                  'border-red-500': email.invalid && email.touched,
+                }"
+              />
+            </div>
           </div>
+
           <div class="grid grid-cols-1 md:grid-cols-2 md:gap-6">
             <div class="mb-5">
               <label
@@ -309,50 +322,48 @@
               <input
                 type="tel"
                 id="phone_number"
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+                class="block w-full rounded-lg border bg-gray-50 p-2.5 text-gray-900"
                 name="phone_number"
                 ngModel
                 required
-                pattern="^[0-9]*$"
-                #phone_number="ngModel"
                 pInputText
-                [style]="{
-                  outline: 'none',
-                  boxShadow: 'none',
+                #phone_number="ngModel"
+                [ngClass]="{
+                  'border-gray-300':
+                    !phone_number.invalid || !phone_number.touched,
+                  'border-red-500':
+                    phone_number.invalid && phone_number.touched,
                 }"
               />
-              @if (phone_number.touched && phone_number.errors?.["required"]) {
-                <small class="m-0 p-0 text-primary"> Field is required </small>
-              }
-              @if (phone_number.touched && phone_number.errors?.["pattern"]) {
-                <small class="m-0 p-0 text-primary"
-                  >Field must be a number
-                </small>
-              }
             </div>
             <div class="mb-5">
-              <label
-                for="company_name"
-                class="mb-2 block font-medium text-gray-900"
-                >Company name</label
+              <label for="reasonForContact" class="mb-2 block font-medium"
+                >Reason for Contact</label
               >
-              <input
-                type="text"
-                id="company_name"
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
-                name="company_name"
-                ngModel
+              <p-dropdown
+                [options]="reasonOptions"
+                [(ngModel)]="selectedReason"
+                optionLabel="label"
+                optionValue="value"
+                placeholder="Select Reason"
                 required
-                #company_name="ngModel"
-                pInputText
+                name="reasonForContact"
                 [style]="{
+                  backgroundColor: '#F9FAFB',
+                  width: '100%',
                   outline: 'none',
                   boxShadow: 'none',
                 }"
-              />
-              @if (company_name.touched && company_name.invalid) {
-                <small class="m-0 p-0 text-primary"> Field is required </small>
-              }
+                #reasonForContact="ngModel"
+                [ngClass]="{
+                  'p-invalid':
+                    reasonForContact.invalid && reasonForContact.touched,
+                  'border-gray-300':
+                    !reasonForContact.invalid || !reasonForContact.touched,
+                  'border-red-500':
+                    reasonForContact.invalid && reasonForContact.touched,
+                }"
+              ></p-dropdown>
             </div>
           </div>
           <div class="mb-5">
@@ -362,41 +373,38 @@
             <textarea
               id="details"
               rows="4"
-              class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-gray-900"
+              class="block w-full rounded-lg border bg-gray-50 p-2.5 text-gray-900"
               name="details"
               ngModel
               required
-              #details="ngModel"
-              pInputText
-              [style]="{
-                outline: 'none',
-                boxShadow: 'none',
-                resize: 'none',
-              }"
               pInputTextarea
-            ></textarea>
-            @if (details.touched && details.invalid) {
-              <small class="m-0 p-0 text-primary"> Field is required </small>
-            }
-          </div>
-          @if (!loading) {
-            <p-button
-              label="Submit"
-              class="outline-none focus:border-none focus:outline-none"
-              [disabled]="loading"
-              [style]="{
-                width: '100%',
-                backgroundColor: '#EB1F2F',
-                outline: 'none',
-                boxShadow: 'none',
-                border: 'none',
+              rows="10"
+              #details="ngModel"
+              [ngClass]="{
+                'border-gray-300': !details.invalid || !details.touched,
+                'border-red-500': details.invalid && details.touched,
               }"
-              [disabled]="quoteForm.invalid"
-              type="submit"
-            />
-          }
-          @if (loading) {
-            <i class="fa-solid fa-spinner fa-spin"></i>
+            ></textarea>
+          </div>
+
+          <p-button
+            label="Submit"
+            class="outline-none focus:border-none focus:outline-none"
+            [loading]="loading"
+            [disabled]="quoteForm.invalid"
+            [style]="{
+              width: '100%',
+              backgroundColor: '#EB1F2F',
+              outline: 'none',
+              boxShadow: 'none',
+              border: 'none',
+            }"
+            type="submit"
+          />
+          @if (message) {
+            <div class="mt-4 text-center text-xl font-bold">
+              {{ message }}
+            </div>
           }
         </form>
       </p-dialog>
@@ -567,7 +575,7 @@
           class="flex flex-col items-center rounded-lg bg-primary p-4 text-white"
         >
           <img
-            ngSrc="about_us/atc_group_uae.png"
+            ngSrc="about_us/atc_group.png"
             alt="ATC Group"
             width="320"
             height="190"
@@ -637,7 +645,7 @@
                 loading="lazy"
               />
               <div
-                class="absolute min-h-[136px] bottom-0 left-0 w-full rounded-b-md bg-gray-900 bg-opacity-70 p-4"
+                class="absolute bottom-0 left-0 min-h-[136px] w-full rounded-b-md bg-gray-900 bg-opacity-70 p-4"
               >
                 <h4 class="my-2 text-2xl text-white">{{ team.name }}</h4>
                 <p class="m-0 text-lg text-white">

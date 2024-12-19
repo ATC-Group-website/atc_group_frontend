@@ -9,6 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Title, Meta } from '@angular/platform-browser';
 import { DropdownModule } from 'primeng/dropdown';
+import { ContactUsService } from '../../shared/services/contact-us.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contact-us',
@@ -23,6 +25,7 @@ import { DropdownModule } from 'primeng/dropdown';
     InputTextModule,
     InputTextareaModule,
     DropdownModule,
+    CommonModule,
   ],
   templateUrl: './contact-us.component.html',
   styleUrl: './contact-us.component.css',
@@ -30,11 +33,14 @@ import { DropdownModule } from 'primeng/dropdown';
 export class ContactUsComponent implements OnInit {
   title = inject(Title);
   meta = inject(Meta);
+  contactUsService = inject(ContactUsService);
   loading: boolean = false;
+  message: string = '';
 
   reasonOptions = [
     { label: 'Consultation', value: 'consultation' },
     { label: 'Services', value: 'services' },
+    { label: 'Proposal', value: 'proposal' },
     { label: 'Inquiry', value: 'inquiry' },
     { label: 'Support', value: 'support' },
     { label: 'Feedback', value: 'feedback' },
@@ -58,28 +64,29 @@ export class ContactUsComponent implements OnInit {
       this.loading = true;
       const Data = {
         sender: formData.form.controls['email'].value,
-        // receiver: 'info@atc.com.eg',
-        receiver: 'mostafa-ashraf@atc.com.eg',
-        type: 'proposal',
+        // receiver: 'online@atc.com.eg',
+        receiver: 'contactus@atc.com.eg',
+        reason_for_contact: formData.form.controls['reasonForContact'].value,
         body: formData.form.controls['details'].value,
         company_name: formData.form.controls['company_name'].value,
         name: formData.form.controls['name'].value,
-        job_title: formData.form.controls['title'].value,
+        position: formData.form.controls['position'].value,
         phone_number: formData.form.controls['phone_number'].value,
-        // attachments: [],
       };
 
-      // this.contactusService.contact_us(Data).subscribe({
-      //   next: (response) => {
-      //     console.log('Form submitted successfully:', response);
-      //     formData.reset();
-      //     this.loading = false;
-      //   },
-      //   error: (err) => {
-      //     console.error('Error submitting form:', err);
-      //     this.loading = false;
-      //   },
-      // });
+      console.log(Data);
+
+      this.contactUsService.contact_US(Data).subscribe({
+        next: (response) => {
+          this.message = 'Thank you for contacting ATC Group.';
+          formData.reset();
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('Error submitting form:', err);
+          this.loading = false;
+        },
+      });
     }
   }
 

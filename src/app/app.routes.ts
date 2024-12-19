@@ -10,6 +10,7 @@ import { LocationsComponent } from './pages/locations/locations.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { adminGuard } from './dashboard/admin.guard';
 import { InsightDetailsComponent } from './pages/insight-details/insight-details.component';
+import { TestComponent } from './shared/components/test/test.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -26,6 +27,7 @@ export const routes: Routes = [
       ),
   },
   { path: 'services', component: ServicesComponent },
+  { path: 'test', component: TestComponent },
   {
     path: 'services/audit',
 

@@ -3,7 +3,13 @@ import { HttpInterceptorFn } from '@angular/common/http';
 import { inject, PLATFORM_ID } from '@angular/core';
 
 export const adminTokenInterceptor: HttpInterceptorFn = (req, next) => {
-  const ADMIN_ROUTES = ['/admin/logout', '/post'];
+  const ADMIN_ROUTES = [
+    '/admin/logout',
+    '/post',
+    '/mail/count',
+    '/subscribers',
+    '/employees',
+  ];
   const platformId = inject(PLATFORM_ID);
 
   if (ADMIN_ROUTES.some((route) => req.url.includes(route))) {
@@ -21,13 +27,13 @@ export const adminTokenInterceptor: HttpInterceptorFn = (req, next) => {
           Authorization: `Bearer ${adminToken}`,
         },
       });
-      // console.log(authReq);
+      console.log(authReq);
 
       return next(authReq);
     }
   }
 
-  // console.log(req);
+  console.log(req);
 
   return next(req);
 };

@@ -24,7 +24,6 @@
             email
             ngModel
             #email="ngModel"
-            [style]="{}"
             [ngClass]="{
               'ng-dirty': email.touched,
               'ng-invalid': email.invalid && email.touched,
@@ -32,10 +31,9 @@
             placeholder="Enter your email"
           />
         </div>
-        <!-- [disabled]="email.invalid" -->
         <p-button
           label="Sign Up"
-          [disabled]="true"
+          [disabled]="email.invalid"
           [loading]="loading"
           class="h-[50px]"
           [style]="{
@@ -47,6 +45,11 @@
           }"
           type="submit"
         />
+        @if (message) {
+          <div class="mt-4 text-center text-lg font-bold">
+            {{ message }}
+          </div>
+        }
       </form>
     </div>
   </div>
@@ -233,10 +236,10 @@
           <span class="flex items-center gap-3">
             <i class="fa-solid fa-envelope text-primary"></i>
             <a
-              href="mailto:info@atc.com.eg"
+              href="mailto:contactus@atc.com.eg"
               class="text-lg text-white underline hover:text-primary"
             >
-              info&#64;atc.com.eg
+              contactus&#64;atc.com.eg
             </a>
           </span>
         </div>

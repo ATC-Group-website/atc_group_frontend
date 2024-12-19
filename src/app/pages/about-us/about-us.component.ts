@@ -17,6 +17,8 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { Meta, Title } from '@angular/platform-browser';
+import { ContactUsService } from '../../shared/services/contact-us.service';
+import { DropdownModule } from 'primeng/dropdown';
 
 interface Team {
   name: string;
@@ -47,6 +49,7 @@ interface ResponsiveOptions {
     InputTextModule,
     ReactiveFormsModule,
     NgOptimizedImage,
+    DropdownModule,
   ],
   templateUrl: './about-us.component.html',
   styleUrl: './about-us.component.css',
@@ -58,9 +61,24 @@ export class AboutUsComponent implements OnInit {
   loading: boolean = false;
   openStates: boolean[] = [true, false];
   team: Team[] = [];
+  message: string = '';
   responsiveOptions: ResponsiveOptions[] = [];
   title = inject(Title);
   meta = inject(Meta);
+  contactUsService = inject(ContactUsService);
+
+  reasonOptions = [
+    { label: 'Consultation', value: 'consultation' },
+    { label: 'Services', value: 'services' },
+    { label: 'Proposal', value: 'proposal' },
+    { label: 'Inquiry', value: 'inquiry' },
+    { label: 'Support', value: 'support' },
+    { label: 'Feedback', value: 'feedback' },
+    { label: 'Complaint', value: 'complaint' },
+    { label: 'Other', value: 'other' },
+  ];
+
+  selectedReason: string = '';
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -152,7 +170,7 @@ export class AboutUsComponent implements OnInit {
     this.visible = true;
   }
 
-  submitQuoteForm(formData: NgForm) {
+  onSubmit(formData: NgForm) {
     if (formData.form.invalid) {
       Object.keys(formData.form.controls).forEach((field) => {
         const control = formData.form.controls[field];
@@ -162,28 +180,29 @@ export class AboutUsComponent implements OnInit {
       this.loading = true;
       const Data = {
         sender: formData.form.controls['email'].value,
-        // receiver: 'info@atc.com.eg',
-        receiver: 'mostafa-ashraf@atc.com.eg',
-        type: 'proposal',
+        // receiver: 'online@atc.com.eg',
+        receiver: 'contactus@atc.com.eg',
+        reason_for_contact: formData.form.controls['reasonForContact'].value,
         body: formData.form.controls['details'].value,
         company_name: formData.form.controls['company_name'].value,
         name: formData.form.controls['name'].value,
-        job_title: formData.form.controls['title'].value,
+        position: formData.form.controls['position'].value,
         phone_number: formData.form.controls['phone_number'].value,
-        // attachments: [],
       };
 
-      // this.contactusService.contact_us(Data).subscribe({
-      //   next: (response) => {
-      //     console.log('Form submitted successfully:', response);
-      //     formData.reset();
-      //     this.loading = false;
-      //   },
-      //   error: (err) => {
-      //     console.error('Error submitting form:', err);
-      //     this.loading = false;
-      //   },
-      // });
+      console.log(Data);
+
+      this.contactUsService.contact_US(Data).subscribe({
+        next: (response) => {
+          this.message = 'Thank you for contacting ATC Group.';
+          formData.reset();
+          this.loading = false;
+        },
+        error: (err) => {
+          console.error('Error submitting form:', err);
+          this.loading = false;
+        },
+      });
     }
   }
 
