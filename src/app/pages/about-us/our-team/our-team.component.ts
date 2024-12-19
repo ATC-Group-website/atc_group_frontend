@@ -144,7 +144,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Waleed Nabil',
       title: 'Helioplis Branch Manager',
-      imageUrl: 'about_us/our_team/waleed_nabil.jpg',
+      imageUrl: 'about_us/our_team/waled_nabil.jpg',
     },
     {
       name: 'Ramy Shokayar',
