@@ -147,7 +147,7 @@ export class OurTeamComponent implements OnInit {
       imageUrl: 'about_us/our_team/mohamed_awees.JPG',
     },
     {
-      name: 'Waleed Mohamed Nabil',
+      name: 'Waleed Nabil',
       title:
         'Partner - Helioplis Branch Manager & Head of the East Cairo Sector',
       imageUrl: 'about_us/our_team/waled_nabil.jpg',
@@ -434,8 +434,8 @@ export class OurTeamComponent implements OnInit {
       imageUrl: 'about_us/our_team/mohamed_samy.JPG',
     },
     {
-      name: 'Noha Mohamed Helmy ',
-      title: '',
+      name: 'Noha Helmy ',
+      title: 'Senior Associate Manager(international communication)',
       imageUrl: 'about_us/our_team/profile.jpg',
     },
   ];
@@ -504,7 +504,7 @@ export class OurTeamComponent implements OnInit {
       imageUrl: 'about_us/our_team/profile.jpg',
     },
   ];
-   legalAffairsMembers: Member[] = [
+  legalAffairsMembers: Member[] = [
     {
       name: 'Emad Fawy',
       title: 'Partner',
