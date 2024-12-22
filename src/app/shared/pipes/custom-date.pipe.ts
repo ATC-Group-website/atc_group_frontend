@@ -20,7 +20,6 @@ export class CustomDatePipe implements PipeTransform {
     try {
       return formatDate(value, format, locale);
     } catch (error) {
-      console.error('Invalid date:', error);
       return value; // Return the original value if the date is invalid
     }
   }

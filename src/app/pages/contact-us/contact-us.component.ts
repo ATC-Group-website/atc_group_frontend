@@ -74,8 +74,6 @@ export class ContactUsComponent implements OnInit {
         phone_number: formData.form.controls['phone_number'].value,
       };
 
-      console.log(Data);
-
       this.contactUsService.contact_US(Data).subscribe({
         next: (response) => {
           this.message = 'Thank you for contacting ATC Group.';
@@ -83,7 +81,6 @@ export class ContactUsComponent implements OnInit {
           this.loading = false;
         },
         error: (err) => {
-          console.error('Error submitting form:', err);
           this.loading = false;
         },
       });

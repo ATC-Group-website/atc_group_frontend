@@ -11,7 +11,6 @@ export const errorInterceptor: HttpInterceptorFn = (req, next) => {
     catchError((error) => {
       if (error.status === 401) {
         // Handle unauthorized error
-        console.warn('Unauthorized error. Redirecting to login.');
         localStorage.removeItem('token'); // Clear token
         router.navigate(['/admin/login']); // Redirect to login page
       }

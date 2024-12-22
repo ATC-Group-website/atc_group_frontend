@@ -31,14 +31,9 @@ export class LeafletMapComponent implements OnInit {
           if (leafletLib && typeof leafletLib.latLng === 'function') {
             this.initMap(leafletLib);
           } else {
-            console.error(
-              'Leaflet library not fully loaded or missing latLng function',
-            );
           }
         })
-        .catch((error) => {
-          console.error('Error loading Leaflet library:', error);
-        });
+        .catch((error) => {});
     }
   }
 

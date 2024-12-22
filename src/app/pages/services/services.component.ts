@@ -36,18 +36,18 @@ export class ServicesComponent implements OnInit {
 
     this.services = [
       {
-        title: 'Audit',
-        link: '/services/audit',
-        imageUrl: 'services_icons/audit.png',
-        description:
-          'Our dedicated team of experienced auditors undertake a meticulous review of your financial statements, ensuring both accuracy and compliance with stringent accounting standards and regulatory mandates.',
-      },
-      {
         title: 'Tax services',
         link: '/services/tax',
         imageUrl: 'services_icons/tax.png',
         description:
           'ATC provides comprehensive and innovative tax solutions through dedicated teams of tax experts, each specializing in distinct tax categories.',
+      },
+      {
+        title: 'Audit',
+        link: '/services/audit',
+        imageUrl: 'services_icons/audit.png',
+        description:
+          'Our dedicated team of experienced auditors undertake a meticulous review of your financial statements, ensuring both accuracy and compliance with stringent accounting standards and regulatory mandates.',
       },
       {
         title: 'Investment and companies incorporation',

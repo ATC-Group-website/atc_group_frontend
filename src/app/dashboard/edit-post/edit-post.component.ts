@@ -19,6 +19,8 @@ import { AdminDashboardService } from '../admin-dashboard.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { Post } from '../interface';
 import { ButtonModule } from 'primeng/button';
+import { DialogModule } from 'primeng/dialog';
+import { forkJoin } from 'rxjs';
 
 @Component({
   selector: 'app-edit-post',
@@ -34,6 +36,7 @@ import { ButtonModule } from 'primeng/button';
     LoadingComponent,
     ReactiveFormsModule,
     ButtonModule,
+    DialogModule,
   ],
   providers: [MessageService],
   templateUrl: './edit-post.component.html',
@@ -41,6 +44,7 @@ import { ButtonModule } from 'primeng/button';
 })
 export class EditPostComponent implements OnInit {
   isLoading: boolean = true;
+  loading: boolean = false;
   editpostForm!: FormGroup;
   post!: Post;
   formGroup: FormGroup | undefined;
@@ -49,9 +53,13 @@ export class EditPostComponent implements OnInit {
   filename: string | null = null;
   selectedFile: File | null = null;
   gallery_images: any[] = [];
+  main_image: string = '';
+  isUploadingImage: boolean = false;
+  selectedBase64Image: string | null = null;
+  filenames: string[] = [];
 
   isModalOpen = false;
-  isGalleryModalOpen = false;
+  GalleryModal = false;
 
   private messageService = inject(MessageService);
   private route = inject(ActivatedRoute);
@@ -75,12 +83,19 @@ export class EditPostComponent implements OnInit {
       video_url: new FormControl(''),
     });
 
+    this.loadPost();
+  }
+
+  loadPost() {
     const slug = this.route.snapshot.paramMap.get('slug');
     if (slug) {
       this.dashboardService.getSinglePost(slug).subscribe({
         next: (res) => {
+          this.gallery_images = res.images.filter(
+            (image: any) => image.type === 'gallery',
+          );
           this.isLoading = false;
-          console.log(res);
+          this.main_image = res.images[0].path;
           this.post = res;
 
           this.editpostForm.patchValue({
@@ -93,7 +108,6 @@ export class EditPostComponent implements OnInit {
           this.gallery_images = res.images.filter(
             (imageUrl: any) => imageUrl.type === 'gallery',
           );
-          console.log(this.gallery_images);
 
           // this.editpostForm.patchValue({
           //   title: this.post.title,
@@ -103,14 +117,11 @@ export class EditPostComponent implements OnInit {
           // });
         },
         error: (error) => {
-          console.log(error);
-
           this.isLoading = false;
         },
       });
     }
   }
-
   // Function to detect if the input is Arabic
   isArabic(text: string): boolean {
     const arabicPattern = /[\u0600-\u06FF]/;
@@ -124,12 +135,9 @@ export class EditPostComponent implements OnInit {
         this.isLoading = true;
 
         const jobData = this.editpostForm.value;
-        console.log('Job Updated:', jobData);
 
         this.dashboardService.updatePost(slug, jobData).subscribe({
           next: (res) => {
-            console.log(res);
-
             this.isLoading = false;
             this.messageService.add({
               severity: 'success',
@@ -139,7 +147,6 @@ export class EditPostComponent implements OnInit {
           },
           error: (error) => {
             this.isLoading = false;
-            console.error('Error updating Post', error);
             this.messageService.add({
               severity: 'error',
               summary: 'Error',
@@ -159,39 +166,152 @@ export class EditPostComponent implements OnInit {
     }
   }
 
-  // onFileSelected(event: Event): void {
-  //   const input = event.target as HTMLInputElement;
-  //   if (input.files) {
-  //     const file = input.files[0];
-  //     if (file) {
-  //       this.filename = file.name; // Store the file name
-  //       const reader = new FileReader();
-  //       reader.onload = (e: any) => {
-  //         this.images.push({
-  //           base64Image: e.target.result,
-  //           type: 'main',
-  //         });
-  //       };
-  //       reader.readAsDataURL(file);
-  //     }
-  //   }
-  // }
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
 
-  // onGalleryImagesSelected(event: any): void {
-  //   const files: FileList = event.target.files;
+    if (input.files) {
+      const file = input.files[0];
+      if (file) {
+        this.filename = file.name;
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.selectedBase64Image = e.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+  }
 
-  //   // Loop through the selected files and convert them to Base64
-  //   Array.from(files).forEach((file: File) => {
-  //     const reader = new FileReader();
-  //     reader.onload = (e: any) => {
-  //       this.images.push({
-  //         base64Image: e.target.result,
-  //         type: 'gallery', // Mark it as a gallery image
-  //       });
-  //     };
-  //     reader.readAsDataURL(file);
-  //   });
-  // }
+  // handling gallery images
+  onGalleryImagesSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files) {
+      const files: FileList = input.files;
+
+      Array.from(files).forEach((file: File) => {
+        const reader = new FileReader();
+        reader.onload = (e: any) => {
+          this.selectedGalleryImages.push({
+            base64_image: e.target.result,
+            title: file.name,
+            type: 'gallery',
+          });
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+  }
+
+  onUpdateImage(imageData: NgForm): void {
+    if (imageData.form.invalid) {
+      Object.keys(imageData.form.controls).forEach((field) => {
+        const control = imageData.form.controls[field];
+        control.markAsTouched({ onlySelf: true });
+        this.loading = true;
+      });
+    } else if (imageData.form.valid) {
+      this.loading = true;
+      const ImageData = {
+        base64_image: this.selectedBase64Image,
+        title: this.post.title,
+        type: 'main',
+      };
+
+      const slug = this.route.snapshot.paramMap.get('slug');
+      if (slug) {
+        this.dashboardService.changePostImage(slug, ImageData).subscribe({
+          next: (response) => {
+            this.loading = false;
+            this.messageService.add({
+              severity: 'info',
+              summary: 'Success',
+              detail: 'Image updated successfully',
+            });
+            this.isModalOpen = false;
+            this.loadPost();
+          },
+          error: (err) => {
+            this.loading = false;
+          },
+        });
+      }
+    }
+  }
+
+  // update gallery images
+  onUpdateGallery(imagesData: NgForm): void {
+    if (imagesData.form.invalid) {
+      Object.keys(imagesData.form.controls).forEach((field) => {
+        const control = imagesData.form.controls[field];
+        control.markAsTouched({ onlySelf: true });
+      });
+      return;
+    }
+    if (imagesData.form.valid && this.selectedGalleryImages.length > 0) {
+      const slug = this.route.snapshot.paramMap.get('slug');
+      if (slug) {
+        this.isUploadingImage = true;
+        this.loading = true;
+
+        // Create an array of observables for each image upload
+        const uploadObservables = this.selectedGalleryImages.map(
+          (image: any) => {
+            const imageData = {
+              base64_image: image.base64_image,
+              title: image.title,
+              type: image.type,
+            };
+            return this.dashboardService.changePostImage(slug, imageData); // Each upload request as an observable
+          },
+        );
+
+        // Use forkJoin to wait until all uploads complete
+        forkJoin(uploadObservables).subscribe({
+          next: (res) => {
+            this.loading = false;
+            this.GalleryModal = false;
+            this.messageService.add({
+              severity: 'info',
+              summary: 'Success',
+              detail: 'Images uploaded successfully',
+            });
+            this.loadPost(); // Reload post after uploading images
+          },
+          error: (err) => {},
+          complete: () => {
+            this.isUploadingImage = false; // Set to false only when all uploads complete
+            this.selectedGalleryImages = []; // Clear images array
+          },
+        });
+      }
+    }
+  }
+
+  // delete gallery image
+  onDeleteGalleryImage(id: number): void {
+    this.loading = true;
+
+    this.dashboardService.removeSingleImage(id).subscribe({
+      next: (res) => {
+        this.loading = false;
+        this.loadPost();
+        this.GalleryModal = false;
+      },
+      error: (err) => {
+        this.loading = false;
+      },
+    });
+  }
+
+  // change main image modal
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  // open gallery modal
+  openGalleryModal(): void {
+    this.GalleryModal = true;
+  }
 
   getCategoryLabel(type: string): string {
     switch (type) {
@@ -204,25 +324,6 @@ export class EditPostComponent implements OnInit {
       default:
         return 'Unknown';
     }
-  }
-
-  // change main image modal
-  openModal(): void {
-    this.isModalOpen = true;
-  }
-
-  closeModal(): void {
-    this.isModalOpen = false;
-  }
-
-  // open gallery modal
-  openGalleryModal(): void {
-    this.isGalleryModalOpen = true;
-  }
-
-  // close gallery modal
-  closeGalleryModal(): void {
-    this.isGalleryModalOpen = false;
   }
 
   // customizing the editor

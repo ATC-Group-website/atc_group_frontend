@@ -12,7 +12,12 @@
       </p>
     </div>
     <div class="flex w-full items-center p-4 md:w-2/3">
-      <form (ngSubmit)="onSubmit(email)" #email="ngForm" class="w-full">
+      <form
+        (ngSubmit)="onSubmit(email)"
+        #email="ngForm"
+        class="w-full"
+        ngNativeValidate
+      >
         <div class="mb-5">
           <input
             type="email"
@@ -33,7 +38,6 @@
         </div>
         <p-button
           label="Sign Up"
-          [disabled]="email.invalid"
           [loading]="loading"
           class="h-[50px]"
           [style]="{
@@ -61,7 +65,7 @@
     >
       <div class="flex max-w-[200px] flex-col gap-10">
         <img
-          ngSrc="atc_group_white2.jpg"
+          ngSrc="atc_group_white.jpg"
           alt="ATC Group"
           class="h-[150px] w-[200px] object-cover"
           width="200"

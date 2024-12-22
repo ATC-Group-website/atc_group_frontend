@@ -83,108 +83,49 @@
               placeholder="No video URL	"
             />
           </div>
-          <!-- <div class="mb-6">
-            <label
-              class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
-              for="image"
-            >
-              Upload Main Image
-            </label>
-            <div class="relative">
-              <input
-                type="file"
-                id="image"
-                accept="image/*"
-                class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                (change)="onFileSelected($event)"
-              />
-
-              <div
-                class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+          <div class="mb-4">
+            <div class="mb-3 flex items-center gap-5">
+              <p class="block text-xl font-bold text-gray-700">Main Image</p>
+              <button
+                type="button"
+                (click)="openModal()"
+                class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
               >
-                <span class="flex-1 truncate text-gray-700">
-                  <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
-                  @if (filename) {
-                    {{ filename }}
-                  } @else {
-                    No file choosen
-                  }
-                </span>
-              </div>
+                Change Image
+              </button>
             </div>
-          </div> -->
-          <!-- @if (post.images.length > 0) {
+            <img
+              [src]="main_image"
+              [alt]="[post.title]"
+              class="max-h-[500px] w-full object-cover lg:w-1/2"
+            />
+          </div>
+          <div class="mb-6 mt-5">
             <div class="mb-4">
               <div class="mb-3 flex items-center gap-5">
-                <p class="block text-sm font-bold text-gray-700">Main Image</p>
+                <p class="block text-xl font-bold text-gray-700">
+                  Gallery Images
+                </p>
                 <button
                   type="button"
-                  (click)="openModal()"
-                  class="rounded-md bg-blue-600 px-3 py-2 text-sm text-white"
+                  class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
+                  (click)="openGalleryModal()"
                 >
-                  Change Image
+                  Modify
                 </button>
               </div>
-              <img
-                [src]="post.images[0].path"
-                [alt]="[post.title]"
-                class="max-h-[500px] w-full object-cover lg:w-1/2"
-              />
             </div>
+            <div class="grid-cols1 grid gap-6 md:grid-cols-2">
+              @for (gallery_image of gallery_images; track $index) {
+                <img
+                  [src]="gallery_image.path"
+                  [alt]="gallery_image.title"
+                  class="h-[400px] w-full object-cover"
+                />
+              }
+            </div>
+          </div>
 
-            <div class="mb-6 mt-5">
-              <div class="mb-4">
-                <div class="mb-3 flex items-center gap-5">
-                  <p class="block text-sm font-bold text-gray-700">
-                    Gallery Images
-                  </p>
-                  <button
-                    type="button"
-                    class="rounded-md bg-blue-600 px-3 py-2 text-sm text-white"
-                    (click)="openGalleryModal()"
-                  >
-                    Modify
-                  </button>
-                </div>
-              </div>
-              <div class="grid-cols1 grid gap-6 md:grid-cols-2">
-                @for (gallery_image of gallery_images; track $index) {
-                  <img
-                    [src]="gallery_image.path"
-                    [alt]="gallery_image.title"
-                    class="h-[400px] w-full object-cover"
-                  />
-                }
-              </div>
-            </div>
-          } -->
-
-          <!-- <div class="mb-6">
-            <label
-              class="mb-2 block font-bold text-gray-700"
-              for="gallery_images"
-            >
-              Upload Gallery Images
-            </label>
-            <div class="relative">
-              <input
-                type="file"
-                id="gallery_images"
-                accept="image/*"
-                multiple
-                class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-                (change)="onGalleryImagesSelected($event)"
-              />
-              <div
-                class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
-              >
-                <span class="flex-1 truncate text-gray-700">
-                  <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
-                  No files choosen
-                </span>
-              </div>
-            </div>
-          </div> -->
           <div>
             <button
               pButton
@@ -204,5 +145,164 @@
         </form>
       }
     </div>
+    <p-dialog
+      header="Change Image"
+      [modal]="true"
+      [(visible)]="isModalOpen"
+      [closable]="true"
+      [draggable]="false"
+      [baseZIndex]="1000"
+      [style]="{ width: '700px' }"
+    >
+      <form (ngSubmit)="onUpdateImage(updateImage)" #updateImage="ngForm">
+        <div class="mb-4 flex items-center justify-between">
+          <label class="text-lg font-semibold" for="image"
+            >Upload New Image</label
+          >
+        </div>
+        <div class="mb-6">
+          <div class="relative">
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              required
+              ngModel
+              #image="ngModel"
+              name="image"
+              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              (change)="onFileSelected($event)"
+            />
+
+            <div
+              class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+            >
+              <span class="flex-1 truncate text-gray-700">
+                <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
+                @if (filename) {
+                  {{ filename }}
+                } @else {
+                  No file choosen
+                }
+              </span>
+            </div>
+          </div>
+          @if (image.touched && image.invalid) {
+            <small class="m-0 p-0 text-primary">Field is required</small>
+          }
+        </div>
+
+        <div class="flex justify-end">
+          <p-button
+            label="Update"
+            class="outline-none focus:border-none focus:outline-none"
+            [loading]="isLoading"
+            [disabled]="updateImage.invalid"
+            [style]="{
+              width: '100%',
+              backgroundColor: '#EB1F2F',
+              outline: 'none',
+              boxShadow: 'none',
+              border: 'none',
+            }"
+            type="submit"
+          />
+        </div>
+      </form>
+    </p-dialog>
+    <p-dialog
+      header="Update Gallery Images"
+      [modal]="true"
+      [(visible)]="GalleryModal"
+      [closable]="true"
+      [draggable]="false"
+      [baseZIndex]="1000"
+      [style]="{ width: '700px' }"
+    >
+      <form (ngSubmit)="onUpdateGallery(updateGallery)" #updateGallery="ngForm">
+        <div>
+          @for (gallery_image of gallery_images; track $index) {
+            <div
+              class="mb-3 flex items-center justify-between gap-4 rounded-md border-2 border-black p-2"
+            >
+              <img
+                [src]="gallery_image.path"
+                [alt]="gallery_image.title"
+                class="h-[100px] w-[100px] object-cover"
+              />
+              <p>{{ gallery_image.title }}</p>
+              <p-button
+                label="Delete"
+                class="outline-none focus:border-none focus:outline-none"
+                [loading]="isLoading"
+                [style]="{
+                  backgroundColor: '#EB1F2F',
+                  outline: 'none',
+                  boxShadow: 'none',
+                  border: 'none',
+                }"
+                (click)="onDeleteGalleryImage(gallery_image.id)"
+              ></p-button>
+            </div>
+          }
+        </div>
+        <div class="mb-4 flex items-center justify-between">
+          <label class="text-lg font-semibold" for="image"
+            >Upload New Image</label
+          >
+        </div>
+
+        <div class="mb-6">
+          <div class="relative">
+            <input
+              type="file"
+              id="image"
+              accept="image/*"
+              required
+              ngModel
+              multiple
+              #image="ngModel"
+              name="image"
+              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              (change)="onGalleryImagesSelected($event)"
+            />
+
+            <div
+              class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+            >
+              <span class="flex-1 truncate text-gray-700">
+                <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
+                @if (selectedGalleryImages.length > 0) {
+                  {{ selectedGalleryImages.length }} files
+                } @else {
+                  No file choosen
+                }
+              </span>
+            </div>
+          </div>
+          @if (image.touched && image.invalid) {
+            <small class="m-0 p-0 text-primary">Field is required</small>
+          }
+        </div>
+
+        <div class="flex justify-end">
+          <p-button
+            label="Update"
+            class="outline-none focus:border-none focus:outline-none"
+            [loading]="isLoading"
+            [disabled]="updateGallery.invalid"
+            [style]="{
+              width: '100%',
+              backgroundColor: '#EB1F2F',
+              outline: 'none',
+              boxShadow: 'none',
+              border: 'none',
+            }"
+            type="submit"
+          />
+        </div>
+      </form>
+    </p-dialog>
   </section>
+  <p-toast></p-toast>
 </main>

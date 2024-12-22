@@ -47,7 +47,6 @@ export class AuditComponent implements OnInit {
     }
   }
 
-  consoleLog() {}
 
   toggleAccordion(index: number): void {
     const panel = document.querySelectorAll('.panel')[index] as HTMLElement;

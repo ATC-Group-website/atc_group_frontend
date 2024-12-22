@@ -36,6 +36,7 @@ export class InsightDetailsComponent implements OnInit {
   router = inject(Router);
   route = inject(ActivatedRoute);
   postsService = inject(PostsService);
+  des: any;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -46,13 +47,12 @@ export class InsightDetailsComponent implements OnInit {
     if (slug) {
       this.postsService.getPostBySlug(slug).subscribe({
         next: (res) => {
-          console.log(res);
           this.post = res;
           this.newDescription = this.detectTextDirection(res.description || '');
+          this.des = this.truncateAndAlign(this.post.description || '');
           this.isLoading = false;
         },
         error: (error) => {
-          console.log(error);
 
           this.isLoading = false;
         },
@@ -105,6 +105,36 @@ export class InsightDetailsComponent implements OnInit {
     // Sanitize the result
     return {
       text: this.sanitizer.bypassSecurityTrustHtml(textContent),
+      direction,
+    };
+  }
+
+  truncateAndAlign(description: string): { text: SafeHtml; direction: string } {
+    if (!this.isBrowser) {
+      return {
+        text: this.sanitizer.bypassSecurityTrustHtml(''),
+        direction: 'ltr',
+      };
+    }
+
+    // Create a temporary element to parse and strip HTML tags
+    const tempDiv = document.createElement('div');
+    tempDiv.innerHTML = description;
+    const textContent = tempDiv.textContent || tempDiv.innerText || '';
+
+    // Truncate to the first 30 words
+    const words = textContent.trim().split(/[\t ]+/);
+    const truncatedText = words.slice(0, 700000).join(' ');
+    const finalText =
+      words.length > 700000 ? `${truncatedText}` : truncatedText;
+
+    // Detect text direction
+    const arabicRegex = /[\u0600-\u06FF]/;
+    const direction = arabicRegex.test(textContent) ? 'rtl' : 'ltr';
+
+    // Sanitize the result
+    return {
+      text: this.sanitizer.bypassSecurityTrustHtml(finalText),
       direction,
     };
   }

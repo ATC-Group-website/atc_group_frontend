@@ -80,14 +80,12 @@ export class InsightsComponent implements OnInit {
 
     this.postsService.getPaginatedPostsByType(type, pageNum).subscribe({
       next: (res) => {
-        console.log(res.posts);
         this.types[type].data = res.posts.data;
         this.types[type].currentPage = res.posts.current_page;
         this.types[type].totalPages = res.posts.total;
         this.types[type].isLoading = false;
       },
       error: (err) => {
-        console.log(err);
         this.types[type].isLoading = false;
       },
     });

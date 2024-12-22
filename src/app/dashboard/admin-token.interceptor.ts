@@ -9,6 +9,7 @@ export const adminTokenInterceptor: HttpInterceptorFn = (req, next) => {
     '/mail/count',
     '/subscribers',
     '/employees',
+    '/images',
   ];
   const platformId = inject(PLATFORM_ID);
 
@@ -27,13 +28,10 @@ export const adminTokenInterceptor: HttpInterceptorFn = (req, next) => {
           Authorization: `Bearer ${adminToken}`,
         },
       });
-      console.log(authReq);
 
       return next(authReq);
     }
   }
-
-  console.log(req);
 
   return next(req);
 };

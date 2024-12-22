@@ -12,7 +12,7 @@ export class AdminDashboardService {
   private apiUrl = 'https://api1.atc.com.eg';
 
   constructor() {}
-//
+  //
   createPost(postData: NewPost): Observable<PostCreationResponse> {
     return this.http.post<PostCreationResponse>(
       `${this.apiUrl}/post`,
@@ -65,5 +65,14 @@ export class AdminDashboardService {
 
   createMember(data: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/employees`, data);
+  }
+
+  changePostImage(slug: string, imageData: object): Observable<any> {
+
+    return this.http.post<any>(`${this.apiUrl}/images/post/${slug}`, imageData);
+  }
+
+  removeSingleImage(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.apiUrl}/images/${id}`);
   }
 }

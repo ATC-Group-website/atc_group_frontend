@@ -64,10 +64,10 @@
             >
               <a
                 class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
-                routerLink="/services/audit"
+                routerLink="/services/tax"
                 routerLinkActive="router-link-active font-bold"
               >
-                Audit
+                Tax Services
               </a>
             </li>
             <li
@@ -75,10 +75,10 @@
             >
               <a
                 class="block cursor-pointer px-5 py-3 hover:bg-primary hover:text-white"
-                routerLink="/services/tax"
+                routerLink="/services/audit"
                 routerLinkActive="router-link-active font-bold"
               >
-                Tax Services
+                Audit
               </a>
             </li>
             <li
@@ -254,14 +254,14 @@
       @if (servicesDropdownOpen) {
         <div class="pl-5 text-lg">
           <a
-            routerLink="/services/audit"
-            class="underline-effect block cursor-pointer py-2 !text-gray-600 hover:text-primary"
-            >Audit</a
-          >
-          <a
             routerLink="/services/tax"
             class="underline-effect block cursor-pointer py-2 !text-gray-600 hover:text-primary"
             >Tax services</a
+          >
+          <a
+            routerLink="/services/audit"
+            class="underline-effect block cursor-pointer py-2 !text-gray-600 hover:text-primary"
+            >Audit</a
           >
           <a
             routerLink="/services/investments-and-company-incorporation"

@@ -190,7 +190,6 @@ export class AboutUsComponent implements OnInit {
         phone_number: formData.form.controls['phone_number'].value,
       };
 
-      console.log(Data);
 
       this.contactUsService.contact_US(Data).subscribe({
         next: (response) => {
@@ -199,7 +198,6 @@ export class AboutUsComponent implements OnInit {
           this.loading = false;
         },
         error: (err) => {
-          console.error('Error submitting form:', err);
           this.loading = false;
         },
       });

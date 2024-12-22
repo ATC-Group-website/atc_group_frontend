@@ -69,7 +69,6 @@ export class EmailsComponent implements OnInit {
       accept: () => {
         this.dashboardService.deleteSubscribedEmail(subscriberEmail).subscribe({
           next: (response) => {
-            console.log(response);
             this.messageService.add({
               severity: 'info',
               summary: 'Confirmed',
@@ -78,7 +77,6 @@ export class EmailsComponent implements OnInit {
             this.getEmails();
           },
           error: (err) => {
-            console.log(err);
             this.messageService.add({
               severity: 'error',
               summary: 'Error',

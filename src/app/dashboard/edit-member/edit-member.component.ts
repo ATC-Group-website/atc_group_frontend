@@ -69,8 +69,6 @@ export class EditMemberComponent {
         const control = postData.form.controls[field];
         control.markAsTouched({ onlySelf: true });
 
-        console.log('invalid');
-        console.log(postData);
 
         const Data = {
           name: postData.form.controls['name'].value,
@@ -79,11 +77,9 @@ export class EditMemberComponent {
           image: this.selectedBase64Image,
         };
 
-        console.log(Data);
       });
     } else {
       // this.isLoading = true;
-      console.log(postData);
 
       const Data = {
         name: postData.form.controls['name'].value,
@@ -92,7 +88,6 @@ export class EditMemberComponent {
         image: this.selectedBase64Image,
       };
 
-      console.log(Data);
 
       // sending the post data request
       // this.postsService.addPost(Data).subscribe({

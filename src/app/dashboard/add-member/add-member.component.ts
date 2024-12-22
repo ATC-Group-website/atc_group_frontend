@@ -71,12 +71,9 @@ export class AddMemberComponent {
         const control = postData.form.controls[field];
         control.markAsTouched({ onlySelf: true });
 
-        console.log('invalid');
-        console.log(postData);
       });
     } else {
       this.isLoading = true;
-      console.log(postData);
 
       const Data = {
         name: postData.form.controls['name'].value,
@@ -86,15 +83,12 @@ export class AddMemberComponent {
         base64_image: this.selectedBase64Image,
       };
 
-      console.log(Data);
 
       this.dashboardService.createMember(Data).subscribe({
         next: (res) => {
-          console.log(res);
           this.isLoading = false;
         },
         error: (err) => {
-          console.log(err);
           this.isLoading = false;
         },
       });
@@ -105,7 +99,6 @@ export class AddMemberComponent {
       //     this.toastr.success('Post added successfully');
       //     postData.form.reset();
       //     this.isLoading = false;
-      //     // console.log(response);
       //   },
       //   error: (err) => {
       //     console.error('Error submitting form:', err);

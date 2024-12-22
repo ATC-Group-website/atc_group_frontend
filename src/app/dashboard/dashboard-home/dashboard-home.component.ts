@@ -26,13 +26,10 @@ export class DashboardHomeComponent implements OnInit {
 
     this.dashboardService.getEmailsCount().subscribe({
       next: (res) => {
-        console.log(res);
-
         this.mailSubscribers = res.count;
         this.loading = false;
       },
       error: (err) => {
-        console.log(err);
         this.loading = false;
       },
     });
@@ -79,7 +76,6 @@ export class DashboardHomeComponent implements OnInit {
         this.loading = false;
       },
       error: (err) => {
-        console.log(err);
         this.loading = false;
       },
     });

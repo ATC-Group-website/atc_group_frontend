@@ -71,18 +71,14 @@ export class HomeComponent {
 
     this.postsService.getPaginatedPosts().subscribe({
       next: (res) => {
-        console.log(res.posts);
         this.posts = res.posts.data;
 
-        // Map posts to truncated and aligned versions
         this.postss = this.posts.map((post: { description: string }) =>
           this.truncateAndAlign(post.description || ''),
         );
         this.loading = false;
-        console.log(this.posts);
       },
       error: (err) => {
-        console.log(err);
         this.loading = false;
       },
     });
@@ -127,10 +123,7 @@ export class HomeComponent {
     this.currentIndex = index;
   }
 
-  // consider changing the image path to absolute path   content: 'https://atc.com.eg/assets/images/atc_group_white2.jpg' later on after testing social media sharing
-
   setMetaTags() {
-    // this.title.setTitle('Home | ATC Group - Accounting and Tax Consultants');
     this.title.setTitle('ATC Group - Accounting and Tax Consultants');
     this.meta.addTags([
       {
