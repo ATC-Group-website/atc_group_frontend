@@ -235,7 +235,33 @@
           }
         </div>
       </div>
-
+      <div class="">
+        <h3 class="text-center text-3xl">Withholding Tax Department</h3>
+        <div
+          class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        >
+          @for (member of withholdingTaxDepartment; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                loading="lazy"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
       <div>
         <h3 class="text-center text-3xl">Audit Department</h3>
         <div
@@ -323,11 +349,11 @@
         </div>
       </div>
       <div class="">
-        <h3 class="text-center text-3xl">Discount & Collection Department</h3>
+        <h3 class="text-center text-3xl">Insurance Department</h3>
         <div
           class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
-          @for (member of discountAndCollection; track $index) {
+          @for (member of insuranceMembers; track $index) {
             <div
               class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
             >
@@ -349,6 +375,34 @@
           }
         </div>
       </div>
+      <div class="">
+        <h3 class="text-center text-3xl">Legal Affairs Department</h3>
+        <div
+          class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+        >
+          @for (member of legalAffairsMembers; track $index) {
+            <div
+              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+            >
+              <img
+                [src]="member.imageUrl"
+                [alt]="member.name"
+                loading="lazy"
+                class="h-full w-full rounded-md object-cover"
+              />
+              <div
+                class="absolute bottom-0 left-0 w-full rounded-b-xl bg-gray-900 bg-opacity-70 p-4"
+              >
+                <h4 class="my-2 text-2xl text-white">{{ member.name }}</h4>
+                <p class="m-0 text-lg text-white">
+                  {{ member.title }}
+                </p>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+
       <div class="">
         <h3 class="text-center text-3xl">Translation Department</h3>
         <div
@@ -404,7 +458,7 @@
         </div>
       </div>
       <div class="">
-        <h3 class="text-center text-3xl">Pro Training Department</h3>
+        <h3 class="text-center text-3xl">Pro Training Division</h3>
         <div
           class="grid grid-cols-1 gap-10 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
         >
