@@ -318,7 +318,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Mohamed El-Badry',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/mohamed_elbadry.jpg',
     },
   ];
 
