@@ -107,7 +107,7 @@ export class ServicesComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          'Explore a wide range of professional services including tax planning, audit, transfer pricing, e-invoicing, company incorporation, and more. Our tailored solutions help businesses navigate complex financial, tax, and regulatory environments in the MENA region.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -121,17 +121,17 @@ export class ServicesComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Explore a wide range of professional services including tax planning, audit, transfer pricing, e-invoicing, company incorporation, and more. Our tailored solutions help businesses navigate complex financial, tax, and regulatory environments in the MENA region.',
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      { property: 'og:url', content: 'https://www.atc.com.eg/services' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -140,11 +140,11 @@ export class ServicesComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Explore a wide range of professional services including tax planning, audit, transfer pricing, e-invoicing, company incorporation, and more. Our tailored solutions help businesses navigate complex financial, tax, and regulatory environments in the MENA region.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

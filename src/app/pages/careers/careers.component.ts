@@ -96,7 +96,7 @@ export class CareersComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          'Explore exciting career opportunities at ATC. Join our team of experts in accounting, auditing, tax, and finance consultants in MENA region. Apply now and build your future with us!',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -110,17 +110,17 @@ export class CareersComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Explore exciting career opportunities at ATC. Join our team of experts in accounting, auditing, tax, and finance consultants in MENA region. Apply now and build your future with us!',
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      { property: 'og:url', content: 'https://www.atc.com.eg/careers' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -129,11 +129,11 @@ export class CareersComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Explore exciting career opportunities at ATC. Join our team of experts in accounting, auditing, tax, and finance consultants in MENA region. Apply now and build your future with us!',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

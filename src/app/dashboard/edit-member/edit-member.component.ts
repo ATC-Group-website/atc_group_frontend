@@ -68,15 +68,6 @@ export class EditMemberComponent {
       Object.keys(postData.form.controls).forEach((field) => {
         const control = postData.form.controls[field];
         control.markAsTouched({ onlySelf: true });
-
-
-        const Data = {
-          name: postData.form.controls['name'].value,
-          title: postData.form.controls['title'].value,
-          department_id: this.selectedDepartmentValue,
-          image: this.selectedBase64Image,
-        };
-
       });
     } else {
       // this.isLoading = true;

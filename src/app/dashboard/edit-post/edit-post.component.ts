@@ -132,13 +132,16 @@ export class EditPostComponent implements OnInit {
     if (this.editpostForm.valid) {
       const slug = this.route.snapshot.paramMap.get('slug');
       if (slug) {
-        this.isLoading = true;
+        this.loading = true;
 
         const jobData = this.editpostForm.value;
+        console.log(jobData);
 
         this.dashboardService.updatePost(slug, jobData).subscribe({
           next: (res) => {
-            this.isLoading = false;
+            // console.log(res);
+
+            this.loading = false;
             this.messageService.add({
               severity: 'success',
               summary: 'success',
@@ -146,7 +149,9 @@ export class EditPostComponent implements OnInit {
             });
           },
           error: (error) => {
-            this.isLoading = false;
+            // console.log(error);
+
+            this.loading = false;
             this.messageService.add({
               severity: 'error',
               summary: 'Error',

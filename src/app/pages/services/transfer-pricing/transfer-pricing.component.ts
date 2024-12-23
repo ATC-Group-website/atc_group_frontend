@@ -31,7 +31,7 @@ export class TransferPricingComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          'Optimize your business operations with our transfer pricing services. We offer expert solutions for compliance, documentation, and planning to help businesses navigate complex international tax regulations.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -45,17 +45,20 @@ export class TransferPricingComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Optimize your business operations with our transfer pricing services. We offer expert solutions for compliance, documentation, and planning to help businesses navigate complex international tax regulations.',
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      {
+        property: 'og:url',
+        content: 'https://www.atc.com.eg/services/transfer-pricing',
+      },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -64,11 +67,11 @@ export class TransferPricingComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Optimize your business operations with our transfer pricing services. We offer expert solutions for compliance, documentation, and planning to help businesses navigate complex international tax regulations.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

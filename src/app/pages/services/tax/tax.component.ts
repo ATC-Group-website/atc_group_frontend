@@ -65,7 +65,7 @@ export class TaxComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          'Streamline your tax processes with our expert tax services. We provide comprehensive solutions for tax planning, compliance, and advisory, ensuring businesses in the MENA region remain efficient and compliant.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -79,17 +79,17 @@ export class TaxComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Streamline your tax processes with our expert tax services. We provide comprehensive solutions for tax planning, compliance, and advisory, ensuring businesses in the MENA region remain efficient and compliant.',
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      { property: 'og:url', content: 'https://www.atc.com.eg/services/tax' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -98,11 +98,11 @@ export class TaxComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Streamline your tax processes with our expert tax services. We provide comprehensive solutions for tax planning, compliance, and advisory, ensuring businesses in the MENA region remain efficient and compliant.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

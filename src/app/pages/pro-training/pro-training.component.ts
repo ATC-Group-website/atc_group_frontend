@@ -33,7 +33,7 @@ export class ProTrainingComponent implements OnInit {
       {
         name: 'description',
         content:
-          'ATC Pro Training, a division of ATC Group Middle East - Ashraf Abdel Ghani Accountants and Tax Consultants, is dedicated to providing top-tier professional training programs designed to enhance the skills and knowledge of individuals and businesses in the fields of accounting, taxation, and finance.',
+          'Unlock your potential with ATC Pro Training, a division of ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants. Our expert-led programs in accounting, taxation, and finance are designed to enhance skills for individuals and businesses.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -47,17 +47,17 @@ export class ProTrainingComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Unlock your potential with ATC Pro Training, a division of ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants. Our expert-led programs in accounting, taxation, and finance are designed to enhance skills for individuals and businesses.',
       },
       { property: 'og:url', content: 'https://www.atc.com.eg' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -66,11 +66,11 @@ export class ProTrainingComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Unlock your potential with ATC Pro Training, a division of ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants. Our expert-led programs in accounting, taxation, and finance are designed to enhance skills for individuals and businesses.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

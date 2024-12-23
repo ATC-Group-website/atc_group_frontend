@@ -31,7 +31,6 @@ export class AuditComponent implements OnInit {
     this.isBrowser = isPlatformBrowser(platformId);
   }
   ngOnInit(): void {
-
     this.setMetaTags();
 
     if (this.isBrowser) {
@@ -46,7 +45,6 @@ export class AuditComponent implements OnInit {
       });
     }
   }
-
 
   toggleAccordion(index: number): void {
     const panel = document.querySelectorAll('.panel')[index] as HTMLElement;
@@ -69,7 +67,7 @@ export class AuditComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          "Explore ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants' expert tax services. We offer comprehensive solutions in tax planning, compliance, and advisory to individuals and businesses in the MENA region",
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -83,17 +81,17 @@ export class AuditComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          "Explore ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants' expert tax services. We offer comprehensive solutions in tax planning, compliance, and advisory to individuals and businesses in the MENA region",
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      { property: 'og:url', content: 'https://www.atc.com.eg/services/audit' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -102,11 +100,11 @@ export class AuditComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          "Explore ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants' expert tax services. We offer comprehensive solutions in tax planning, compliance, and advisory to individuals and businesses in the MENA region",
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

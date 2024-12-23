@@ -12,6 +12,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { PostsService } from '../../shared/services/posts.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { isPlatformBrowser } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-insight-details',
@@ -30,13 +31,15 @@ export class InsightDetailsComponent implements OnInit {
   isBrowser: boolean;
   isLoading = true;
   post!: any;
-  videoURL: SafeResourceUrl = 'r';
+  videoURL: SafeResourceUrl = '';
   newDescription!: { text: SafeHtml; direction: string };
   sanitizer = inject(DomSanitizer);
   router = inject(Router);
   route = inject(ActivatedRoute);
   postsService = inject(PostsService);
   des: any;
+  title = inject(Title);
+  meta = inject(Meta);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -50,10 +53,36 @@ export class InsightDetailsComponent implements OnInit {
           this.post = res;
           this.newDescription = this.detectTextDirection(res.description || '');
           this.des = this.truncateAndAlign(this.post.description || '');
+
+          // Set the title dynamically
+          this.title.setTitle(`${res.title} - ATC`);
+
+          // Update meta description
+          // this.meta.updateTag({
+          //   name: 'description',
+          //   content: this.truncateAndAlign(
+          //     res.description || 'Explore our latest article!',
+          //   ),
+          // });
+
+          // Optional: Add Open Graph meta tags for social sharing
+          this.meta.updateTag({
+            property: 'og:title',
+            content: res.title,
+          });
+          // this.meta.updateTag({
+          //   property: 'og:description',
+          //   content: this.truncateAndAlign(
+          //     res.description || 'Explore our latest article!',
+          //   ),
+          // });
+          this.meta.updateTag({
+            property: 'og:url',
+            content: `https://www.atc.com.eg/articles/${slug}`,
+          });
           this.isLoading = false;
         },
         error: (error) => {
-
           this.isLoading = false;
         },
       });

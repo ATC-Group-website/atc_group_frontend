@@ -64,7 +64,7 @@ export class EInvoiceComponent {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          'Stay compliant with our e-invoice services. We provide efficient solutions to help businesses in the MENA region adopt electronic invoicing for improved accuracy and regulatory compliance.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -78,17 +78,17 @@ export class EInvoiceComponent {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Stay compliant with our e-invoice services. We provide efficient solutions to help businesses in the MENA region adopt electronic invoicing for improved accuracy and regulatory compliance.',
       },
       { property: 'og:url', content: 'https://www.atc.com.eg' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -97,11 +97,11 @@ export class EInvoiceComponent {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Stay compliant with our e-invoice services. We provide efficient solutions to help businesses in the MENA region adopt electronic invoicing for improved accuracy and regulatory compliance.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

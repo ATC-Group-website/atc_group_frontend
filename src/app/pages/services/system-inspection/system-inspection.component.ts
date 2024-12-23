@@ -31,7 +31,7 @@ export class SystemInspectionComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          'Ensure the efficiency and compliance of your business operations with our system inspection services. We provide thorough evaluations to optimize performance and meet industry standards.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -45,17 +45,20 @@ export class SystemInspectionComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Ensure the efficiency and compliance of your business operations with our system inspection services. We provide thorough evaluations to optimize performance and meet industry standards.',
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      {
+        property: 'og:url',
+        content: 'https://www.atc.com.eg/services/system-inspection',
+      },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -64,11 +67,11 @@ export class SystemInspectionComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Ensure the efficiency and compliance of your business operations with our system inspection services. We provide thorough evaluations to optimize performance and meet industry standards.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }

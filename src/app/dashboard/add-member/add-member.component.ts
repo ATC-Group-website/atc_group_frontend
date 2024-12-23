@@ -70,39 +70,21 @@ export class AddMemberComponent {
       Object.keys(postData.form.controls).forEach((field) => {
         const control = postData.form.controls[field];
         control.markAsTouched({ onlySelf: true });
-
       });
     } else {
-      this.isLoading = true;
-
-      const Data = {
-        name: postData.form.controls['name'].value,
-        job_title: postData.form.controls['title'].value,
-        department_id: 1,
-        order: 1,
-        base64_image: this.selectedBase64Image,
-      };
-
-
-      this.dashboardService.createMember(Data).subscribe({
-        next: (res) => {
-          this.isLoading = false;
-        },
-        error: (err) => {
-          this.isLoading = false;
-        },
-      });
-
-      // sending the post data request
-      // this.postsService.addPost(Data).subscribe({
-      //   next: (response) => {
-      //     this.toastr.success('Post added successfully');
-      //     postData.form.reset();
+      // this.isLoading = true;
+      // const Data = {
+      //   name: postData.form.controls['name'].value,
+      //   job_title: postData.form.controls['title'].value,
+      //   department_id: 1,
+      //   order: 1,
+      //   base64_image: this.selectedBase64Image,
+      // };
+      // this.dashboardService.createMember(Data).subscribe({
+      //   next: (res) => {
       //     this.isLoading = false;
       //   },
       //   error: (err) => {
-      //     console.error('Error submitting form:', err);
-      //     this.toastr.error('Error');
       //     this.isLoading = false;
       //   },
       // });
@@ -114,7 +96,7 @@ export class AddMemberComponent {
     if (input.files) {
       const file = input.files[0];
       if (file) {
-        this.filename = file.name; // Store the file name
+        this.filename = file.name;
         const reader = new FileReader();
         reader.onload = (e: any) => {
           this.selectedBase64Image = e.target.result;

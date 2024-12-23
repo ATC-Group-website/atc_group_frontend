@@ -88,20 +88,6 @@ export class HomeComponent {
     this.yearsOfExperience = currentYear - startYear;
   }
 
-  scrollToSection() {
-    const element = document.getElementById('about_the_company');
-    if (element) {
-      const elementPosition =
-        element.getBoundingClientRect().top + window.scrollY;
-      const offset = -160;
-
-      window.scrollTo({
-        top: elementPosition + offset,
-        behavior: 'smooth',
-      });
-    }
-  }
-
   images: string[] = ['home/egypt.webp', 'home/ksa.webp', 'home/uae.webp'];
 
   currentIndex = 0;
@@ -143,17 +129,17 @@ export class HomeComponent {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
       },
       { property: 'og:url', content: 'https://www.atc.com.eg' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -162,11 +148,11 @@ export class HomeComponent {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }
@@ -204,5 +190,19 @@ export class HomeComponent {
     // Arabic character range: \u0600-\u06FF
     const arabicRegex = /[\u0600-\u06FF]/;
     return arabicRegex.test(text) ? 'rtl' : 'ltr';
+  }
+
+  scrollToSection() {
+    const element = document.getElementById('about_the_company');
+    if (element) {
+      const elementPosition =
+        element.getBoundingClientRect().top + window.scrollY;
+      const offset = -160;
+
+      window.scrollTo({
+        top: elementPosition + offset,
+        behavior: 'smooth',
+      });
+    }
   }
 }

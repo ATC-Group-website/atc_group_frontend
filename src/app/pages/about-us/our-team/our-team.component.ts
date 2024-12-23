@@ -38,7 +38,7 @@ export class OurTeamComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals.',
+          'Meet the experts behind our services. Our team of professionals in taxation, accounting, and financial consulting is dedicated to providing top-notch solutions and support to businesses across the MENA region.',
       },
       { name: 'robots', content: 'index, follow' },
       {
@@ -52,17 +52,17 @@ export class OurTeamComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Meet the experts behind our services. Our team of professionals in taxation, accounting, and financial consulting is dedicated to providing top-notch solutions and support to businesses across the MENA region.',
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      { property: 'og:url', content: 'https://www.atc.com.eg/our-team' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -71,11 +71,11 @@ export class OurTeamComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Meet the experts behind our services. Our team of professionals in taxation, accounting, and financial consulting is dedicated to providing top-notch solutions and support to businesses across the MENA region.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }
@@ -126,7 +126,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Mohsen Saady',
       title: 'Head of Salary & Wages Sector',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/mohsen_saady.jpg',
     },
     {
       name: 'Mohamed Zaki',
@@ -373,7 +373,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Gomaa Ahmed',
       title: 'Consultant',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/gomaa.jpg',
     },
   ];
 
@@ -391,7 +391,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Wael Saeed',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/wael.jpg',
     },
   ];
 
@@ -399,7 +399,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Mohsen Saady',
       title: 'Head of Salary & Wages Sector',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/mohsen_saady.jpg',
     },
     {
       name: 'Hamdy Saad Rashed',

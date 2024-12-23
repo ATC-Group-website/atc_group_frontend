@@ -22,7 +22,7 @@ import { RouterModule } from '@angular/router';
     ScrollToTopComponent,
     NgOptimizedImage,
     RouterModule,
-    CommonModule
+    CommonModule,
   ],
   templateUrl: './insights.component.html',
   styleUrl: './insights.component.css',
@@ -110,7 +110,7 @@ export class InsightsComponent implements OnInit {
       {
         name: 'description',
         content:
-          'Explore in-depth articles by our experts covering tax regulations, financial strategies, auditing practices, and more. Stay updated on the latest tax laws and trends shaping the financial landscape.',
+          'Discover expert insights into accounting, taxation, and financial consulting with ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants. Stay updated with industry trends and practical advice to navigate your business challenges.',
       },
 
       { name: 'robots', content: 'index, follow' },
@@ -125,17 +125,17 @@ export class InsightsComponent implements OnInit {
       {
         property: 'og:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Discover expert insights into accounting, taxation, and financial consulting with ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants. Stay updated with industry trends and practical advice to navigate your business challenges.',
       },
-      { property: 'og:url', content: 'https://www.atc.com.eg' },
+      { property: 'og:url', content: 'https://www.atc.com.eg/insights' },
       {
         property: 'og:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       { property: 'og:type', content: 'website' },
       {
         name: 'twitter:card',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
       {
         name: 'twitter:title',
@@ -144,11 +144,11 @@ export class InsightsComponent implements OnInit {
       {
         name: 'twitter:description',
         content:
-          'Explore tailored accounting and tax solutions for businesses in the MENA region.',
+          'Discover expert insights into accounting, taxation, and financial consulting with ATC Group - Ashraf Abdel Ghani Accountants and Tax Consultants. Stay updated with industry trends and practical advice to navigate your business challenges.',
       },
       {
         name: 'twitter:image',
-        content: 'atc_group_white2.jpg',
+        content: 'atc_group_white.jpg',
       },
     ]);
   }
