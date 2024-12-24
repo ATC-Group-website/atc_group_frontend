@@ -17,11 +17,13 @@
         </h2>
 
         @if (post.video_url === "") {
-          <img
-            [src]="post.images[0].path"
-            [alt]="post.title"
-            class="h-auto w-full"
-          />
+          <div class="mx-auto w-fit">
+            <img
+              [src]="post.images[0].path"
+              [alt]="post.title"
+              class="w-5xl mx-auto max-h-[550px] max-w-full object-cover"
+            />
+          </div>
         } @else {
           <div class="flex items-center justify-center">
             <!-- src="https://www.youtube.com/embed/KlC8oT2MjBk?si=9FZk_c5TAHb-Hl0N" -->
@@ -64,7 +66,7 @@
             </iframe>
           </div>
         } -->
-          <!-- for gallery images  -->
+        <!-- for gallery images  -->
         <!-- <app-gallery-images [images]="images"></app-gallery-images> -->
       }
     </div>
