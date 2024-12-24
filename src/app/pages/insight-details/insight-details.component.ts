@@ -13,6 +13,7 @@ import { PostsService } from '../../shared/services/posts.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
+import { GalleryImagesComponent } from './gallery-images/gallery-images.component';
 
 @Component({
   selector: 'app-insight-details',
@@ -23,6 +24,7 @@ import { Title, Meta } from '@angular/platform-browser';
     FooterComponent,
     ScrollToTopComponent,
     LoadingComponent,
+    GalleryImagesComponent,
   ],
   templateUrl: './insight-details.component.html',
   styleUrl: './insight-details.component.css',
@@ -37,9 +39,11 @@ export class InsightDetailsComponent implements OnInit {
   router = inject(Router);
   route = inject(ActivatedRoute);
   postsService = inject(PostsService);
-  des: any;
   title = inject(Title);
   meta = inject(Meta);
+  images: any[] = [];
+
+  embedUrl: SafeResourceUrl | null = null;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
     this.isBrowser = isPlatformBrowser(platformId);
@@ -52,7 +56,14 @@ export class InsightDetailsComponent implements OnInit {
         next: (res) => {
           this.post = res;
           this.newDescription = this.detectTextDirection(res.description || '');
-          this.des = this.truncateAndAlign(this.post.description || '');
+          const videoId = this.extractVideoId(res.video_url);
+          this.images = res.images;
+
+          if (videoId) {
+            const embedLink = `https://www.youtube.com/embed/${videoId}`;
+            this.embedUrl =
+              this.sanitizer.bypassSecurityTrustResourceUrl(embedLink);
+          }
 
           // Set the title dynamically
           this.title.setTitle(`${res.title} - ATC`);
@@ -93,23 +104,12 @@ export class InsightDetailsComponent implements OnInit {
     return this.sanitizer.bypassSecurityTrustHtml(html);
   }
 
-  // // Function to extract the video ID and sanitize the URL
-  // getYouTubeUrl(videoUrl: string) {
-  //   // Extract video ID from the YouTube URL (assuming URL format: https://www.youtube.com/watch?v=VIDEO_ID)
-  //   const urlParts = new URL(videoUrl);
-  //   const videoId = urlParts.searchParams.get('v'); // Extract the video ID
-
-  //   if (videoId) {
-  //     // Sanitize and create the embed URL
-  //     this.videoURL = this.sanitizer.bypassSecurityTrustResourceUrl(
-  //       `https://www.youtube.com/embed/${videoId}`,
-  //     );
-  //     console.log(this.videoURL);
-  //   } else {
-  //     console.error('Invalid YouTube URL');
-  //     console.log(this.videoURL);
-  //   }
-  // }
+  private extractVideoId(url: string): string | null {
+    const match = url.match(
+      /(?:https?:\/\/)?(?:www\.)?youtube\.com\/.*[?&]v=([^&]+)/,
+    );
+    return match ? match[1] : null;
+  }
 
   detectTextDirection(description: string): {
     text: SafeHtml;
@@ -138,33 +138,9 @@ export class InsightDetailsComponent implements OnInit {
     };
   }
 
-  truncateAndAlign(description: string): { text: SafeHtml; direction: string } {
-    if (!this.isBrowser) {
-      return {
-        text: this.sanitizer.bypassSecurityTrustHtml(''),
-        direction: 'ltr',
-      };
-    }
-
-    // Create a temporary element to parse and strip HTML tags
-    const tempDiv = document.createElement('div');
-    tempDiv.innerHTML = description;
-    const textContent = tempDiv.textContent || tempDiv.innerText || '';
-
-    // Truncate to the first 30 words
-    const words = textContent.trim().split(/[\t ]+/);
-    const truncatedText = words.slice(0, 700000).join(' ');
-    const finalText =
-      words.length > 700000 ? `${truncatedText}` : truncatedText;
-
-    // Detect text direction
-    const arabicRegex = /[\u0600-\u06FF]/;
-    const direction = arabicRegex.test(textContent) ? 'rtl' : 'ltr';
-
-    // Sanitize the result
-    return {
-      text: this.sanitizer.bypassSecurityTrustHtml(finalText),
-      direction,
-    };
+  // Function to detect direction based on language
+  getDirection(text: string): string {
+    const rtlPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/; // Arabic, Persian, and similar scripts
+    return rtlPattern.test(text) ? 'rtl' : 'ltr';
   }
 }

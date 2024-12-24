@@ -188,7 +188,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Moheb Nasry Khozam',
       title: 'Head of the Audit Sector',
-      imageUrl: 'about_us/our_team/moheb.JPG',
+      imageUrl: 'about_us/our_team/moheb.jpg',
     },
     {
       name: 'Mohamed Hassan',
@@ -198,7 +198,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Sameh Mahmoud Kamel',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/sameh_elmasry.JPG',
+      imageUrl: 'about_us/our_team/sameh_elmasry.jpg',
     },
     {
       name: 'Ahmed Ramadan',
@@ -218,7 +218,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Osama Abdel Menaem',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/osama_abdel_moneim.JPG',
+      imageUrl: 'about_us/our_team/osama_abdel_moneim.jpg',
     },
   ];
   cooprateTaxMembers: Member[] = [
@@ -280,7 +280,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Hassan Ibrahim El-Helw',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/hassan_elhelw.JPG',
+      imageUrl: 'about_us/our_team/hassan_elhelw.jpg',
     },
     {
       name: 'Abdel-Salam Anwar',
@@ -326,7 +326,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Alaa-Eldin El-Sayed',
       title: 'VAT Consultant',
-      imageUrl: 'about_us/our_team/alaa_elsayed.JPG',
+      imageUrl: 'about_us/our_team/alaa_elsayed.jpg',
     },
     {
       name: 'Ehab Helmy',
@@ -386,7 +386,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Gamal Hegazy',
       title: 'Partner of Bookeeping',
-      imageUrl: 'about_us/our_team/gamal_hegazy.JPG',
+      imageUrl: 'about_us/our_team/gamal_hegazy.jpg',
     },
     {
       name: 'Wael Saeed',
@@ -489,7 +489,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Farag Abdel Samea',
       title: 'Consultant',
-      imageUrl: 'about_us/our_team/farag.JPG',
+      imageUrl: 'about_us/our_team/farag.jpg',
     },
     {
       name: 'Dawlat Ali Morsy',

@@ -130,4 +130,9 @@ export class BlogsComponent implements OnInit {
     // Sanitize and return
     return this.sanitizer.bypassSecurityTrustHtml(finalText);
   }
+
+  getDirection(text: string): string {
+    const rtlPattern = /[\u0600-\u06FF\u0750-\u077F\u08A0-\u08FF]/; // Arabic, Persian, and similar scripts
+    return rtlPattern.test(text) ? 'rtl' : 'ltr';
+  }
 }

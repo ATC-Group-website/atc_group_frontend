@@ -91,6 +91,8 @@ export class AddNewPostComponent {
           this.selectedFileNames = [];
         },
         error: (err) => {
+          console.log(err);
+
           this.isLoading = false;
           if (err.error.message === 'Token has expired') {
             localStorage.removeItem('token');

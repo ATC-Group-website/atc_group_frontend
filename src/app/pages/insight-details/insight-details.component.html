@@ -8,35 +8,47 @@
           <app-loading></app-loading>
         </div>
       }
-      @if (!isLoading && post) {
+      @if (!isLoading) {
         <h2
           class="my-5 p-3 text-center text-2xl font-bold text-primary lg:text-4xl"
+          [attr.dir]="getDirection(post.title)"
         >
           {{ post.title }}
         </h2>
 
-        <img
-          [src]="post.images[0].path"
-          [alt]="post.title"
-          class="h-auto w-full"
-        />
-        <!-- <p
-          style="direction: rtl"
-          class="max-w-full overflow-hidden whitespace-pre-wrap break-words p-4 text-right text-sm leading-relaxed text-gray-700 md:text-base"
-          [innerHTML]="post.description | truncateHtml"
-        ></p> -->
-
+        @if (post.video_url === "") {
+          <img
+            [src]="post.images[0].path"
+            [alt]="post.title"
+            class="h-auto w-full"
+          />
+        } @else {
+          <div class="flex items-center justify-center">
+            <!-- src="https://www.youtube.com/embed/KlC8oT2MjBk?si=9FZk_c5TAHb-Hl0N" -->
+            <iframe
+              [src]="embedUrl"
+              width="1200"
+              height="700"
+              frameborder="0"
+              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            >
+            </iframe>
+          </div>
+        }
         <div
-          [innerHTML]="newDescription.text"
-          [style.direction]="newDescription.direction"
-          class="my-4 max-w-full break-words text-justify md:text-lg lg:my-0"
+          class="max-w-full whitespace-pre-wrap break-words p-4 text-sm leading-relaxed text-gray-700 md:text-base"
+          [innerHTML]="sanitizeHtml(post.description)"
+          [dir]="newDescription.direction"
         ></div>
-
-        <!-- <div
-          [innerHTML]="des.text"
-          [style.direction]="des.direction"
-          class="my-4 md:text-lg lg:my-0"
-        ></div> -->
+        <!-- last try  -->
+        <!-- <div class="max-w-full overflow-hidden">
+          <div
+            [innerHTML]="quillContent"
+            [style.direction]="newDescription.direction"
+            class="word-wrap break-words text-sm md:text-base lg:text-lg"
+          ></div>
+        </div> -->
 
         <!-- @if (post.video_url && videoURL) {
 
@@ -52,6 +64,8 @@
             </iframe>
           </div>
         } -->
+          <!-- for gallery images  -->
+        <!-- <app-gallery-images [images]="images"></app-gallery-images> -->
       }
     </div>
   </section>

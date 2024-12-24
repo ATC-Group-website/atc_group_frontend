@@ -41,13 +41,17 @@
                     [routerLink]="['/insights', blog.slug]"
                     target="_blank"
                     class="text-black no-underline hover:text-blue-500"
+                    [attr.dir]="getDirection(blog.title)"
                   >
                     {{ blog.title }}
                   </a></span
                 >
               </td>
               <td class="text-right">
-                <div [innerHTML]="getFirstTenWords(blog.description)"></div>
+                <div
+                  [innerHTML]="getFirstTenWords(blog.description)"
+                  [attr.dir]="getDirection(blog.title)"
+                ></div>
               </td>
               <td class="text-center">
                 <a

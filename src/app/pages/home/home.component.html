@@ -339,18 +339,18 @@
               </div>
               <div class="mt-auto flex justify-start">
                 <a
-                  class="w-fit rounded-xl bg-primary px-10 py-2 text-center text-xl text-white no-underline hover:bg-black"
+                  class="w-fit rounded-xl bg-primary px-10 py-2 text-center text-white no-underline hover:bg-black md:text-xl"
                   routerLink="insights/{{ post.slug }}"
                 >
                   Read More
                 </a>
               </div>
             </div>
-            <div class="hidden h-[280px] w-[300px] md:block">
+            <div class="hidden h-[300px] w-[350px] md:block">
               <img
                 [src]="post.images[0].path"
                 [alt]="post.title"
-                class="h-[280px] w-[300px] rounded-[4px] object-cover"
+                class="h-[300px] w-[350px] rounded-[4px] object-cover"
               />
             </div>
           </div>
