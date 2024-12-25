@@ -50,6 +50,13 @@ export class ServicesComponent implements OnInit {
           'Our dedicated team of experienced auditors undertake a meticulous review of your financial statements, ensuring both accuracy and compliance with stringent accounting standards and regulatory mandates.',
       },
       {
+        title: 'Accounting advisory',
+        link: '/services/accounting-advisory',
+        imageUrl: 'services_icons/accounting_advisory.png',
+        description:
+          'Expert solutions in transaction registration, legal compliance, financial support, and performance supervision to optimize your accounting operations.',
+      },
+      {
         title: 'Investment and companies incorporation',
         link: '/services/investments-and-company-incorporation',
         imageUrl: 'services_icons/investment.png',

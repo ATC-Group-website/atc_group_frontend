@@ -1,3 +1,4 @@
+import { AccountingAdvisoryComponent } from './pages/services/accounting-advisory/accounting-advisory.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
@@ -43,6 +44,14 @@ export const routes: Routes = [
       import('./pages/services/tax/tax.component').then(
         (mod) => mod.TaxComponent,
       ),
+  },
+  {
+    path: 'services/accounting-advisory',
+
+    loadComponent: () =>
+      import(
+        './pages/services/accounting-advisory/accounting-advisory.component'
+      ).then((mod) => mod.AccountingAdvisoryComponent),
   },
   {
     path: 'services/investments-and-company-incorporation',

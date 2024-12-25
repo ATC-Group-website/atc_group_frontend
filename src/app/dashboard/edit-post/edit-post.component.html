@@ -67,12 +67,22 @@
             </p-editor>
           </div>
           <div class="mb-6">
-            <label
-              class="mb-2 block font-bold text-gray-700"
-              for="youtube_video_link"
-            >
-              YouTube Url
-            </label>
+            <div class="mb-3 flex items-center gap-5">
+              <label
+                class="block font-bold text-gray-700"
+                for="youtube_video_link"
+              >
+                YouTube Url
+              </label>
+              <button
+                type="button"
+                (click)="openUploadVideo()"
+                class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
+              >
+                Or Upload Video
+              </button>
+            </div>
+
             <input
               type="text"
               id="youtube_video_link"
@@ -144,6 +154,70 @@
         </form>
       }
     </div>
+    <!-- <p-dialog
+      header="Upload Video"
+      [modal]="true"
+      [(visible)]="uploadVideoModal"
+      [closable]="true"
+      [draggable]="false"
+      [baseZIndex]="1000"
+      [style]="{ width: '700px' }"
+    >
+      <form (ngSubmit)="onUploadVideo(video)" #video="ngForm">
+        <div class="mb-4 flex items-center justify-between">
+          <label class="text-lg font-semibold" for="video">Upload Video</label>
+        </div>
+        <div class="mb-6">
+          <div class="relative">
+            <input
+              type="file"
+              id="video"
+              required
+              ngModel
+              #video="ngModel"
+              name="video"
+              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+              (change)="onVideoUpload($event)"
+            />
+            <div
+              class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+            >
+              <span class="flex-1 truncate text-gray-700">
+                <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
+                {{ videoFile?.name || "No file chosen" }}
+              </span>
+            </div>
+          </div>
+          <div *ngIf="video?.touched && video.invalid">
+            <small class="m-0 p-0 text-primary">Field is required</small>
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <div *ngIf="isUploading" class="flex justify-between">
+            <span>Uploading: {{ chunkIndex }} / {{ totalChunks }} chunks</span>
+            <progress [value]="progress" [max]="100"></progress>
+          </div>
+        </div>
+
+        <div class="flex justify-end">
+          <p-button
+            label="Upload"
+            class="outline-none focus:border-none focus:outline-none"
+            [loading]=""
+            [disabled]="video.invalid"
+            [style]="{
+              width: '100%',
+              backgroundColor: '#EB1F2F',
+              outline: 'none',
+              boxShadow: 'none',
+              border: 'none',
+            }"
+            type="submit"
+          />
+        </div>
+      </form>
+    </p-dialog> -->
     <p-dialog
       header="Change Image"
       [modal]="true"
@@ -195,7 +269,7 @@
           <p-button
             label="Update"
             class="outline-none focus:border-none focus:outline-none"
-            [loading]="isLoading"
+            [loading]="isUploadingVideo"
             [disabled]="updateImage.invalid"
             [style]="{
               width: '100%',

@@ -45,6 +45,11 @@ export class ServicesSliderComponent implements OnInit {
         imageUrl: 'services_icons/audit.png',
       },
       {
+        title: 'Accounting advisory',
+        link: '/services/accounting-advisory',
+        imageUrl: 'services_icons/accounting_advisory.png',
+      },
+      {
         title: 'Investment and companies incorporation',
         link: '/services/investments-and-company-incorporation',
         imageUrl: 'services_icons/investment.png',

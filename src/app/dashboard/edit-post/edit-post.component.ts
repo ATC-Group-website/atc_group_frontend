@@ -60,6 +60,8 @@ export class EditPostComponent implements OnInit {
 
   isModalOpen = false;
   GalleryModal = false;
+  uploadVideoModal = false;
+  isUploadingVideo: boolean = false;
 
   private messageService = inject(MessageService);
   private route = inject(ActivatedRoute);
@@ -132,7 +134,6 @@ export class EditPostComponent implements OnInit {
     if (this.editpostForm.valid) {
       const slug = this.route.snapshot.paramMap.get('slug');
       if (slug) {
-
         this.loading = true;
 
         const jobData = this.editpostForm.value;
@@ -317,6 +318,10 @@ export class EditPostComponent implements OnInit {
   // open gallery modal
   openGalleryModal(): void {
     this.GalleryModal = true;
+  }
+  // open gallery modal
+  openUploadVideo(): void {
+    this.uploadVideoModal = true;
   }
 
   getCategoryLabel(type: string): string {
