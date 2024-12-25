@@ -13,7 +13,6 @@ import { PostsService } from '../../shared/services/posts.service';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
 import { isPlatformBrowser } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
-import { GalleryImagesComponent } from './gallery-images/gallery-images.component';
 
 @Component({
   selector: 'app-insight-details',
@@ -24,7 +23,6 @@ import { GalleryImagesComponent } from './gallery-images/gallery-images.componen
     FooterComponent,
     ScrollToTopComponent,
     LoadingComponent,
-    GalleryImagesComponent,
   ],
   templateUrl: './insight-details.component.html',
   styleUrl: './insight-details.component.css',
