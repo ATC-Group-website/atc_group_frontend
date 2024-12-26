@@ -68,11 +68,19 @@ export class AdminDashboardService {
   }
 
   changePostImage(slug: string, imageData: object): Observable<any> {
-
     return this.http.post<any>(`${this.apiUrl}/images/post/${slug}`, imageData);
   }
 
   removeSingleImage(id: number): Observable<any> {
     return this.http.delete<any>(`${this.apiUrl}/images/${id}`);
+  }
+
+  sendEmails(emails: string[]): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(
+      `${this.apiUrl}/mail/send-greetings`,
+      {
+        emails,
+      },
+    );
   }
 }

@@ -10,6 +10,7 @@ export const adminTokenInterceptor: HttpInterceptorFn = (req, next) => {
     '/subscribers',
     '/employees',
     '/images',
+    '/mail',
   ];
   const platformId = inject(PLATFORM_ID);
 

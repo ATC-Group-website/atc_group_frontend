@@ -436,7 +436,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Noha Helmy ',
       title: 'Senior Associate Manager(international communication)',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/noha.jpg',
     },
   ];
   investmentAndCompanyIncorporationMembers: Member[] = [
@@ -494,7 +494,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Dawlat Ali Morsy',
       title: 'Consultant',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/dawlat.jpg',
     },
   ];
   insuranceMembers: Member[] = [
