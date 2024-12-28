@@ -127,7 +127,7 @@ export class AboutUsComponent implements OnInit {
         {
           name: 'Mayar Ahmed',
           title: 'Business Development Executive',
-          imageUrl: 'about_us/mayar_ahmed.jpg',
+          imageUrl: 'about_us/mayar.jpg',
         },
       ];
 
@@ -189,7 +189,6 @@ export class AboutUsComponent implements OnInit {
         position: formData.form.controls['position'].value,
         phone_number: formData.form.controls['phone_number'].value,
       };
-
 
       this.contactUsService.contact_US(Data).subscribe({
         next: (response) => {

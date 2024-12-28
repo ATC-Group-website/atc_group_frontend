@@ -49,7 +49,7 @@
         >
           @for (member of topManagement | slice: 0 : 2; track $index) {
             <div
-              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -72,7 +72,7 @@
         >
           @for (member of topManagement | slice: 2 : 5; track $index) {
             <div
-              class="relative left-0 top-0 mx-auto h-[400px] max-w-[300px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -98,7 +98,7 @@
         >
           @for (member of highBoardMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -125,7 +125,7 @@
         >
           @for (member of branchManagers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -152,7 +152,7 @@
         >
           @for (member of cooprateTaxMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -179,7 +179,7 @@
         >
           @for (member of vatMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -206,7 +206,7 @@
         >
           @for (member of salaryAndWagesTaxMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -233,7 +233,7 @@
         >
           @for (member of internationalTaxationMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -261,7 +261,7 @@
         >
           @for (member of stampTaxMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -288,7 +288,7 @@
         >
           @for (member of withholdingTaxDepartment; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -315,7 +315,7 @@
         >
           @for (member of auditMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -342,7 +342,7 @@
         >
           @for (member of financeAndBookkeepingMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -374,7 +374,7 @@
             track $index
           ) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -401,7 +401,7 @@
         >
           @for (member of insuranceMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -428,7 +428,7 @@
         >
           @for (member of legalAffairsMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -456,7 +456,7 @@
         >
           @for (member of translationMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -483,7 +483,7 @@
         >
           @for (member of developmentMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -510,7 +510,7 @@
         >
           @for (member of proTrainingMembers; track $index) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -542,7 +542,7 @@
             track $index
           ) {
             <div
-              class="relative left-0 top-0 h-[400px] rounded-lg border-2 border-solid border-primary shadow-lg"
+              class="relative left-0 top-0 mx-auto h-[400px] w-[300px] max-w-full rounded-lg border-2 border-solid border-primary shadow-lg"
             >
               <img
                 [src]="member.imageUrl"
@@ -564,6 +564,5 @@
       </div>
     </div>
   </section>
-  <app-scroll-to-top></app-scroll-to-top>
 </main>
 <app-footer></app-footer>

@@ -58,7 +58,7 @@ export class SendEmailsComponent {
           // this.emailsForm.reset();
         },
         error: (error) => {
-          // console.error(error);
+          console.error(error);
           this.messageService.add({
             severity: 'error',
             summary: 'Error',

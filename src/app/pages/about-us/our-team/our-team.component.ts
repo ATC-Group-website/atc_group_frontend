@@ -14,13 +14,7 @@ interface Member {
 @Component({
   selector: 'app-our-team',
   standalone: true,
-  imports: [
-    TopBarComponent,
-    NavBarComponent,
-    FooterComponent,
-    CommonModule,
-    ScrollToTopComponent,
-  ],
+  imports: [TopBarComponent, NavBarComponent, FooterComponent, CommonModule],
   templateUrl: './our-team.component.html',
   styleUrl: './our-team.component.css',
 })
@@ -104,7 +98,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Mayar Ahmed',
       title: 'Business Development Executive',
-      imageUrl: 'about_us/mayar_ahmed.jpg',
+      imageUrl: 'about_us/mayar.jpg',
     },
   ];
   highBoardMembers: Member[] = [
@@ -461,7 +455,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Mayar Ahmed',
       title: 'Business Development Executive',
-      imageUrl: 'about_us/mayar_ahmed.jpg',
+      imageUrl: 'about_us/mayar.jpg',
     },
   ];
   proTrainingMembers: Member[] = [
