@@ -3,7 +3,6 @@ import { TopBarComponent } from '../../../shared/components/top-bar/top-bar.comp
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { CommonModule } from '@angular/common';
-import { ScrollToTopComponent } from '../../../shared/components/scroll-to-top/scroll-to-top.component';
 import { Title, Meta } from '@angular/platform-browser';
 interface Member {
   name: string;
@@ -215,7 +214,7 @@ export class OurTeamComponent implements OnInit {
       imageUrl: 'about_us/our_team/osama_abdel_moneim.jpg',
     },
   ];
-  cooprateTaxMembers: Member[] = [
+  corporateTaxMembers: Member[] = [
     {
       name: 'Adel Bakry',
       title: 'Head of Corporate Tax Sector',

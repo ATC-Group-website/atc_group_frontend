@@ -1,19 +1,13 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { TopBarComponent } from '../../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
-import { ScrollToTopComponent } from '../../../shared/components/scroll-to-top/scroll-to-top.component';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-transfer-pricing',
   standalone: true,
-  imports: [
-    TopBarComponent,
-    NavBarComponent,
-    ScrollToTopComponent,
-    FooterComponent,
-  ],
+  imports: [TopBarComponent, NavBarComponent, FooterComponent],
   templateUrl: './transfer-pricing.component.html',
   styleUrl: './transfer-pricing.component.css',
 })

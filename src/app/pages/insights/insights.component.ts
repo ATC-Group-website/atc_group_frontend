@@ -4,7 +4,6 @@ import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.compone
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { PaginatorModule, PaginatorState } from 'primeng/paginator';
 import { SkeletonModule } from 'primeng/skeleton';
-import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { PostsService } from '../../shared/services/posts.service';
@@ -19,7 +18,6 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     PaginatorModule,
     SkeletonModule,
-    ScrollToTopComponent,
     NgOptimizedImage,
     RouterModule,
     CommonModule,

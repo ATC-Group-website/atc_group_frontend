@@ -1,61 +1,58 @@
-<app-nav></app-nav>
-<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
-  <section class="md:p-5 lg:ml-52">
-    <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
-      <div class="card">
-        <p-table
-          [value]="subscribers"
-          [paginator]="true"
-          [rows]="rows"
-          [loading]="loading"
-          [first]="first"
-          [totalRecords]="totalSubscribers"
-          [showCurrentPageReport]="true"
-          [tableStyle]="{ 'min-width': '80rem' }"
-          [rowsPerPageOptions]="[10, 20, 30, 40, 50]"
-          (onPage)="pageChange($event)"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Emails"
-        >
-          <ng-template pTemplate="caption">
-            <div>
-              <h2 class="text-center">News-letter Subscribed Emails</h2>
-            </div>
-          </ng-template>
+<main style="min-height: calc(100vh - 112px)">
+  <div class="min-h-[83vh] rounded-lg bg-white p-8">
+    <div class="card">
+      <p-table
+        [value]="subscribers"
+        [paginator]="true"
+        [rows]="rows"
+        [loading]="loading"
+        [first]="first"
+        [totalRecords]="totalSubscribers"
+        [showCurrentPageReport]="true"
+        [tableStyle]="{ 'min-width': '50rem' }"
+        [rowsPerPageOptions]="[10, 20, 30, 40, 50]"
+        (onPage)="pageChange($event)"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} Emails"
+      >
+        <ng-template pTemplate="caption">
+          <div>
+            <h2 class="text-center">News-letter Subscribed Emails</h2>
+          </div>
+        </ng-template>
 
-          <ng-template pTemplate="header">
-            <tr class="text-center">
-              <th style="width: 2rem" class="text-center">#</th>
-              <th style="width: 40%" class="text-center">Email</th>
-              <th style="width: 30%" class="text-center">Subscribed in</th>
-              <th style="width: 20%" class="text-center">Delete</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-subscriber>
-            <tr>
-              <td class="text-center">{{ subscriber.id }}</td>
+        <ng-template pTemplate="header">
+          <tr class="text-center">
+            <th style="width: 2rem" class="text-center">#</th>
+            <th style="width: 40%" class="text-center">Email</th>
+            <th style="width: 30%" class="text-center">Subscribed in</th>
+            <th style="width: 20%" class="text-center">Delete</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-subscriber>
+          <tr>
+            <td class="text-center">{{ subscriber.id }}</td>
 
-              <td class="text-center">
-                {{ subscriber.email }}
-              </td>
-              <td class="text-center">
-                {{ subscriber.created_at | customDate }}
-              </td>
+            <td class="text-center">
+              {{ subscriber.email }}
+            </td>
+            <td class="text-center">
+              {{ subscriber.created_at | customDate }}
+            </td>
 
-              <td class="flex items-center justify-center">
-                <p-button
-                  (onClick)="confirmDelete($event, subscriber.email)"
-                  severity="danger"
-                  icon="fa-solid fa-trash text-xl text-primary hover:text-red-700"
-                  link="true"
-                  class="p-0"
-                />
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-        <p-toast />
-        <p-confirmDialog />
-      </div>
+            <td class="flex items-center justify-center">
+              <p-button
+                (onClick)="confirmDelete($event, subscriber.email)"
+                severity="danger"
+                icon="fa-solid fa-trash text-xl text-primary hover:text-red-700"
+                link="true"
+                class="p-0"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-toast />
+      <p-confirmDialog />
     </div>
-  </section>
+  </div>
 </main>

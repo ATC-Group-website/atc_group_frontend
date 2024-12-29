@@ -1,34 +1,32 @@
-<app-nav></app-nav>
-<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
-  <section class="md:p-5 lg:ml-52">
-    <div class="min-h-screen rounded-lg bg-white p-8 shadow-lg">
-      <form [formGroup]="emailsForm" (ngSubmit)="onSubmit()">
-        <div class="card p-fluid mb-10">
-          <p-chips formControlName="emails" />
-        </div>
-        <div class="mb-5">
-          <p-checkbox
-            binary="true"
-            label="Unlock Send Button"
-            formControlName="enableButton"
-          ></p-checkbox>
-        </div>
-        <button
-          pButton
-          label="Send"
-          class="p-button-success"
-          type="submit"
-          [loading]="isLoading"
-          [disabled]="!emailsForm.controls['enableButton'].value"
-          [style]="{
-            width: '100%',
-            outline: 'none',
-            boxShadow: 'none',
-            border: 'none',
-          }"
-        ></button>
-      </form>
-    </div>
-    <p-toast></p-toast>
-  </section>
+<main style="min-height: calc(100vh - 112px)">
+  <div class="min-h-[83vh] rounded-lg bg-white p-8">
+    <h1 class="mb-10 text-center">Send Happy New Year Emails</h1>
+    <form [formGroup]="emailsForm" (ngSubmit)="onSubmit()">
+      <div class="card p-fluid mb-10">
+        <p-chips formControlName="emails" />
+      </div>
+      <div class="mb-5">
+        <p-checkbox
+          binary="true"
+          label="Unlock Send Button"
+          formControlName="enableButton"
+        ></p-checkbox>
+      </div>
+      <button
+        pButton
+        label="Send"
+        class="p-button-success"
+        type="submit"
+        [loading]="isLoading"
+        [disabled]="!emailsForm.controls['enableButton'].value"
+        [style]="{
+          width: '100%',
+          outline: 'none',
+          boxShadow: 'none',
+          border: 'none',
+        }"
+      ></button>
+    </form>
+  </div>
+  <p-toast></p-toast>
 </main>

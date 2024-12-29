@@ -1,94 +1,91 @@
-<app-nav></app-nav>
-<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
-  <section class="md:p-5 lg:ml-52">
-    <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
-      <div class="card">
-        <p-table
-          [value]="blogs"
-          [lazy]="true"
-          [paginator]="true"
-          [rows]="postsPerPage"
-          [loading]="loading"
-          [first]="0"
-          [totalRecords]="totalBlogs"
-          [showCurrentPageReport]="true"
-          (onLazyLoad)="onPageChange($event)"
-          currentPageReportTemplate="Showing {first} to {last} of {totalRecords} blogs"
-        >
-          <ng-template pTemplate="caption">
-            <div>
-              <h2 class="text-center">ATC Group Blogs</h2>
-            </div>
-          </ng-template>
+<main style="min-height: calc(100vh - 112px)">
+  <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
+    <div class="card">
+      <p-table
+        [value]="blogs"
+        [lazy]="true"
+        [paginator]="true"
+        [rows]="postsPerPage"
+        [loading]="loading"
+        [first]="0"
+        [totalRecords]="totalBlogs"
+        [showCurrentPageReport]="true"
+        (onLazyLoad)="onPageChange($event)"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} blogs"
+      >
+        <ng-template pTemplate="caption">
+          <div>
+            <h2 class="text-center">ATC Group Blogs</h2>
+          </div>
+        </ng-template>
 
-          <ng-template pTemplate="header">
-            <tr class="text-center">
-              <th style="width: 2rem" class="text-center">#</th>
-              <th style="width: 30%" class="text-center">Title</th>
-              <th style="width: 40%" class="text-center">Description</th>
-              <th style="width: 13%" class="text-center">video url</th>
-              <th style="width: 10%" class="text-center">Created in</th>
-              <th class="text-center">Edit</th>
-              <th class="text-center">Delete</th>
-            </tr>
-          </ng-template>
-          <ng-template pTemplate="body" let-blog>
-            <tr>
-              <td>{{ blog.id }}</td>
-              <td class="text-right">
-                <span pTooltip="View post" tooltipPosition="bottom">
-                  <a
-                    [routerLink]="['/insights', blog.slug]"
-                    target="_blank"
-                    class="text-black no-underline hover:text-blue-500"
-                    [attr.dir]="getDirection(blog.title)"
-                  >
-                    {{ blog.title }}
-                  </a></span
-                >
-              </td>
-              <td class="text-right">
-                <div
-                  [innerHTML]="getFirstTenWords(blog.description)"
-                  [attr.dir]="getDirection(blog.title)"
-                ></div>
-              </td>
-              <td class="text-center">
+        <ng-template pTemplate="header">
+          <tr class="text-center">
+            <th style="width: 2rem" class="text-center">#</th>
+            <th style="width: 30%" class="text-center">Title</th>
+            <th style="width: 40%" class="text-center">Description</th>
+            <th style="width: 13%" class="text-center">video url</th>
+            <th style="width: 10%" class="text-center">Created in</th>
+            <th class="text-center">Edit</th>
+            <th class="text-center">Delete</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-blog>
+          <tr>
+            <td>{{ blog.id }}</td>
+            <td class="text-right">
+              <span pTooltip="View post" tooltipPosition="bottom">
                 <a
-                  [href]="blog.video_url"
+                  [routerLink]="['/insights', blog.slug]"
                   target="_blank"
-                  class="text-black no-underline hover:text-blue-500 hover:underline"
-                  >{{ blog.video_url }}
-                </a>
-                @if (!blog.video_url) {
-                  <span class="text-gray-500"> No video URL </span>
-                }
-              </td>
-              <td class="text-center">
-                {{ blog.created_at | customDate }}
-              </td>
-              <td class="text-center">
-                <a [routerLink]="['/admin/edit-post/', blog.slug]" class="p-0">
-                  <i
-                    class="pi pi-pen-to-square text-2xl text-blue-500 no-underline hover:text-blue-800"
-                  ></i
-                ></a>
-              </td>
-              <td>
-                <p-button
-                  (onClick)="confirmDelete($event, blog.slug)"
-                  severity="danger"
-                  icon="fa-solid fa-trash text-2xl text-primary hover:text-red-800"
-                  link="true"
-                  class="p-0"
-                />
-              </td>
-            </tr>
-          </ng-template>
-        </p-table>
-        <p-toast />
-        <p-confirmDialog />
-      </div>
+                  class="text-black no-underline hover:text-blue-500"
+                  [attr.dir]="getDirection(blog.title)"
+                >
+                  {{ blog.title }}
+                </a></span
+              >
+            </td>
+            <td class="text-right">
+              <div
+                [innerHTML]="getFirstTenWords(blog.description)"
+                [attr.dir]="getDirection(blog.title)"
+              ></div>
+            </td>
+            <td class="text-center">
+              <a
+                [href]="blog.video_url"
+                target="_blank"
+                class="text-black no-underline hover:text-blue-500 hover:underline"
+                >{{ blog.video_url }}
+              </a>
+              @if (!blog.video_url) {
+                <span class="text-gray-500"> No video URL </span>
+              }
+            </td>
+            <td class="text-center">
+              {{ blog.created_at | customDate }}
+            </td>
+            <td class="text-center">
+              <a [routerLink]="['/admin/edit-post/', blog.slug]" class="p-0">
+                <i
+                  class="pi pi-pen-to-square text-2xl text-blue-500 no-underline hover:text-blue-800"
+                ></i
+              ></a>
+            </td>
+            <td>
+              <p-button
+                (onClick)="confirmDelete($event, blog.slug)"
+                severity="danger"
+                icon="fa-solid fa-trash text-2xl text-primary hover:text-red-800"
+                link="true"
+                class="p-0"
+              />
+            </td>
+          </tr>
+        </ng-template>
+      </p-table>
+      <p-toast />
+      <p-confirmDialog />
     </div>
-  </section>
+  </div>
 </main>

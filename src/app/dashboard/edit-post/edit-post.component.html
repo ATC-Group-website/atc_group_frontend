@@ -1,160 +1,153 @@
-<app-nav></app-nav>
-<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
-  <section class="md:p-5 lg:ml-52">
-    <div
-      class="mx-auto min-h-[83vh] max-w-screen-xl rounded-lg bg-white p-8 shadow-lg"
-    >
-      <!-- edit post form -->
-      <h1 class="mb-6 text-2xl font-bold">Edit Post</h1>
-      @if (isLoading) {
-        <div class="flex min-h-[60vh] w-full items-center justify-center">
-          <app-loading></app-loading>
-        </div>
-      }
-      @if (!isLoading) {
-        <form (ngSubmit)="onUpdatePost()" [formGroup]="editpostForm">
-          <!-- Title Input -->
-          <div class="mb-5">
-            <label
-              class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
-              for="title"
-            >
-              Title
-            </label>
-            <input
-              type="text"
-              id="title"
-              class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
-              placeholder="Enter post title"
-              formControlName="title"
-              pInputText
-              [ngClass]="{
-                'text-right;': isArabic(post.title),
-                'text-left': !isArabic(post.title),
-              }"
-            />
-          </div>
-          <!-- Category Input -->
-          <div class="mb-5">
-            <label
-              class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
-              for="category"
-            >
-              Category
-            </label>
-            <input
-              type="text"
-              id="type"
-              class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg text-black shadow-sm"
-              formControlName="type"
-              pInputText
-            />
-          </div>
-          <div class="mb-4">
-            <label
-              class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
-              for="description"
-            >
-              Description
-            </label>
-            <p-editor
-              [style]="{
-                height: '600px',
-                fontSize: '16px',
-              }"
-              formControlName="description"
-            >
-            </p-editor>
-          </div>
-          <div class="mb-6">
-            <div class="mb-3 flex items-center gap-5">
-              <label
-                class="block font-bold text-gray-700"
-                for="youtube_video_link"
-              >
-                YouTube Url
-              </label>
-              <button
-                type="button"
-                (click)="openUploadVideo()"
-                class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
-              >
-                Or Upload Video
-              </button>
-            </div>
-
-            <input
-              type="text"
-              id="youtube_video_link"
-              class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
-              pInputText
-              formControlName="video_url"
-              placeholder="No video URL	"
-            />
-          </div>
-          <div class="mb-4">
-            <div class="mb-3 flex items-center gap-5">
-              <p class="block text-xl font-bold text-gray-700">Main Image</p>
-              <button
-                type="button"
-                (click)="openModal()"
-                class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
-              >
-                Change Image
-              </button>
-            </div>
-            <img
-              [src]="main_image"
-              [alt]="[post.title]"
-              class="max-h-[500px] w-full object-cover lg:w-1/2"
-            />
-          </div>
-          <div class="mb-6 mt-5">
-            <div class="mb-4">
-              <div class="mb-3 flex items-center gap-5">
-                <p class="block text-xl font-bold text-gray-700">
-                  Gallery Images
-                </p>
-                <button
-                  type="button"
-                  class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
-                  (click)="openGalleryModal()"
-                >
-                  Modify
-                </button>
-              </div>
-            </div>
-            <div class="grid-cols1 grid gap-6 md:grid-cols-2">
-              @for (gallery_image of gallery_images; track $index) {
-                <img
-                  [src]="gallery_image.path"
-                  [alt]="gallery_image.title"
-                  class="h-[400px] w-full object-cover"
-                />
-              }
-            </div>
-          </div>
-
-          <div>
-            <button
-              pButton
-              label="Update Post"
-              class="p-button-success"
-              type="submit"
-              [loading]="loading"
-              [style]="{
-                width: '100%',
-                outline: 'none',
-                boxShadow: 'none',
-                border: 'none',
-              }"
-              [disabled]="editpostForm.invalid"
-            ></button>
-          </div>
-        </form>
-      }
+<div
+  class="mx-auto max-w-screen-xl rounded-lg bg-white p-8"
+  style="min-height: calc(100vh - 112px)"
+>
+  <!-- edit post form -->
+  <h1 class="mb-6 text-2xl font-bold">Edit Post</h1>
+  @if (isLoading) {
+    <div class="flex min-h-[60vh] w-full items-center justify-center">
+      <app-loading></app-loading>
     </div>
-    <!-- <p-dialog
+  }
+  @if (!isLoading) {
+    <form (ngSubmit)="onUpdatePost()" [formGroup]="editpostForm">
+      <!-- Title Input -->
+      <div class="mb-5">
+        <label
+          class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
+          for="title"
+        >
+          Title
+        </label>
+        <input
+          type="text"
+          id="title"
+          class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
+          placeholder="Enter post title"
+          formControlName="title"
+          pInputText
+          [ngClass]="{
+            'text-right': isArabic(editpostForm.get('title')?.value),
+            'text-left': !isArabic(editpostForm.get('title')?.value),
+          }"
+        />
+      </div>
+      <!-- Category Input -->
+      <div class="mb-5">
+        <label
+          class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
+          for="category"
+        >
+          Category
+        </label>
+        <input
+          type="text"
+          id="type"
+          class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg text-black shadow-sm"
+          formControlName="type"
+          pInputText
+        />
+      </div>
+      <div class="mb-4">
+        <label
+          class="mb-2 block font-bold text-gray-700 after:text-red-500 after:content-['*']"
+          for="description"
+        >
+          Description
+        </label>
+        <p-editor
+          [style]="{
+            height: '600px',
+            fontSize: '16px',
+          }"
+          formControlName="description"
+        >
+        </p-editor>
+      </div>
+      <div class="mb-6">
+        <div class="mb-3 flex items-center gap-5">
+          <label class="block font-bold text-gray-700" for="youtube_video_link">
+            YouTube Url
+          </label>
+          <button
+            type="button"
+            (click)="openUploadVideo()"
+            class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
+          >
+            Or Upload Video
+          </button>
+        </div>
+
+        <input
+          type="text"
+          id="youtube_video_link"
+          class="w-full rounded-md border border-gray-300 bg-gray-50 px-3 py-2 text-lg shadow-sm"
+          pInputText
+          formControlName="video_url"
+          placeholder="No video URL	"
+        />
+      </div>
+      <div class="mb-4">
+        <div class="mb-3 flex items-center gap-5">
+          <p class="block text-xl font-bold text-gray-700">Main Image</p>
+          <button
+            type="button"
+            (click)="openModal()"
+            class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
+          >
+            Change Image
+          </button>
+        </div>
+        <img
+          [src]="main_image"
+          [alt]="[post.title]"
+          class="max-h-[500px] w-full object-cover lg:w-1/2"
+        />
+      </div>
+      <div class="mb-6 mt-5">
+        <div class="mb-4">
+          <div class="mb-3 flex items-center gap-5">
+            <p class="block text-xl font-bold text-gray-700">Gallery Images</p>
+            <button
+              type="button"
+              class="cursor-pointer rounded-md border-0 bg-blue-600 px-3 py-2 text-sm text-white outline-none"
+              (click)="openGalleryModal()"
+            >
+              Modify
+            </button>
+          </div>
+        </div>
+        <div class="grid-cols1 grid gap-6 md:grid-cols-2">
+          @for (gallery_image of gallery_images; track $index) {
+            <img
+              [src]="gallery_image.path"
+              [alt]="gallery_image.title"
+              class="h-[400px] w-full object-cover"
+            />
+          }
+        </div>
+      </div>
+
+      <div>
+        <button
+          pButton
+          label="Update Post"
+          class="p-button-success"
+          type="submit"
+          [loading]="loading"
+          [style]="{
+            width: '100%',
+            outline: 'none',
+            boxShadow: 'none',
+            border: 'none',
+          }"
+          [disabled]="editpostForm.invalid"
+        ></button>
+      </div>
+    </form>
+  }
+</div>
+<!-- <p-dialog
       header="Upload Video"
       [modal]="true"
       [(visible)]="uploadVideoModal"
@@ -218,164 +211,158 @@
         </div>
       </form>
     </p-dialog> -->
-    <p-dialog
-      header="Change Image"
-      [modal]="true"
-      [(visible)]="isModalOpen"
-      [closable]="true"
-      [draggable]="false"
-      [baseZIndex]="1000"
-      [style]="{ width: '700px' }"
-    >
-      <form (ngSubmit)="onUpdateImage(updateImage)" #updateImage="ngForm">
-        <div class="mb-4 flex items-center justify-between">
-          <label class="text-lg font-semibold" for="image"
-            >Upload New Image</label
-          >
-        </div>
-        <div class="mb-6">
-          <div class="relative">
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              required
-              ngModel
-              #image="ngModel"
-              name="image"
-              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-              (change)="onFileSelected($event)"
-            />
+<p-dialog
+  header="Change Image"
+  [modal]="true"
+  [(visible)]="isModalOpen"
+  [closable]="true"
+  [draggable]="false"
+  [baseZIndex]="1000"
+  [style]="{ width: '700px' }"
+>
+  <form (ngSubmit)="onUpdateImage(updateImage)" #updateImage="ngForm">
+    <div class="mb-4 flex items-center justify-between">
+      <label class="text-lg font-semibold" for="image">Upload New Image</label>
+    </div>
+    <div class="mb-6">
+      <div class="relative">
+        <input
+          type="file"
+          id="image"
+          accept="image/*"
+          required
+          ngModel
+          #image="ngModel"
+          name="image"
+          class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+          (change)="onFileSelected($event)"
+        />
 
-            <div
-              class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
-            >
-              <span class="flex-1 truncate text-gray-700">
-                <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
-                @if (filename) {
-                  {{ filename }}
-                } @else {
-                  No file choosen
-                }
-              </span>
-            </div>
-          </div>
-          @if (image.touched && image.invalid) {
-            <small class="m-0 p-0 text-primary">Field is required</small>
-          }
+        <div
+          class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+        >
+          <span class="flex-1 truncate text-gray-700">
+            <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
+            @if (filename) {
+              {{ filename }}
+            } @else {
+              No file choosen
+            }
+          </span>
         </div>
+      </div>
+      @if (image.touched && image.invalid) {
+        <small class="m-0 p-0 text-primary">Field is required</small>
+      }
+    </div>
 
-        <div class="flex justify-end">
-          <p-button
-            label="Update"
-            class="outline-none focus:border-none focus:outline-none"
-            [loading]="isUploadingVideo"
-            [disabled]="updateImage.invalid"
-            [style]="{
-              width: '100%',
-              backgroundColor: '#EB1F2F',
-              outline: 'none',
-              boxShadow: 'none',
-              border: 'none',
-            }"
-            type="submit"
+    <div class="flex justify-end">
+      <p-button
+        label="Update"
+        class="outline-none focus:border-none focus:outline-none"
+        [loading]="isUploadingVideo"
+        [disabled]="updateImage.invalid"
+        [style]="{
+          width: '100%',
+          backgroundColor: '#EB1F2F',
+          outline: 'none',
+          boxShadow: 'none',
+          border: 'none',
+        }"
+        type="submit"
+      />
+    </div>
+  </form>
+</p-dialog>
+<p-dialog
+  header="Update Gallery Images"
+  [modal]="true"
+  [(visible)]="GalleryModal"
+  [closable]="true"
+  [draggable]="false"
+  [baseZIndex]="1000"
+  [style]="{ width: '700px' }"
+>
+  <form (ngSubmit)="onUpdateGallery(updateGallery)" #updateGallery="ngForm">
+    <div>
+      @for (gallery_image of gallery_images; track $index) {
+        <div
+          class="mb-3 flex items-center justify-between gap-4 rounded-md border-2 border-black p-2"
+        >
+          <img
+            [src]="gallery_image.path"
+            [alt]="gallery_image.title"
+            class="h-[100px] w-[100px] object-cover"
           />
-        </div>
-      </form>
-    </p-dialog>
-    <p-dialog
-      header="Update Gallery Images"
-      [modal]="true"
-      [(visible)]="GalleryModal"
-      [closable]="true"
-      [draggable]="false"
-      [baseZIndex]="1000"
-      [style]="{ width: '700px' }"
-    >
-      <form (ngSubmit)="onUpdateGallery(updateGallery)" #updateGallery="ngForm">
-        <div>
-          @for (gallery_image of gallery_images; track $index) {
-            <div
-              class="mb-3 flex items-center justify-between gap-4 rounded-md border-2 border-black p-2"
-            >
-              <img
-                [src]="gallery_image.path"
-                [alt]="gallery_image.title"
-                class="h-[100px] w-[100px] object-cover"
-              />
-              <p>{{ gallery_image.title }}</p>
-              <p-button
-                label="Delete"
-                class="outline-none focus:border-none focus:outline-none"
-                [loading]="isLoading"
-                [style]="{
-                  backgroundColor: '#EB1F2F',
-                  outline: 'none',
-                  boxShadow: 'none',
-                  border: 'none',
-                }"
-                (click)="onDeleteGalleryImage(gallery_image.id)"
-              ></p-button>
-            </div>
-          }
-        </div>
-        <div class="mb-4 flex items-center justify-between">
-          <label class="text-lg font-semibold" for="image"
-            >Upload New Image</label
-          >
-        </div>
-
-        <div class="mb-6">
-          <div class="relative">
-            <input
-              type="file"
-              id="image"
-              accept="image/*"
-              required
-              ngModel
-              multiple
-              #image="ngModel"
-              name="image"
-              class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
-              (change)="onGalleryImagesSelected($event)"
-            />
-
-            <div
-              class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
-            >
-              <span class="flex-1 truncate text-gray-700">
-                <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
-                @if (selectedGalleryImages.length > 0) {
-                  {{ selectedGalleryImages.length }} files
-                } @else {
-                  No file choosen
-                }
-              </span>
-            </div>
-          </div>
-          @if (image.touched && image.invalid) {
-            <small class="m-0 p-0 text-primary">Field is required</small>
-          }
-        </div>
-
-        <div class="flex justify-end">
+          <p>{{ gallery_image.title }}</p>
           <p-button
-            label="Update"
+            label="Delete"
             class="outline-none focus:border-none focus:outline-none"
             [loading]="isLoading"
-            [disabled]="updateGallery.invalid"
             [style]="{
-              width: '100%',
               backgroundColor: '#EB1F2F',
               outline: 'none',
               boxShadow: 'none',
               border: 'none',
             }"
-            type="submit"
-          />
+            (click)="onDeleteGalleryImage(gallery_image.id)"
+          ></p-button>
         </div>
-      </form>
-    </p-dialog>
-  </section>
-  <p-toast></p-toast>
-</main>
+      }
+    </div>
+    <div class="mb-4 flex items-center justify-between">
+      <label class="text-lg font-semibold" for="image">Upload New Image</label>
+    </div>
+
+    <div class="mb-6">
+      <div class="relative">
+        <input
+          type="file"
+          id="image"
+          accept="image/*"
+          required
+          ngModel
+          multiple
+          #image="ngModel"
+          name="image"
+          class="absolute inset-0 h-full w-full cursor-pointer opacity-0"
+          (change)="onGalleryImagesSelected($event)"
+        />
+
+        <div
+          class="flex items-center rounded-md border border-gray-300 bg-[#F9FAFB] p-3 transition-colors hover:border-blue-500"
+        >
+          <span class="flex-1 truncate text-gray-700">
+            <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
+            @if (selectedGalleryImages.length > 0) {
+              {{ selectedGalleryImages.length }} files
+            } @else {
+              No file choosen
+            }
+          </span>
+        </div>
+      </div>
+      @if (image.touched && image.invalid) {
+        <small class="m-0 p-0 text-primary">Field is required</small>
+      }
+    </div>
+
+    <div class="flex justify-end">
+      <p-button
+        label="Update"
+        class="outline-none focus:border-none focus:outline-none"
+        [loading]="isLoading"
+        [disabled]="updateGallery.invalid"
+        [style]="{
+          width: '100%',
+          backgroundColor: '#EB1F2F',
+          outline: 'none',
+          boxShadow: 'none',
+          border: 'none',
+        }"
+        type="submit"
+      />
+    </div>
+  </form>
+</p-dialog>
+<p-toast></p-toast>

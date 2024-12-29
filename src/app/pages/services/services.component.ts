@@ -3,7 +3,6 @@ import { TopBarComponent } from '../../shared/components/top-bar/top-bar.compone
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { RouterModule } from '@angular/router';
-import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { NgOptimizedImage } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 interface Service {
@@ -20,7 +19,6 @@ interface Service {
     NavBarComponent,
     FooterComponent,
     RouterModule,
-    ScrollToTopComponent,
     NgOptimizedImage,
   ],
   templateUrl: './services.component.html',

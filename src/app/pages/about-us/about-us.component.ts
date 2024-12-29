@@ -11,7 +11,6 @@ import { TabsComponent } from './tabs/tabs.component';
 import { RouterModule } from '@angular/router';
 import { DialogModule } from 'primeng/dialog';
 import { CarouselModule } from 'primeng/carousel';
-import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { NgForm, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
@@ -41,7 +40,6 @@ interface ResponsiveOptions {
     RouterModule,
     TabsComponent,
     CarouselModule,
-    ScrollToTopComponent,
     DialogModule,
     ButtonModule,
     FormsModule,

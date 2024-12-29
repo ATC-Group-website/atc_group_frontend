@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NavComponent } from '../nav/nav.component';
 import { AdminDashboardService } from '../admin-dashboard.service';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -12,7 +11,6 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   selector: 'app-emails',
   standalone: true,
   imports: [
-    NavComponent,
     TableModule,
     ButtonModule,
     ToastModule,

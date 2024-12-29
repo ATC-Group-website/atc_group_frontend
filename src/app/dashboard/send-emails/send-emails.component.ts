@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { NavComponent } from '../nav/nav.component';
 import {
   FormControl,
   FormGroup,
@@ -19,7 +18,6 @@ import { ToastModule } from 'primeng/toast';
   imports: [
     FormsModule,
     ChipsModule,
-    NavComponent,
     ButtonModule,
     ReactiveFormsModule,
     ToastModule,

@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -16,7 +15,6 @@ import { CommonModule } from '@angular/common';
   selector: 'app-contact-us',
   standalone: true,
   imports: [
-    ScrollToTopComponent,
     TopBarComponent,
     NavBarComponent,
     FooterComponent,

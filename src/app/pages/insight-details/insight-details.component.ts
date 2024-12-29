@@ -2,7 +2,6 @@ import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import {
   DomSanitizer,
   SafeHtml,
@@ -21,7 +20,6 @@ import { Title, Meta } from '@angular/platform-browser';
     NavBarComponent,
     TopBarComponent,
     FooterComponent,
-    ScrollToTopComponent,
     LoadingComponent,
   ],
   templateUrl: './insight-details.component.html',

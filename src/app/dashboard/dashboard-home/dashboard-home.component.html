@@ -1,37 +1,28 @@
-<app-nav></app-nav>
-<main class="h-full min-h-[870px] flex-1 bg-gray-100 p-6">
-  <section class="md:p-5 lg:ml-52">
-    <div class="min-h-screen rounded-lg bg-white p-8 shadow-lg">
-      @if (loading) {
-        <app-loading></app-loading>
-      } @else if (!loading) {
-        <div class="grid grid-cols-4 gap-20">
-          <div
-            class="w-fit rounded-lg border border-solid border-gray-200 bg-gray-50 p-5 shadow-md transition duration-300 hover:scale-105"
-          >
-            <h2 class="mt-0">Posts Count:</h2>
-            <div class="flex items-center justify-start">
-              <p-chart
-                type="pie"
-                [data]="data"
-                [options]="options"
-                [responsive]="true"
-                width="100%"
-                height="300px"
-              />
-            </div>
-          </div>
-
-          <div
-            class="flex flex-col justify-between gap-20 rounded-lg border border-solid border-gray-200 bg-gray-50 p-5 shadow-md transition duration-300 hover:scale-105"
-          >
-            <h2 class="mt-0">News-Letter Subscribers</h2>
-            <p class="text-lg font-normal text-gray-700">
-              {{ mailSubscribers }}
-            </p>
-          </div>
+<div style="min-height: calc(100vh - 112px)">
+  @if (loading) {
+    <app-loading></app-loading>
+  } @else if (!loading) {
+    <div class="flex flex-col gap-20 md:flex-row">
+      <div class="mx-auto w-fit rounded-lg bg-white p-5">
+        <h2 class="mt-0">Posts</h2>
+        <div class="mx-auto flex items-center justify-center">
+          <p-chart
+            type="doughnut"
+            [data]="data"
+            [options]="options"
+            maintainAspectRatio="false"
+            width="100%"
+          />
         </div>
-      }
+      </div>
+      <div
+        class="mx-auto flex w-fit flex-col justify-between gap-20 rounded-lg bg-white p-5"
+      >
+        <h2 class="mt-0">News-Letter Subscribers</h2>
+        <p class="text-lg font-normal text-gray-700">
+          {{ mailSubscribers }}
+        </p>
+      </div>
     </div>
-  </section>
-</main>
+  }
+</div>

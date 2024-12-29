@@ -1,7 +1,6 @@
 import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
 import { TopBarComponent } from '../../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
-import { ScrollToTopComponent } from '../../../shared/components/scroll-to-top/scroll-to-top.component';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
@@ -13,7 +12,6 @@ import { Title, Meta } from '@angular/platform-browser';
   imports: [
     TopBarComponent,
     NavBarComponent,
-    ScrollToTopComponent,
     FooterComponent,
     ButtonModule,
     CommonModule,

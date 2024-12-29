@@ -1,4 +1,3 @@
-import { AccountingAdvisoryComponent } from './pages/services/accounting-advisory/accounting-advisory.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
@@ -12,6 +11,7 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { adminGuard } from './dashboard/admin.guard';
 import { InsightDetailsComponent } from './pages/insight-details/insight-details.component';
 // import { TestComponent } from './shared/components/test/test.component';
+import { LayoutComponent } from './dashboard/layout/layout.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -19,6 +19,14 @@ export const routes: Routes = [
     path: 'about-us',
     component: AboutUsComponent,
   },
+  { path: 'insights', component: InsightsComponent },
+  { path: 'insights/:slug', component: InsightDetailsComponent },
+  { path: 'pro-training', component: ProTrainingComponent },
+  { path: 'careers', component: CareersComponent },
+  { path: 'locations', component: LocationsComponent },
+  { path: 'contact-us', component: ContactUsComponent },
+  { path: 'services', component: ServicesComponent },
+  // { path: 'test', component: TestComponent },
   {
     path: 'our-team',
 
@@ -27,8 +35,7 @@ export const routes: Routes = [
         (mod) => mod.OurTeamComponent,
       ),
   },
-  { path: 'services', component: ServicesComponent },
-  // { path: 'test', component: TestComponent },
+
   {
     path: 'services/audit',
 
@@ -101,31 +108,18 @@ export const routes: Routes = [
         './pages/services/transfer-pricing/transfer-pricing.component'
       ).then((mod) => mod.TransferPricingComponent),
   },
-  { path: 'insights', component: InsightsComponent },
-  { path: 'insights/:slug', component: InsightDetailsComponent },
-  { path: 'pro-training', component: ProTrainingComponent },
-  { path: 'careers', component: CareersComponent },
-  { path: 'locations', component: LocationsComponent },
-  // {
-  //   path: 'locations',
-
-  //   loadComponent: () =>
-  //     import('./pages/locations/locations.component').then(
-  //       (mod) => mod.LocationsComponent,
-  //     ),
-  // },
-  { path: 'contact-us', component: ContactUsComponent },
-
+  {
+    path: 'admin/login',
+    loadComponent: () =>
+      import('./dashboard/login/login.component').then(
+        (mod) => mod.LoginComponent,
+      ),
+  },
   {
     path: 'admin',
+    component: LayoutComponent,
     children: [
-      {
-        path: 'login',
-        loadComponent: () =>
-          import('./dashboard/login/login.component').then(
-            (mod) => mod.LoginComponent,
-          ),
-      },
+      { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       {
         path: 'dashboard',
         canActivate: [adminGuard],

@@ -7,7 +7,6 @@ import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import { InputTextModule } from 'primeng/inputtext';
-import { NavComponent } from '../nav/nav.component';
 import { AdminDashboardService } from '../admin-dashboard.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Post } from '../interface';
@@ -24,7 +23,6 @@ import { CustomDatePipe } from '../../shared/pipes/custom-date.pipe';
     ToastModule,
     RouterModule,
     InputTextModule,
-    NavComponent,
     CustomDatePipe,
   ],
   providers: [ConfirmationService, MessageService],

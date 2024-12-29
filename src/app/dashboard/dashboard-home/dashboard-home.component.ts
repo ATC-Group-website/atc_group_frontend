@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NavComponent } from '../nav/nav.component';
 import { AdminDashboardService } from '../admin-dashboard.service';
 import { ChartModule } from 'primeng/chart';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
@@ -7,7 +6,7 @@ import { LoadingComponent } from '../../shared/components/loading/loading.compon
 @Component({
   selector: 'app-dashboard-home',
   standalone: true,
-  imports: [NavComponent, ChartModule, LoadingComponent],
+  imports: [ChartModule, LoadingComponent],
   templateUrl: './dashboard-home.component.html',
   styleUrl: './dashboard-home.component.css',
 })

@@ -19,7 +19,6 @@ import { ServicesSliderComponent } from './services-slider/services-slider.compo
 import { RouterModule } from '@angular/router';
 import { CountUpModule } from 'ngx-countup';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
-import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { DomSanitizer, Meta, SafeHtml, Title } from '@angular/platform-browser';
 import { PostsService } from '../../shared/services/posts.service';
 import { LoadingCardComponent } from './loading-card/loading-card.component';
@@ -40,7 +39,6 @@ import { LandingCarouselComponent } from './landing-carousel/landing-carousel.co
     RouterModule,
     CountUpModule,
     FooterComponent,
-    ScrollToTopComponent,
     LoadingCardComponent,
     LandingCarouselComponent,
   ],

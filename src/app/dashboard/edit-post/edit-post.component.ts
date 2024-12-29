@@ -1,5 +1,4 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { NavComponent } from '../nav/nav.component';
 import { CommonModule } from '@angular/common';
 import {
   FormControl,
@@ -26,7 +25,6 @@ import { forkJoin } from 'rxjs';
   selector: 'app-edit-post',
   standalone: true,
   imports: [
-    NavComponent,
     CommonModule,
     FormsModule,
     InputTextModule,
@@ -126,8 +124,8 @@ export class EditPostComponent implements OnInit {
   }
   // Function to detect if the input is Arabic
   isArabic(text: string): boolean {
-    const arabicPattern = /[\u0600-\u06FF]/;
-    return arabicPattern.test(text);
+    const arabicRegex = /[\u0600-\u06FF]/;
+    return arabicRegex.test(text);
   }
 
   onUpdatePost() {

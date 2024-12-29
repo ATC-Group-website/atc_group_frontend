@@ -8,7 +8,6 @@ import { ButtonModule } from 'primeng/button';
 import { Router, RouterModule } from '@angular/router';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputTextModule } from 'primeng/inputtext';
-import { NavComponent } from '../nav/nav.component';
 
 @Component({
   selector: 'app-members',
@@ -22,7 +21,6 @@ import { NavComponent } from '../nav/nav.component';
     RouterModule,
     TooltipModule,
     InputTextModule,
-    NavComponent,
   ],
   providers: [ConfirmationService, MessageService],
   templateUrl: './members.component.html',

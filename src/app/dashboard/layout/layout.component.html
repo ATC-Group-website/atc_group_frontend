@@ -1,0 +1,204 @@
+<div class="flex h-full flex-col">
+  <div class="flex flex-1">
+    <!-- Sidebar -->
+    <div
+      [ngClass]="{
+        'hidden lg:block lg:w-64': !sidebarOpen,
+        'fixed inset-0 left-0 top-0 z-50 h-full w-64 overflow-y-auto shadow lg:sticky lg:z-auto lg:block':
+          sidebarOpen,
+      }"
+      class="transition-all"
+    >
+      <div class="h-full border-0 bg-white px-8 py-4">
+        <ul
+          class="flex list-none flex-col justify-start space-y-4 pl-0 font-medium"
+        >
+          <li>
+            <a
+              routerLink="/admin/dashboard"
+              class="group flex items-center rounded-lg p-3 text-black no-underline hover:bg-[#F4F7FE]"
+              routerLinkActive="font-bold text-white !bg-[#4319FF]"
+              [routerLinkActiveOptions]="{ exact: true }"
+              aria-label="Go to Dashboard"
+            >
+              <span class="flex-shrink-0">
+                <svg
+                  class="h-5 w-5 text-gray-500 transition duration-75 active:text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 20"
+                  aria-hidden="true"
+                >
+                  <path
+                    d="M3 12a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1zm0 8a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-4a1 1 0 0 0-1-1H4a1 1 0 0 0-1 1zm10 0a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-6a1 1 0 0 0-1 1zm1-17a1 1 0 0 0-1 1v4a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4a1 1 0 0 0-1-1z"
+                  ></path>
+                </svg>
+              </span>
+
+              <span class="ml-3">Dashboard</span>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/articles"
+              class="group flex items-center rounded-lg p-3 text-black no-underline hover:bg-[#F4F7FE]"
+              routerLinkActive="font-bold text-white !bg-[#4319FF]"
+              aria-label="Go to Articles"
+            >
+              <span class="flex flex-shrink-0 items-center">
+                <svg
+                  class="h-6 w-6 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  routerLinkActive="text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z"
+                  />
+                </svg>
+              </span>
+
+              <span class="ml-3">Articles</span>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/news-and-events"
+              class="group flex items-center rounded-lg p-3 text-black no-underline hover:bg-[#F4F7FE]"
+              routerLinkActive="font-bold text-white !bg-[#4319FF]"
+              aria-label="Go to News"
+            >
+              <span class="flex-shrink-0">
+                <svg
+                  class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  routerLinkActive="text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 18"
+                >
+                  <path
+                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
+                  />
+                </svg>
+              </span>
+
+              <span class="ml-3">News</span>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/blogs"
+              class="group flex items-center rounded-lg p-3 text-black no-underline hover:bg-[#F4F7FE]"
+              routerLinkActive="font-bold text-white !bg-[#4319FF]"
+              aria-label="Go to blogs"
+            >
+              <span class="flex-shrink-0">
+                <svg
+                  class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  routerLinkActive="text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 20"
+                >
+                  <path
+                    d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"
+                  />
+                </svg>
+              </span>
+
+              <span class="ml-3">Blogs</span>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/add-new-post"
+              class="group flex items-center rounded-lg p-3 text-black no-underline hover:bg-[#F4F7FE]"
+              routerLinkActive="font-bold text-white !bg-[#4319FF]"
+            >
+              <span class="flex-shrink-0">
+                <svg
+                  class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  routerLinkActive="text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 18 20"
+                >
+                  <path
+                    d="M17 5.923A1 1 0 0 0 16 5h-3V4a4 4 0 1 0-8 0v1H2a1 1 0 0 0-1 .923L.086 17.846A2 2 0 0 0 2.08 20h13.84a2 2 0 0 0 1.994-2.153L17 5.923ZM7 9a1 1 0 0 1-2 0V7h2v2Zm0-5a2 2 0 1 1 4 0v1H7V4Zm6 5a1 1 0 1 1-2 0V7h2v2Z"
+                  />
+                </svg>
+              </span>
+
+              <span class="ms-3 flex-1 whitespace-nowrap">New Post</span>
+            </a>
+          </li>
+          <li>
+            <a
+              routerLink="/admin/emails"
+              class="group flex items-center rounded-lg p-3 text-black no-underline hover:bg-[#F4F7FE]"
+              routerLinkActive="font-bold text-white !bg-[#4319FF]"
+            >
+              <span class="flex-shrink-0">
+                <svg
+                  class="h-5 w-5 flex-shrink-0 text-gray-500 transition duration-75 group-hover:text-gray-900"
+                  routerLinkActive="text-gray-900"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="currentColor"
+                  viewBox="0 0 20 18"
+                >
+                  <path
+                    d="M14 2a3.963 3.963 0 0 0-1.4.267 6.439 6.439 0 0 1-1.331 6.638A4 4 0 1 0 14 2Zm1 9h-1.264A6.957 6.957 0 0 1 15 15v2a2.97 2.97 0 0 1-.184 1H19a1 1 0 0 0 1-1v-1a5.006 5.006 0 0 0-5-5ZM6.5 9a4.5 4.5 0 1 0 0-9 4.5 4.5 0 0 0 0 9ZM8 10H5a5.006 5.006 0 0 0-5 5v2a1 1 0 0 0 1 1h11a1 1 0 0 0 1-1v-2a5.006 5.006 0 0 0-5-5Z"
+                  />
+                </svg>
+              </span>
+
+              <span class="ml-3">Emails</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Overlay for small screens -->
+    @if (sidebarOpen) {
+      <div
+        (click)="toggleSidebar()"
+        class="fixed inset-0 z-40 bg-black bg-opacity-50 lg:hidden"
+      ></div>
+    }
+    <!-- Main Content -->
+    <div class="flex-1 bg-[#F4F7FE] px-6 py-4">
+      <div
+        class="flex items-center justify-between bg-[#F4F7FE] p-4 text-[#736AFF]"
+      >
+        <div>
+          <button
+            class="cursor-pointer border-none bg-transparent focus:outline-none"
+            (click)="toggleSidebar()"
+            aria-label="Toggle Sidebar"
+          >
+            <i class="pi pi-bars text-2xl text-[#736AFF]"></i>
+          </button>
+          <span
+            class="hidden self-center whitespace-nowrap text-xl font-semibold sm:inline-block sm:text-2xl"
+          >
+            ATC Group Dashboard
+          </span>
+        </div>
+        <button
+          (click)="logoutAdmin()"
+          class="cursor-pointer rounded-lg border-none bg-[#EB1F2F] px-5 py-3 text-base font-bold text-white"
+        >
+          Logout
+        </button>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

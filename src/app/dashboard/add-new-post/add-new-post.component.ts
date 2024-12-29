@@ -1,5 +1,4 @@
 import { Component, inject } from '@angular/core';
-import { NavComponent } from '../nav/nav.component';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -15,7 +14,6 @@ import { AdminDashboardService } from '../admin-dashboard.service';
   selector: 'app-add-new-post',
   standalone: true,
   imports: [
-    NavComponent,
     RouterModule,
     CommonModule,
     FormsModule,

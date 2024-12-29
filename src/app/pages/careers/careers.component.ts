@@ -3,7 +3,6 @@ import { TopBarComponent } from '../../shared/components/top-bar/top-bar.compone
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { CarouselModule } from 'primeng/carousel';
-import { ScrollToTopComponent } from '../../shared/components/scroll-to-top/scroll-to-top.component';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -26,7 +25,6 @@ interface ResponsiveOptions {
     NavBarComponent,
     FooterComponent,
     CarouselModule,
-    ScrollToTopComponent,
     NgOptimizedImage,
   ],
   templateUrl: './careers.component.html',
