@@ -83,7 +83,7 @@ npm run serve:ssr:atc_group_frontend: Serves the SSR build.
 
 ### 🌐 Live Demo
 
-The live version of the website can be found at: ATC Group Website
+The live version of the website can be found at: [www.atc.com.eg](https://atc.com.eg)
 
 ### 🖋️ Contribution
 
@@ -94,6 +94,8 @@ Contributions are welcome! Please follow these steps:
 Create a new branch for your feature/bugfix.
 Submit a pull request.
 
+<!-- check this  -->
+
 ### 📜 License
 
 This project is licensed under the MIT License.
@@ -103,8 +105,8 @@ This project is licensed under the MIT License.
 For any inquiries or support, feel free to reach out:
 
 - **Email**: [development@atc.com.eg](mailto:development@atc.com.eg)
-- **Website**: [ATC Group](https://atc.com.eg)
-- **LinkedIn**: [ATC Group LinkedIn](https://www.linkedin.com/company/atcgroupmiddleeast)
-- **FaceBook**: [ATC Group Facebook](https://www.facebook.com/p/ATC-Group-100067854885668)
-- **Instagram**: [ATC Group Instagram](https://www.instagram.com/atcgroup.eg)
-- **X**: [ATC Group Instagram](https://x.com/ATCGroup143796)
+- **Website**: [www.atc.com.eg](https://atc.com.eg)
+- **LinkedIn**: [LinkedIn](https://www.linkedin.com/company/atcgroupmiddleeast)
+- **FaceBook**: [Facebook](https://www.facebook.com/p/ATC-Group-100067854885668)
+- **Instagram**: [Instagram](https://www.instagram.com/atcgroup.eg)
+- **X**: [X](https://x.com/ATCGroup143796)
