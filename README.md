@@ -1,28 +1,94 @@
-# AtcGroupFrontend
+# ATC Group Frontend
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.6.
+Welcome to the **ATC Group Frontend** repository! This project is the official website for **ATC Group - Accounting and Tax Consultants**, a leading firm in the MENA region specializing in Accounting, Tax, and Financial Consulting Services.
 
-## Development server
+## 🌟 About ATC Group
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+ATC Group is dedicated to providing tailored financial solutions to businesses and individuals. Our mission is to empower our clients with top-notch consulting services, ensuring their financial success in an ever-changing landscape.
 
-## Code scaffolding
+> "Welcome to ATC Ashraf Abdel Ghani, a leading firm in the MENA Region. We provide comprehensive Accounting, Tax, and Financial Consulting Services tailored to businesses and individuals."
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## 🚀 Features
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- **Dynamic Pages**: Built using Angular 18 for seamless performance and modern design.
+- **SEO Optimized**: Titles and descriptions are dynamically set for better search engine visibility.
+- **Interactive Components**: Utilizes PrimeNG and Chart.js for an enhanced user experience.
+- **TailwindCSS Integration**: A clean, responsive design powered by TailwindCSS.
+- **Server-Side Rendering (SSR)**: Improved loading speed and SEO with Angular SSR.
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## 📋 Requirements
 
-## Running end-to-end tests
+- **Node.js**: v18.x or higher
+- **Angular CLI**: v18.x
+- **Dependencies**: Refer to `package.json` for all required libraries.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+---
 
-## Further help
+## 🔧 Installation
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# atc_group_frontend
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/ATC-Group-website/atc_group_frontend.git
+   cd atc_group_frontend
+   Install dependencies:
+   ```
+
+bash
+Copy code
+npm install
+Start the development server:
+
+bash
+Copy code
+npm start
+The app will be available at http://localhost:4200.
+
+To run the SSR build:
+
+bash
+Copy code
+npm run serve:ssr:atc_group_frontend
+The SSR app will be available at http://localhost:4000.
+
+🛠 Project Structure
+src/app: Contains all the Angular components, services, and modules.
+src/assets: Static files like images, fonts, and JSON files.
+src/environments: Environment-specific configuration.
+📦 Dependencies
+Key dependencies used in this project:
+
+Angular: Framework for building the app.
+PrimeNG: UI components for Angular.
+TailwindCSS: Utility-first CSS framework.
+Chart.js: For rendering data visualizations.
+Leaflet: Interactive maps.
+Quill: Rich text editor.
+Refer to the package.json for the complete list.
+
+💻 Development Scripts
+npm start: Starts the development server.
+npm run build: Builds the project for production.
+npm run test: Runs unit tests.
+npm run serve:ssr:atc_group_frontend: Serves the SSR build.
+🌐 Live Demo
+The live version of the website can be found at: ATC Group Website
+
+🖋️ Contribution
+Contributions are welcome! Please follow these steps:
+
+Fork the repository.
+Create a new branch for your feature/bugfix.
+Submit a pull request.
+📜 License
+This project is licensed under the MIT License.
+
+🤝 Contact
+For any inquiries or support, feel free to reach out:
+
+Email: support@atcgroup.com
+Website: ATC Group
+LinkedIn: ATC Group LinkedIn
