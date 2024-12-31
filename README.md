@@ -37,28 +37,33 @@ ATC Group is dedicated to providing tailored financial solutions to businesses a
    Install dependencies:
    ```
 
-bash
+```bash
 Copy code
 npm install
 Start the development server:
+```
 
-bash
+```bash
 Copy code
 npm start
 The app will be available at http://localhost:4200.
+```
 
 To run the SSR build:
 
-bash
+```bash
 Copy code
 npm run serve:ssr:atc_group_frontend
 The SSR app will be available at http://localhost:4000.
+```
 
-🛠 Project Structure
+### 🛠 Project Structure
+
 src/app: Contains all the Angular components, services, and modules.
-src/assets: Static files like images, fonts, and JSON files.
-src/environments: Environment-specific configuration.
-📦 Dependencies
+public: Static files like images, fonts, and JSON files.
+
+### 📦 Dependencies
+
 Key dependencies used in this project:
 
 Angular: Framework for building the app.
@@ -69,26 +74,37 @@ Leaflet: Interactive maps.
 Quill: Rich text editor.
 Refer to the package.json for the complete list.
 
-💻 Development Scripts
+### 💻 Development Scripts
+
 npm start: Starts the development server.
 npm run build: Builds the project for production.
 npm run test: Runs unit tests.
 npm run serve:ssr:atc_group_frontend: Serves the SSR build.
-🌐 Live Demo
+
+### 🌐 Live Demo
+
 The live version of the website can be found at: ATC Group Website
 
-🖋️ Contribution
+### 🖋️ Contribution
+
 Contributions are welcome! Please follow these steps:
 
-Fork the repository.
+### Fork the repository.
+
 Create a new branch for your feature/bugfix.
 Submit a pull request.
-📜 License
+
+### 📜 License
+
 This project is licensed under the MIT License.
 
-🤝 Contact
+## 🤝 Contact
+
 For any inquiries or support, feel free to reach out:
 
-Email: support@atcgroup.com
-Website: ATC Group
-LinkedIn: ATC Group LinkedIn
+- **Email**: [development@atc.com.eg](mailto:development@atc.com.eg)
+- **Website**: [ATC Group](https://atc.com.eg)
+- **LinkedIn**: [ATC Group LinkedIn](https://www.linkedin.com/company/atcgroupmiddleeast)
+- **FaceBook**: [ATC Group Facebook](https://www.facebook.com/p/ATC-Group-100067854885668)
+- **Instagram**: [ATC Group Instagram](https://www.instagram.com/atcgroup.eg)
+- **X**: [ATC Group Instagram](https://x.com/ATCGroup143796)
