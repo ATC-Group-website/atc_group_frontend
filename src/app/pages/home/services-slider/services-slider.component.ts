@@ -1,5 +1,5 @@
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
 import { CarouselModule } from 'primeng/carousel';
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
@@ -28,12 +28,12 @@ interface ResponsiveOptions {
   styleUrl: './services-slider.component.css',
 })
 export class ServicesSliderComponent implements OnInit {
-  services: Service[] = [];
-
-  responsiveOptions: ResponsiveOptions[] = [];
+  // Using signals for services and responsive options
+  services = signal<Service[]>([]); // Reactive state for services
+  responsiveOptions = signal<ResponsiveOptions[]>([]); // Reactive state for responsive options
 
   ngOnInit(): void {
-    this.services = [
+    this.services.set([
       {
         title: 'Tax services',
         link: '/services/tax',
@@ -84,9 +84,9 @@ export class ServicesSliderComponent implements OnInit {
         link: '/pro-training',
         imageUrl: 'services_icons/training_cources.png',
       },
-    ];
+    ]);
 
-    this.responsiveOptions = [
+    this.responsiveOptions.set([
       {
         breakpoint: '1400px',
         numVisible: 3,
@@ -102,6 +102,6 @@ export class ServicesSliderComponent implements OnInit {
         numVisible: 1,
         numScroll: 1,
       },
-    ];
+    ]);
   }
 }

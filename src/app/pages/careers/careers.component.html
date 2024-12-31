@@ -438,11 +438,11 @@
       </p>
       <div class="card my-10">
         <p-carousel
-          [value]="employees"
+          [value]="employees()"
           [numVisible]="2"
           [numScroll]="1"
           circular="true"
-          [responsiveOptions]="responsiveOptions"
+          [responsiveOptions]="responsiveOptions()"
           ngSkipHydration
         >
           <ng-template let-employee pTemplate="employee">

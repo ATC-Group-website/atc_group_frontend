@@ -4,6 +4,7 @@ import {
   Inject,
   inject,
   PLATFORM_ID,
+  signal,
 } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
@@ -47,21 +48,22 @@ import { LandingCarouselComponent } from './landing-carousel/landing-carousel.co
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  isBrowser: boolean;
-  clients = 1700;
-  yearsOfExperience: number = 0;
-  industries: number = 22;
-  branches: number = 10;
-  loading: boolean = true;
-  posts: any[] = [];
+  isBrowser = signal<boolean>(false);
+  clients = signal<number>(1700);
+  yearsOfExperience = signal<number>(0);
+  industries = signal<number>(22);
+  branches = signal<number>(10);
+  loading = signal<boolean>(true);
+  posts = signal<any[]>([]);
+  postss = signal<{ text: SafeHtml; direction: string }[]>([]);
+
   title = inject(Title);
   meta = inject(Meta);
   postsService = inject(PostsService);
   sanitizer = inject(DomSanitizer);
-  postss: { text: SafeHtml; direction: string }[] = [];
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
+    this.isBrowser.set(isPlatformBrowser(platformId));
   }
 
   ngOnInit(): void {
@@ -69,42 +71,23 @@ export class HomeComponent {
 
     this.postsService.getPaginatedPosts().subscribe({
       next: (res) => {
-        this.posts = res.posts.data;
+        this.posts.set(res.posts.data);
 
-        this.postss = this.posts.map((post: { description: string }) =>
-          this.truncateAndAlign(post.description || ''),
+        this.postss.set(
+          this.posts().map((post: { description: string }) =>
+            this.truncateAndAlign(post.description || ''),
+          ),
         );
-        this.loading = false;
+        this.loading.set(false);
       },
       error: (err) => {
-        this.loading = false;
+        this.loading.set(false);
       },
     });
 
     const startYear = 1998;
     const currentYear = new Date().getFullYear();
-    this.yearsOfExperience = currentYear - startYear;
-  }
-
-  images: string[] = ['home/egypt.webp', 'home/ksa.webp', 'home/uae.webp'];
-
-  currentIndex = 0;
-  direction: 'left' | 'right' = 'right';
-
-  nextSlide() {
-    this.direction = 'right';
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
-  }
-
-  prevSlide() {
-    this.direction = 'left';
-    this.currentIndex =
-      (this.currentIndex - 1 + this.images.length) % this.images.length;
-  }
-
-  goToSlide(index: number) {
-    this.direction = index > this.currentIndex ? 'right' : 'left';
-    this.currentIndex = index;
+    this.yearsOfExperience.set(currentYear - startYear);
   }
 
   setMetaTags() {
@@ -156,7 +139,7 @@ export class HomeComponent {
   }
 
   truncateAndAlign(description: string): { text: SafeHtml; direction: string } {
-    if (!this.isBrowser) {
+    if (!this.isBrowser()) {
       return {
         text: this.sanitizer.bypassSecurityTrustHtml(''),
         direction: 'ltr',

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-landing-carousel',
@@ -18,16 +18,34 @@ import { Component } from '@angular/core';
   ],
 })
 export class LandingCarouselComponent {
-  images: string[] = ['home/egypt.webp', 'home/ksa.webp', 'home/uae.webp'];
+  images = signal<string[]>([
+    'home/egypt.webp',
+    'home/ksa.webp',
+    'home/uae.webp',
+  ]);
+  currentIndex = signal<number>(0);
+  direction = signal<'left' | 'right'>('right');
 
-  currentIndex = 0;
-  direction: 'left' | 'right' = 'right';
-
+  // Function to go to the next slide
   nextSlide() {
-    this.direction = 'right';
-    this.currentIndex = (this.currentIndex + 1) % this.images.length;
+    this.direction.set('right');
+    this.currentIndex.set((this.currentIndex() + 1) % this.images().length);
   }
 
+  // Function to go to the previous slide
+  prevSlide() {
+    this.direction.set('left');
+    this.currentIndex.set(
+      (this.currentIndex() - 1 + this.images().length) % this.images().length,
+    );
+  }
+
+  // Function to go to a specific slide
+  goToSlide(index: number) {
+    this.direction.set(index > this.currentIndex() ? 'right' : 'left');
+    this.currentIndex.set(index);
+  }
+  // Scroll to a section
   scrollToSection() {
     const element = document.getElementById('about_the_company');
     if (element) {
@@ -40,16 +58,5 @@ export class LandingCarouselComponent {
         behavior: 'smooth',
       });
     }
-  }
-
-  prevSlide() {
-    this.direction = 'left';
-    this.currentIndex =
-      (this.currentIndex - 1 + this.images.length) % this.images.length;
-  }
-
-  goToSlide(index: number) {
-    this.direction = index > this.currentIndex ? 'right' : 'left';
-    this.currentIndex = index;
   }
 }

@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -27,12 +27,12 @@ interface Service {
 export class ServicesComponent implements OnInit {
   title = inject(Title);
   meta = inject(Meta);
-  services: Service[] = [];
+  services = signal<Service[]>([]);
 
   ngOnInit(): void {
     this.setMetaTags();
 
-    this.services = [
+    this.services.set([
       {
         title: 'Tax services',
         link: '/services/tax',
@@ -103,7 +103,7 @@ export class ServicesComponent implements OnInit {
         description:
           'Our Team focuses on delivering high-quality professional education & training services in financial accounting, management accounting, external & internal audit and taxation.',
       },
-    ];
+    ]);
   }
 
   setMetaTags() {

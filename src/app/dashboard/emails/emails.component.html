@@ -1,13 +1,13 @@
 <main style="min-height: calc(100vh - 112px)">
-  <div class="min-h-[83vh] rounded-lg bg-white p-8">
+  <div style="min-height: calc(100vh - 112px)" class="rounded-lg bg-white p-8">
     <div class="card">
       <p-table
-        [value]="subscribers"
+        [value]="subscribers()"
         [paginator]="true"
-        [rows]="rows"
-        [loading]="loading"
-        [first]="first"
-        [totalRecords]="totalSubscribers"
+        [rows]="rows()"
+        [loading]="loading()"
+        [first]="first()"
+        [totalRecords]="totalSubscribers()"
         [showCurrentPageReport]="true"
         [tableStyle]="{ 'min-width': '50rem' }"
         [rowsPerPageOptions]="[10, 20, 30, 40, 50]"

@@ -209,7 +209,7 @@
 
             <span
               class="text-5xl text-primary"
-              [countUp]="clients"
+              [countUp]="clients()"
               [options]="{
                 duration: 3,
                 enableScrollSpy: true,
@@ -232,7 +232,7 @@
 
             <span
               class="text-6xl text-primary"
-              [countUp]="yearsOfExperience"
+              [countUp]="yearsOfExperience()"
               [options]="{
                 duration: 3,
                 enableScrollSpy: true,
@@ -255,7 +255,7 @@
 
             <span
               class="text-6xl text-primary"
-              [countUp]="industries"
+              [countUp]="industries()"
               [options]="{
                 duration: 3,
                 enableScrollSpy: true,
@@ -278,7 +278,7 @@
 
             <span
               class="text-6xl text-primary"
-              [countUp]="branches"
+              [countUp]="branches()"
               [options]="{
                 enableScrollSpy: true,
                 suffix: '+',
@@ -307,12 +307,12 @@
         industry trends. Explore ATC Group's achievements and milestones as we
         shape the future of accounting, taxation, and the evolving tax market.
       </div>
-      @if (loading) {
+      @if (loading()) {
         @for (i of [1, 2, 3, 4]; track $index) {
           <app-loading-card></app-loading-card>
         }
       } @else {
-        @for (post of posts; track $index) {
+        @for (post of posts(); track $index) {
           <div
             class="mb-5 flex flex-col justify-between gap-6 bg-white px-6 py-4 md:flex-row"
           >
@@ -332,8 +332,8 @@
                   />
                 </div>
                 <div
-                  [innerHTML]="postss[$index].text"
-                  [style.direction]="postss[$index].direction"
+                  [innerHTML]="postss()[$index].text"
+                  [style.direction]="postss()[$index].direction"
                   class="my-4 md:text-lg lg:my-0"
                 ></div>
               </div>

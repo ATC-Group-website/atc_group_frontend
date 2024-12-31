@@ -1,15 +1,20 @@
 <div style="min-height: calc(100vh - 112px)">
-  @if (loading) {
-    <app-loading></app-loading>
-  } @else if (!loading) {
+  @if (loading()) {
+    <div
+      style="min-height: calc(100vh - 112px)"
+      class="flex items-center justify-center"
+    >
+      <app-loading></app-loading>
+    </div>
+  } @else if (!loading()) {
     <div class="flex flex-col gap-20 md:flex-row">
       <div class="mx-auto w-fit rounded-lg bg-white p-5">
         <h2 class="mt-0">Posts</h2>
         <div class="mx-auto flex items-center justify-center">
           <p-chart
             type="doughnut"
-            [data]="data"
-            [options]="options"
+            [data]="data()"
+            [options]="options()"
             maintainAspectRatio="false"
             width="100%"
           />
@@ -20,7 +25,7 @@
       >
         <h2 class="mt-0">News-Letter Subscribers</h2>
         <p class="text-lg font-normal text-gray-700">
-          {{ mailSubscribers }}
+          {{ mailSubscribers() }}
         </p>
       </div>
     </div>

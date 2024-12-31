@@ -1,4 +1,4 @@
-import { Component, Inject, Input, OnInit, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, input, OnInit, PLATFORM_ID } from '@angular/core';
 import { LeafletHelper } from '../leaflet.helper';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -10,9 +10,9 @@ import { isPlatformBrowser } from '@angular/common';
   styleUrl: './leaflet-map.component.css',
 })
 export class LeafletMapComponent implements OnInit {
-  @Input() center: [number, number] = [0, 0];
-  @Input() zoom: number = 10;
-  @Input() locations: { lat: number; lng: number; label?: string }[] = [];
+  center = input<[number, number]>([0, 0]);
+  zoom = input<number>(10);
+  locations = input<{ lat: number; lng: number; label?: string }[]>([]);
 
   private leafletLib: any;
 
@@ -38,7 +38,7 @@ export class LeafletMapComponent implements OnInit {
   }
 
   private initMap(leafletLib: any) {
-    const map = leafletLib.map('map').setView(this.center, this.zoom);
+    const map = leafletLib.map('map').setView(this.center(), this.zoom());
 
     leafletLib
       .tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -54,7 +54,7 @@ export class LeafletMapComponent implements OnInit {
       iconAnchor: [12, 24],
     });
 
-    this.locations.forEach((location) => {
+    this.locations().forEach((location) => {
       const marker = leafletLib
         .marker([location.lat, location.lng], { icon: redSvgIcon })
         .addTo(map)

@@ -23,8 +23,8 @@
           pInputText
           [(ngModel)]="titleInput"
           [ngClass]="{
-            'text-right': isArabic(titleInput),
-            'text-left': !isArabic(titleInput),
+            'text-right': isArabic(titleInput()),
+            'text-left': !isArabic(titleInput()),
           }"
           #title="ngModel"
         />
@@ -102,8 +102,8 @@
           >
             <span class="flex-1 truncate text-gray-700">
               <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
-              @if (filename) {
-                {{ filename }}
+              @if (filename()) {
+                {{ filename() }}
               } @else {
                 No file choosen
               }
@@ -151,24 +151,26 @@
             <span class="mb-2 text-gray-700">
               <i class="pi pi-file-pdf mr-2 text-gray-600"></i>
               {{
-                selectedFileNames.length > 0
+                selectedFileNames().length > 0
                   ? "Selected files:"
                   : "No files chosen"
               }}
             </span>
-            @if (selectedFileNames.length > 0) {
+            @if (selectedFileNames().length > 0) {
               <ul class="list-disc pl-5 text-sm text-gray-700">
-                <li *ngFor="let fileName of selectedFileNames">
-                  {{ fileName }}
-                </li>
+                @for (fileName of selectedFileNames(); track $index) {
+                  <li>
+                    {{ fileName }}
+                  </li>
+                }
               </ul>
             }
           </div>
         </div>
       </div>
-      @if (errorMsg) {
+      @if (errorMsg()) {
         <span class="!mb-5 font-bold text-primary">
-          {{ errorMsg }}
+          {{ errorMsg() }}
         </span>
       }
       <div>
@@ -177,7 +179,7 @@
           label="Add Post"
           class="p-button-success"
           type="submit"
-          [loading]="isLoading"
+          [loading]="isLoading()"
           [style]="{
             width: '100%',
             outline: 'none',

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CountUpModule } from 'ngx-countup';
-import { ScrollToTopComponent } from "./shared/components/scroll-to-top/scroll-to-top.component";
+import { ScrollToTopComponent } from './shared/components/scroll-to-top/scroll-to-top.component';
 
 @Component({
   selector: 'app-root',

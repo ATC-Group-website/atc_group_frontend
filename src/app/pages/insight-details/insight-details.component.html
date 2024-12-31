@@ -3,32 +3,31 @@
 <main>
   <section class="mb-10">
     <div class="mx-auto min-h-[50vh] max-w-screen-xl p-4">
-      @if (isLoading) {
+      @if (isLoading()) {
         <div class="flex h-[50vh] items-center justify-center">
           <app-loading></app-loading>
         </div>
       }
-      @if (!isLoading) {
+      @if (!isLoading()) {
         <h2
           class="my-5 p-3 text-center text-2xl font-bold text-primary lg:text-4xl"
-          [attr.dir]="getDirection(post.title)"
+          [attr.dir]="getDirection(post().title)"
         >
-          {{ post.title }}
+          {{ post().title }}
         </h2>
 
-        @if (post.video_url === "") {
+        @if (post().video_url === "") {
           <div class="mx-auto w-fit">
             <img
-              [src]="post.images[0].path"
-              [alt]="post.title"
+              [src]="post().images[0].path"
+              [alt]="post().title"
               class="w-5xl mx-auto max-h-[550px] max-w-full object-cover"
             />
           </div>
         } @else {
           <div class="flex items-center justify-center">
-            <!-- src="https://www.youtube.com/embed/KlC8oT2MjBk?si=9FZk_c5TAHb-Hl0N" -->
             <iframe
-              [src]="embedUrl"
+              [src]="embedUrl()"
               width="1200"
               height="700"
               frameborder="0"
@@ -40,8 +39,8 @@
         }
         <div
           class="max-w-full whitespace-pre-wrap break-words p-4 text-sm leading-relaxed text-gray-700 md:text-base"
-          [innerHTML]="sanitizeHtml(post.description)"
-          [dir]="newDescription.direction"
+          [innerHTML]="sanitizeHtml(post().description)"
+          [dir]="newDescription()?.direction"
         ></div>
         <!-- last try  -->
         <!-- <div class="max-w-full overflow-hidden">
@@ -52,22 +51,8 @@
           ></div>
         </div> -->
 
-        <!-- @if (post.video_url && videoURL) {
-
-          <div class="mx-auto">
-            <iframe
-              [src]="videoURL"
-              width="560"
-              height="315"
-              frameborder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowfullscreen
-            >
-            </iframe>
-          </div>
-        } -->
         <!-- for gallery images  -->
-        <!-- <app-gallery-images [images]="images"></app-gallery-images> -->
+        <!-- <app-gallery-images [images]="images()"></app-gallery-images> -->
       }
     </div>
   </section>

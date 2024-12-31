@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
@@ -10,6 +10,10 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { AdminDashboardService } from '../admin-dashboard.service';
 
+interface ImageItem {
+  base64_image: string;
+  type: string;
+}
 @Component({
   selector: 'app-add-new-post',
   standalone: true,
@@ -28,19 +32,19 @@ import { AdminDashboardService } from '../admin-dashboard.service';
   styleUrl: './add-new-post.component.css',
 })
 export class AddNewPostComponent {
-  selectedBase64Image: string | null = null;
-  isLoading: boolean = false;
-  titleInput: string = '';
-  descInput: string = '';
-  images: any[] = [];
-  filename: string | null = null;
-  errorMsg: string = '';
+  selectedBase64Image = signal<string | null>(null);
+  isLoading = signal<boolean>(false);
+  titleInput = signal<string>('');
+  descInput = signal<string>('');
+  images = signal<ImageItem[]>([]);
+  filename = signal<string | null>(null);
+  errorMsg = signal<string>('');
+  selectedCategoryValue = signal<string | null>(null);
+  selectedFileNames = signal<string[]>([]);
 
+  private router = inject(Router);
   private messageService = inject(MessageService);
   private dashboardService = inject(AdminDashboardService);
-  private router = inject(Router);
-  selectedCategoryValue: string | null = null;
-  selectedFileNames: string[] = [];
 
   categories = [
     { label: 'Articles', value: 'article' },
@@ -62,42 +66,41 @@ export class AddNewPostComponent {
         control.markAsTouched({ onlySelf: true });
       });
     } else {
-      this.errorMsg = '';
-      this.isLoading = true;
+      this.errorMsg.set('');
+      this.isLoading.set(true);
 
       const Data = {
         title: postData.form.controls['title'].value,
         description: postData.form.controls['description'].value,
-        type: this.selectedCategoryValue,
-        images: this.images,
+        type: this.selectedCategoryValue(),
+        images: this.images(),
         ...(postData.controls['youtube_video_link'].value && {
           video_url: postData.controls['youtube_video_link'].value,
         }),
       };
 
+      console.log(Data);
+
       this.dashboardService.createPost(Data).subscribe({
         next: (response) => {
-          this.isLoading = false;
+          console.log(response);
+
+          this.isLoading.set(false);
           this.messageService.add({
             severity: 'success',
             summary: 'success',
             detail: response.message,
           });
           postData.form.reset();
-          this.images = [];
-          this.filename = null;
-          this.selectedFileNames = [];
+          this.images.set([]);
+          this.filename.set(null);
+          this.selectedFileNames.set([]);
         },
         error: (err) => {
           console.log(err);
 
-          this.isLoading = false;
-          if (err.error.message === 'Token has expired') {
-            localStorage.removeItem('token');
-            this.router.navigateByUrl('admin/login');
-          } else if (err.error) {
-            this.errorMsg = err.error.message;
-          }
+          this.isLoading.set(false);
+          this.errorMsg.set(err.error.message);
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
@@ -113,30 +116,52 @@ export class AddNewPostComponent {
     if (input.files) {
       const file = input.files[0];
       if (file) {
-        this.filename = file.name;
+        this.filename.set(file.name);
         const reader = new FileReader();
-        reader.onload = (e: any) => {
-          this.selectedBase64Image = e.target.result;
-          this.images.push({
-            base64_image: e.target.result,
-            type: 'main',
-          });
+
+        reader.onload = (e: ProgressEvent<FileReader>) => {
+          const result = e.target?.result as string;
+          this.selectedBase64Image.set(result);
+
+          // Get current images
+          const currentImages = this.images();
+
+          // Create new array with the additional image
+          this.images.set([
+            ...currentImages,
+            {
+              base64_image: result,
+              type: 'main',
+            },
+          ]);
         };
         reader.readAsDataURL(file);
       }
     }
   }
 
-  onGalleryImagesSelected(event: any): void {
-    const files: FileList = event.target.files;
-    this.selectedFileNames = Array.from(files).map((file: File) => file.name);
+  onGalleryImagesSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const files = input.files;
+
+    if (!files) return;
+
+    this.selectedFileNames.set(Array.from(files).map((file) => file.name));
+
     Array.from(files).forEach((file: File) => {
       const reader = new FileReader();
-      reader.onload = (e: any) => {
-        this.images.push({
-          base64_image: e.target.result,
-          type: 'gallery',
-        });
+      reader.onload = (e: ProgressEvent<FileReader>) => {
+        const result = e.target?.result as string;
+
+        // Get current images and add new one
+        const currentImages = this.images();
+        this.images.set([
+          ...currentImages,
+          {
+            base64_image: result,
+            type: 'gallery',
+          },
+        ]);
       };
       reader.readAsDataURL(file);
     });

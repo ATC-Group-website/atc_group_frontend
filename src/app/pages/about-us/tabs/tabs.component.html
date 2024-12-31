@@ -8,8 +8,8 @@
       class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
       [ngClass]="{
         'border-b-2 border-b-black text-primary':
-          activeTab === 'Driving Positive Change',
-        'border-none text-black': activeTab !== 'Driving Positive Change',
+          activeTab() === 'Driving Positive Change',
+        'border-none text-black': activeTab() !== 'Driving Positive Change',
       }"
     >
       <i class="fa-solid fa-bolt text-black"></i>
@@ -23,8 +23,8 @@
       class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
       [ngClass]="{
         'border-b-2 border-b-black text-primary':
-          activeTab === 'Empowering Your Business',
-        'border-none text-black': activeTab !== 'Empowering Your Business',
+          activeTab() === 'Empowering Your Business',
+        'border-none text-black': activeTab() !== 'Empowering Your Business',
       }"
     >
       <img
@@ -41,8 +41,8 @@
       class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
       [ngClass]="{
         'border-b-2 border-b-black text-primary':
-          activeTab === 'International Services',
-        'border-none text-black': activeTab !== 'International Services',
+          activeTab() === 'International Services',
+        'border-none text-black': activeTab() !== 'International Services',
       }"
     >
       <i class="fa-solid fa-earth-africa text-black"></i>
@@ -52,7 +52,7 @@
   </div>
 
   <div class="rounded-b-lg border border-t-0 border-gray-200 bg-white">
-    @if (activeTab === "Driving Positive Change") {
+    @if (activeTab() === "Driving Positive Change") {
       <div class="animate-fade-in p-4">
         <p
           class="hvr-sweep-to-right m-0 w-full p-0 text-center !text-lg text-grayTitle md:px-16 md:py-10 md:text-2xl"
@@ -66,7 +66,7 @@
       </div>
     }
 
-    @if (activeTab === "Empowering Your Business") {
+    @if (activeTab() === "Empowering Your Business") {
       <div class="animate-fade-in p-4">
         <p
           class="hvr-sweep-to-right m-0 w-full p-0 text-center !text-lg text-grayTitle md:px-16 md:py-10 md:text-2xl"
@@ -79,7 +79,7 @@
       </div>
     }
 
-    @if (activeTab === "International Services") {
+    @if (activeTab() === "International Services") {
       <div class="animate-fade-in p-4">
         <p
           class="hvr-sweep-to-right m-0 w-full p-0 text-center !text-lg text-grayTitle md:px-16 md:py-10 md:text-2xl"

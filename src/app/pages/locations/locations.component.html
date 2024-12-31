@@ -16,21 +16,21 @@
   </section>
 
   <section class="mx-auto my-10 max-w-screen-xl p-4">
-    @if (activeTab === "Egypt") {
+    @if (activeTab() === "Egypt") {
       <app-leaflet-map
         [center]="countries.egypt.center"
         [zoom]="countries.egypt.zoom"
         [locations]="countries.egypt.locations"
       ></app-leaflet-map>
     }
-    @if (activeTab === "Kingdom of Saudi Arabia") {
+    @if (activeTab() === "Kingdom of Saudi Arabia") {
       <app-leaflet-map
         [center]="countries.ksa.center"
         [zoom]="countries.ksa.zoom"
         [locations]="countries.ksa.locations"
       ></app-leaflet-map>
     }
-    @if (activeTab === "United Arab Emirates") {
+    @if (activeTab() === "United Arab Emirates") {
       <app-leaflet-map
         [center]="countries.uae.center"
         [zoom]="countries.uae.zoom"
@@ -48,8 +48,8 @@
           [class]="getTabClass('Egypt')"
           class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
           [ngClass]="{
-            'border-b-2 border-b-black text-primary': activeTab === 'Egypt',
-            'border-none text-black': activeTab !== 'Egypt',
+            'border-b-2 border-b-black text-primary': activeTab() === 'Egypt',
+            'border-none text-black': activeTab() !== 'Egypt',
           }"
         >
           <i class="fa-solid fa-earth-africa text-black"></i>
@@ -62,8 +62,8 @@
           class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
           [ngClass]="{
             'border-b-2 border-b-black text-primary':
-              activeTab === 'Kingdom of Saudi Arabia',
-            'border-none text-black': activeTab !== 'Kingdom of Saudi Arabia',
+              activeTab() === 'Kingdom of Saudi Arabia',
+            'border-none text-black': activeTab() !== 'Kingdom of Saudi Arabia',
           }"
         >
           <i class="fa-solid fa-earth-asia text-black"></i>
@@ -76,8 +76,8 @@
           class="flex cursor-pointer items-center justify-center gap-2 border-0 p-5 text-xl font-bold transition-colors duration-300 hover:text-primary focus:outline-none"
           [ngClass]="{
             'border-b-2 border-b-black text-primary':
-              activeTab === 'United Arab Emirates',
-            'border-none text-black': activeTab !== 'United Arab Emirates',
+              activeTab() === 'United Arab Emirates',
+            'border-none text-black': activeTab() !== 'United Arab Emirates',
           }"
         >
           <i class="fa-solid fa-earth-asia text-black"></i>
@@ -86,7 +86,7 @@
         </button>
       </div>
       <div class="rounded-b-lg border border-t-0 border-gray-200 bg-white">
-        @if (activeTab === "Egypt") {
+        @if (activeTab() === "Egypt") {
           <div class="animate-fade-in p-6">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div
@@ -229,7 +229,7 @@
             </div>
           </div>
         }
-        @if (activeTab === "Kingdom of Saudi Arabia") {
+        @if (activeTab() === "Kingdom of Saudi Arabia") {
           <div class="animate-fade-in p-6">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div
@@ -368,7 +368,7 @@
             </div>
           </div>
         }
-        @if (activeTab === "United Arab Emirates") {
+        @if (activeTab() === "United Arab Emirates") {
           <div class="animate-fade-in p-6">
             <div class="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
               <div

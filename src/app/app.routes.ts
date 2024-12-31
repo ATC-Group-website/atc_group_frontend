@@ -175,33 +175,6 @@ export const routes: Routes = [
         title: 'Dashboard | Blogs',
       },
       {
-        path: 'atc-members',
-        canActivate: [adminGuard],
-        loadComponent: () =>
-          import('./dashboard/members/members.component').then(
-            (mod) => mod.MembersComponent,
-          ),
-        title: 'Dashboard | ATC Members',
-      },
-      {
-        path: 'add-member',
-        canActivate: [adminGuard],
-        loadComponent: () =>
-          import('./dashboard/add-member/add-member.component').then(
-            (mod) => mod.AddMemberComponent,
-          ),
-        title: 'Dashboard | ATC Members',
-      },
-      {
-        path: 'edit-member',
-        canActivate: [adminGuard],
-        loadComponent: () =>
-          import('./dashboard/edit-member/edit-member.component').then(
-            (mod) => mod.EditMemberComponent,
-          ),
-        title: 'Dashboard | ATC Members',
-      },
-      {
         path: 'emails',
         canActivate: [adminGuard],
         loadComponent: () =>

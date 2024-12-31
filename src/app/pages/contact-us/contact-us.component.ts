@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -29,13 +29,10 @@ import { CommonModule } from '@angular/common';
   styleUrl: './contact-us.component.css',
 })
 export class ContactUsComponent implements OnInit {
-  title = inject(Title);
-  meta = inject(Meta);
-  contactUsService = inject(ContactUsService);
-  loading: boolean = false;
-  message: string = '';
-
-  reasonOptions = [
+  loading = signal<boolean>(false);
+  message = signal<string>('');
+  selectedReason = signal<string>('');
+  reasonOptions = signal<{ label: string; value: string }[]>([
     { label: 'Consultation', value: 'consultation' },
     { label: 'Services', value: 'services' },
     { label: 'Proposal', value: 'proposal' },
@@ -44,9 +41,11 @@ export class ContactUsComponent implements OnInit {
     { label: 'Feedback', value: 'feedback' },
     { label: 'Complaint', value: 'complaint' },
     { label: 'Other', value: 'other' },
-  ];
+  ]);
 
-  selectedReason: string = '';
+  title = inject(Title);
+  meta = inject(Meta);
+  contactUsService = inject(ContactUsService);
 
   ngOnInit(): void {
     this.setMetaTags();
@@ -59,7 +58,7 @@ export class ContactUsComponent implements OnInit {
         control.markAsTouched({ onlySelf: true });
       });
     } else {
-      this.loading = true;
+      this.loading.set(true);
       const Data = {
         sender: formData.form.controls['email'].value,
         // receiver: 'online@atc.com.eg',
@@ -73,13 +72,13 @@ export class ContactUsComponent implements OnInit {
       };
 
       this.contactUsService.contact_US(Data).subscribe({
-        next: (response) => {
-          this.message = 'Thank you for contacting ATC Group.';
+        next: () => {
+          this.message.set('Thank you for contacting ATC Group.');
           formData.reset();
-          this.loading = false;
+          this.loading.set(false);
         },
-        error: (err) => {
-          this.loading = false;
+        error: () => {
+          this.loading.set(false);
         },
       });
     }

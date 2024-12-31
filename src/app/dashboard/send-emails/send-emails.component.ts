@@ -1,10 +1,5 @@
-import { Component, inject } from '@angular/core';
-import {
-  FormControl,
-  FormGroup,
-  FormsModule,
-  ReactiveFormsModule,
-} from '@angular/forms';
+import { Component, inject, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ChipsModule } from 'primeng/chips';
 import { ButtonModule } from 'primeng/button';
 import { AdminDashboardService } from '../admin-dashboard.service';
@@ -19,7 +14,6 @@ import { ToastModule } from 'primeng/toast';
     FormsModule,
     ChipsModule,
     ButtonModule,
-    ReactiveFormsModule,
     ToastModule,
     CheckboxModule,
   ],
@@ -28,44 +22,56 @@ import { ToastModule } from 'primeng/toast';
   styleUrl: './send-emails.component.css',
 })
 export class SendEmailsComponent {
-  isLoading: boolean = false;
-  emailsForm!: FormGroup;
+  isLoading = signal<boolean>(false);
+
+  emails = signal<string[] | null>(null);
+  enableButton = signal<boolean>(false);
+
   dashboardService = inject(AdminDashboardService);
   messageService = inject(MessageService);
 
   ngOnInit() {
-    this.emailsForm = new FormGroup({
-      emails: new FormControl<string[] | null>(null),
-      enableButton: new FormControl(false), // Properly initialize the checkbox
-    });
+    this.emails.set(null);
+    this.enableButton.set(false);
   }
-
   onSubmit() {
-    if (this.emailsForm.valid) {
-      this.isLoading = true;
-      // console.log(this.emailsForm.value.emails);
-      this.dashboardService.sendEmails(this.emailsForm.value.emails).subscribe({
+    const emailList = this.emails();
+
+    if (emailList && emailList.length > 0) {
+      this.isLoading.set(true);
+
+      this.dashboardService.sendEmails(emailList).subscribe({
         next: (response) => {
-          this.isLoading = false;
-          this.emailsForm.get('enableButton')?.setValue(false);
+          this.isLoading.set(false);
+          this.enableButton.set(false);
+
           this.messageService.add({
             severity: 'success',
-            summary: 'success',
+            summary: 'Success',
             detail: response.message,
           });
-          // this.emailsForm.reset();
         },
         error: (error) => {
-          console.error(error);
           this.messageService.add({
             severity: 'error',
             summary: 'Error',
             detail: error.error.message,
           });
-          this.emailsForm.get('enableButton')?.setValue(false);
-          this.isLoading = false;
+
+          this.enableButton.set(false);
+          this.isLoading.set(false);
         },
       });
     }
+  }
+
+  // You can use this to update the emails signal directly
+  updateEmails(newEmails: string[] | null): void {
+    this.emails.set(newEmails);
+  }
+
+  // Similarly, this could be used to update the enableButton signal
+  toggleEnableButton(value: boolean): void {
+    this.enableButton.set(value);
   }
 }

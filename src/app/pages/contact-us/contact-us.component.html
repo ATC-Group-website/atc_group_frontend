@@ -166,7 +166,7 @@
               >Reason for Contact</label
             >
             <p-dropdown
-              [options]="reasonOptions"
+              [options]="reasonOptions()"
               [(ngModel)]="selectedReason"
               optionLabel="label"
               optionValue="value"
@@ -226,14 +226,13 @@
           }"
           type="submit"
         />
-        @if (message) {
+        @if (message()) {
           <div class="mt-4 text-center text-xl font-bold">
-            {{ message }}
+            {{ message() }}
           </div>
         }
       </form>
     </div>
   </section>
-
 </main>
 <app-footer></app-footer>

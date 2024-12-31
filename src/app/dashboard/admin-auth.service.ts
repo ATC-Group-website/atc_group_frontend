@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Admin, Login } from './interface';
 
 @Injectable({
@@ -13,11 +13,6 @@ export class AdminAuthService {
 
   constructor() {}
 
-  // // Initialize BehaviorSubject with token from localStorage if available
-  // adminToken: BehaviorSubject<string | null> = new BehaviorSubject<
-  //   string | null
-  // >((typeof window !== 'undefined' && localStorage.getItem('token')) || null);
-
   login(loginData: Login): Observable<Admin> {
     return this.http.post<Admin>(`${this.apiUrl}/admin/login`, loginData);
   }
@@ -27,6 +22,5 @@ export class AdminAuthService {
       `${this.apiUrl}/admin/logout`,
       {},
     );
-    
   }
 }

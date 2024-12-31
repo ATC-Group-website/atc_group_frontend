@@ -1,4 +1,11 @@
-import { Component, Inject, inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  Inject,
+  inject,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -26,43 +33,47 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrl: './insight-details.component.css',
 })
 export class InsightDetailsComponent implements OnInit {
-  isBrowser: boolean;
-  isLoading = true;
-  post!: any;
-  videoURL: SafeResourceUrl = '';
-  newDescription!: { text: SafeHtml; direction: string };
-  sanitizer = inject(DomSanitizer);
-  router = inject(Router);
-  route = inject(ActivatedRoute);
-  postsService = inject(PostsService);
+  isBrowser = signal<boolean>(false);
+  isLoading = signal<boolean>(true);
+  post = signal<any>(null);
+  videoURL = signal<SafeResourceUrl>('');
+  newDescription = signal<{ text: SafeHtml; direction: string } | null>(null);
+  images = signal<any[]>([]);
+  embedUrl = signal<SafeResourceUrl | null>(null);
+
   title = inject(Title);
   meta = inject(Meta);
-  images: any[] = [];
-
-  embedUrl: SafeResourceUrl | null = null;
+  route = inject(ActivatedRoute);
+  postsService = inject(PostsService);
+  sanitizer = inject(DomSanitizer);
+  router = inject(Router);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
+    this.isBrowser.set(isPlatformBrowser(platformId));
   }
+
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug');
 
     if (slug) {
       this.postsService.getPostBySlug(slug).subscribe({
         next: (res) => {
-          this.post = res;
-          this.newDescription = this.detectTextDirection(res.description || '');
+          this.post.set(res);
+          this.newDescription.set(
+            this.detectTextDirection(res.description || ''),
+          );
           const videoId = this.extractVideoId(res.video_url);
           this.images = res.images;
 
           if (videoId) {
             const embedLink = `https://www.youtube.com/embed/${videoId}`;
-            this.embedUrl =
-              this.sanitizer.bypassSecurityTrustResourceUrl(embedLink);
+            this.embedUrl.set(
+              this.sanitizer.bypassSecurityTrustResourceUrl(embedLink),
+            );
           }
 
           // Set the title dynamically
-          this.title.setTitle(`${res.title} - ATC`);
+          this.title.setTitle(`${res.title}`);
 
           // Update meta description
           // this.meta.updateTag({
@@ -87,10 +98,10 @@ export class InsightDetailsComponent implements OnInit {
             property: 'og:url',
             content: `https://www.atc.com.eg/articles/${slug}`,
           });
-          this.isLoading = false;
+          this.isLoading.set(false);
         },
-        error: (error) => {
-          this.isLoading = false;
+        error: () => {
+          this.isLoading.set(false);
         },
       });
     }
@@ -111,7 +122,7 @@ export class InsightDetailsComponent implements OnInit {
     text: SafeHtml;
     direction: string;
   } {
-    if (!this.isBrowser) {
+    if (!this.isBrowser()) {
       return {
         text: this.sanitizer.bypassSecurityTrustHtml(''),
         direction: 'ltr',

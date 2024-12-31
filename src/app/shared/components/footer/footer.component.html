@@ -38,7 +38,7 @@
         </div>
         <p-button
           label="Sign Up"
-          [loading]="loading"
+          [loading]="loading()"
           class="h-[50px]"
           [style]="{
             width: '100%',
@@ -49,9 +49,9 @@
           }"
           type="submit"
         />
-        @if (message) {
+        @if (message()) {
           <div class="mt-4 text-center text-lg font-bold">
-            {{ message }}
+            {{ message() }}
           </div>
         }
       </form>

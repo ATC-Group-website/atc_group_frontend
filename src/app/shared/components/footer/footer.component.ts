@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { FormsModule, NgForm } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -21,8 +21,9 @@ import { NewsletterService } from '../../services/newsletter.service';
   styleUrl: './footer.component.css',
 })
 export class FooterComponent {
-  message: string = '';
-  loading: boolean = false;
+  message = signal<string>('');
+  loading = signal<boolean>(false);
+
   newsletterService = inject(NewsletterService);
 
   constructor() {}
@@ -36,18 +37,18 @@ export class FooterComponent {
         });
       });
     } else {
-      this.loading = true;
+      this.loading.set(true);
       const email = formData.form.value;
 
       this.newsletterService.subscribe(email).subscribe({
         next: (response) => {
-          this.loading = false;
-          this.message = response.message;
+          this.loading.set(false);
+          this.message.set(response.message);
           formData.reset();
           this.clearMessageAfterDelay(5000); // Clear message after 5 seconds
         },
         error: (err) => {
-          this.loading = false;
+          this.loading.set(false);
           this.message = err.error.message;
         },
       });
@@ -56,7 +57,7 @@ export class FooterComponent {
 
   private clearMessageAfterDelay(delay: number): void {
     setTimeout(() => {
-      this.message = '';
+      this.message.set('');
     }, delay);
   }
 }

@@ -33,26 +33,6 @@ export class NotFoundComponent implements OnInit {
 
   setMetaTags() {
     this.title.setTitle('404 Not Found | ATC Group');
-  }
-
-  slides = [
-    'https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/freebies/carousel-full-cover/assets/featured.jpg',
-    'https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/freebies/carousel-full-cover/assets/featured.jpg',
-    'https://mdbcdn.b-cdn.net/wp-content/themes/mdbootstrap4/content/en/_mdb5/standard/freebies/carousel-full-cover/assets/featured.jpg',
-  ];
-
-  currentSlide = 0;
-
-  nextSlide() {
-    this.currentSlide = (this.currentSlide + 1) % this.slides.length;
-  }
-
-  prevSlide() {
-    this.currentSlide =
-      (this.currentSlide - 1 + this.slides.length) % this.slides.length;
-  }
-
-  goToSlide(index: number) {
-    this.currentSlide = index;
+    this.meta.updateTag({ name: 'robots', content: 'noindex' });
   }
 }

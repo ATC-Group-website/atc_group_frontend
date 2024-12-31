@@ -1,9 +1,16 @@
 import { InputTextModule } from 'primeng/inputtext';
-import { Component, inject, OnInit } from '@angular/core';
+import {
+  Component,
+  Inject,
+  inject,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { PasswordModule } from 'primeng/password';
-import { CommonModule } from '@angular/common';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { AdminAuthService } from '../admin-auth.service';
 
@@ -21,15 +28,19 @@ import { AdminAuthService } from '../admin-auth.service';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
-  isLoading: boolean = false;
-  errorMessage: string | null = null;
+  isBrowser = signal<boolean>(false);
+  isLoading = signal<boolean>(false);
+  errorMessage = signal<string | null>(null);
+
   router = inject(Router);
   authService = inject(AdminAuthService);
 
-  constructor() {}
+  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+    this.isBrowser.set(isPlatformBrowser(platformId));
+  }
 
   ngOnInit(): void {
-    if (typeof window !== 'undefined' && typeof localStorage !== 'undefined') {
+    if (this.isBrowser()) {
       const adminToken = localStorage.getItem('token');
       if (adminToken !== null) {
         this.router.navigateByUrl('admin/dashboard');
@@ -44,29 +55,20 @@ export class LoginComponent implements OnInit {
         control.markAsTouched({ onlySelf: true });
       });
     } else {
-      this.errorMessage = null;
-      this.isLoading = true;
+      this.errorMessage.set(null);
+      this.isLoading.set(true);
 
       this.authService.login(formData.form.value).subscribe({
         next: (response) => {
-
           localStorage.setItem('token', response.token);
-          if (
-            typeof window !== 'undefined' &&
-            typeof localStorage !== 'undefined'
-          ) {
-            const redirectUrl =
-              localStorage.getItem('redirectUrl') || '/admin/dashboard';
-            localStorage.removeItem('redirectUrl');
-
-            this.router.navigate([redirectUrl]);
-            this.isLoading = false;
-          }
+          this.router.navigateByUrl('/admin/dashboard');
+          this.isLoading.set(false);
         },
         error: (err) => {
-          this.errorMessage =
-            err.error.error || 'Login failed. Please try again.';
-          this.isLoading = false;
+          this.errorMessage.set(
+            err.error.error || 'Login failed. Please try again.',
+          );
+          this.isLoading.set(false);
         },
       });
     }

@@ -1,11 +1,11 @@
-@if (services && responsiveOptions) {
+@if (services() && responsiveOptions()) {
   <div class="card my-5">
     <p-carousel
-      [value]="services"
+      [value]="services()"
       [numVisible]="3"
       [numScroll]="1"
       circular="true"
-      [responsiveOptions]="responsiveOptions"
+      [responsiveOptions]="responsiveOptions()"
       autoplayInterval="2000"
       ngSkipHydration
     >

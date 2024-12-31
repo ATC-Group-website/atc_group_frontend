@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TableModule } from 'primeng/table';
 import { CommonModule } from '@angular/common';
 import { ConfirmationService, MessageService } from 'primeng/api';
@@ -32,11 +32,11 @@ import { CustomDatePipe } from '../../shared/pipes/custom-date.pipe';
   styleUrl: './news-and-events.component.css',
 })
 export class NewsAndEventsComponent implements OnInit {
-  news: Post[] = [];
-  currentPage: number = 1;
-  postsPerPage: number = 10;
-  totalNews: number = 0;
-  loading: boolean = true;
+  news = signal<Post[]>([]);
+  currentPage = signal<number>(1);
+  postsPerPage = signal<number>(10);
+  totalNews = signal<number>(0);
+  loading = signal<boolean>(true);
 
   router = inject(Router);
   dashboardService = inject(AdminDashboardService);
@@ -47,28 +47,29 @@ export class NewsAndEventsComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    this.fetchPosts(this.currentPage);
+    this.fetchPosts(this.currentPage());
   }
 
   fetchPosts(pageNum: number) {
     this.dashboardService
-      .getPostsByType('news', this.postsPerPage, pageNum)
+      .getPostsByType('news', this.postsPerPage(), pageNum)
       .subscribe({
         next: (response) => {
-          this.news = response.posts.data;
-          this.totalNews = response.posts.total;
-          this.loading = false;
+          this.news.set(response.posts.data);
+          this.totalNews.set(response.posts.total);
+          this.loading.set(false);
         },
-        error: (err) => {
-          this.loading = false;
+        error: () => {
+          this.loading.set(false);
         },
       });
   }
 
   onPageChange(event: any): void {
-    this.loading = true;
-    this.currentPage = event.first / this.postsPerPage + 1;
-    this.fetchPosts(this.currentPage);
+    this.loading.set(true);
+    const newPage = event.first / this.postsPerPage() + 1;
+    this.currentPage.set(newPage);
+    this.fetchPosts(this.currentPage());
   }
 
   confirmDelete(event: Event, slug: string) {
@@ -85,7 +86,7 @@ export class NewsAndEventsComponent implements OnInit {
       accept: () => {
         this.dashboardService.deletePost(slug).subscribe({
           next: (response) => {
-            this.fetchPosts(this.currentPage);
+            this.fetchPosts(this.currentPage());
             this.messageService.add({
               severity: 'info',
               summary: 'Success',

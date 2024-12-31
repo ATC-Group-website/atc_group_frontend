@@ -1,14 +1,14 @@
 <main style="min-height: calc(100vh - 112px)">
-  <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
+  <div style="min-height: calc(100vh - 112px)" class="rounded-lg bg-white p-8">
     <div class="card">
       <p-table
-        [value]="blogs"
+        [value]="blogs()"
         [lazy]="true"
         [paginator]="true"
-        [rows]="postsPerPage"
-        [loading]="loading"
+        [rows]="postsPerPage()"
+        [loading]="loading()"
         [first]="0"
-        [totalRecords]="totalBlogs"
+        [totalRecords]="totalBlogs()"
         [showCurrentPageReport]="true"
         (onLazyLoad)="onPageChange($event)"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} blogs"
@@ -18,7 +18,6 @@
             <h2 class="text-center">ATC Group Blogs</h2>
           </div>
         </ng-template>
-
         <ng-template pTemplate="header">
           <tr class="text-center">
             <th style="width: 2rem" class="text-center">#</th>

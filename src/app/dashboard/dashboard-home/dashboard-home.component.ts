@@ -1,7 +1,8 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { AdminDashboardService } from '../admin-dashboard.service';
 import { ChartModule } from 'primeng/chart';
 import { LoadingComponent } from '../../shared/components/loading/loading.component';
+import { ChartData, ChartOptions } from '../interface';
 
 @Component({
   selector: 'app-dashboard-home',
@@ -11,10 +12,22 @@ import { LoadingComponent } from '../../shared/components/loading/loading.compon
   styleUrl: './dashboard-home.component.css',
 })
 export class DashboardHomeComponent implements OnInit {
-  loading: boolean = true;
-  mailSubscribers: number = 0;
-  data: any;
-  options: any;
+  loading = signal<boolean>(true);
+  mailSubscribers = signal<number>(0);
+  data = signal<ChartData>({
+    labels: [],
+    datasets: [],
+  });
+  options = signal<ChartOptions>({
+    plugins: {
+      legend: {
+        labels: {
+          usePointStyle: true,
+          color: '',
+        },
+      },
+    },
+  });
 
   dashboardService = inject(AdminDashboardService);
 
@@ -25,11 +38,11 @@ export class DashboardHomeComponent implements OnInit {
 
     this.dashboardService.getEmailsCount().subscribe({
       next: (res) => {
-        this.mailSubscribers = res.count;
-        this.loading = false;
+        this.mailSubscribers.set(res.count);
+        this.loading.set(false);
       },
-      error: (err) => {
-        this.loading = false;
+      error: () => {
+        this.loading.set(false);
       },
     });
   }
@@ -43,7 +56,7 @@ export class DashboardHomeComponent implements OnInit {
         const documentStyle = getComputedStyle(document.documentElement);
         const textColor = documentStyle.getPropertyValue('--text-color');
 
-        this.data = {
+        this.data.set({
           labels: ['Articles', 'News & Events', 'Blogs'],
           datasets: [
             {
@@ -60,9 +73,9 @@ export class DashboardHomeComponent implements OnInit {
               ],
             },
           ],
-        };
+        });
 
-        this.options = {
+        this.options.set({
           plugins: {
             legend: {
               labels: {
@@ -71,12 +84,9 @@ export class DashboardHomeComponent implements OnInit {
               },
             },
           },
-        };
-        this.loading = false;
+        });
       },
-      error: (err) => {
-        this.loading = false;
-      },
+      error: () => {},
     });
   }
 }

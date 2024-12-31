@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 
 @Component({
   selector: 'app-tabs',
@@ -9,14 +9,14 @@ import { Component } from '@angular/core';
   styleUrl: './tabs.component.css',
 })
 export class TabsComponent {
-  activeTab: string = 'Driving Positive Change';
+  activeTab = signal<string>('Driving Positive Change');
 
   setActiveTab(tab: string) {
-    this.activeTab = tab;
+    this.activeTab.set(tab);
   }
 
   getTabClass(tab: string): string {
     const baseClasses = 'flex-1 text-center';
-    return this.activeTab === tab ? `${baseClasses} bg-white ` : baseClasses;
+    return this.activeTab() === tab ? `${baseClasses} bg-white ` : baseClasses;
   }
 }

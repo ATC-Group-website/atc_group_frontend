@@ -1,15 +1,21 @@
 <main style="min-height: calc(100vh - 112px)">
-  <div class="min-h-[83vh] rounded-lg bg-white p-8">
+  <div style="min-height: calc(100vh - 112px)" class="rounded-lg bg-white p-8">
     <h1 class="mb-10 text-center">Send Happy New Year Emails</h1>
-    <form [formGroup]="emailsForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
       <div class="card p-fluid mb-10">
-        <p-chips formControlName="emails" />
+        <p-chips
+          [(ngModel)]="emails"
+          (ngModelChange)="updateEmails($event)"
+          name="emails"
+        />
       </div>
       <div class="mb-5">
         <p-checkbox
           binary="true"
           label="Unlock Send Button"
-          formControlName="enableButton"
+          name="enableButton"
+          [(ngModel)]="enableButton"
+          (ngModelChange)="toggleEnableButton($event)"
         ></p-checkbox>
       </div>
       <button
@@ -17,8 +23,8 @@
         label="Send"
         class="p-button-success"
         type="submit"
-        [loading]="isLoading"
-        [disabled]="!emailsForm.controls['enableButton'].value"
+        [loading]="isLoading()"
+        [disabled]="!enableButton()"
         [style]="{
           width: '100%',
           outline: 'none',

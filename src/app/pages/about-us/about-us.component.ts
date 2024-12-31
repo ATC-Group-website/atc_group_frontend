@@ -1,4 +1,11 @@
-import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  inject,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -53,19 +60,17 @@ interface ResponsiveOptions {
   styleUrl: './about-us.component.css',
 })
 export class AboutUsComponent implements OnInit {
-  yearsOfExperience: number = 0;
-  isBrowser: boolean;
-  visible: boolean = false;
-  loading: boolean = false;
-  openStates: boolean[] = [true, false];
-  team: Team[] = [];
-  message: string = '';
-  responsiveOptions: ResponsiveOptions[] = [];
-  title = inject(Title);
-  meta = inject(Meta);
-  contactUsService = inject(ContactUsService);
+  yearsOfExperience = signal<number>(0);
+  isBrowser = signal<boolean>(false);
+  visible = signal<boolean>(false);
+  loading = signal<boolean>(false);
+  openStates = signal<boolean[]>([true, false]);
+  team = signal<Team[]>([]);
+  message = signal<string>('');
+  responsiveOptions = signal<ResponsiveOptions[]>([]);
+  selectedReason = signal<string>('');
 
-  reasonOptions = [
+  reasonOptions = signal<{ label: string; value: string }[]>([
     { label: 'Consultation', value: 'consultation' },
     { label: 'Services', value: 'services' },
     { label: 'Proposal', value: 'proposal' },
@@ -74,12 +79,14 @@ export class AboutUsComponent implements OnInit {
     { label: 'Feedback', value: 'feedback' },
     { label: 'Complaint', value: 'complaint' },
     { label: 'Other', value: 'other' },
-  ];
+  ]);
 
-  selectedReason: string = '';
+  meta = inject(Meta);
+  title = inject(Title);
+  contactUsService = inject(ContactUsService);
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
+    this.isBrowser.set(isPlatformBrowser(platformId));
   }
 
   ngOnInit(): void {
@@ -87,20 +94,20 @@ export class AboutUsComponent implements OnInit {
 
     const startYear = 1998;
     const currentYear = new Date().getFullYear();
-    this.yearsOfExperience = currentYear - startYear;
+    this.yearsOfExperience.set(currentYear - startYear);
 
-    if (this.isBrowser) {
+    if (this.isBrowser()) {
       const panels = document.querySelectorAll('.panel');
       panels.forEach((panel, index) => {
         const element = panel as HTMLElement;
-        if (this.openStates[index]) {
+        if (this.openStates()[index]) {
           element.style.maxHeight = `${element.scrollHeight}px`; // Set height for open panel
         } else {
           element.style.maxHeight = '0px'; // Collapse others
         }
       });
 
-      this.team = [
+      this.team.set([
         {
           name: 'Ashraf Abdel Ghani',
           title:
@@ -127,9 +134,9 @@ export class AboutUsComponent implements OnInit {
           title: 'Business Development Executive',
           imageUrl: 'about_us/mayar.jpg',
         },
-      ];
+      ]);
 
-      this.responsiveOptions = [
+      this.responsiveOptions.set([
         {
           breakpoint: '1400px',
           numVisible: 3,
@@ -145,14 +152,14 @@ export class AboutUsComponent implements OnInit {
           numVisible: 1,
           numScroll: 1,
         },
-      ];
+      ]);
     }
   }
 
   toggleAccordion(index: number): void {
     const panel = document.querySelectorAll('.panel')[index] as HTMLElement;
 
-    if (this.openStates[index]) {
+    if (this.openStates()[index]) {
       // Close the panel
       panel.style.maxHeight = '0px';
     } else {
@@ -161,11 +168,11 @@ export class AboutUsComponent implements OnInit {
     }
 
     // Toggle the state
-    this.openStates[index] = !this.openStates[index];
+    this.openStates()[index] = !this.openStates()[index];
   }
 
   showDialog() {
-    this.visible = true;
+    this.visible.set(true);
   }
 
   onSubmit(formData: NgForm) {
@@ -175,7 +182,7 @@ export class AboutUsComponent implements OnInit {
         control.markAsTouched({ onlySelf: true });
       });
     } else {
-      this.loading = true;
+      this.loading.set(true);
       const Data = {
         sender: formData.form.controls['email'].value,
         // receiver: 'online@atc.com.eg',
@@ -189,13 +196,13 @@ export class AboutUsComponent implements OnInit {
       };
 
       this.contactUsService.contact_US(Data).subscribe({
-        next: (response) => {
-          this.message = 'Thank you for contacting ATC Group.';
+        next: () => {
+          this.message.set('Thank you for contacting ATC Group.');
           formData.reset();
-          this.loading = false;
+          this.loading.set(false);
         },
-        error: (err) => {
-          this.loading = false;
+        error: () => {
+          this.loading.set(false);
         },
       });
     }

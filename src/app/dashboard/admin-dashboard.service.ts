@@ -12,7 +12,6 @@ export class AdminDashboardService {
   private apiUrl = 'https://api1.atc.com.eg';
 
   constructor() {}
-  //
   createPost(postData: NewPost): Observable<PostCreationResponse> {
     return this.http.post<PostCreationResponse>(
       `${this.apiUrl}/post`,

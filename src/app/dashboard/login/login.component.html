@@ -82,13 +82,13 @@
                 border: 'none',
               }"
               type="submit"
-              [loading]="isLoading"
+              [loading]="isLoading()"
             />
           </div>
 
-          @if (errorMessage) {
+          @if (errorMessage()) {
             <div class="text-red-500">
-              {{ errorMessage }}
+              {{ errorMessage() }}
             </div>
           }
         </form>

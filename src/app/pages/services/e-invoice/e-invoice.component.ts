@@ -1,4 +1,11 @@
-import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  inject,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { TopBarComponent } from '../../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../../shared/components/footer/footer.component';
@@ -7,32 +14,28 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-e-invoice',
   standalone: true,
-  imports: [
-    TopBarComponent,
-    NavBarComponent,
-    FooterComponent,
-    CommonModule,
-  ],
+  imports: [TopBarComponent, NavBarComponent, FooterComponent, CommonModule],
   templateUrl: './e-invoice.component.html',
   styleUrl: './e-invoice.component.css',
 })
 export class EInvoiceComponent {
+  openStates = signal<boolean[]>([false, false, false, false]);
+  isBrowser = signal<boolean>(false);
+
   title = inject(Title);
   meta = inject(Meta);
-  openStates: boolean[] = [false, false, false, false];
-  isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
+    this.isBrowser.set(isPlatformBrowser(platformId));
   }
   ngOnInit(): void {
     this.setMetaTags();
 
-    if (this.isBrowser) {
+    if (this.isBrowser()) {
       const panels = document.querySelectorAll('.panel');
       panels.forEach((panel, index) => {
         const element = panel as HTMLElement;
-        if (this.openStates[index]) {
+        if (this.openStates()[index]) {
           element.style.maxHeight = `${element.scrollHeight}px`; // Set height for open panel
         } else {
           element.style.maxHeight = '0px'; // Collapse others
@@ -44,7 +47,7 @@ export class EInvoiceComponent {
   toggleAccordion(index: number): void {
     const panel = document.querySelectorAll('.panel')[index] as HTMLElement;
 
-    if (this.openStates[index]) {
+    if (this.openStates()[index]) {
       // Close the panel
       panel.style.maxHeight = '0px';
     } else {
@@ -53,7 +56,7 @@ export class EInvoiceComponent {
     }
 
     // Toggle the state
-    this.openStates[index] = !this.openStates[index];
+    this.openStates()[index] = !this.openStates()[index];
   }
 
   setMetaTags() {

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, input, OnInit, signal } from '@angular/core';
 import { GalleriaModule } from 'primeng/galleria';
 
 @Component({
@@ -9,9 +9,9 @@ import { GalleriaModule } from 'primeng/galleria';
   styleUrl: './gallery-images.component.css',
 })
 export class GalleryImagesComponent implements OnInit {
-  @Input() images: any[] = [];
+  images = input<any[]>([]);
 
-  responsiveOptions: any[] = [
+  responsiveOptions = signal<any[]>([
     {
       breakpoint: '1024px',
       numVisible: 5,
@@ -24,10 +24,10 @@ export class GalleryImagesComponent implements OnInit {
       breakpoint: '560px',
       numVisible: 1,
     },
-  ];
+  ]);
 
   ngOnInit(): void {
-    console.log('GalleryImagesComponent');
-    console.log(this.images);
+    // console.log('GalleryImagesComponent');
+    // console.log(this.images);
   }
 }

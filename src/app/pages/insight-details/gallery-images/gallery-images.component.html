@@ -1,9 +1,9 @@
 <div class="card flex items-center justify-center">
   <p-galleria
-    [value]="images"
+    [value]="images()"
     [autoPlay]="true"
     [circular]="true"
-    [responsiveOptions]="responsiveOptions"
+    [responsiveOptions]="responsiveOptions()"
     [numVisible]="5"
     [containerStyle]="{ 'max-width': '1200px' }"
   >

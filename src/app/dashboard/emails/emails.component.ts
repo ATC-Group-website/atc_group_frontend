@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { AdminDashboardService } from '../admin-dashboard.service';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -22,11 +22,11 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   styleUrl: './emails.component.css',
 })
 export class EmailsComponent implements OnInit {
-  subscribers!: any[];
-  loading: boolean = true;
-  totalSubscribers: number = 0;
-  first = 0;
-  rows = 10;
+  subscribers = signal<any[]>([]);
+  loading = signal<boolean>(true);
+  totalSubscribers = signal<number>(0);
+  first = signal<number>(0);
+  rows = signal<number>(10);
 
   dashboardService = inject(AdminDashboardService);
   messageService = inject(MessageService);
@@ -39,18 +39,18 @@ export class EmailsComponent implements OnInit {
   getEmails() {
     this.dashboardService.getSubscribedEmails().subscribe({
       next: (res) => {
-        this.subscribers = res.subscribers.reverse();
-        this.loading = false;
+        this.subscribers.set(res.subscribers.reverse());
+        this.loading.set(false);
       },
       error: (err) => {
-        this.loading = false;
+        this.loading.set(false);
       },
     });
   }
 
   pageChange(event: any) {
-    this.first = event.first;
-    this.rows = event.rows;
+    this.first.set(event.first);
+    this.rows.set(event.rows);
   }
 
   confirmDelete(event: Event, subscriberEmail: string) {
@@ -66,7 +66,7 @@ export class EmailsComponent implements OnInit {
 
       accept: () => {
         this.dashboardService.deleteSubscribedEmail(subscriberEmail).subscribe({
-          next: (response) => {
+          next: () => {
             this.messageService.add({
               severity: 'info',
               summary: 'Confirmed',
@@ -74,7 +74,7 @@ export class EmailsComponent implements OnInit {
             });
             this.getEmails();
           },
-          error: (err) => {
+          error: () => {
             this.messageService.add({
               severity: 'error',
               summary: 'Error',

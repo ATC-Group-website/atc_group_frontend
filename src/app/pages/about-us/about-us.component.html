@@ -57,8 +57,8 @@
             </h2>
             <i
               [ngClass]="{
-                'fa-chevron-up': openStates[0],
-                'fa-chevron-down': !openStates[0],
+                'fa-chevron-up': openStates()[0],
+                'fa-chevron-down': !openStates()[0],
               }"
               class="fa-solid text-2xl text-primary transition-transform duration-300"
             ></i>
@@ -120,8 +120,8 @@
             </h2>
             <i
               [ngClass]="{
-                'fa-chevron-up': openStates[1],
-                'fa-chevron-down': !openStates[1],
+                'fa-chevron-up': openStates()[1],
+                'fa-chevron-down': !openStates()[1],
               }"
               class="fa-solid text-2xl text-primary transition-transform duration-300"
             ></i>
@@ -348,7 +348,7 @@
                 >Reason for Contact</label
               >
               <p-dropdown
-                [options]="reasonOptions"
+                [options]="reasonOptions()"
                 [(ngModel)]="selectedReason"
                 optionLabel="label"
                 optionValue="value"
@@ -397,7 +397,7 @@
           <p-button
             label="Submit"
             class="outline-none focus:border-none focus:outline-none"
-            [loading]="loading"
+            [loading]="loading()"
             [disabled]="quoteForm.invalid"
             [style]="{
               width: '100%',
@@ -408,9 +408,9 @@
             }"
             type="submit"
           />
-          @if (message) {
+          @if (message()) {
             <div class="mt-4 text-center text-xl font-bold">
-              {{ message }}
+              {{ message() }}
             </div>
           }
         </form>
@@ -626,19 +626,19 @@
       <div class="mx-auto max-w-screen-md">
         <p class="m-0 text-center text-xl text-grayTitle">
           Our team comprises numerous partners, most with extensive expertise
-          spanning more than <span>{{ yearsOfExperience }}</span> years, highly
-          skilled and professionally qualified, excelling in providing
+          spanning more than <span>{{ yearsOfExperience() }}</span> years,
+          highly skilled and professionally qualified, excelling in providing
           accounting and taxation services.
         </p>
       </div>
 
       <div class="card my-5">
         <p-carousel
-          [value]="team"
+          [value]="team()"
           [numVisible]="3"
           [numScroll]="1"
           circular="true"
-          [responsiveOptions]="responsiveOptions"
+          [responsiveOptions]="responsiveOptions()"
           ngSkipHydration
         >
           <ng-template let-team pTemplate="team">

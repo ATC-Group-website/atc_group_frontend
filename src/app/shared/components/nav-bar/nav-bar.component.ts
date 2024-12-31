@@ -5,6 +5,7 @@ import {
   inject,
   OnInit,
   Renderer2,
+  signal,
 } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 
@@ -16,9 +17,9 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './nav-bar.component.css',
 })
 export class NavBarComponent implements OnInit {
-  isMenuOpen = false;
-  isScrolled = false;
-  servicesDropdownOpen = false;
+  isMenuOpen = signal<boolean>(false);
+  isScrolled = signal<boolean>(false);
+  servicesDropdownOpen = signal<boolean>(false);
 
   router = inject(Router);
   renderer = inject(Renderer2);
@@ -27,18 +28,18 @@ export class NavBarComponent implements OnInit {
 
   @HostListener('window:scroll', [])
   onWindowScroll() {
-    this.isScrolled = window.scrollY > 0;
+    this.isScrolled.set(window.scrollY > 0);
   }
 
   toggleMenu(event: Event) {
-    this.isMenuOpen = !this.isMenuOpen;
-    this.servicesDropdownOpen = false;
+    this.isMenuOpen.set(!this.isMenuOpen());
+    this.servicesDropdownOpen.set(false);
 
     event.stopPropagation();
   }
   closeMenu() {
     if (this.isMenuOpen) {
-      this.isMenuOpen = false;
+      this.isMenuOpen.set(false);
     }
   }
 
@@ -50,6 +51,6 @@ export class NavBarComponent implements OnInit {
 
   // Toggle services dropdown
   toggleServicesDropdown() {
-    this.servicesDropdownOpen = !this.servicesDropdownOpen;
+    this.servicesDropdownOpen.set(!this.servicesDropdownOpen());
   }
 }

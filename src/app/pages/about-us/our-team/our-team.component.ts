@@ -490,6 +490,7 @@ export class OurTeamComponent implements OnInit {
       imageUrl: 'about_us/our_team/dawlat.jpg',
     },
   ];
+  
   insuranceMembers: Member[] = [
     {
       name: 'Hisham Halawa',
@@ -497,6 +498,7 @@ export class OurTeamComponent implements OnInit {
       imageUrl: 'about_us/our_team/profile.jpg',
     },
   ];
+
   legalAffairsMembers: Member[] = [
     {
       name: 'Emad Fawy',

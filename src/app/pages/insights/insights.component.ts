@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -53,17 +53,16 @@ export class InsightsComponent implements OnInit {
     },
   };
 
-  pageNumArticles: number = 1;
-  pageNumNews: number = 1;
-  pageNumBlogs: number = 1;
+  // not used
+  // pageNumArticles = signal(1);
+  // pageNumNews = signal(1);
+  // pageNumBlogs = signal(1);
+  // first = signal(0);
+  // rows = signal(3);
 
   title = inject(Title);
   meta = inject(Meta);
   postsService = inject(PostsService);
-
-  first: number = 0;
-
-  rows: number = 3;
 
   ngOnInit(): void {
     this.setMetaTags();
@@ -83,7 +82,7 @@ export class InsightsComponent implements OnInit {
         this.types[type].totalPages = res.posts.total;
         this.types[type].isLoading = false;
       },
-      error: (err) => {
+      error: () => {
         this.types[type].isLoading = false;
       },
     });
@@ -96,10 +95,6 @@ export class InsightsComponent implements OnInit {
     const pageNum =
       Math.floor(this.types[type].first / this.types[type].rows) + 1;
     this.fetchPosts(type, pageNum);
-
-    // const pageNum = Math.floor(this.first / this.rows) + 1;
-
-    // this.fetchPosts(type, pageNum);
   }
 
   setMetaTags() {

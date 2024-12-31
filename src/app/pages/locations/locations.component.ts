@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
@@ -22,10 +22,11 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrl: './locations.component.css',
 })
 export class LocationsComponent implements OnInit {
+  activeTab = signal<string>('Egypt');
+  selectedCountry = signal<any>(null);
+
   title = inject(Title);
   meta = inject(Meta);
-  activeTab: string = 'Egypt';
-  selectedCountry: any;
 
   ngOnInit(): void {
     this.setMetaTags();
@@ -34,12 +35,12 @@ export class LocationsComponent implements OnInit {
   }
 
   setActiveTab(tab: string) {
-    this.activeTab = tab;
+    this.activeTab.set(tab);
   }
 
   getTabClass(tab: string): string {
     const baseClasses = 'flex-1 text-center';
-    return this.activeTab === tab ? `${baseClasses} bg-white ` : baseClasses;
+    return this.activeTab() === tab ? `${baseClasses} bg-white ` : baseClasses;
   }
 
   countries = {
@@ -88,7 +89,7 @@ export class LocationsComponent implements OnInit {
   };
 
   setCountry(countryKey: keyof typeof this.countries) {
-    this.selectedCountry = this.countries[countryKey];
+    this.selectedCountry.set(this.countries[countryKey]);
   }
 
   setMetaTags() {

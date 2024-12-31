@@ -220,8 +220,8 @@
   <div
     class="max-h-[calc(100vh-250px)] overflow-y-auto bg-white shadow-lg xl:hidden"
     [ngClass]="{
-      block: isMenuOpen,
-      hidden: !isMenuOpen,
+      block: isMenuOpen(),
+      hidden: !isMenuOpen(),
     }"
     (click)="$event.stopPropagation()"
   >
@@ -257,12 +257,12 @@
           (click)="toggleServicesDropdown()"
           class="fa cursor-pointer text-primary"
           [ngClass]="{
-            'fa-chevron-down': !servicesDropdownOpen,
-            'fa-chevron-up': servicesDropdownOpen,
+            'fa-chevron-down': !servicesDropdownOpen(),
+            'fa-chevron-up': servicesDropdownOpen(),
           }"
         ></i>
       </li>
-      @if (servicesDropdownOpen) {
+      @if (servicesDropdownOpen()) {
         <div class="pl-5 text-lg">
           <a
             routerLink="/services/tax"

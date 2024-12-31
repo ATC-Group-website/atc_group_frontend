@@ -1,14 +1,14 @@
 <main style="min-height: calc(100vh - 112px)">
-  <div class="min-h-[83vh] rounded-lg bg-white p-8 shadow-lg">
+  <div style="min-height: calc(100vh - 112px)" class="rounded-lg bg-white p-8">
     <div class="card">
       <p-table
-        [value]="news"
+        [value]="news()"
         [lazy]="true"
         [paginator]="true"
-        [rows]="postsPerPage"
-        [loading]="loading"
+        [rows]="postsPerPage()"
+        [loading]="loading()"
         [first]="0"
-        [totalRecords]="totalNews"
+        [totalRecords]="totalNews()"
         [showCurrentPageReport]="true"
         (onLazyLoad)="onPageChange($event)"
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} news & events"

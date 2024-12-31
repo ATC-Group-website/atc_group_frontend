@@ -57,3 +57,24 @@ export interface PostsCount {
   type: string;
   count: number;
 }
+export interface ChartData {
+  labels: string[];
+  datasets: Dataset[];
+}
+
+export interface Dataset {
+  data: number[];
+  backgroundColor: string[];
+  hoverBackgroundColor: string[];
+}
+
+export interface ChartOptions {
+  plugins: {
+    legend: {
+      labels: {
+        usePointStyle: boolean;
+        color: string;
+      };
+    };
+  };
+}

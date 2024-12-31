@@ -1,4 +1,11 @@
-import { Component, inject, Inject, OnInit, PLATFORM_ID } from '@angular/core';
+import {
+  Component,
+  inject,
+  Inject,
+  OnInit,
+  PLATFORM_ID,
+  signal,
+} from '@angular/core';
 import { TopBarComponent } from '../../shared/components/top-bar/top-bar.component';
 import { NavBarComponent } from '../../shared/components/nav-bar/nav-bar.component';
 import { FooterComponent } from '../../shared/components/footer/footer.component';
@@ -31,22 +38,22 @@ interface ResponsiveOptions {
   styleUrl: './careers.component.css',
 })
 export class CareersComponent implements OnInit {
+  isBrowser = signal<boolean>(false);
+  employees = signal<Employee[]>([]);
+  responsiveOptions = signal<ResponsiveOptions[]>([]);
+
   title = inject(Title);
   meta = inject(Meta);
-  employees: Employee[] = [];
-  responsiveOptions: ResponsiveOptions[] = [];
-
-  isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
+    this.isBrowser.set(isPlatformBrowser(platformId));
   }
 
   ngOnInit(): void {
     this.setMetaTags();
 
-    if (this.isBrowser) {
-      this.employees = [
+    if (this.isBrowser()) {
+      this.employees.set([
         {
           name: 'Hazem Mokhtar',
           title: 'Partner and Head of Regional branches',
@@ -71,9 +78,9 @@ export class CareersComponent implements OnInit {
           imageUrl: 'careers/mamdouh_farouk.jpg',
           message: `"At ATC Group, I've found a workplace that truly values creativity and initiative. The company's supportive culture encourages innovative thinking and collaboration, allowing me to contribute meaningfully to exciting projects."`,
         },
-      ];
+      ]);
 
-      this.responsiveOptions = [
+      this.responsiveOptions.set([
         {
           breakpoint: '1400px',
           numVisible: 2,
@@ -84,7 +91,7 @@ export class CareersComponent implements OnInit {
           numVisible: 1,
           numScroll: 1,
         },
-      ];
+      ]);
     }
   }
 

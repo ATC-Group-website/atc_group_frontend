@@ -1,11 +1,11 @@
 <div class="relative h-[82vh] w-full overflow-hidden">
   <!-- Background Images -->
   <div class="relative h-full w-full">
-    @for (image of images; track $index) {
+    @for (image of images(); track $index) {
       <div
         class="absolute h-full w-full bg-cover bg-center transition-transform duration-1000 ease-in-out"
         [ngStyle]="{
-          transform: 'translateX(' + 100 * ($index - currentIndex) + '%)',
+          transform: 'translateX(' + 100 * ($index - currentIndex()) + '%)',
           backgroundImage: 'url(' + image + ')',
         }"
       >
@@ -96,12 +96,14 @@
   <div
     class="absolute bottom-4 left-1/2 flex -translate-x-1/2 transform space-x-2"
   >
-    @for (dot of images; track $index) {
+    @for (dot of images(); track $index) {
       <button
         (click)="goToSlide($index)"
         class="rounded-full border-0 p-1 transition-colors duration-300"
         [ngClass]="
-          currentIndex === $index ? 'bg-primary' : 'bg-white hover:bg-white/75'
+          currentIndex() === $index
+            ? 'bg-primary'
+            : 'bg-white hover:bg-white/75'
         "
       ></button>
     }
