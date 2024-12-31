@@ -66,13 +66,13 @@ public: Static files like images, fonts, and JSON files.
 
 Key dependencies used in this project:
 
-Angular: Framework for building the app.
-PrimeNG: UI components for Angular.
-TailwindCSS: Utility-first CSS framework.
-Chart.js: For rendering data visualizations.
-Leaflet: Interactive maps.
-Quill: Rich text editor.
-Refer to the package.json for the complete list.
+- Angular: Framework for building the app.
+- PrimeNG: UI components for Angular.
+- TailwindCSS: Utility-first CSS framework.
+- Chart.js: For rendering data visualizations.
+- Leaflet: Interactive maps.
+- Quill: Rich text editor.
+- Refer to the package.json for the complete list.
 
 ### 💻 Development Scripts
 
