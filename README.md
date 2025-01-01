@@ -31,17 +31,15 @@ ATC Group is dedicated to providing tailored financial solutions to businesses a
 ## 🔧 Installation
 
 1. Clone the repository:
+
    ```bash
    git clone https://github.com/ATC-Group-website/atc_group_frontend.git
    cd atc_group_frontend
-   Install dependencies:
+   // Install dependencies:
+   npm install
    ```
 
-```bash
-Copy code
-npm install
-Start the development server:
-```
+2. Start the development server:
 
 ```bash
 Copy code
@@ -93,12 +91,6 @@ Contributions are welcome! Please follow these steps:
 
 Create a new branch for your feature/bugfix.
 Submit a pull request.
-
-<!-- check this  -->
-
-### 📜 License
-
-This project is licensed under the MIT License.
 
 ## 🤝 Contact
 

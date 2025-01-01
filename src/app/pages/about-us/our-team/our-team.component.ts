@@ -490,7 +490,7 @@ export class OurTeamComponent implements OnInit {
       imageUrl: 'about_us/our_team/dawlat.jpg',
     },
   ];
-  
+
   insuranceMembers: Member[] = [
     {
       name: 'Hisham Halawa',

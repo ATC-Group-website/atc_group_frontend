@@ -42,7 +42,6 @@ export class AddNewPostComponent {
   selectedCategoryValue = signal<string | null>(null);
   selectedFileNames = signal<string[]>([]);
 
-  private router = inject(Router);
   private messageService = inject(MessageService);
   private dashboardService = inject(AdminDashboardService);
 
@@ -79,12 +78,8 @@ export class AddNewPostComponent {
         }),
       };
 
-      console.log(Data);
-
       this.dashboardService.createPost(Data).subscribe({
         next: (response) => {
-          console.log(response);
-
           this.isLoading.set(false);
           this.messageService.add({
             severity: 'success',
@@ -97,8 +92,6 @@ export class AddNewPostComponent {
           this.selectedFileNames.set([]);
         },
         error: (err) => {
-          console.log(err);
-
           this.isLoading.set(false);
           this.errorMsg.set(err.error.message);
           this.messageService.add({
