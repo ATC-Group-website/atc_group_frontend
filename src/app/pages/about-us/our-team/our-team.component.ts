@@ -186,7 +186,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Mohamed Hassan',
       title: 'Head of the Audit Sector',
-      imageUrl: 'about_us/our_team/mohamed_hassan.jpg',
+      imageUrl: 'about_us/our_team/mohamed_hassan.JPG',
     },
     {
       name: 'Sameh Mahmoud Kamel',
@@ -273,7 +273,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Hassan Ibrahim El-Helw',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/hassan_elhelw.jpg',
+      imageUrl: 'about_us/our_team/hassan_elhelw.JPG',
     },
     {
       name: 'Abdel-Salam Anwar',
