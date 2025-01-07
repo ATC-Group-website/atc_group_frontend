@@ -123,7 +123,7 @@ export class OurTeamComponent implements OnInit {
     },
     {
       name: 'Mohamed Zaki',
-      title: 'Head of Finance & Bookeeping Sectors',
+      title: 'Head of Finance & Bookkeeping Sectors',
       imageUrl: 'about_us/our_team/mohamed_zaki.jpg',
     },
   ];
@@ -495,7 +495,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Hisham Halawa',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/hisham_halawa.JPG',
     },
   ];
 
