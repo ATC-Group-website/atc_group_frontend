@@ -74,10 +74,10 @@ Key dependencies used in this project:
 
 ### 💻 Development Scripts
 
-npm start: Starts the development server.
-npm run build: Builds the project for production.
-npm run test: Runs unit tests.
-npm run serve:ssr:atc_group_frontend: Serves the SSR build.
+- npm start: Starts the development server.
+- npm run build: Builds the project for production.
+- npm run test: Runs unit tests.
+- npm run serve:ssr:atc_group_frontend: Serves the SSR build.
 
 ### 🌐 Live Demo
 
