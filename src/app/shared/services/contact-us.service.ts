@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 export class ContactUsService {
   http = inject(HttpClient);
 
-  private apiUrl = 'https://api1.atc.com.eg';
+  // private apiUrl = 'https://api1.atc.com.eg';
+  private apiUrl = 'https://atc.com.eg';
 
   constructor() {}
 

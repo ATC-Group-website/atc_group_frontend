@@ -9,7 +9,8 @@ import { Admin, Login } from './interface';
 export class AdminAuthService {
   http = inject(HttpClient);
 
-  private apiUrl = 'https://api1.atc.com.eg';
+  // private apiUrl = 'https://api1.atc.com.eg';
+  private apiUrl = 'https://atc.com.eg';
 
   constructor() {}
 

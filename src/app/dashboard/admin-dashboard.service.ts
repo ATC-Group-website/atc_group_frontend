@@ -9,7 +9,8 @@ import { NewPost, PostCreationResponse, PostsCount } from './interface';
 export class AdminDashboardService {
   http = inject(HttpClient);
 
-  private apiUrl = 'https://api1.atc.com.eg';
+  // private apiUrl = 'https://api1.atc.com.eg';
+  private apiUrl = 'https://atc.com.eg';
 
   constructor() {}
   createPost(postData: NewPost): Observable<PostCreationResponse> {
