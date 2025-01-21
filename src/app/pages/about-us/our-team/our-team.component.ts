@@ -397,7 +397,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Hamdy Saad Rashed',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/hamdy.jpg',
     },
     {
       name: 'Hafez Mohamed',
@@ -446,7 +446,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Fathy Abo El-Ela',
       title: 'Consultant',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/fathy.jpg',
     },
   ];
 
@@ -503,7 +503,7 @@ export class OurTeamComponent implements OnInit {
     {
       name: 'Emad Fawy',
       title: 'Partner',
-      imageUrl: 'about_us/our_team/profile.jpg',
+      imageUrl: 'about_us/our_team/emad.jpg',
     },
   ];
 }
