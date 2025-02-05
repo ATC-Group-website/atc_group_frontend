@@ -48,6 +48,8 @@ export class ContactUsComponent implements OnInit {
   contactUsService = inject(ContactUsService);
 
   ngOnInit(): void {
+    console.log(this.loading());
+
     this.setMetaTags();
   }
 
@@ -61,7 +63,7 @@ export class ContactUsComponent implements OnInit {
       this.loading.set(true);
       const Data = {
         sender: formData.form.controls['email'].value,
-        // receiver: 'online@atc.com.eg',
+        // receiver: 'moustafa.ashraf277@gmail.com',
         receiver: 'contactus@atc.com.eg',
         reason_for_contact: formData.form.controls['reasonForContact'].value,
         body: formData.form.controls['details'].value,
@@ -72,13 +74,17 @@ export class ContactUsComponent implements OnInit {
       };
 
       this.contactUsService.contact_US(Data).subscribe({
-        next: () => {
+        next: (res) => {
+          // console.log(res);
+          this.loading.set(false);
           this.message.set('Thank you for contacting ATC Group.');
           formData.reset();
-          this.loading.set(false);
+
         },
-        error: () => {
+        error: (err) => {
+          // console.log(err);
           this.loading.set(false);
+
         },
       });
     }
