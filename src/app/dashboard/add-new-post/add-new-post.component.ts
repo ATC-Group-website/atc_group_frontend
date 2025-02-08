@@ -77,7 +77,7 @@ export class AddNewPostComponent {
           video_url: postData.controls['youtube_video_link'].value,
         }),
       };
-      console.log(Data.description);
+      // console.log(Data.description);
 
 
       this.dashboardService.createPost(Data).subscribe({

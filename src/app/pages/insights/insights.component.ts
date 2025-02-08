@@ -77,7 +77,7 @@ export class InsightsComponent implements OnInit {
 
     this.postsService.getPaginatedPostsByType(type, pageNum).subscribe({
       next: (res) => {
-        console.log(res);
+        // console.log(res);
 
         this.types[type].data = res.posts.data;
         this.types[type].currentPage = res.posts.current_page;
