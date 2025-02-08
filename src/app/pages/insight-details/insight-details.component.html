@@ -3,6 +3,7 @@
 <main>
   <section class="mb-10">
     <div class="mx-auto min-h-[50vh] max-w-screen-xl p-4">
+    <!-- <div> -->
       @if (isLoading()) {
         <div class="flex h-[50vh] items-center justify-center">
           <app-loading></app-loading>
@@ -37,11 +38,18 @@
             </iframe>
           </div>
         }
-        <div
+        <!-- <div
           class="max-w-full whitespace-pre-wrap break-words p-4 text-sm leading-relaxed text-gray-700 md:text-base"
           [innerHTML]="sanitizeHtml(post().description)"
           [dir]="newDescription()?.direction"
+        ></div> -->
+
+        <div
+          class="max-w-full whitespace-normal break-words p-4 text-sm leading-relaxed text-gray-700 md:text-base"
+          [innerHTML]="sanitizeHtml(post().description)"
+          [dir]="newDescription()?.direction"
         ></div>
+
         <!-- last try  -->
         <!-- <div class="max-w-full overflow-hidden">
           <div

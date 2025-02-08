@@ -107,8 +107,12 @@ export class InsightDetailsComponent implements OnInit {
     }
   }
 
+  // sanitizeHtml(html: string): SafeHtml {
+  //   return this.sanitizer.bypassSecurityTrustHtml(html);
+  // }
   sanitizeHtml(html: string): SafeHtml {
-    return this.sanitizer.bypassSecurityTrustHtml(html);
+    const cleanedHtml = html.replace(/&nbsp;/g, ' ');
+    return this.sanitizer.bypassSecurityTrustHtml(cleanedHtml);
   }
 
   private extractVideoId(url: string): string | null {

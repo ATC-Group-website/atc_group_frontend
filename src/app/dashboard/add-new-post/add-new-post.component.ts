@@ -77,6 +77,8 @@ export class AddNewPostComponent {
           video_url: postData.controls['youtube_video_link'].value,
         }),
       };
+      console.log(Data.description);
+
 
       this.dashboardService.createPost(Data).subscribe({
         next: (response) => {
@@ -92,6 +94,8 @@ export class AddNewPostComponent {
           this.selectedFileNames.set([]);
         },
         error: (err) => {
+          console.log(err);
+
           this.isLoading.set(false);
           this.errorMsg.set(err.error.message);
           this.messageService.add({
