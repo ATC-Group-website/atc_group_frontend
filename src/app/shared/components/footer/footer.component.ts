@@ -49,7 +49,7 @@ export class FooterComponent {
         },
         error: (err) => {
           this.loading.set(false);
-          this.message = err.error.message;
+          this.message.set(err.error.message);
         },
       });
     }
