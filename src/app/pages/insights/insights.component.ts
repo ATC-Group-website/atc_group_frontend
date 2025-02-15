@@ -8,6 +8,7 @@ import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { PostsService } from '../../shared/services/posts.service';
 import { RouterModule } from '@angular/router';
+import { ImageModule } from 'primeng/image';
 
 @Component({
   selector: 'app-insights',
@@ -21,6 +22,7 @@ import { RouterModule } from '@angular/router';
     NgOptimizedImage,
     RouterModule,
     CommonModule,
+    ImageModule,
   ],
   templateUrl: './insights.component.html',
   styleUrl: './insights.component.css',
@@ -52,6 +54,29 @@ export class InsightsComponent implements OnInit {
       rows: 3,
     },
   };
+
+  pressImages = [
+    {
+      imageUrl: 'insights/elmasry_elyom_feb_15.webp',
+      alt: 'elmasry elyom feb 15th',
+    },
+    {
+      imageUrl: 'insights/elgomhoria_feb_15.webp',
+      alt: 'elgomhoria feb 15th',
+    },
+    {
+      imageUrl: 'insights/akhbar_elyom_feb_15.webp',
+      alt: 'akhbar elyom feb 15th',
+    },
+    {
+      imageUrl: 'insights/elwafd_feb_15.webp',
+      alt: 'elwafd feb 15th',
+    },
+    {
+      imageUrl: 'insights/news_paper_feb_15.webp',
+      alt: 'news paper feb 15th',
+    },
+  ];
 
   // not used
   // pageNumArticles = signal(1);

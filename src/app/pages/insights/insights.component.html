@@ -356,5 +356,28 @@
       </div>
     </div>
   </section>
+  <section class="py-10">
+    <div class="mx-auto max-w-screen-xl p-4">
+      <h2
+        class="border-0 border-l-[12px] border-solid border-primary p-4 text-4xl font-bold text-black"
+      >
+        In the Press
+      </h2>
+      <div
+        class="grid grid-cols-1 gap-4 p-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+      >
+        @for (image of pressImages; track $index) {
+          <p-image
+            [src]="image.imageUrl"
+            [alt]="image.alt"
+            [preview]="true"
+            class="mx-auto object-cover"
+            width="250"
+            height="350"
+          ></p-image>
+        }
+      </div>
+    </div>
+  </section>
 </main>
 <app-footer></app-footer>
