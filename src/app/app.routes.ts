@@ -1,3 +1,4 @@
+import { InThePressComponent } from './dashboard/in-the-press/in-the-press.component';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { AboutUsComponent } from './pages/about-us/about-us.component';
@@ -173,6 +174,15 @@ export const routes: Routes = [
             (mod) => mod.BlogsComponent,
           ),
         title: 'Dashboard | Blogs',
+      },
+      {
+        path: 'in-the-press',
+        canActivate: [adminGuard],
+        loadComponent: () =>
+          import('./dashboard/in-the-press/in-the-press.component').then(
+            (mod) => mod.InThePressComponent,
+          ),
+        title: 'Dashboard | In the press',
       },
       {
         path: 'emails',

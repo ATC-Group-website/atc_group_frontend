@@ -1,5 +1,5 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router, RouterModule } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -78,7 +78,6 @@ export class AddNewPostComponent {
         }),
       };
       // console.log(Data.description);
-
 
       this.dashboardService.createPost(Data).subscribe({
         next: (response) => {

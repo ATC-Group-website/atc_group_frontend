@@ -48,8 +48,6 @@ export class ContactUsComponent implements OnInit {
   contactUsService = inject(ContactUsService);
 
   ngOnInit(): void {
-    console.log(this.loading());
-
     this.setMetaTags();
   }
 
@@ -72,19 +70,18 @@ export class ContactUsComponent implements OnInit {
         position: formData.form.controls['position'].value,
         phone_number: formData.form.controls['phone_number'].value,
       };
+      console.log(Data.receiver);
 
       this.contactUsService.contact_US(Data).subscribe({
         next: (res) => {
-          // console.log(res);
+          console.log(res);
           this.loading.set(false);
           this.message.set('Thank you for contacting ATC Group.');
           formData.reset();
-
         },
         error: (err) => {
-          // console.log(err);
+          console.log(err);
           this.loading.set(false);
-
         },
       });
     }

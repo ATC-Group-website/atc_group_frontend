@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { NewPost, PostCreationResponse, PostsCount } from './interface';
@@ -13,6 +13,11 @@ export class AdminDashboardService {
   // private apiUrl = 'https://atc.com.eg';
 
   constructor() {}
+
+  setAuthHeaders(token: string | null): HttpHeaders {
+    return new HttpHeaders({ Authorization: `Bearer ${token}` });
+  }
+
   createPost(postData: NewPost): Observable<PostCreationResponse> {
     return this.http.post<PostCreationResponse>(
       `${this.apiUrl}/post`,
@@ -82,5 +87,21 @@ export class AdminDashboardService {
         emails,
       },
     );
+  }
+
+  createNewsPaper(data: any): Observable<any> {
+    const headers = this.setAuthHeaders(localStorage.getItem('token'));
+
+    return this.http.post<any>(`${this.apiUrl}/magazines`, data, { headers });
+  }
+
+  deleteNewsPaper(id: number): Observable<any> {
+    const headers = this.setAuthHeaders(localStorage.getItem('token'));
+
+    return this.http.delete<any>(`${this.apiUrl}/magazines/${id}`, { headers });
+  }
+
+  getPaginatedNewsPapers(pageNum: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/magazines?page=${pageNum}`);
   }
 }
