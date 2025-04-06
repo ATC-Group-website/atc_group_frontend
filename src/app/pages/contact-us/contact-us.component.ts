@@ -61,8 +61,8 @@ export class ContactUsComponent implements OnInit {
       this.loading.set(true);
       const Data = {
         sender: formData.form.controls['email'].value,
-        // receiver: 'moustafa.ashraf277@gmail.com',
-        receiver: 'contactus@atc.com.eg',
+        receiver: 'mostafa-ashraf@atc.com.eg',
+        // receiver: 'contactus@atc.com.eg',
         reason_for_contact: formData.form.controls['reasonForContact'].value,
         body: formData.form.controls['details'].value,
         company_name: formData.form.controls['company_name'].value,
@@ -70,7 +70,7 @@ export class ContactUsComponent implements OnInit {
         position: formData.form.controls['position'].value,
         phone_number: formData.form.controls['phone_number'].value,
       };
-      console.log(Data.receiver);
+      console.log(Data);
 
       this.contactUsService.contact_US(Data).subscribe({
         next: (res) => {

@@ -21,6 +21,7 @@ import { errorInterceptor } from './dashboard/error.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
+    provideClientHydration(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(
       routes,
@@ -29,7 +30,6 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
       }),
     ),
-    provideClientHydration(),
     provideHttpClient(
       withFetch(),
       withInterceptors([adminTokenInterceptor, errorInterceptor]),
