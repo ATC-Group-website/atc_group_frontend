@@ -80,29 +80,102 @@ export class InsightDetailsComponent implements OnInit {
           // Set the title dynamically
           this.title.setTitle(`${res.title}`);
 
+          const description =
+            this.sanitizer.sanitize(1, this.sanitizeHtml(res.description)) ||
+            '';
+          const truncatedDesc =
+            description.length > 160
+              ? description.substring(0, 157) + '...'
+              : description;
           // Update meta description
-          // this.meta.updateTag({
-          //   name: 'description',
-          //   content: this.truncateAndAlign(
-          //     res.description || 'Explore our latest article!',
-          //   ),
-          // });
-
-          // Optional: Add Open Graph meta tags for social sharing
           this.meta.updateTag({
-            property: 'og:title',
-            content: res.title,
+            name: 'description',
+            content: truncatedDesc,
+          }),
+            // Optional: Add Open Graph meta tags for social sharing
+            this.meta.updateTag({
+              property: 'og:title',
+              content: res.title,
+            });
+          this.meta.updateTag({
+            property: 'og:description',
+            content: truncatedDesc,
           });
-          // this.meta.updateTag({
-          //   property: 'og:description',
-          //   content: this.truncateAndAlign(
-          //     res.description || 'Explore our latest article!',
-          //   ),
-          // });
           this.meta.updateTag({
             property: 'og:url',
-            content: `https://www.atc.com.eg/articles/${slug}`,
+            content: `https://www.atc.com.eg/insights/${slug}`,
           });
+          this.meta.updateTag({
+            property: 'og:image',
+            content:
+              res.images[0]?.path ||
+              'https://www.atc.com.eg/atc_group_white.jpg',
+          });
+          this.meta.updateTag({
+            property: 'og:type',
+            content: 'article',
+          });
+          this.meta.updateTag({
+            property: 'og:site_name',
+            content: 'ATC Group',
+          });
+          this.meta.updateTag({
+            property: 'og:updated_time',
+            content: res.updated_at,
+          });
+          this.meta.updateTag({
+            property: 'og:author',
+            content: 'ATCGroup',
+          });
+          this.meta.updateTag({
+            property: 'og:published_time',
+            content: res.created_at,
+          });
+          this.meta.updateTag({
+            property: 'og:keywords',
+            content: res.title,
+          });
+
+          this.meta.updateTag({
+            property: 'og:article:published_time',
+            content: res.created_at,
+          });
+          this.meta.updateTag({
+            property: 'og:article:modified_time',
+            content: res.updated_at,
+          });
+          this.meta.updateTag({
+            property: 'og:article:author',
+            content: 'ATCGroup',
+          });
+          this.meta.updateTag({
+            property: 'og:article:tag',
+            content: res.title,
+          });
+          this.meta.updateTag({
+            rel: 'canonical',
+            href: `https://www.atc.com.eg/insights/${slug}`,
+          });
+          this.meta.updateTag({
+            name: 'twitter:card',
+            content: res.title,
+          });
+          this.meta.updateTag({ name: 'twitter:title', content: res.title });
+          this.meta.updateTag({
+            name: 'twitter:description',
+            content: truncatedDesc,
+          });
+          this.meta.updateTag({
+            name: 'twitter:image',
+            content:
+              res.images[0]?.path ||
+              'https://www.atc.com.eg/atc_group_white.jpg',
+          });
+          this.meta.updateTag({
+            name: 'twitter:site',
+            content: '@ATCGroup143796',
+          });
+          this.meta.updateTag({ name: 'robots', content: 'index, follow' });
           this.isLoading.set(false);
         },
         error: () => {

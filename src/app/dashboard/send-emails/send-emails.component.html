@@ -33,6 +33,14 @@
         }"
       ></button>
     </form>
+    <button
+      pButton
+      label="Download Contact us emails"
+      class="mt-20"
+      type="button"
+      [loading]="isLoadingDownload()"
+      (click)="downloadEmailsContactus()"
+    ></button>
   </div>
   <p-toast></p-toast>
 </main>

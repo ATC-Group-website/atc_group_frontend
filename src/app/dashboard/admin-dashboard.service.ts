@@ -104,4 +104,16 @@ export class AdminDashboardService {
   getPaginatedNewsPapers(pageNum: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/magazines?page=${pageNum}`);
   }
+
+  getContactUsEmailsFromDatabase(): Observable<any> {
+    const headers = this.setAuthHeaders(localStorage.getItem('token'));
+
+    console.log('Auth Header:', headers.get('Authorization')); // Verify token format
+
+    return this.http.get(`${this.apiUrl}/download/mails`, {
+      headers,
+      responseType: 'blob', // This is crucial
+      observe: 'response', // Crucial for accessing headers
+    });
+  }
 }
